@@ -30,4 +30,14 @@ class ClubMember extends Model
     {
         return $this->hasMany(Vehicle::class);
     }
+
+    public function memberships()
+    {
+        return $this->hasMany(Membership::class);
+    }
+
+    public function membershipTypes()
+    {
+        return $this->hasMany(MembershipType::class);
+    }
 }
