@@ -26,8 +26,13 @@ trait ApiResponser
         return $this->successResponse($collection, $code);
     }
 
-    protected function showOne(Model $instance, $code)
+    protected function showOne(Model $instance, $code = 200)
     {
         return $this->successResponse($instance, $code);
+    }
+
+    protected function showMessage($message, $code = 200)
+    {
+        return $this->successResponse(['data' => $message], $code);
     }
 }
