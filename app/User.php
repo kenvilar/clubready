@@ -72,7 +72,7 @@ class User extends Authenticatable
         parent::boot();
 
         static::creating(function ($user) {
-            $user->member_number = (string) Str::uuid();
+            $user->member_number = (string)Str::uuid();
             $user->verification_token = User::generateVerificationCode();
         });
     }

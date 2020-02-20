@@ -33,7 +33,7 @@ class CreateUsersTable extends Migration
             $table->date('date_of_birth')->nullable();
             $table->string('member_number')->unique();
             $table->integer('club_racenumber')->nullable();
-            $table->string('verified')->default(User::VERIFIED_USER);
+            $table->string('verified')->default(User::UNVERIFIED_USER);
             $table->string('verification_token')->nullable();
             $table->string('admin')->default(User::NON_ADMIN_USER);
             $table->string('active')->default(User::ACTIVE_USER);

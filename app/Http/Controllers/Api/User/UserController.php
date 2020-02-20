@@ -44,7 +44,7 @@ class UserController extends Controller
 
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
-        $data['verified'] = User::UNVERIFIED_USER;
+        $data['verified'] = User::VERIFIED_USER;
         $data['member_number'] = (string)Str::uuid();
         $data['verification_token'] = User::generateVerificationCode();
         $data['admin'] = User::NON_ADMIN_USER;
