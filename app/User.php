@@ -67,6 +67,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $user->member_number = (string) Str::uuid();
+            $user->verification_token = User::generateVerificationCode();
+        });
+    }
+
     public function isVerified()
     {
         return $this->verified == User::VERIFIED_USER;

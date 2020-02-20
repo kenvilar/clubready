@@ -31,8 +31,8 @@ class CreateUsersTable extends Migration
             $table->string('phone_mobile')->nullable();
             $table->string('alternative_email')->nullable();
             $table->date('date_of_birth')->nullable();
-            $table->integer('member_number')->unique();
-            $table->integer('club_racenumber')->unique();
+            $table->string('member_number')->unique();
+            $table->integer('club_racenumber')->nullable();
             $table->string('verified')->default(User::UNVERIFIED_USER);
             $table->string('verification_token')->nullable();
             $table->string('admin')->default(User::NON_ADMIN_USER);
