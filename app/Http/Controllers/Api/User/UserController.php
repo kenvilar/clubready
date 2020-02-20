@@ -85,6 +85,9 @@ class UserController extends Controller
 
         $this->validate($request, $rules);
 
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+
         if ($request->has('email') && $user->email !== $request->email) {
             $user->verification_token = User::generateVerificationCode();
             $user->email = $request->email;
