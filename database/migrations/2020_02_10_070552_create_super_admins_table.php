@@ -15,7 +15,7 @@ class CreateSuperAdminsTable extends Migration
     {
         Schema::create('super_admins', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->unique();
             $table->timestamps();
         });
 

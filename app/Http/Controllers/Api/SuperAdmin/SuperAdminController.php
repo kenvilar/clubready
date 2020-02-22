@@ -32,7 +32,7 @@ class SuperAdminController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'user_id' => 'integer',
+            'user_id' => 'integer|unique:super_admins,user_id',
         ];
         $this->validate($request, $rules);
 
@@ -64,7 +64,7 @@ class SuperAdminController extends Controller
     public function update(Request $request, SuperAdmin $superAdmin)
     {
         $rules = [
-            'user_id' => 'integer',
+            'user_id' => 'integer|unique:super_admins,user_id',
         ];
         $this->validate($request, $rules);
 
