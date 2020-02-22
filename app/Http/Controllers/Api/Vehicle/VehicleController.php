@@ -35,6 +35,7 @@ class VehicleController extends Controller
         $nowPlus10 = (String)((int)$now + 10);
 
         $rules = [
+            'user_id' => 'required|integer',
             'make' => 'required|min:2',
             'model' => 'required|min:2',
             'year' => 'required|integer|between:1700,' . $nowPlus10,
@@ -74,6 +75,7 @@ class VehicleController extends Controller
         $nowPlus10 = (String)((int)$now + 10);
 
         $rules = [
+            'user_id' => 'required|integer',
             'make' => 'required|min:2',
             'model' => 'required|min:2',
             'year' => 'required|integer|between:1700,' . $nowPlus10,

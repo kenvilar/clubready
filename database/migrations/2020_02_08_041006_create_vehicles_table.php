@@ -15,12 +15,17 @@ class CreateVehiclesTable extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->string('make');
             $table->string('model');
             $table->unsignedInteger('year');
             $table->unsignedInteger('capacity');
             $table->string('induction');
             $table->timestamps();
+        });
+
+        Schema::table('vehicles', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
