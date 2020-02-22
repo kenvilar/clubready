@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api\ClubMember;
 
 use App\Http\Controllers\Controller;
 use App\Models\ClubMember;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 
 class ClubMemberController extends Controller
@@ -33,7 +35,13 @@ class ClubMemberController extends Controller
     {
         $rules = [
             'user_id' => 'required|integer',
-            'club_id' => 'required|integer',
+            'club_id' => ['required', 'integer',
+                //Don't save if both user_id and club_id exist
+                Rule::unique('club_members')->where(function (Builder $query) use ($request) {
+                    $query
+                        ->where('user_id', $request->user_id)
+                        ->where('club_id', $request->club_id);
+                }),],
             'admin' => 'in:' . ClubMember::ADMIN_USER . ',' . ClubMember::NON_ADMIN_USER,
         ];
         $this->validate($request, $rules);
@@ -67,7 +75,13 @@ class ClubMemberController extends Controller
     {
         $rules = [
             'user_id' => 'required|integer',
-            'club_id' => 'required|integer',
+            'club_id' => ['required', 'integer',
+                //Don't save if both user_id and club_id exist
+                Rule::unique('club_members')->where(function (Builder $query) use ($request) {
+                    $query
+                        ->where('user_id', $request->user_id)
+                        ->where('club_id', $request->club_id);
+                }),],
             'admin' => 'in:' . ClubMember::ADMIN_USER . ',' . ClubMember::NON_ADMIN_USER,
         ];
         $this->validate($request, $rules);
