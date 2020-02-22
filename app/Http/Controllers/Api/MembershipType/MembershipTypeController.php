@@ -40,9 +40,9 @@ class MembershipTypeController extends Controller
         $this->validate($request, $rules);
 
         $data = $request->all();
-        $induction = MembershipType::query()->create($data);
+        $membershipType = MembershipType::query()->create($data);
 
-        return $this->showOne($induction, 201);
+        return $this->showOne($membershipType, 201);
     }
 
     /**
