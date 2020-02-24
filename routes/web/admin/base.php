@@ -19,34 +19,34 @@ Route::namespace('ClubMember')->name('club-member.')->group(base_path('routes/we
 /**
  * Induction
  */
-//Route::namespace('Induction')->name('induction.')->group(base_path('routes/web/admin/induction.php'));
+Route::namespace('Induction')->name('induction.')->group(base_path('routes/web/admin/induction.php'));
 
 /**
  * Membership
  */
-//Route::namespace('Membership')->name('membership.')->group(base_path('routes/web/admin/membership.php'));
+Route::namespace('Membership')->name('membership.')->group(base_path('routes/web/admin/membership.php'));
 
 /**
  * MembershipType
  */
-//Route::namespace('MembershipType')->name('membership-type.')->group(base_path('routes/web/admin/membership-type.php'));
+Route::namespace('MembershipType')->name('membership-type.')->group(base_path('routes/web/admin/membership-type.php'));
 
 /**
  * MembershipTypeName
  */
-//Route::namespace('MembershipTypeName')->name('membership-type-name.')->group(base_path('routes/web/admin/membership-type-name.php'));
+Route::namespace('MembershipTypeName')->name('membership-type-name.')->group(base_path('routes/web/admin/membership-type-name.php'));
 
 /**
  * SuperAdmin
  */
-//Route::namespace('SuperAdmin')->name('super-admin.')->group(base_path('routes/web/admin/super-admin.php'));
+Route::namespace('SuperAdmin')->name('super-admin.')->group(base_path('routes/web/admin/super-admin.php'));
 
 /**
  * User
  */
-//Route::namespace('User')->name('user.')->group(base_path('routes/web/admin/user.php'));
+Route::namespace('User')->name('user.')->group(base_path('routes/web/admin/user.php'));
 
 /**
  * Vehicle
  */
-//Route::namespace('Vehicle')->name('vehicle.')->group(base_path('routes/web/admin/vehicle.php'));
+Route::namespace('Vehicle')->name('vehicle.')->group(base_path('routes/web/admin/vehicle.php'));

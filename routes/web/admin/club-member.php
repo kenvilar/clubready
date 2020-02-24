@@ -7,4 +7,4 @@
  *
  */
 
-Route::resource('club-member', 'ClubMemberController', ['except' => ['store', 'update', 'destroy',]]);
+Route::resource('club-members', 'ClubMemberController', ['except' => ['store', 'update', 'destroy',]]);

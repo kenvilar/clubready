@@ -1,0 +1,10 @@
+<?php
+
+/**
+ *
+ * Route::namespace('Web')->name('web.')->group(base_path('routes/web/admin/base.php'));
+ * Route::namespace('User')->name('user.')->group(base_path('routes/web/admin/user.php'));
+ *
+ */
+
+Route::resource('users', 'UserController', ['except' => ['store', 'update', 'destroy',]]);
