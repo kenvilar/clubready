@@ -14,7 +14,7 @@ Route::namespace('Club')->name('club.')->group(base_path('routes/web/admin/club.
 /**
  * ClubMember
  */
-//Route::namespace('ClubMember')->name('club-member.')->group(base_path('routes/web/admin/club-member.php'));
+Route::namespace('ClubMember')->name('club-member.')->group(base_path('routes/web/admin/club-member.php'));
 
 /**
  * Induction
