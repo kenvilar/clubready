@@ -85,12 +85,10 @@
                     let club_update = axios.put(`/api/clubs/${this.club_id}`, this.club)
                         .then(response => {
                             this.club = response.data;
-                            console.log('update() this.club', this.club);
                         }, error => {
                             this.errors = error.response.data.error;
-                            console.log('update() this.errors', this.errors);
                         }).catch(err => {
-                            console.log('update() Catch Error: ', err);
+                            //
                         });
 
                     return;
@@ -98,12 +96,11 @@
 
                 let club_store = axios.post('/api/clubs', this.club)
                     .then(response => {
-                        console.log('store() response', response);
+                        //
                     }, error => {
                         this.errors = error.response.data.error;
-                        console.log('store() this.errors', this.errors);
                     }).catch(err => {
-                        console.log('store() Catch Error: ', err);
+                        //
                     });
                 this.club = {};
             },
@@ -112,12 +109,10 @@
                     let club_edit = axios.get(`/api/clubs/${this.club_id}`, this.club)
                         .then(response => {
                             this.club = response.data;
-                            console.log('edit() this.club', this.club);
                         }, error => {
                             this.errors = error.response.data.error;
-                            console.log('edit() this.errors', this.errors);
                         }).catch(err => {
-                            console.log('edit() Catch Error: ', err);
+                            //
                         });
                 }
             },
