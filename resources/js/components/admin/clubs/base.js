@@ -1,3 +1,4 @@
 window.Vue = require('vue');
 
-Vue.component('form-club-vue', require('./FormClub').default);
+Vue.component('create-and-edit-club-vue', require('./CreateAndEditView').default);
+Vue.component('list-and-detail-club-vue', require('./ListAndDetailView').default);

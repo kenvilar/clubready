@@ -4,8 +4,8 @@
 
     This is clubs create page
 
-    <div id="form-club-vue">
-        <form-club-vue></form-club-vue>
+    <div id="create-and-edit-club-vue">
+        <create-and-edit-club-vue :club_id="{{isset($club->id) ? $club->id : 0}}"></create-and-edit-club-vue>
     </div>
 
 @endsection
@@ -13,7 +13,7 @@
 @push('footer-scripts')
     <script>
         var formClubVue = new Vue({
-            el: '#form-club-vue',
+            el: '#create-and-edit-club-vue',
         });
     </script>
 @endpush

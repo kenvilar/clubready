@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Club;
 
 use App\Http\Controllers\Controller;
+use App\Models\Club;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 
@@ -25,28 +26,28 @@ class ClubController extends Controller
      */
     public function create()
     {
-        return view('admin.clubs.create');
+        return view('admin.clubs.createAndUpdateForm');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Club $club
      * @return Factory|View
      */
-    public function show($id)
+    public function show(Club $club)
     {
-        return view('admin.clubs.show');
+        return view('admin.clubs.show', ['club' => $club]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param Club $club
      * @return Factory|View
      */
-    public function edit($id)
+    public function edit(Club $club)
     {
-        return view('admin.clubs.edit');
+        return view('admin.clubs.createAndUpdateForm', ['club' => $club]);
     }
 }

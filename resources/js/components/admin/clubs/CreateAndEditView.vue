@@ -39,7 +39,7 @@
                     <input type="text" class="form-control" name="website" id="website" v-model="club.website">
                 </div>
                 <div class="form-group">
-                    <button @click="create">Create</button>
+                    <button @click="storeOrUpdate">Create</button>
                 </div>
             </div>
         </div>
@@ -48,8 +48,15 @@
 
 <script>
     export default {
+        props: {
+            club_id: {
+                type: Number,
+                default: 0,
+                required: false
+            }
+        },
         mounted() {
-            //
+            this.edit();
         },
         created() {
             //
@@ -73,23 +80,46 @@
             }
         },
         methods: {
-            async create() {
-                let club_create = axios.post('/api/clubs', this.club)
+            async storeOrUpdate() {
+                if (this.club_id) {
+                    let club_update = axios.put(`/api/clubs/${this.club_id}`, this.club)
+                        .then(response => {
+                            this.club = response.data;
+                            console.log('update() this.club', this.club);
+                        }, error => {
+                            this.errors = error.response.data.error;
+                            console.log('update() this.errors', this.errors);
+                        }).catch(err => {
+                            console.log('update() Catch Error: ', err);
+                        });
+
+                    return;
+                }
+
+                let club_store = axios.post('/api/clubs', this.club)
                     .then(response => {
-                        console.log('response', response);
+                        console.log('store() response', response);
                     }, error => {
                         this.errors = error.response.data.error;
-                        console.log('this.errors', this.errors);
+                        console.log('store() this.errors', this.errors);
                     }).catch(err => {
-                        console.log('Catch Error: ', err);
+                        console.log('store() Catch Error: ', err);
                     });
                 this.club = {};
             },
-            async show() {
-                //
-            },
-            async update(id, color) {
-                // To do
+            async edit() {
+                if (this.club_id) {
+                    let club_edit = axios.get(`/api/clubs/${this.club_id}`, this.club)
+                        .then(response => {
+                            this.club = response.data;
+                            console.log('edit() this.club', this.club);
+                        }, error => {
+                            this.errors = error.response.data.error;
+                            console.log('edit() this.errors', this.errors);
+                        }).catch(err => {
+                            console.log('edit() Catch Error: ', err);
+                        });
+                }
             },
         }
     }

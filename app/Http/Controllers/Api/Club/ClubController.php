@@ -31,19 +31,7 @@ class ClubController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'name' => 'required|min:2',
-            'address' => 'required|min:2',
-            'suburb' => 'required|min:2',
-            'state' => 'required|min:2',
-            'postcode' => 'required|min:4|max:12',
-            'country' => 'required|min:2',
-            //'phone' => 'required',
-            'email' => 'email',
-            //'website' => 'required',
-            //'stripe_keys' => 'required',
-        ];
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validationRules());
         $data = $request->all();
 
         $club = Club::query()->create($data);
@@ -72,20 +60,7 @@ class ClubController extends Controller
      */
     public function update(Request $request, Club $club)
     {
-        $rules = [
-            'name' => 'required|min:2',
-            'address' => 'required|min:2',
-            'suburb' => 'required|min:2',
-            'state' => 'required|min:2',
-            'postcode' => 'required|min:4|max:12',
-            'country' => 'required|min:2',
-            //'phone' => 'required',
-            'email' => 'email',
-            //'website' => 'required',
-            //'stripe_keys' => 'required',
-        ];
-
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validationRules());
 
         $club->name = $request->name;
         $club->address = $request->address;
@@ -93,7 +68,9 @@ class ClubController extends Controller
         $club->state = $request->state;
         $club->postcode = $request->postcode;
         $club->country = $request->country;
+        $club->phone = $request->phone;
         $club->email = $request->email;
+        $club->website = $request->website;
 
         if (!$club->isDirty()) {
             return $this->errorResponse('You need to specify a different value to update', 422);
@@ -116,5 +93,21 @@ class ClubController extends Controller
         $club->delete();
 
         return $this->showOne($club);
+    }
+
+    private function validationRules()
+    {
+        return [
+            'name' => 'required|min:2',
+            'address' => 'required|min:2',
+            'suburb' => 'required|min:2',
+            'state' => 'required|min:2',
+            'postcode' => 'required|min:4|max:12',
+            'country' => 'required|min:2',
+            'phone' => 'nullable|min:2',
+            'email' => 'nullable|email',
+            'website' => 'nullable|min:3',
+            //'stripe_keys' => 'required',
+        ];
     }
 }
