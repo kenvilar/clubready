@@ -1,0 +1,96 @@
+<template>
+    <div>
+        <div class="row">
+            <div class="col-5">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" v-model="club.name">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" name="address" id="address" v-model="club.address">
+                </div>
+                <div class="form-group">
+                    <label for="suburb">suburb</label>
+                    <input type="text" class="form-control" name="suburb" id="suburb" v-model="club.suburb">
+                </div>
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input type="text" class="form-control" name="state" id="state" v-model="club.state">
+                </div>
+                <div class="form-group">
+                    <label for="postcode">Postcode</label>
+                    <input type="text" class="form-control" name="postcode" id="postcode" v-model="club.postcode">
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <input type="text" class="form-control" name="country" id="country" v-model="club.country">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="phone" v-model="club.phone">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" v-model="club.email">
+                </div>
+                <div class="form-group">
+                    <label for="website">Website</label>
+                    <input type="text" class="form-control" name="website" id="website" v-model="club.website">
+                </div>
+                <div class="form-group">
+                    <button @click="create">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        mounted() {
+            //
+        },
+        created() {
+            //
+        },
+        components: {
+            //
+        },
+        data() {
+            return {
+                club: {
+                    name: '',
+                    address: '',
+                    suburb: '',
+                    state: '',
+                    postcode: '',
+                    country: '',
+                    phone: '',
+                    email: '',
+                },
+                errors: {},
+            }
+        },
+        methods: {
+            async create() {
+                let club_create = axios.post('/api/clubs', this.club)
+                    .then(response => {
+                        console.log('response', response);
+                    }, error => {
+                        this.errors = error.response.data.error;
+                        console.log('this.errors', this.errors);
+                    }).catch(err => {
+                        console.log('Catch Error: ', err);
+                    });
+                this.club = {};
+            },
+            async show() {
+                //
+            },
+            async update(id, color) {
+                // To do
+            },
+        }
+    }
+</script>
