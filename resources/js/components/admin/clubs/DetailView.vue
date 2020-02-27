@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="col-md-12">
-            <a class="btn btn-info" :href="'/clubs/'">Back</a>
+            <a class="btn btn-info" :href="'/admin/clubs/'">Back</a>
         </div>
         <div class="col-md-12">
             This is clubs show page
@@ -62,7 +62,7 @@
                 }
             },
             async clickEditClub(id) {
-                window.location.href = `/clubs/${id}/edit`;
+                window.location.href = `/admin/clubs/${id}/edit`;
             },
             async clickDeleteClub(id) {
                 let remote = axios.delete(`/api/clubs/${id}`)

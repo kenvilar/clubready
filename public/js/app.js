@@ -2030,7 +2030,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 club_update = axios.put("/api/clubs/".concat(_this.club_id), _this.club).then(function (response) {
                   _this.club = response.data;
-                  window.location.href = "/clubs/".concat(_this.club_id);
+                  window.location.href = "/admin/clubs/".concat(_this.club_id);
                 }, function (error) {
                   _this.errors = error.response.data.error;
                 })["catch"](function (err) {//
@@ -2105,6 +2105,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee3);
       }))();
+    },
+    isEditView: function isEditView(param) {
+      return typeof param !== "undefined" || param !== undefined;
     }
   }
 });
@@ -2212,7 +2215,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                window.location.href = "/clubs/".concat(id, "/edit");
+                window.location.href = "/admin/clubs/".concat(id, "/edit");
 
               case 1:
               case "end":
@@ -2369,7 +2372,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                window.location.href = "/clubs/".concat(id);
+                window.location.href = "/admin/clubs/".concat(id);
 
               case 1:
               case "end":
@@ -2387,7 +2390,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                window.location.href = "/clubs/create";
+                window.location.href = "/admin/clubs/create";
 
               case 1:
               case "end":
@@ -38779,7 +38782,9 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("button", { on: { click: _vm.storeOrUpdate } }, [_vm._v("Create")])
+          _c("button", { on: { click: _vm.storeOrUpdate } }, [
+            _vm._v(_vm._s(_vm.isEditView(_vm.club.id) ? "Update" : "Create"))
+          ])
         ])
       ])
     ])
@@ -38825,9 +38830,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "col-md-12" }, [
-      _c("a", { staticClass: "btn btn-info", attrs: { href: "/clubs/" } }, [
-        _vm._v("Back")
-      ])
+      _c(
+        "a",
+        { staticClass: "btn btn-info", attrs: { href: "/admin/clubs/" } },
+        [_vm._v("Back")]
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-12" }, [

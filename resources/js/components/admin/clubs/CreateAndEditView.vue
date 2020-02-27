@@ -42,7 +42,7 @@
                     <input type="text" class="form-control" name="website" id="website" v-model="club.website">
                 </div>
                 <div class="form-group">
-                    <button @click="storeOrUpdate">Create</button>
+                    <button @click="storeOrUpdate">{{ isEditView(club.id) ? 'Update' : 'Create'}}</button>
                 </div>
             </div>
         </div>
@@ -90,7 +90,7 @@
                     let club_update = axios.put(`/api/clubs/${this.club_id}`, this.club)
                         .then(response => {
                             this.club = response.data;
-                            window.location.href = `/clubs/${this.club_id}`;
+                            window.location.href = `/admin/clubs/${this.club_id}`;
                         }, error => {
                             this.errors = error.response.data.error;
                         }).catch(err => {
@@ -128,6 +128,9 @@
                 }
                 return this.club;
             },
+            isEditView(param) {
+                return typeof param !== "undefined" || param !== undefined;
+            }
         }
     }
 </script>

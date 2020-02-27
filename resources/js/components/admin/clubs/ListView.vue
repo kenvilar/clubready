@@ -48,10 +48,10 @@
                     });
             },
             async clickEditClub(id) {
-                window.location.href = `/clubs/${id}`;
+                window.location.href = `/admin/clubs/${id}`;
             },
             async clickCreateClub() {
-                window.location.href = `/clubs/create`;
+                window.location.href = `/admin/clubs/create`;
             },
             async clickDeleteClub(id) {
                 let remove = axios.delete(`/api/clubs/${id}`)
