@@ -2025,23 +2025,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 club_update = axios.put("/api/clubs/".concat(_this.club_id), _this.club).then(function (response) {
                   _this.club = response.data;
-                  console.log('update() this.club', _this.club);
                 }, function (error) {
                   _this.errors = error.response.data.error;
-                  console.log('update() this.errors', _this.errors);
-                })["catch"](function (err) {
-                  console.log('update() Catch Error: ', err);
+                })["catch"](function (err) {//
                 });
                 return _context.abrupt("return");
 
               case 3:
-                club_store = axios.post('/api/clubs', _this.club).then(function (response) {
-                  console.log('store() response', response);
+                club_store = axios.post('/api/clubs', _this.club).then(function (response) {//
                 }, function (error) {
                   _this.errors = error.response.data.error;
-                  console.log('store() this.errors', _this.errors);
-                })["catch"](function (err) {
-                  console.log('store() Catch Error: ', err);
+                })["catch"](function (err) {//
                 });
                 _this.club = {};
 
@@ -2067,12 +2061,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (_this2.club_id) {
                   club_edit = axios.get("/api/clubs/".concat(_this2.club_id), _this2.club).then(function (response) {
                     _this2.club = response.data;
-                    console.log('edit() this.club', _this2.club);
                   }, function (error) {
                     _this2.errors = error.response.data.error;
-                    console.log('edit() this.errors', _this2.errors);
-                  })["catch"](function (err) {
-                    console.log('edit() Catch Error: ', err);
+                  })["catch"](function (err) {//
                   });
                 }
 
@@ -2089,10 +2080,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/clubs/ListAndDetailView.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/clubs/ListAndDetailView.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/clubs/ListView.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/clubs/ListView.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2114,6 +2105,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {//
   },
@@ -2126,20 +2120,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      clubs: [],
       club: {},
       errors: {}
     };
   },
   methods: {
-    read: function read() {//
+    read: function read() {
+      var _this = this;
 
       return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var index;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                index = axios.get('/api/clubs').then(function (response) {
+                  _this.clubs = response.data;
+                }, function (error) {
+                  _this.errors = error.response.data.error;
+                })["catch"](function (err) {//
+                });
+
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -38510,10 +38515,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/clubs/ListAndDetailView.vue?vue&type=template&id=3be8f922&":
-/*!********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/clubs/ListAndDetailView.vue?vue&type=template&id=3be8f922& ***!
-  \********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/clubs/ListView.vue?vue&type=template&id=ef287e40&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/clubs/ListView.vue?vue&type=template&id=ef287e40& ***!
+  \***********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -38525,16 +38530,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", { staticClass: "col-12" }, [
+      _vm._v("\n        This is clubs index page\n        "),
+      _c(
+        "ul",
+        _vm._l(_vm.clubs, function(club) {
+          return _c("li", [_vm._v(_vm._s(club.name))])
+        }),
+        0
+      )
+    ])
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("ul", [_c("li")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -50860,17 +50869,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/admin/clubs/ListAndDetailView.vue":
-/*!*******************************************************************!*\
-  !*** ./resources/js/components/admin/clubs/ListAndDetailView.vue ***!
-  \*******************************************************************/
+/***/ "./resources/js/components/admin/clubs/ListView.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/admin/clubs/ListView.vue ***!
+  \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ListAndDetailView_vue_vue_type_template_id_3be8f922___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListAndDetailView.vue?vue&type=template&id=3be8f922& */ "./resources/js/components/admin/clubs/ListAndDetailView.vue?vue&type=template&id=3be8f922&");
-/* harmony import */ var _ListAndDetailView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListAndDetailView.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/clubs/ListAndDetailView.vue?vue&type=script&lang=js&");
+/* harmony import */ var _ListView_vue_vue_type_template_id_ef287e40___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListView.vue?vue&type=template&id=ef287e40& */ "./resources/js/components/admin/clubs/ListView.vue?vue&type=template&id=ef287e40&");
+/* harmony import */ var _ListView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListView.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/clubs/ListView.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -50880,9 +50889,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ListAndDetailView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ListAndDetailView_vue_vue_type_template_id_3be8f922___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ListAndDetailView_vue_vue_type_template_id_3be8f922___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _ListView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ListView_vue_vue_type_template_id_ef287e40___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ListView_vue_vue_type_template_id_ef287e40___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -50892,38 +50901,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/admin/clubs/ListAndDetailView.vue"
+component.options.__file = "resources/js/components/admin/clubs/ListView.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/admin/clubs/ListAndDetailView.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/components/admin/clubs/ListAndDetailView.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************/
+/***/ "./resources/js/components/admin/clubs/ListView.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/admin/clubs/ListView.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListAndDetailView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListAndDetailView.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/clubs/ListAndDetailView.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListAndDetailView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListView.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/clubs/ListView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/admin/clubs/ListAndDetailView.vue?vue&type=template&id=3be8f922&":
-/*!**************************************************************************************************!*\
-  !*** ./resources/js/components/admin/clubs/ListAndDetailView.vue?vue&type=template&id=3be8f922& ***!
-  \**************************************************************************************************/
+/***/ "./resources/js/components/admin/clubs/ListView.vue?vue&type=template&id=ef287e40&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/admin/clubs/ListView.vue?vue&type=template&id=ef287e40& ***!
+  \*****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListAndDetailView_vue_vue_type_template_id_3be8f922___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListAndDetailView.vue?vue&type=template&id=3be8f922& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/clubs/ListAndDetailView.vue?vue&type=template&id=3be8f922&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListAndDetailView_vue_vue_type_template_id_3be8f922___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListView_vue_vue_type_template_id_ef287e40___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListView.vue?vue&type=template&id=ef287e40& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/clubs/ListView.vue?vue&type=template&id=ef287e40&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListView_vue_vue_type_template_id_ef287e40___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListAndDetailView_vue_vue_type_template_id_3be8f922___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListView_vue_vue_type_template_id_ef287e40___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -50938,7 +50947,7 @@ __webpack_require__.r(__webpack_exports__);
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.component('create-and-edit-club-vue', __webpack_require__(/*! ./CreateAndEditView */ "./resources/js/components/admin/clubs/CreateAndEditView.vue")["default"]);
-Vue.component('list-and-detail-club-vue', __webpack_require__(/*! ./ListAndDetailView */ "./resources/js/components/admin/clubs/ListAndDetailView.vue")["default"]);
+Vue.component('list-club-vue', __webpack_require__(/*! ./ListView */ "./resources/js/components/admin/clubs/ListView.vue")["default"]);
 
 /***/ }),
 
