@@ -1,6 +1,9 @@
 <template>
     <div>
         <div class="row">
+            <div class="col-md-12">
+                This is clubs {{isEditView(club.id) ? 'edit' : 'create'}} page
+            </div>
             <div class="col-5">
                 <a class="btn btn-info" onclick="window.history.go(-1)">Back</a>
             </div>
