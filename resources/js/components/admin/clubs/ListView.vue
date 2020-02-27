@@ -1,9 +1,14 @@
 <template>
     <div>
         <div class="col-12">
-            This is clubs index page
+            <div>This is clubs index page</div>
+            <a class="btn btn-primary" @click="clickCreateClub()">Create Club</a>
             <ul>
-                <li v-for="club in clubs">{{club.name}}</li>
+                <li v-for="club in clubs">
+                    {{club.name}}
+                    <a class="btn btn-success" @click="clickEditClub(club.id)">Edit</a>
+                    <a class="btn btn-danger" @click="clickDeleteClub(club.id)">Delete</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -40,6 +45,24 @@
                     }).catch(err => {
                         //
                     });
+            },
+            async clickEditClub(id) {
+                window.location.href = `/clubs/${id}`;
+            },
+            async clickCreateClub() {
+                window.location.href = `/clubs/create`;
+            },
+            async clickDeleteClub(id) {
+                let remove = axios.delete(`/api/clubs/${id}`)
+                    .then(response => {
+                        console.log('response.data', response.data);
+                    }, error => {
+                        this.errors = error.response.data;
+                        console.log('this.errors', this.errors);
+                    }).catch(err => {
+                        console.log('err', err.response);
+                    });
+                this.read();
             },
         }
     }

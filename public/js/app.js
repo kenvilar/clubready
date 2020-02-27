@@ -1976,6 +1976,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     club_id: {
@@ -2001,7 +2004,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         postcode: '',
         country: '',
         phone: '',
-        email: ''
+        email: '',
+        website: ''
       },
       errors: {}
     };
@@ -2025,6 +2029,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 club_update = axios.put("/api/clubs/".concat(_this.club_id), _this.club).then(function (response) {
                   _this.club = response.data;
+                  window.location.href = "/clubs/".concat(_this.club_id);
                 }, function (error) {
                   _this.errors = error.response.data.error;
                 })["catch"](function (err) {//
@@ -2032,14 +2037,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return");
 
               case 3:
-                club_store = axios.post('/api/clubs', _this.club).then(function (response) {//
+                club_store = axios.post('/api/clubs', _this.club).then(function (response) {
+                  //clear all the fields after successful create
+                  _this.clearFields(_this.club);
                 }, function (error) {
                   _this.errors = error.response.data.error;
                 })["catch"](function (err) {//
                 });
-                _this.club = {};
 
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -2074,6 +2080,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
+    },
+    clearFields: function clearFields(param) {
+      var _this3 = this;
+
+      return _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (param) {
+                  _this3.club = {};
+                }
+
+                return _context3.abrupt("return", _this3.club);
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
     }
   }
 });
@@ -2097,6 +2127,13 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2165,6 +2202,80 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    clickEditClub: function clickEditClub(id) {
+      return _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                window.location.href = "/clubs/".concat(id, "/edit");
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    clickDeleteClub: function clickDeleteClub(id) {
+      var _this2 = this;
+
+      return _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var remote;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                remote = axios["delete"]("/api/clubs/".concat(id)).then(function (response) {
+                  console.log('response.data', response.data);
+
+                  if (response.data) {
+                    window.location.href = '/clubs';
+                  }
+                }, function (error) {
+                  _this2.errors = error.response.data;
+                  console.log('this.errors', _this2.errors);
+                })["catch"](function (err) {
+                  console.log('err', err.response);
+                });
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    clearFields: function clearFields(param) {
+      var _this3 = this;
+
+      return _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                if (param) {
+                  _this3.club = {};
+                }
+
+                return _context4.abrupt("return", _this3.club);
+
+              case 2:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
     }
   }
 });
@@ -2188,6 +2299,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2241,6 +2357,72 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee);
+      }))();
+    },
+    clickEditClub: function clickEditClub(id) {
+      return _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                window.location.href = "/clubs/".concat(id);
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    clickCreateClub: function clickCreateClub() {
+      return _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                window.location.href = "/clubs/create";
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    clickDeleteClub: function clickDeleteClub(id) {
+      var _this2 = this;
+
+      return _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var remove;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                remove = axios["delete"]("/api/clubs/".concat(id)).then(function (response) {
+                  console.log('response.data', response.data);
+                }, function (error) {
+                  _this2.errors = error.response.data;
+                  console.log('this.errors', _this2.errors);
+                })["catch"](function (err) {
+                  console.log('err', err.response);
+                });
+
+                _this2.read();
+
+              case 2:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
       }))();
     }
   }
@@ -38357,6 +38539,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "row" }, [
+      _vm._m(0),
+      _vm._v(" "),
       _c("div", { staticClass: "col-5" }, [
         _c("div", { staticClass: "form-group" }, [
           _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
@@ -38411,7 +38595,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "suburb" } }, [_vm._v("suburb")]),
+          _c("label", { attrs: { for: "suburb" } }, [_vm._v("Suburb")]),
           _vm._v(" "),
           _c("input", {
             directives: [
@@ -38599,7 +38783,23 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-5" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-info",
+          attrs: { onclick: "window.history.go(-1)" }
+        },
+        [_vm._v("Back")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -38622,7 +38822,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "col-12" }, [
+    _c("div", { staticClass: "col-md-12" }, [
+      _c("a", { staticClass: "btn btn-info", attrs: { href: "/clubs/" } }, [
+        _vm._v("Back")
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-12" }, [
       _vm._v("\n        This is clubs show page\n        "),
       _c("div", [_vm._v("Name: " + _vm._s(_vm.club.name))]),
       _vm._v(" "),
@@ -38641,6 +38847,34 @@ var render = function() {
       _c("div", [_vm._v("Email: " + _vm._s(_vm.club.email))]),
       _vm._v(" "),
       _c("div", [_vm._v("Website: " + _vm._s(_vm.club.website))])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-12" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-success",
+          on: {
+            click: function($event) {
+              return _vm.clickEditClub(_vm.club.id)
+            }
+          }
+        },
+        [_vm._v("Edit")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-danger",
+          on: {
+            click: function($event) {
+              return _vm.clickDeleteClub(_vm.club.id)
+            }
+          }
+        },
+        [_vm._v("Delete")]
+      )
     ])
   ])
 }
@@ -38668,11 +38902,54 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "col-12" }, [
-      _vm._v("\n        This is clubs index page\n        "),
+      _c("div", [_vm._v("This is clubs index page")]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary",
+          on: {
+            click: function($event) {
+              return _vm.clickCreateClub()
+            }
+          }
+        },
+        [_vm._v("Create Club")]
+      ),
+      _vm._v(" "),
       _c(
         "ul",
         _vm._l(_vm.clubs, function(club) {
-          return _c("li", [_vm._v(_vm._s(club.name))])
+          return _c("li", [
+            _vm._v(
+              "\n                " + _vm._s(club.name) + "\n                "
+            ),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-success",
+                on: {
+                  click: function($event) {
+                    return _vm.clickEditClub(club.id)
+                  }
+                }
+              },
+              [_vm._v("Edit")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-danger",
+                on: {
+                  click: function($event) {
+                    return _vm.clickDeleteClub(club.id)
+                  }
+                }
+              },
+              [_vm._v("Delete")]
+            )
+          ])
         }),
         0
       )

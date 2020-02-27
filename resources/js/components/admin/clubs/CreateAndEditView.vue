@@ -2,6 +2,9 @@
     <div>
         <div class="row">
             <div class="col-5">
+                <a class="btn btn-info" onclick="window.history.go(-1)">Back</a>
+            </div>
+            <div class="col-5">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" name="name" id="name" v-model="club.name">
@@ -11,7 +14,7 @@
                     <input type="text" class="form-control" name="address" id="address" v-model="club.address">
                 </div>
                 <div class="form-group">
-                    <label for="suburb">suburb</label>
+                    <label for="suburb">Suburb</label>
                     <input type="text" class="form-control" name="suburb" id="suburb" v-model="club.suburb">
                 </div>
                 <div class="form-group">
@@ -75,6 +78,7 @@
                     country: '',
                     phone: '',
                     email: '',
+                    website: '',
                 },
                 errors: {},
             }
@@ -85,6 +89,7 @@
                     let club_update = axios.put(`/api/clubs/${this.club_id}`, this.club)
                         .then(response => {
                             this.club = response.data;
+                            window.location.href = `/clubs/${this.club_id}`;
                         }, error => {
                             this.errors = error.response.data.error;
                         }).catch(err => {
@@ -96,13 +101,13 @@
 
                 let club_store = axios.post('/api/clubs', this.club)
                     .then(response => {
-                        //
+                        //clear all the fields after successful create
+                        this.clearFields(this.club);
                     }, error => {
                         this.errors = error.response.data.error;
                     }).catch(err => {
                         //
                     });
-                this.club = {};
             },
             async edit() {
                 if (this.club_id) {
@@ -115,6 +120,12 @@
                             //
                         });
                 }
+            },
+            async clearFields(param) {
+                if (param) {
+                    this.club = {};
+                }
+                return this.club;
             },
         }
     }
