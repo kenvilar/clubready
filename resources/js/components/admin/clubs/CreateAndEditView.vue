@@ -2,7 +2,7 @@
     <div>
         <div class="row">
             <div class="col-md-12">
-                This is clubs {{isEditView(club.id) ? 'edit' : 'create'}} page
+                This is {{database_model}} {{isEditView(item.id) ? 'edit' : 'create'}} page
             </div>
             <div class="col-5">
                 <a class="btn btn-info" onclick="window.history.go(-1)">Back</a>
@@ -10,42 +10,42 @@
             <div class="col-5">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" id="name" v-model="club.name">
+                    <input type="text" class="form-control" name="name" id="name" v-model="item.name">
                 </div>
                 <div class="form-group">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" name="address" id="address" v-model="club.address">
+                    <input type="text" class="form-control" name="address" id="address" v-model="item.address">
                 </div>
                 <div class="form-group">
                     <label for="suburb">Suburb</label>
-                    <input type="text" class="form-control" name="suburb" id="suburb" v-model="club.suburb">
+                    <input type="text" class="form-control" name="suburb" id="suburb" v-model="item.suburb">
                 </div>
                 <div class="form-group">
                     <label for="state">State</label>
-                    <input type="text" class="form-control" name="state" id="state" v-model="club.state">
+                    <input type="text" class="form-control" name="state" id="state" v-model="item.state">
                 </div>
                 <div class="form-group">
                     <label for="postcode">Postcode</label>
-                    <input type="text" class="form-control" name="postcode" id="postcode" v-model="club.postcode">
+                    <input type="text" class="form-control" name="postcode" id="postcode" v-model="item.postcode">
                 </div>
                 <div class="form-group">
                     <label for="country">Country</label>
-                    <input type="text" class="form-control" name="country" id="country" v-model="club.country">
+                    <input type="text" class="form-control" name="country" id="country" v-model="item.country">
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone</label>
-                    <input type="text" class="form-control" name="phone" id="phone" v-model="club.phone">
+                    <input type="text" class="form-control" name="phone" id="phone" v-model="item.phone">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" id="email" v-model="club.email">
+                    <input type="email" class="form-control" name="email" id="email" v-model="item.email">
                 </div>
                 <div class="form-group">
                     <label for="website">Website</label>
-                    <input type="text" class="form-control" name="website" id="website" v-model="club.website">
+                    <input type="text" class="form-control" name="website" id="website" v-model="item.website">
                 </div>
                 <div class="form-group">
-                    <button @click="storeOrUpdate">{{ isEditView(club.id) ? 'Update' : 'Create'}}</button>
+                    <button @click="storeOrUpdate">{{ isEditView(item.id) ? 'Update' : 'Create'}}</button>
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
     export default {
         name: 'clubs-create-and-edit-view-vue',
         props: {
-            club_id: {
+            model_id: {
                 type: Number,
                 default: 0,
                 required: false
@@ -73,29 +73,21 @@
         },
         data() {
             return {
-                club: {
-                    name: '',
-                    address: '',
-                    suburb: '',
-                    state: '',
-                    postcode: '',
-                    country: '',
-                    phone: '',
-                    email: '',
-                    website: '',
-                },
+                database_model: 'clubs',
+                item: {},
                 errors: {},
             }
         },
         methods: {
             async storeOrUpdate() {
-                if (this.club_id) {
-                    let club_update = axios.put(`/api/clubs/${this.club_id}`, this.club)
+                if (this.model_id) {
+                    let update = axios.put(`/api/${this.database_model}/${this.model_id}`, this.item)
                         .then(response => {
-                            this.club = response.data;
-                            window.location.href = `/admin/clubs/${this.club_id}`;
+                            this.item = response.data;
+                            window.location.href = `/admin/${this.database_model}/${this.model_id}`;
                         }, error => {
                             this.errors = error.response.data.error;
+                            console.log('this.errors', this.errors);
                         }).catch(err => {
                             //
                         });
@@ -103,21 +95,22 @@
                     return;
                 }
 
-                let club_store = axios.post('/api/clubs', this.club)
-                    .then(response => {
+                let store = axios.post(`/api/${this.database_model}`, this.item)
+                    .then(() => {
                         //clear all the fields after successful create
-                        this.clearFields(this.club);
+                        this.clearFields(this.item);
                     }, error => {
                         this.errors = error.response.data.error;
+                        console.log('this.errors', this.errors);
                     }).catch(err => {
                         //
                     });
             },
             async edit() {
-                if (this.club_id) {
-                    let club_edit = axios.get(`/api/clubs/${this.club_id}`, this.club)
+                if (this.model_id) {
+                    let edit = axios.get(`/api/${this.database_model}/${this.model_id}`, this.item)
                         .then(response => {
-                            this.club = response.data;
+                            this.item = response.data;
                         }, error => {
                             this.errors = error.response.data.error;
                         }).catch(err => {
@@ -127,9 +120,9 @@
             },
             async clearFields(param) {
                 if (param) {
-                    this.club = {};
+                    this.item = {};
                 }
-                return this.club;
+                return this.item;
             },
             isEditView(param) {
                 return typeof param !== "undefined" || param !== undefined;

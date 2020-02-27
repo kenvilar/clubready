@@ -1,23 +1,23 @@
 <template>
     <div>
         <div class="col-md-12">
-            <a class="btn btn-info" :href="'/admin/clubs/'">Back</a>
+            <a class="btn btn-info" :href="`/admin/${database_model}`">Back</a>
         </div>
         <div class="col-md-12">
-            This is clubs show page
-            <div>Name: {{club.name}}</div>
-            <div>Address: {{club.address}}</div>
-            <div>Suburb: {{club.suburb}}</div>
-            <div>State: {{club.state}}</div>
-            <div>Post Code: {{club.postcode}}</div>
-            <div>Country: {{club.country}}</div>
-            <div>Phone: {{club.phone}}</div>
-            <div>Email: {{club.email}}</div>
-            <div>Website: {{club.website}}</div>
+            This is {{database_model}} show page
+            <div>Name: {{item.name}}</div>
+            <div>Address: {{item.address}}</div>
+            <div>Suburb: {{item.suburb}}</div>
+            <div>State: {{item.state}}</div>
+            <div>Post Code: {{item.postcode}}</div>
+            <div>Country: {{item.country}}</div>
+            <div>Phone: {{item.phone}}</div>
+            <div>Email: {{item.email}}</div>
+            <div>Website: {{item.website}}</div>
         </div>
         <div class="col-md-12">
-            <a class="btn btn-success" @click="clickEditClub(club.id)">Edit</a>
-            <a class="btn btn-danger" @click="clickDeleteClub(club.id)">Delete</a>
+            <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
+            <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
         </div>
     </div>
 </template>
@@ -26,7 +26,7 @@
     export default {
         name: 'clubs-detail-view-vue',
         props: {
-            club_id: {
+            model_id: {
                 type: Number,
                 default: 0,
                 required: false
@@ -43,16 +43,17 @@
         },
         data() {
             return {
-                club: {},
+                database_model: 'clubs',
+                item: {},
                 errors: {},
             }
         },
         methods: {
             async show() {
-                if (this.club_id) {
-                    let club_edit = axios.get(`/api/clubs/${this.club_id}`)
+                if (this.model_id) {
+                    let show = axios.get(`/api/${this.database_model}/${this.model_id}`)
                         .then(response => {
-                            this.club = response.data;
+                            this.item = response.data;
                         }, error => {
                             this.errors = error.response.data.error;
                             console.log('this.errors', this.errors);
@@ -61,15 +62,14 @@
                         });
                 }
             },
-            async clickEditClub(id) {
-                window.location.href = `/admin/clubs/${id}/edit`;
+            async clickEdit(id) {
+                window.location.href = `/admin/${this.database_model}/${id}/edit`;
             },
-            async clickDeleteClub(id) {
-                let remote = axios.delete(`/api/clubs/${id}`)
+            async clickDelete(id) {
+                let remove = axios.delete(`/api/${this.database_model}/${id}`)
                     .then(response => {
-                        console.log('response.data', response.data);
                         if (response.data) {
-                            window.location.href = '/clubs';
+                            window.location.href = `/admin/${this.database_model}`;
                         }
                     }, error => {
                         this.errors = error.response.data;
@@ -80,9 +80,9 @@
             },
             async clearFields(param) {
                 if (param) {
-                    this.club = {};
+                    this.item = {};
                 }
-                return this.club;
+                return this.item;
             },
         }
     }
