@@ -26,6 +26,12 @@ const club_files = require.context('./components/admin/clubs/', true, /\.vue$/i)
 club_files.keys().map(key => Vue.component(club_files(key).default.name, club_files(key).default));
 
 /**
+ * Inductions
+ * */
+const induction_files = require.context('./components/admin/inductions/', true, /\.vue$/i);
+induction_files.keys().map(key => Vue.component(induction_files(key).default.name, induction_files(key).default));
+
+/**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
