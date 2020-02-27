@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Induction;
 
 use App\Http\Controllers\Controller;
+use App\Models\Induction;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 
@@ -25,28 +26,28 @@ class InductionController extends Controller
      */
     public function create()
     {
-        return view('admin.induction.create');
+        return view('admin.induction.createAndUpdateForm');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Induction $induction
      * @return Factory|View
      */
-    public function show($id)
+    public function show(Induction $induction)
     {
-        return view('admin.induction.show');
+        return view('admin.induction.show', ['induction' => $induction]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param Induction $induction
      * @return Factory|View
      */
-    public function edit($id)
+    public function edit(Induction $induction)
     {
-        return view('admin.induction.edit');
+        return view('admin.induction.createAndUpdateForm', ['induction' => $induction]);
     }
 }

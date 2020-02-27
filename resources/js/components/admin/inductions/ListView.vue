@@ -2,11 +2,11 @@
     <div>
         <div class="col-12">
             <div>This is inductions index page</div>
-            <a class="btn btn-primary" @click="clickCreateInduction()">Create Club</a>
+            <a class="btn btn-primary" @click="clickCreateInduction()">Create</a>
             <ul>
                 <li v-for="induction in inductions">
                     {{induction.name}}
-                    <a class="btn btn-success" @click="clickEditInduction(induction.id)">Edit</a>
+                    <a class="btn btn-success" @click="clickShowInduction(induction.id)">Show</a>
                     <a class="btn btn-danger" @click="clickDeleteInduction(induction.id)">Delete</a>
                 </li>
             </ul>
@@ -47,7 +47,7 @@
                         //
                     });
             },
-            async clickEditInduction(id) {
+            async clickShowInduction(id) {
                 window.location.href = `/admin/inductions/${id}`;
             },
             async clickCreateInduction() {
