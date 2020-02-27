@@ -24,6 +24,7 @@
 
 <script>
     export default {
+        name: 'clubs-detail-view-vue',
         props: {
             club_id: {
                 type: Number,
@@ -52,7 +53,6 @@
                     let club_edit = axios.get(`/api/clubs/${this.club_id}`)
                         .then(response => {
                             this.club = response.data;
-                            console.log('this.club', this.club);
                         }, error => {
                             this.errors = error.response.data.error;
                             console.log('this.errors', this.errors);

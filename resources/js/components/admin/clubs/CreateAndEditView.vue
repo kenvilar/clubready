@@ -51,6 +51,7 @@
 
 <script>
     export default {
+        name: 'clubs-create-and-edit-view-vue',
         props: {
             club_id: {
                 type: Number,

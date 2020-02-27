@@ -22,7 +22,8 @@ window.Vue = require('vue');
 /**
  * Clubs
  * */
-import './components/admin/clubs/base';
+const club_files = require.context('./components/admin/clubs/', true, /\.vue$/i);
+club_files.keys().map(key => Vue.component(club_files(key).default.name, club_files(key).default));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,8 +31,8 @@ import './components/admin/clubs/base';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-/*const app = new Vue({
+const app = new Vue({
     el: '#app',
     // components: {},
     // render: h => h()
-});*/
+});

@@ -2,16 +2,10 @@
 
 @section('content')
 
-    <div id="list-club-vue">
-        <list-club-vue></list-club-vue>
-    </div>
+    <clubs-list-view-vue/>
 
 @endsection
 
 @push('footer-scripts')
-    <script>
-        var listClubVue = new Vue({
-            el: '#list-club-vue',
-        });
-    </script>
+    {{-- --}}
 @endpush
