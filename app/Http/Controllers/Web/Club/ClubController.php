@@ -26,7 +26,7 @@ class ClubController extends Controller
      */
     public function create()
     {
-        return view('admin.clubs.createAndUpdateForm');
+        return view('admin.clubs.createAndEditForm');
     }
 
     /**
@@ -48,6 +48,6 @@ class ClubController extends Controller
      */
     public function edit(Club $club)
     {
-        return view('admin.clubs.createAndUpdateForm', ['club' => $club]);
+        return view('admin.clubs.createAndEditForm', ['club' => $club]);
     }
 }

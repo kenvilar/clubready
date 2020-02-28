@@ -26,7 +26,7 @@ class MembershipController extends Controller
      */
     public function create()
     {
-        return view('admin.membership.createAndUpdateForm');
+        return view('admin.membership.createAndEditForm');
     }
 
     /**
@@ -48,6 +48,6 @@ class MembershipController extends Controller
      */
     public function edit(Membership $membership)
     {
-        return view('admin.membership.createAndUpdateForm', ['membership' => $membership]);
+        return view('admin.membership.createAndEditForm', ['membership' => $membership]);
     }
 }

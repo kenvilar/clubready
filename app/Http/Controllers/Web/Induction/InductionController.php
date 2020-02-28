@@ -26,7 +26,7 @@ class InductionController extends Controller
      */
     public function create()
     {
-        return view('admin.induction.createAndUpdateForm');
+        return view('admin.induction.createAndEditForm');
     }
 
     /**
@@ -48,6 +48,6 @@ class InductionController extends Controller
      */
     public function edit(Induction $induction)
     {
-        return view('admin.induction.createAndUpdateForm', ['induction' => $induction]);
+        return view('admin.induction.createAndEditForm', ['induction' => $induction]);
     }
 }
