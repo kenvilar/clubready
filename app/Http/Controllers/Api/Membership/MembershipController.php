@@ -31,12 +31,7 @@ class MembershipController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'year' => 'required|min:4|max:4',
-            'name' => 'required|min:2',
-            'amount' => 'required|min:1',
-        ];
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validationRules());
         $data = $request->all();
         $membership = Membership::query()->create($data);
 
@@ -64,12 +59,7 @@ class MembershipController extends Controller
      */
     public function update(Request $request, Membership $membership)
     {
-        $rules = [
-            'year' => 'required|min:4|max:4',
-            'name' => 'required|min:2',
-            'amount' => 'required|min:1',
-        ];
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validationRules());
 
         $membership->year = $request->year;
         $membership->name = $request->name;
@@ -96,5 +86,14 @@ class MembershipController extends Controller
         $membership->delete();
 
         return $this->showOne($membership);
+    }
+
+    private function validationRules()
+    {
+        return [
+            'year' => 'required|min:4|max:4',
+            'name' => 'required|min:2',
+            'amount' => 'required|min:1',
+        ];
     }
 }

@@ -31,10 +31,7 @@ class SuperAdminController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'user_id' => 'integer|unique:super_admins,user_id',
-        ];
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validationRules());
 
         $data = $request->all();
         $superAdmin = SuperAdmin::query()->create($data);
@@ -63,10 +60,7 @@ class SuperAdminController extends Controller
      */
     public function update(Request $request, SuperAdmin $superAdmin)
     {
-        $rules = [
-            'user_id' => 'integer|unique:super_admins,user_id',
-        ];
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validationRules());
 
         $superAdmin->save();
 
@@ -85,5 +79,12 @@ class SuperAdminController extends Controller
         $superAdmin->delete();
 
         return $this->showOne($superAdmin);
+    }
+
+    private function validationRules()
+    {
+        return [
+            'user_id' => 'integer|unique:super_admins,user_id',
+        ];
     }
 }

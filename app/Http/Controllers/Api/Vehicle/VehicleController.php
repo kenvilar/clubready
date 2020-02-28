@@ -31,18 +31,7 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        $now = date('Y');
-        $nowPlus10 = (String)((int)$now + 10);
-
-        $rules = [
-            'user_id' => 'required|integer',
-            'make' => 'required|min:2',
-            'model' => 'required|min:2',
-            'year' => 'required|integer|between:1700,' . $nowPlus10,
-            'capacity' => 'required|integer|min:1',
-            'induction' => 'required|min:2',
-        ];
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validationRules());
 
         $data = $request->all();
         $vehicle = Vehicle::query()->create($data);
@@ -71,18 +60,7 @@ class VehicleController extends Controller
      */
     public function update(Request $request, Vehicle $vehicle)
     {
-        $now = date('Y');
-        $nowPlus10 = (String)((int)$now + 10);
-
-        $rules = [
-            'user_id' => 'required|integer',
-            'make' => 'required|min:2',
-            'model' => 'required|min:2',
-            'year' => 'required|integer|between:1700,' . $nowPlus10,
-            'capacity' => 'required|integer|min:1',
-            'induction' => 'required|min:2',
-        ];
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validationRules());
 
         $vehicle->make = $request->make;
         $vehicle->model = $request->model;
@@ -111,5 +89,20 @@ class VehicleController extends Controller
         $vehicle->delete();
 
         return $this->showOne($vehicle);
+    }
+
+    private function validationRules()
+    {
+        $now = date('Y');
+        $nowPlus10 = (String)((int)$now + 10);
+
+        return [
+            'user_id' => 'required|integer',
+            'make' => 'required|min:2',
+            'model' => 'required|min:2',
+            'year' => 'required|integer|between:1700,' . $nowPlus10,
+            'capacity' => 'required|integer|min:1',
+            'induction' => 'required|min:2',
+        ];
     }
 }

@@ -31,13 +31,7 @@ class MembershipTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'name' => 'required|min:2',
-            'value' => 'required|min:1',
-            'start_date' => 'required|date',
-            'expiry_date' => 'required|date',
-        ];
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validationRules());
 
         $data = $request->all();
         $membershipType = MembershipType::query()->create($data);
@@ -66,13 +60,7 @@ class MembershipTypeController extends Controller
      */
     public function update(Request $request, MembershipType $membershipType)
     {
-        $rules = [
-            'name' => 'required|min:2',
-            'value' => 'required|min:1',
-            'start_date' => 'required|date',
-            'expiry_date' => 'required|date',
-        ];
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validationRules());
 
         $membershipType->name = $request->name;
         $membershipType->value = $request->value;
@@ -100,5 +88,15 @@ class MembershipTypeController extends Controller
         $membershipType->delete();
 
         return $this->showOne($membershipType);
+    }
+
+    private function validationRules()
+    {
+        return [
+            'name' => 'required|min:2',
+            'value' => 'required|min:1',
+            'start_date' => 'required|date',
+            'expiry_date' => 'required|date',
+        ];
     }
 }

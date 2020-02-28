@@ -33,18 +33,7 @@ class ClubMemberController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'user_id' => 'required|integer',
-            'club_id' => ['required', 'integer',
-                //Don't save if both user_id and club_id exist
-                Rule::unique('club_members')->where(function (Builder $query) use ($request) {
-                    $query
-                        ->where('user_id', $request->user_id)
-                        ->where('club_id', $request->club_id);
-                }),],
-            'admin' => 'in:' . ClubMember::ADMIN_USER . ',' . ClubMember::NON_ADMIN_USER,
-        ];
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validationRules($request));
 
         $data = $request->all();
         $clubMember = ClubMember::query()->create($data);
@@ -73,18 +62,7 @@ class ClubMemberController extends Controller
      */
     public function update(Request $request, ClubMember $clubMember)
     {
-        $rules = [
-            'user_id' => 'required|integer',
-            'club_id' => ['required', 'integer',
-                //Don't save if both user_id and club_id exist
-                Rule::unique('club_members')->where(function (Builder $query) use ($request) {
-                    $query
-                        ->where('user_id', $request->user_id)
-                        ->where('club_id', $request->club_id);
-                }),],
-            'admin' => 'in:' . ClubMember::ADMIN_USER . ',' . ClubMember::NON_ADMIN_USER,
-        ];
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validationRules($request));
 
         $clubMember->user_id = $request->user_id;
         $clubMember->club_id = $request->club_id;
@@ -111,5 +89,20 @@ class ClubMemberController extends Controller
         $clubMember->delete();
 
         return $this->showOne($clubMember);
+    }
+
+    private function validationRules(Request $request)
+    {
+        return [
+            'user_id' => 'required|integer',
+            'club_id' => ['required', 'integer',
+                //Don't save if both user_id and club_id exist
+                Rule::unique('club_members')->where(function (Builder $query) use ($request) {
+                    $query
+                        ->where('user_id', $request->user_id)
+                        ->where('club_id', $request->club_id);
+                }),],
+            'admin' => 'in:' . ClubMember::ADMIN_USER . ',' . ClubMember::NON_ADMIN_USER,
+        ];
     }
 }

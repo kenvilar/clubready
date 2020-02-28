@@ -31,10 +31,7 @@ class InductionController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'name' => 'required|min:2',
-        ];
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validationRules());
 
         $data = $request->all();
         $induction = Induction::query()->create($data);
@@ -63,10 +60,7 @@ class InductionController extends Controller
      */
     public function update(Request $request, Induction $induction)
     {
-        $rules = [
-            'name' => 'required|min:2',
-        ];
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validationRules());
 
         $induction->name = $request->name;
 
@@ -91,5 +85,12 @@ class InductionController extends Controller
         $induction->delete();
 
         return $this->showOne($induction);
+    }
+
+    private function validationRules()
+    {
+        return [
+            'name' => 'required|min:2',
+        ];
     }
 }
