@@ -1,13 +1,13 @@
 <template>
     <div>
         <div class="col-12">
-            <div>This is inductions index page</div>
-            <a class="btn btn-primary" @click="clickCreateInduction()">Create</a>
+            <div>This is index page</div>
+            <a class="btn btn-primary" @click="clickCreate()">Create</a>
             <ul>
-                <li v-for="induction in inductions">
-                    {{induction.name}}
-                    <a class="btn btn-success" @click="clickShowInduction(induction.id)">Show</a>
-                    <a class="btn btn-danger" @click="clickDeleteInduction(induction.id)">Delete</a>
+                <li v-for="item in list">
+                    {{item.name}}
+                    <a class="btn btn-success" @click="clickShow(item.id)">Show</a>
+                    <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
                 </li>
             </ul>
         </div>
@@ -31,30 +31,31 @@
         },
         data() {
             return {
-                inductions: [],
-                induction: {},
+                database_model: 'inductions',
+                list: [],
+                item: {},
                 errors: {},
             }
         },
         methods: {
             async read() {
-                let index = axios.get('/api/inductions')
+                let read = axios.get(`/api/${this.database_model}`)
                     .then(response => {
-                        this.inductions = response.data;
+                        this.list = response.data;
                     }, error => {
                         this.errors = error.response.data.error;
                     }).catch(err => {
                         //
                     });
             },
-            async clickShowInduction(id) {
-                window.location.href = `/admin/inductions/${id}`;
+            async clickShow(id) {
+                window.location.href = `/admin/${this.database_model}/${id}`;
             },
-            async clickCreateInduction() {
-                window.location.href = `/admin/inductions/create`;
+            async clickCreate() {
+                window.location.href = `/admin/${this.database_model}/create`;
             },
-            async clickDeleteInduction(id) {
-                let remove = axios.delete(`/api/inductions/${id}`)
+            async clickDelete(id) {
+                let remove = axios.delete(`/api/${this.database_model}/${id}`)
                     .then(response => {
                         console.log('response.data', response.data);
                     }, error => {

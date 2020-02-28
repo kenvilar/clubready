@@ -33,7 +33,7 @@
             return {
                 database_model: 'clubs',
                 list: [],
-                club: {},
+                item: {},
                 errors: {},
             }
         },

@@ -2,6 +2,6 @@
 
 @section('content')
 
-    <inductions-create-and-edit-view-vue :induction_id="{{isset($induction->id) ? $induction->id : 0}}"/>
+    <inductions-create-and-edit-view-vue :model_id="{{isset($induction->id) ? $induction->id : 0}}"/>
 
 @endsection
