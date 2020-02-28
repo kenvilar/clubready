@@ -1,1 +1,7 @@
-This is membership-type-name index page
+@extends('layouts.app')
+
+@section('content')
+
+    <membership-type-names-list-view-vue/>
+
+@endsection

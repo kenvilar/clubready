@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\MembershipTypeName;
 
 use App\Http\Controllers\Controller;
+use App\Models\MembershipTypeName;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 
@@ -25,28 +26,28 @@ class MembershipTypeNameController extends Controller
      */
     public function create()
     {
-        return view('admin.membership-type-name.create');
+        return view('admin.membership-type-name.createAndEditForm');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param MembershipTypeName $membershipTypeName
      * @return Factory|View
      */
-    public function show($id)
+    public function show(MembershipTypeName $membershipTypeName)
     {
-        return view('admin.membership-type-name.show');
+        return view('admin.membership-type-name.show', ['membershipTypeName' => $membershipTypeName]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param MembershipTypeName $membershipTypeName
      * @return Factory|View
      */
-    public function edit($id)
+    public function edit(MembershipTypeName $membershipTypeName)
     {
-        return view('admin.membership-type-name.edit');
+        return view('admin.membership-type-name.createAndEditForm', ['membershipTypeName' => $membershipTypeName]);
     }
 }
