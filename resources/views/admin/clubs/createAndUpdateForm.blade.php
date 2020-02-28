@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <clubs-create-and-edit-view-vue :club_id="{{isset($club->id) ? $club->id : 0}}"/>
+    <clubs-create-and-edit-view-vue :model_id="{{isset($club->id) ? $club->id : 0}}"/>
 
 @endsection
 

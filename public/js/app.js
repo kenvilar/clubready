@@ -1982,10 +1982,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'clubs-create-and-edit-view-vue',
   props: {
-    club_id: {
+    model_id: {
       type: Number,
       "default": 0,
       required: false
@@ -2000,17 +2027,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      club: {
-        name: '',
-        address: '',
-        suburb: '',
-        state: '',
-        postcode: '',
-        country: '',
-        phone: '',
-        email: '',
-        website: ''
-      },
+      database_model: 'clubs',
+      item: {},
       errors: {}
     };
   },
@@ -2021,31 +2039,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var club_update, club_store;
+        var update, store;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!_this.club_id) {
+                if (!_this.model_id) {
                   _context.next = 3;
                   break;
                 }
 
-                club_update = axios.put("/api/clubs/".concat(_this.club_id), _this.club).then(function (response) {
-                  _this.club = response.data;
-                  window.location.href = "/admin/clubs/".concat(_this.club_id);
+                update = axios.put("/api/".concat(_this.database_model, "/").concat(_this.model_id), _this.item).then(function (response) {
+                  _this.item = response.data;
+                  window.location.href = "/admin/".concat(_this.database_model, "/").concat(_this.model_id);
                 }, function (error) {
                   _this.errors = error.response.data.error;
+                  console.log('this.errors', _this.errors);
                 })["catch"](function (err) {//
                 });
                 return _context.abrupt("return");
 
               case 3:
-                club_store = axios.post('/api/clubs', _this.club).then(function (response) {
+                store = axios.post("/api/".concat(_this.database_model), _this.item).then(function () {
                   //clear all the fields after successful create
-                  _this.clearFields(_this.club);
+                  _this.clearFields(_this.item);
                 }, function (error) {
                   _this.errors = error.response.data.error;
+                  console.log('this.errors', _this.errors);
                 })["catch"](function (err) {//
                 });
 
@@ -2063,14 +2083,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var club_edit;
+        var edit;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                if (_this2.club_id) {
-                  club_edit = axios.get("/api/clubs/".concat(_this2.club_id), _this2.club).then(function (response) {
-                    _this2.club = response.data;
+                if (_this2.model_id) {
+                  edit = axios.get("/api/".concat(_this2.database_model, "/").concat(_this2.model_id), _this2.item).then(function (response) {
+                    _this2.item = response.data;
                   }, function (error) {
                     _this2.errors = error.response.data.error;
                   })["catch"](function (err) {//
@@ -2096,10 +2116,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 if (param) {
-                  _this3.club = {};
+                  _this3.item = {};
                 }
 
-                return _context3.abrupt("return", _this3.club);
+                return _context3.abrupt("return", _this3.item);
 
               case 2:
               case "end":
@@ -2111,6 +2131,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     isEditView: function isEditView(param) {
       return typeof param !== "undefined" || param !== undefined;
+    },
+    hasError: function hasError(param) {
+      var customResult = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var result;
+
+      if (customResult !== null) {
+        result = typeof param == 'undefined' ? '' : param[0];
+      } else {
+        result = typeof param == 'undefined' ? '' : param;
+      }
+
+      return result;
     }
   }
 });
@@ -2161,7 +2193,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'clubs-detail-view-vue',
   props: {
-    club_id: {
+    model_id: {
       type: Number,
       "default": 0,
       required: false
@@ -2176,7 +2208,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      club: {},
+      database_model: 'clubs',
+      item: {},
       errors: {}
     };
   },
@@ -2187,14 +2220,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var club_edit;
+        var show;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (_this.club_id) {
-                  club_edit = axios.get("/api/clubs/".concat(_this.club_id)).then(function (response) {
-                    _this.club = response.data;
+                if (_this.model_id) {
+                  show = axios.get("/api/".concat(_this.database_model, "/").concat(_this.model_id)).then(function (response) {
+                    _this.item = response.data;
                   }, function (error) {
                     _this.errors = error.response.data.error;
                     console.log('this.errors', _this.errors);
@@ -2210,7 +2243,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    clickEditClub: function clickEditClub(id) {
+    clickEdit: function clickEdit(id) {
+      var _this2 = this;
+
       return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -2218,7 +2253,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                window.location.href = "/admin/clubs/".concat(id, "/edit");
+                window.location.href = "/admin/".concat(_this2.database_model, "/").concat(id, "/edit");
 
               case 1:
               case "end":
@@ -2228,26 +2263,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    clickDeleteClub: function clickDeleteClub(id) {
-      var _this2 = this;
+    clickDelete: function clickDelete(id) {
+      var _this3 = this;
 
       return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var remote;
+        var remove;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                remote = axios["delete"]("/api/clubs/".concat(id)).then(function (response) {
-                  console.log('response.data', response.data);
-
+                remove = axios["delete"]("/api/".concat(_this3.database_model, "/").concat(id)).then(function (response) {
                   if (response.data) {
-                    window.location.href = '/clubs';
+                    window.location.href = "/admin/".concat(_this3.database_model);
                   }
                 }, function (error) {
-                  _this2.errors = error.response.data;
-                  console.log('this.errors', _this2.errors);
+                  _this3.errors = error.response.data;
+                  console.log('this.errors', _this3.errors);
                 })["catch"](function (err) {
                   console.log('err', err.response);
                 });
@@ -2261,7 +2294,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     clearFields: function clearFields(param) {
-      var _this3 = this;
+      var _this4 = this;
 
       return _asyncToGenerator(
       /*#__PURE__*/
@@ -2271,10 +2304,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 if (param) {
-                  _this3.club = {};
+                  _this4.item = {};
                 }
 
-                return _context4.abrupt("return", _this3.club);
+                return _context4.abrupt("return", _this4.item);
 
               case 2:
               case "end":
@@ -2335,7 +2368,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      clubs: [],
+      database_model: 'clubs',
+      list: [],
       club: {},
       errors: {}
     };
@@ -2347,13 +2381,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var index;
+        var read;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                index = axios.get('/api/clubs').then(function (response) {
-                  _this.clubs = response.data;
+                read = axios.get("/api/".concat(_this.database_model)).then(function (response) {
+                  _this.list = response.data;
                 }, function (error) {
                   _this.errors = error.response.data.error;
                 })["catch"](function (err) {//
@@ -2367,7 +2401,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    clickEditClub: function clickEditClub(id) {
+    clickShow: function clickShow(id) {
+      var _this2 = this;
+
       return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -2375,7 +2411,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                window.location.href = "/admin/clubs/".concat(id);
+                window.location.href = "/admin/".concat(_this2.database_model, "/").concat(id);
 
               case 1:
               case "end":
@@ -2385,7 +2421,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    clickCreateClub: function clickCreateClub() {
+    clickCreate: function clickCreate() {
+      var _this3 = this;
+
       return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
@@ -2393,7 +2431,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                window.location.href = "/admin/clubs/create";
+                window.location.href = "/admin/".concat(_this3.database_model, "/create");
 
               case 1:
               case "end":
@@ -2403,8 +2441,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
-    clickDeleteClub: function clickDeleteClub(id) {
-      var _this2 = this;
+    clickDelete: function clickDelete(id) {
+      var _this4 = this;
 
       return _asyncToGenerator(
       /*#__PURE__*/
@@ -2414,16 +2452,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                remove = axios["delete"]("/api/clubs/".concat(id)).then(function (response) {
+                remove = axios["delete"]("/api/".concat(_this4.database_model, "/").concat(id)).then(function (response) {
                   console.log('response.data', response.data);
                 }, function (error) {
-                  _this2.errors = error.response.data;
-                  console.log('this.errors', _this2.errors);
+                  _this4.errors = error.response.data;
+                  console.log('this.errors', _this4.errors);
                 })["catch"](function (err) {
                   console.log('err', err.response);
                 });
 
-                _this2.read();
+                _this4.read();
 
               case 2:
               case "end":
@@ -38862,8 +38900,10 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _vm._v(
-          "\n            This is clubs " +
-            _vm._s(_vm.isEditView(_vm.club.id) ? "edit" : "create") +
+          "\n            This is " +
+            _vm._s(_vm.database_model) +
+            " " +
+            _vm._s(_vm.isEditView(_vm.item.id) ? "edit" : "create") +
             " page\n        "
         )
       ]),
@@ -38871,7 +38911,7 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "col-5" }, [
-        _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "form-group required" }, [
           _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
           _vm._v(" "),
           _c("input", {
@@ -38879,25 +38919,32 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.club.name,
-                expression: "club.name"
+                value: _vm.item.name,
+                expression: "item.name"
               }
             ],
             staticClass: "form-control",
+            class: { "is-invalid": _vm.hasError(_vm.errors.name) },
             attrs: { type: "text", name: "name", id: "name" },
-            domProps: { value: _vm.club.name },
+            domProps: { value: _vm.item.name },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.club, "name", $event.target.value)
+                _vm.$set(_vm.item, "name", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.name, 0)))])]
+          )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "form-group required" }, [
           _c("label", { attrs: { for: "address" } }, [_vm._v("Address")]),
           _vm._v(" "),
           _c("input", {
@@ -38905,25 +38952,36 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.club.address,
-                expression: "club.address"
+                value: _vm.item.address,
+                expression: "item.address"
               }
             ],
             staticClass: "form-control",
+            class: { "is-invalid": _vm.hasError(_vm.errors.address) },
             attrs: { type: "text", name: "address", id: "address" },
-            domProps: { value: _vm.club.address },
+            domProps: { value: _vm.item.address },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.club, "address", $event.target.value)
+                _vm.$set(_vm.item, "address", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors.address, 0)))
+              ])
+            ]
+          )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "form-group required" }, [
           _c("label", { attrs: { for: "suburb" } }, [_vm._v("Suburb")]),
           _vm._v(" "),
           _c("input", {
@@ -38931,25 +38989,32 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.club.suburb,
-                expression: "club.suburb"
+                value: _vm.item.suburb,
+                expression: "item.suburb"
               }
             ],
             staticClass: "form-control",
+            class: { "is-invalid": _vm.hasError(_vm.errors.suburb) },
             attrs: { type: "text", name: "suburb", id: "suburb" },
-            domProps: { value: _vm.club.suburb },
+            domProps: { value: _vm.item.suburb },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.club, "suburb", $event.target.value)
+                _vm.$set(_vm.item, "suburb", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.suburb, 0)))])]
+          )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "form-group required" }, [
           _c("label", { attrs: { for: "state" } }, [_vm._v("State")]),
           _vm._v(" "),
           _c("input", {
@@ -38957,25 +39022,32 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.club.state,
-                expression: "club.state"
+                value: _vm.item.state,
+                expression: "item.state"
               }
             ],
             staticClass: "form-control",
+            class: { "is-invalid": _vm.hasError(_vm.errors.state) },
             attrs: { type: "text", name: "state", id: "state" },
-            domProps: { value: _vm.club.state },
+            domProps: { value: _vm.item.state },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.club, "state", $event.target.value)
+                _vm.$set(_vm.item, "state", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.state, 0)))])]
+          )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "form-group required" }, [
           _c("label", { attrs: { for: "postcode" } }, [_vm._v("Postcode")]),
           _vm._v(" "),
           _c("input", {
@@ -38983,25 +39055,36 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.club.postcode,
-                expression: "club.postcode"
+                value: _vm.item.postcode,
+                expression: "item.postcode"
               }
             ],
             staticClass: "form-control",
+            class: { "is-invalid": _vm.hasError(_vm.errors.postcode) },
             attrs: { type: "text", name: "postcode", id: "postcode" },
-            domProps: { value: _vm.club.postcode },
+            domProps: { value: _vm.item.postcode },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.club, "postcode", $event.target.value)
+                _vm.$set(_vm.item, "postcode", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors.postcode, 0)))
+              ])
+            ]
+          )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "form-group required" }, [
           _c("label", { attrs: { for: "country" } }, [_vm._v("Country")]),
           _vm._v(" "),
           _c("input", {
@@ -39009,22 +39092,33 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.club.country,
-                expression: "club.country"
+                value: _vm.item.country,
+                expression: "item.country"
               }
             ],
             staticClass: "form-control",
+            class: { "is-invalid": _vm.hasError(_vm.errors.country) },
             attrs: { type: "text", name: "country", id: "country" },
-            domProps: { value: _vm.club.country },
+            domProps: { value: _vm.item.country },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.club, "country", $event.target.value)
+                _vm.$set(_vm.item, "country", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors.country, 0)))
+              ])
+            ]
+          )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
@@ -39035,22 +39129,29 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.club.phone,
-                expression: "club.phone"
+                value: _vm.item.phone,
+                expression: "item.phone"
               }
             ],
             staticClass: "form-control",
+            class: { "is-invalid": _vm.hasError(_vm.errors.phone) },
             attrs: { type: "text", name: "phone", id: "phone" },
-            domProps: { value: _vm.club.phone },
+            domProps: { value: _vm.item.phone },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.club, "phone", $event.target.value)
+                _vm.$set(_vm.item, "phone", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.phone, 0)))])]
+          )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
@@ -39061,22 +39162,29 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.club.email,
-                expression: "club.email"
+                value: _vm.item.email,
+                expression: "item.email"
               }
             ],
             staticClass: "form-control",
+            class: { "is-invalid": _vm.hasError(_vm.errors.email) },
             attrs: { type: "email", name: "email", id: "email" },
-            domProps: { value: _vm.club.email },
+            domProps: { value: _vm.item.email },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.club, "email", $event.target.value)
+                _vm.$set(_vm.item, "email", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.email, 0)))])]
+          )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
@@ -39087,27 +39195,38 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.club.website,
-                expression: "club.website"
+                value: _vm.item.website,
+                expression: "item.website"
               }
             ],
             staticClass: "form-control",
+            class: { "is-invalid": _vm.hasError(_vm.errors.website) },
             attrs: { type: "text", name: "website", id: "website" },
-            domProps: { value: _vm.club.website },
+            domProps: { value: _vm.item.website },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.club, "website", $event.target.value)
+                _vm.$set(_vm.item, "website", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors.website, 0)))
+              ])
+            ]
+          )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
           _c("button", { on: { click: _vm.storeOrUpdate } }, [
-            _vm._v(_vm._s(_vm.isEditView(_vm.club.id) ? "Update" : "Create"))
+            _vm._v(_vm._s(_vm.isEditView(_vm.item.id) ? "Update" : "Create"))
           ])
         ])
       ])
@@ -39156,30 +39275,37 @@ var render = function() {
     _c("div", { staticClass: "col-md-12" }, [
       _c(
         "a",
-        { staticClass: "btn btn-info", attrs: { href: "/admin/clubs/" } },
+        {
+          staticClass: "btn btn-info",
+          attrs: { href: "/admin/" + _vm.database_model }
+        },
         [_vm._v("Back")]
       )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-12" }, [
-      _vm._v("\n        This is clubs show page\n        "),
-      _c("div", [_vm._v("Name: " + _vm._s(_vm.club.name))]),
+      _vm._v(
+        "\n        This is " +
+          _vm._s(_vm.database_model) +
+          " show page\n        "
+      ),
+      _c("div", [_vm._v("Name: " + _vm._s(_vm.item.name))]),
       _vm._v(" "),
-      _c("div", [_vm._v("Address: " + _vm._s(_vm.club.address))]),
+      _c("div", [_vm._v("Address: " + _vm._s(_vm.item.address))]),
       _vm._v(" "),
-      _c("div", [_vm._v("Suburb: " + _vm._s(_vm.club.suburb))]),
+      _c("div", [_vm._v("Suburb: " + _vm._s(_vm.item.suburb))]),
       _vm._v(" "),
-      _c("div", [_vm._v("State: " + _vm._s(_vm.club.state))]),
+      _c("div", [_vm._v("State: " + _vm._s(_vm.item.state))]),
       _vm._v(" "),
-      _c("div", [_vm._v("Post Code: " + _vm._s(_vm.club.postcode))]),
+      _c("div", [_vm._v("Post Code: " + _vm._s(_vm.item.postcode))]),
       _vm._v(" "),
-      _c("div", [_vm._v("Country: " + _vm._s(_vm.club.country))]),
+      _c("div", [_vm._v("Country: " + _vm._s(_vm.item.country))]),
       _vm._v(" "),
-      _c("div", [_vm._v("Phone: " + _vm._s(_vm.club.phone))]),
+      _c("div", [_vm._v("Phone: " + _vm._s(_vm.item.phone))]),
       _vm._v(" "),
-      _c("div", [_vm._v("Email: " + _vm._s(_vm.club.email))]),
+      _c("div", [_vm._v("Email: " + _vm._s(_vm.item.email))]),
       _vm._v(" "),
-      _c("div", [_vm._v("Website: " + _vm._s(_vm.club.website))])
+      _c("div", [_vm._v("Website: " + _vm._s(_vm.item.website))])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-12" }, [
@@ -39189,7 +39315,7 @@ var render = function() {
           staticClass: "btn btn-success",
           on: {
             click: function($event) {
-              return _vm.clickEditClub(_vm.club.id)
+              return _vm.clickEdit(_vm.item.id)
             }
           }
         },
@@ -39202,7 +39328,7 @@ var render = function() {
           staticClass: "btn btn-danger",
           on: {
             click: function($event) {
-              return _vm.clickDeleteClub(_vm.club.id)
+              return _vm.clickDelete(_vm.item.id)
             }
           }
         },
@@ -39235,7 +39361,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "col-12" }, [
-      _c("div", [_vm._v("This is clubs index page")]),
+      _c("div", [_vm._v("This is index page")]),
       _vm._v(" "),
       _c(
         "a",
@@ -39243,19 +39369,19 @@ var render = function() {
           staticClass: "btn btn-primary",
           on: {
             click: function($event) {
-              return _vm.clickCreateClub()
+              return _vm.clickCreate()
             }
           }
         },
-        [_vm._v("Create Club")]
+        [_vm._v("Create")]
       ),
       _vm._v(" "),
       _c(
         "ul",
-        _vm._l(_vm.clubs, function(club) {
+        _vm._l(_vm.list, function(item) {
           return _c("li", [
             _vm._v(
-              "\n                " + _vm._s(club.name) + "\n                "
+              "\n                " + _vm._s(item.name) + "\n                "
             ),
             _c(
               "a",
@@ -39263,11 +39389,11 @@ var render = function() {
                 staticClass: "btn btn-success",
                 on: {
                   click: function($event) {
-                    return _vm.clickEditClub(club.id)
+                    return _vm.clickShow(item.id)
                   }
                 }
               },
-              [_vm._v("Edit")]
+              [_vm._v("Show")]
             ),
             _vm._v(" "),
             _c(
@@ -39276,7 +39402,7 @@ var render = function() {
                 staticClass: "btn btn-danger",
                 on: {
                   click: function($event) {
-                    return _vm.clickDeleteClub(club.id)
+                    return _vm.clickDelete(item.id)
                   }
                 }
               },

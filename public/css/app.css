@@ -10884,3 +10884,8 @@ a.text-dark:focus {
   }
 }
 
+.form-group.required label:after {
+  content: "*";
+  color: red;
+}
+

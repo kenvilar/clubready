@@ -8,41 +8,68 @@
                 <a class="btn btn-info" onclick="window.history.go(-1)">Back</a>
             </div>
             <div class="col-5">
-                <div class="form-group">
+                <div class="form-group required">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" id="name" v-model="item.name">
+                    <input type="text" class="form-control" name="name" id="name" v-model="item.name"
+                           :class="{'is-invalid': hasError(errors.name)}">
+                    <span role="alert" class="invalid-feedback">
+                        <strong>{{hasError(errors.name, 0)}}</strong></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group required">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" name="address" id="address" v-model="item.address">
+                    <input type="text" class="form-control" name="address" id="address" v-model="item.address"
+                           :class="{'is-invalid': hasError(errors.address)}">
+                    <span role="alert" class="invalid-feedback">
+                        <strong>{{hasError(errors.address, 0)}}</strong></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group required">
                     <label for="suburb">Suburb</label>
-                    <input type="text" class="form-control" name="suburb" id="suburb" v-model="item.suburb">
+                    <input type="text" class="form-control" name="suburb" id="suburb" v-model="item.suburb"
+                           :class="{'is-invalid': hasError(errors.suburb)}">
+                    <span role="alert" class="invalid-feedback">
+                        <strong>{{hasError(errors.suburb, 0)}}</strong></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group required">
                     <label for="state">State</label>
-                    <input type="text" class="form-control" name="state" id="state" v-model="item.state">
+                    <input type="text" class="form-control" name="state" id="state" v-model="item.state"
+                           :class="{'is-invalid': hasError(errors.state)}">
+                    <span role="alert" class="invalid-feedback">
+                        <strong>{{hasError(errors.state, 0)}}</strong></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group required">
                     <label for="postcode">Postcode</label>
-                    <input type="text" class="form-control" name="postcode" id="postcode" v-model="item.postcode">
+                    <input type="text" class="form-control" name="postcode" id="postcode" v-model="item.postcode"
+                           :class="{'is-invalid': hasError(errors.postcode)}">
+                    <span role="alert" class="invalid-feedback">
+                        <strong>{{hasError(errors.postcode, 0)}}</strong></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group required">
                     <label for="country">Country</label>
-                    <input type="text" class="form-control" name="country" id="country" v-model="item.country">
+                    <input type="text" class="form-control" name="country" id="country" v-model="item.country"
+                           :class="{'is-invalid': hasError(errors.country)}">
+                    <span role="alert" class="invalid-feedback">
+                        <strong>{{hasError(errors.country, 0)}}</strong></span>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone</label>
-                    <input type="text" class="form-control" name="phone" id="phone" v-model="item.phone">
+                    <input type="text" class="form-control" name="phone" id="phone" v-model="item.phone"
+                           :class="{'is-invalid': hasError(errors.phone)}">
+                    <span role="alert" class="invalid-feedback">
+                        <strong>{{hasError(errors.phone, 0)}}</strong></span>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" id="email" v-model="item.email">
+                    <input type="email" class="form-control" name="email" id="email" v-model="item.email"
+                           :class="{'is-invalid': hasError(errors.email)}">
+                    <span role="alert" class="invalid-feedback">
+                        <strong>{{hasError(errors.email, 0)}}</strong></span>
                 </div>
                 <div class="form-group">
                     <label for="website">Website</label>
-                    <input type="text" class="form-control" name="website" id="website" v-model="item.website">
+                    <input type="text" class="form-control" name="website" id="website" v-model="item.website"
+                           :class="{'is-invalid': hasError(errors.website)}">
+                    <span role="alert" class="invalid-feedback">
+                        <strong>{{hasError(errors.website, 0)}}</strong></span>
                 </div>
                 <div class="form-group">
                     <button @click="storeOrUpdate">{{ isEditView(item.id) ? 'Update' : 'Create'}}</button>
@@ -126,7 +153,16 @@
             },
             isEditView(param) {
                 return typeof param !== "undefined" || param !== undefined;
-            }
+            },
+            hasError(param, customResult = null) {
+                let result;
+                if (customResult !== null) {
+                    result = typeof param == 'undefined' ? '' : param[0]
+                } else {
+                    result = typeof param == 'undefined' ? '' : param;
+                }
+                return result;
+            },
         }
     }
 </script>
