@@ -92,6 +92,7 @@
             async clearFields(param) {
                 if (param) {
                     this.item = {};
+                    this.errors = {};
                 }
                 return this.item;
             },
