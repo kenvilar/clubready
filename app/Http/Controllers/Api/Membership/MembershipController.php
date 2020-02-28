@@ -93,7 +93,7 @@ class MembershipController extends Controller
         return [
             'year' => 'required|min:4|max:4',
             'name' => 'required|min:2',
-            'amount' => 'required|min:1',
+            'amount' => 'required|numeric|min:1',
         ];
     }
 }

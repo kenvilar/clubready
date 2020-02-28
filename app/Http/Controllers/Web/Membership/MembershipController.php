@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Membership;
 
 use App\Http\Controllers\Controller;
+use App\Models\Membership;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 
@@ -25,28 +26,28 @@ class MembershipController extends Controller
      */
     public function create()
     {
-        return view('admin.membership.create');
+        return view('admin.membership.createAndUpdateForm');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Membership $membership
      * @return Factory|View
      */
-    public function show($id)
+    public function show(Membership $membership)
     {
-        return view('admin.membership.show');
+        return view('admin.membership.show', ['membership' => $membership]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param Membership $membership
      * @return Factory|View
      */
-    public function edit($id)
+    public function edit(Membership $membership)
     {
-        return view('admin.membership.edit');
+        return view('admin.membership.createAndUpdateForm', ['membership' => $membership]);
     }
 }
