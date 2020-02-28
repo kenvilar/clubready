@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\MembershipType;
 
 use App\Http\Controllers\Controller;
+use App\Models\MembershipType;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 
@@ -25,28 +26,28 @@ class MembershipTypeController extends Controller
      */
     public function create()
     {
-        return view('admin.membership-type.create');
+        return view('admin.membership-type.createAndEditForm');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param MembershipType $membershipType
      * @return Factory|View
      */
-    public function show($id)
+    public function show(MembershipType $membershipType)
     {
-        return view('admin.membership-type.show');
+        return view('admin.membership-type.show', ['membershipType' => $membershipType]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param MembershipType $membershipType
      * @return Factory|View
      */
-    public function edit($id)
+    public function edit(MembershipType $membershipType)
     {
-        return view('admin.membership-type.edit');
+        return view('admin.membership-type.createAndEditForm', ['membershipType' => $membershipType]);
     }
 }

@@ -46,8 +46,8 @@ membership_files.keys().map(key => Vue.component(membership_files(key).default.n
 /**
  * MembershipTypes
  */
-// const membershiptype_files = require.context('./components/admin/membership-types/', true, /\.vue$/i);
-// membershiptype_files.keys().map(key => Vue.component(membershiptype_files(key).default.name, membershiptype_files(key).default));
+const membershiptype_files = require.context('./components/admin/membership-types/', true, /\.vue$/i);
+membershiptype_files.keys().map(key => Vue.component(membershiptype_files(key).default.name, membershiptype_files(key).default));
 
 /**
  * MembershipTypeNames
