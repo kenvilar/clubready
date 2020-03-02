@@ -58,8 +58,8 @@ membershiptypename__files.keys().map(key => Vue.component(membershiptypename__fi
 /**
  * SuperAdmins
  */
-// const superadmin_files = require.context('./components/admin/super-admins/', true, /\.vue$/i);
-// superadmin_files.keys().map(key => Vue.component(superadmin_files(key).default.name, superadmin_files(key).default));
+const superadmin_files = require.context('./components/admin/super-admins/', true, /\.vue$/i);
+superadmin_files.keys().map(key => Vue.component(superadmin_files(key).default.name, superadmin_files(key).default));
 
 /**
  * Users

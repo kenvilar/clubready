@@ -5,7 +5,7 @@
             <a class="btn btn-primary" @click="clickCreate()">Create</a>
             <ul v-if="list.length">
                 <li v-for="item in list">
-                    {{item.name}}
+                    USER ID: {{item.user_id}}
                     <a class="btn btn-success" @click="clickShow(item.id)">Show</a>
                     <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
                 </li>
@@ -16,7 +16,7 @@
 
 <script>
     export default {
-        name: 'membership-types-list-view-vue',
+        name: 'super-admins-list-view-vue',
         props: {
             //
         },
@@ -31,7 +31,7 @@
         },
         data() {
             return {
-                database_model: 'membership-types',
+                database_model: 'super-admins',
                 list: [],
                 item: {},
                 errors: {},

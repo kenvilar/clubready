@@ -62,6 +62,8 @@ class SuperAdminController extends Controller
     {
         $this->validate($request, $this->validationRules());
 
+        $superAdmin->user_id = $request->user_id;
+
         $superAdmin->save();
 
         return $this->showOne($superAdmin);
@@ -84,7 +86,7 @@ class SuperAdminController extends Controller
     private function validationRules()
     {
         return [
-            'user_id' => 'integer|unique:super_admins,user_id',
+            'user_id' => 'required|integer|unique:super_admins,user_id',
         ];
     }
 }

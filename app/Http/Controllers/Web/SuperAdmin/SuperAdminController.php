@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\SuperAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SuperAdmin;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 
@@ -25,28 +26,28 @@ class SuperAdminController extends Controller
      */
     public function create()
     {
-        return view('admin.super-admin.create');
+        return view('admin.super-admin.createAndEditForm');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param SuperAdmin $superAdmin
      * @return Factory|View
      */
-    public function show($id)
+    public function show(SuperAdmin $superAdmin)
     {
-        return view('admin.super-admin.show');
+        return view('admin.super-admin.show', ['superAdmin' => $superAdmin]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param SuperAdmin $superAdmin
      * @return Factory|View
      */
-    public function edit($id)
+    public function edit(SuperAdmin $superAdmin)
     {
-        return view('admin.super-admin.edit');
+        return view('admin.super-admin.createAndEditForm', ['superAdmin' => $superAdmin]);
     }
 }

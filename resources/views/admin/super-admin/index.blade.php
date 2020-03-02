@@ -1,1 +1,7 @@
-This is super-admin index page
+@extends('layouts.app')
+
+@section('content')
+
+    <super-admins-list-view-vue/>
+
+@endsection

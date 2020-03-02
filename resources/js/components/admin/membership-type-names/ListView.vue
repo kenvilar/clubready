@@ -3,7 +3,7 @@
         <div class="col-12">
             <div>This is index page</div>
             <a class="btn btn-primary" @click="clickCreate()">Create</a>
-            <ul>
+            <ul v-if="list.length">
                 <li v-for="item in list">
                     {{item.name}}
                     <a class="btn btn-success" @click="clickShow(item.id)">Show</a>

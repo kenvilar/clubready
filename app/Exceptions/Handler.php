@@ -111,6 +111,10 @@ class Handler extends ExceptionHandler
             if ($errorCode === 1451) {
                 return $this->errorResponse('Cannot remove this resource permanently. It is related with any other resource', 409);
             }
+            if ($errorCode === 1452) {
+                //Cannot add or update a child row: a foreign key constraint fails
+                return $this->errorResponse('There is something wrong', 409);
+            }
         }
 
         if ($exception instanceof TokenMismatchException) {
