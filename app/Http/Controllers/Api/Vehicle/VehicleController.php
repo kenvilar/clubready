@@ -62,6 +62,7 @@ class VehicleController extends Controller
     {
         $this->validate($request, $this->validationRules());
 
+        $vehicle->user_id = $request->user_id;
         $vehicle->make = $request->make;
         $vehicle->model = $request->model;
         $vehicle->year = $request->year;
