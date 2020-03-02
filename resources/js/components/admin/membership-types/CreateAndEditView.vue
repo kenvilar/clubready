@@ -11,31 +11,31 @@
                 <div class="form-group required">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" name="name" id="name" v-model="item.name"
-                           :class="{'is-invalid': hasError(errors.name)}">
+                           :class="{'is-invalid': hasError(errors, 'name')}">
                     <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors.name, 0)}}</strong></span>
+                        <strong>{{hasError(errors, 'name', true)}}</strong></span>
                 </div>
                 <div class="form-group required">
                     <label for="value">Value</label>
-                    <input type="text" class="form-control" name="value" id="value" v-model="item.value"
-                           :class="{'is-invalid': hasError(errors.value)}">
+                    <input type="number" step="0.01" class="form-control" name="value" id="value" v-model="item.value"
+                           :class="{'is-invalid': hasError(errors, 'value')}">
                     <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors.value, 0)}}</strong></span>
+                        <strong>{{hasError(errors, 'value', true)}}</strong></span>
                 </div>
                 <div class="form-group required">
                     <label for="start_date">Start Date</label>
                     <input type="date" class="form-control" name="start_date" id="start_date" v-model="item.start_date"
                            pattern="\d{4}-\d{2}-\d{2}"
-                           :class="{'is-invalid': hasError(errors.start_date)}">
+                           :class="{'is-invalid': hasError(errors, 'start_date')}">
                     <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors.start_date, 0)}}</strong></span>
+                        <strong>{{hasError(errors, 'start_date', true)}}</strong></span>
                 </div>
                 <div class="form-group required">
                     <label for="expiry_date">Expiry Date</label>
                     <input type="date" class="form-control" name="expiry_date" id="expiry_date" v-model="item.expiry_date"
-                           :class="{'is-invalid': hasError(errors.expiry_date)}">
+                           :class="{'is-invalid': hasError(errors, 'expiry_date')}">
                     <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors.expiry_date, 0)}}</strong></span>
+                        <strong>{{hasError(errors, 'expiry_date', true)}}</strong></span>
                 </div>
                 <div class="form-group">
                     <button @click="storeOrUpdate">{{ isEditView(item.id) ? 'Update' : 'Create'}}</button>
@@ -122,14 +122,12 @@
             isEditView(param) {
                 return typeof param !== "undefined" || param !== undefined;
             },
-            hasError(param, customResult = null) {
-                let result;
-                if (customResult !== null) {
-                    result = typeof param == 'undefined' ? '' : param[0]
-                } else {
-                    result = typeof param == 'undefined' ? '' : param;
+            hasError(errors, name, showResult = false) {
+                if (showResult === true) {
+                    return typeof errors[name] == 'undefined' ? (typeof errors === 'string' ? errors : '') : errors[name][0];
                 }
-                return result;
+
+                return typeof errors[name] == 'undefined' ? (typeof errors === 'string' ? errors : '') : errors[name];
             },
         }
     }

@@ -11,9 +11,9 @@
                 <div class="form-group required">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" name="name" id="name" v-model="item.name"
-                           :class="{'is-invalid': hasError(errors.name)}">
+                           :class="{'is-invalid': hasError(errors, 'name')}">
                     <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors.name, 0)}}</strong></span>
+                        <strong>{{hasError(errors, 'name', true)}}</strong></span>
                 </div>
                 <div class="form-group">
                     <button @click="storeOrUpdate">{{ isEditView(item.id) ? 'Update' : 'Create'}}</button>
@@ -99,14 +99,12 @@
             isEditView(param) {
                 return typeof param !== "undefined" || param !== undefined;
             },
-            hasError(param, customResult = null) {
-                let result;
-                if (customResult !== null) {
-                    result = typeof param == 'undefined' ? '' : param[0]
-                } else {
-                    result = typeof param == 'undefined' ? '' : param;
+            hasError(errors, name, showResult = false) {
+                if (showResult === true) {
+                    return typeof errors[name] == 'undefined' ? (typeof errors === 'string' ? errors : '') : errors[name][0];
                 }
-                return result;
+
+                return typeof errors[name] == 'undefined' ? (typeof errors === 'string' ? errors : '') : errors[name];
             },
         }
     }

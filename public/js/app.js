@@ -2133,17 +2133,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     isEditView: function isEditView(param) {
       return typeof param !== "undefined" || param !== undefined;
     },
-    hasError: function hasError(param) {
-      var customResult = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var result;
+    hasError: function hasError(errors, name) {
+      var showResult = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-      if (customResult !== null) {
-        result = typeof param == 'undefined' ? '' : param[0];
-      } else {
-        result = typeof param == 'undefined' ? '' : param;
+      if (showResult === true) {
+        return typeof errors[name] == 'undefined' ? typeof errors === 'string' ? errors : '' : errors[name][0];
       }
 
-      return result;
+      return typeof errors[name] == 'undefined' ? typeof errors === 'string' ? errors : '' : errors[name];
     }
   }
 });
@@ -2644,17 +2641,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     isEditView: function isEditView(param) {
       return typeof param !== "undefined" || param !== undefined;
     },
-    hasError: function hasError(param) {
-      var customResult = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var result;
+    hasError: function hasError(errors, name) {
+      var showResult = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-      if (customResult !== null) {
-        result = typeof param == 'undefined' ? '' : param[0];
-      } else {
-        result = typeof param == 'undefined' ? '' : param;
+      if (showResult === true) {
+        return typeof errors[name] == 'undefined' ? typeof errors === 'string' ? errors : '' : errors[name][0];
       }
 
-      return result;
+      return typeof errors[name] == 'undefined' ? typeof errors === 'string' ? errors : '' : errors[name];
     }
   }
 });
@@ -3147,17 +3141,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     isEditView: function isEditView(param) {
       return typeof param !== "undefined" || param !== undefined;
     },
-    hasError: function hasError(param) {
-      var customResult = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var result;
+    hasError: function hasError(errors, name) {
+      var showResult = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-      if (customResult !== null) {
-        result = typeof param == 'undefined' ? '' : param[0];
-      } else {
-        result = typeof param == 'undefined' ? '' : param;
+      if (showResult === true) {
+        return typeof errors[name] == 'undefined' ? typeof errors === 'string' ? errors : '' : errors[name][0];
       }
 
-      return result;
+      return typeof errors[name] == 'undefined' ? typeof errors === 'string' ? errors : '' : errors[name];
     }
   }
 });
@@ -3673,17 +3664,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     isEditView: function isEditView(param) {
       return typeof param !== "undefined" || param !== undefined;
     },
-    hasError: function hasError(param) {
-      var customResult = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var result;
+    hasError: function hasError(errors, name) {
+      var showResult = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-      if (customResult !== null) {
-        result = typeof param == 'undefined' ? '' : param[0];
-      } else {
-        result = typeof param == 'undefined' ? '' : param;
+      if (showResult === true) {
+        return typeof errors[name] == 'undefined' ? typeof errors === 'string' ? errors : '' : errors[name][0];
       }
 
-      return result;
+      return typeof errors[name] == 'undefined' ? typeof errors === 'string' ? errors : '' : errors[name];
     }
   }
 });
@@ -4193,17 +4181,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     isEditView: function isEditView(param) {
       return typeof param !== "undefined" || param !== undefined;
     },
-    hasError: function hasError(param) {
-      var customResult = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var result;
+    hasError: function hasError(errors, name) {
+      var showResult = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-      if (customResult !== null) {
-        result = typeof param == 'undefined' ? '' : param[0];
-      } else {
-        result = typeof param == 'undefined' ? '' : param;
+      if (showResult === true) {
+        return typeof errors[name] == 'undefined' ? typeof errors === 'string' ? errors : '' : errors[name][0];
       }
 
-      return result;
+      return typeof errors[name] == 'undefined' ? typeof errors === 'string' ? errors : '' : errors[name];
     }
   }
 });
@@ -41166,7 +41151,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.name) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "name") },
             attrs: { type: "text", name: "name", id: "name" },
             domProps: { value: _vm.item.name },
             on: {
@@ -41182,7 +41167,11 @@ var render = function() {
           _c(
             "span",
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
-            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.name, 0)))])]
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "name", true)))
+              ])
+            ]
           )
         ]),
         _vm._v(" "),
@@ -41199,7 +41188,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.address) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "address") },
             attrs: { type: "text", name: "address", id: "address" },
             domProps: { value: _vm.item.address },
             on: {
@@ -41217,7 +41206,7 @@ var render = function() {
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
             [
               _c("strong", [
-                _vm._v(_vm._s(_vm.hasError(_vm.errors.address, 0)))
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "address", true)))
               ])
             ]
           )
@@ -41236,7 +41225,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.suburb) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "suburb") },
             attrs: { type: "text", name: "suburb", id: "suburb" },
             domProps: { value: _vm.item.suburb },
             on: {
@@ -41252,7 +41241,11 @@ var render = function() {
           _c(
             "span",
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
-            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.suburb, 0)))])]
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "suburb", true)))
+              ])
+            ]
           )
         ]),
         _vm._v(" "),
@@ -41269,7 +41262,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.state) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "state") },
             attrs: { type: "text", name: "state", id: "state" },
             domProps: { value: _vm.item.state },
             on: {
@@ -41285,7 +41278,11 @@ var render = function() {
           _c(
             "span",
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
-            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.state, 0)))])]
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "state", true)))
+              ])
+            ]
           )
         ]),
         _vm._v(" "),
@@ -41302,7 +41299,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.postcode) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "postcode") },
             attrs: { type: "text", name: "postcode", id: "postcode" },
             domProps: { value: _vm.item.postcode },
             on: {
@@ -41320,7 +41317,7 @@ var render = function() {
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
             [
               _c("strong", [
-                _vm._v(_vm._s(_vm.hasError(_vm.errors.postcode, 0)))
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "postcode", true)))
               ])
             ]
           )
@@ -41339,7 +41336,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.country) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "country") },
             attrs: { type: "text", name: "country", id: "country" },
             domProps: { value: _vm.item.country },
             on: {
@@ -41357,7 +41354,7 @@ var render = function() {
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
             [
               _c("strong", [
-                _vm._v(_vm._s(_vm.hasError(_vm.errors.country, 0)))
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "country", true)))
               ])
             ]
           )
@@ -41376,7 +41373,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.phone) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "phone") },
             attrs: { type: "text", name: "phone", id: "phone" },
             domProps: { value: _vm.item.phone },
             on: {
@@ -41392,7 +41389,11 @@ var render = function() {
           _c(
             "span",
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
-            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.phone, 0)))])]
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "phone", true)))
+              ])
+            ]
           )
         ]),
         _vm._v(" "),
@@ -41409,7 +41410,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.email) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "email") },
             attrs: { type: "email", name: "email", id: "email" },
             domProps: { value: _vm.item.email },
             on: {
@@ -41425,7 +41426,11 @@ var render = function() {
           _c(
             "span",
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
-            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.email, 0)))])]
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "email", true)))
+              ])
+            ]
           )
         ]),
         _vm._v(" "),
@@ -41442,7 +41447,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.website) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "website") },
             attrs: { type: "text", name: "website", id: "website" },
             domProps: { value: _vm.item.website },
             on: {
@@ -41460,7 +41465,7 @@ var render = function() {
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
             [
               _c("strong", [
-                _vm._v(_vm._s(_vm.hasError(_vm.errors.website, 0)))
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "website", true)))
               ])
             ]
           )
@@ -41711,7 +41716,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.name) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "name") },
             attrs: { type: "text", name: "name", id: "name" },
             domProps: { value: _vm.item.name },
             on: {
@@ -41727,7 +41732,11 @@ var render = function() {
           _c(
             "span",
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
-            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.name, 0)))])]
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "name", true)))
+              ])
+            ]
           )
         ]),
         _vm._v(" "),
@@ -41960,7 +41969,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.name) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "name") },
             attrs: { type: "text", name: "name", id: "name" },
             domProps: { value: _vm.item.name },
             on: {
@@ -41976,7 +41985,11 @@ var render = function() {
           _c(
             "span",
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
-            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.name, 0)))])]
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "name", true)))
+              ])
+            ]
           )
         ]),
         _vm._v(" "),
@@ -42209,7 +42222,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.name) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "name") },
             attrs: { type: "text", name: "name", id: "name" },
             domProps: { value: _vm.item.name },
             on: {
@@ -42225,7 +42238,11 @@ var render = function() {
           _c(
             "span",
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
-            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.name, 0)))])]
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "name", true)))
+              ])
+            ]
           )
         ]),
         _vm._v(" "),
@@ -42242,8 +42259,8 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.value) },
-            attrs: { type: "text", name: "value", id: "value" },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "value") },
+            attrs: { type: "number", step: "0.01", name: "value", id: "value" },
             domProps: { value: _vm.item.value },
             on: {
               input: function($event) {
@@ -42258,7 +42275,11 @@ var render = function() {
           _c(
             "span",
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
-            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.value, 0)))])]
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "value", true)))
+              ])
+            ]
           )
         ]),
         _vm._v(" "),
@@ -42275,7 +42296,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.start_date) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "start_date") },
             attrs: {
               type: "date",
               name: "start_date",
@@ -42298,7 +42319,7 @@ var render = function() {
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
             [
               _c("strong", [
-                _vm._v(_vm._s(_vm.hasError(_vm.errors.start_date, 0)))
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "start_date", true)))
               ])
             ]
           )
@@ -42319,7 +42340,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.expiry_date) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "expiry_date") },
             attrs: { type: "date", name: "expiry_date", id: "expiry_date" },
             domProps: { value: _vm.item.expiry_date },
             on: {
@@ -42337,7 +42358,7 @@ var render = function() {
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
             [
               _c("strong", [
-                _vm._v(_vm._s(_vm.hasError(_vm.errors.expiry_date, 0)))
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "expiry_date", true)))
               ])
             ]
           )
@@ -42578,7 +42599,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.name) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "name") },
             attrs: { type: "text", name: "name", id: "name" },
             domProps: { value: _vm.item.name },
             on: {
@@ -42594,7 +42615,11 @@ var render = function() {
           _c(
             "span",
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
-            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.name, 0)))])]
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "name", true)))
+              ])
+            ]
           )
         ]),
         _vm._v(" "),
@@ -42611,7 +42636,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.year) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "year") },
             attrs: { type: "number", name: "year", id: "year" },
             domProps: { value: _vm.item.year },
             on: {
@@ -42627,7 +42652,11 @@ var render = function() {
           _c(
             "span",
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
-            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.year, 0)))])]
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "year", true)))
+              ])
+            ]
           )
         ]),
         _vm._v(" "),
@@ -42644,7 +42673,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.hasError(_vm.errors.amount) },
+            class: { "is-invalid": _vm.hasError(_vm.errors, "amount") },
             attrs: { type: "text", name: "amount", id: "amount" },
             domProps: { value: _vm.item.amount },
             on: {
@@ -42660,7 +42689,11 @@ var render = function() {
           _c(
             "span",
             { staticClass: "invalid-feedback", attrs: { role: "alert" } },
-            [_c("strong", [_vm._v(_vm._s(_vm.hasError(_vm.errors.amount, 0)))])]
+            [
+              _c("strong", [
+                _vm._v(_vm._s(_vm.hasError(_vm.errors, "amount", true)))
+              ])
+            ]
           )
         ]),
         _vm._v(" "),

@@ -11,23 +11,23 @@
                 <div class="form-group required">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" name="name" id="name" v-model="item.name"
-                           :class="{'is-invalid': hasError(errors.name)}">
+                           :class="{'is-invalid': hasError(errors, 'name')}">
                     <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors.name, 0)}}</strong></span>
+                        <strong>{{hasError(errors, 'name', true)}}</strong></span>
                 </div>
                 <div class="form-group required">
                     <label for="year">Year</label>
                     <input type="number" class="form-control" name="year" id="year" v-model="item.year"
-                           :class="{'is-invalid': hasError(errors.year)}">
+                           :class="{'is-invalid': hasError(errors, 'year')}">
                     <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors.year, 0)}}</strong></span>
+                        <strong>{{hasError(errors, 'year', true)}}</strong></span>
                 </div>
                 <div class="form-group required">
                     <label for="amount">Amount</label>
                     <input type="text" class="form-control" name="amount" id="amount" v-model="item.amount"
-                           :class="{'is-invalid': hasError(errors.amount)}">
+                           :class="{'is-invalid': hasError(errors, 'amount')}">
                     <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors.amount, 0)}}</strong></span>
+                        <strong>{{hasError(errors, 'amount', true)}}</strong></span>
                 </div>
                 <div class="form-group">
                     <button @click="storeOrUpdate">{{ isEditView(item.id) ? 'Update' : 'Create'}}</button>
@@ -113,14 +113,12 @@
             isEditView(param) {
                 return typeof param !== "undefined" || param !== undefined;
             },
-            hasError(param, customResult = null) {
-                let result;
-                if (customResult !== null) {
-                    result = typeof param == 'undefined' ? '' : param[0]
-                } else {
-                    result = typeof param == 'undefined' ? '' : param;
+            hasError(errors, name, showResult = false) {
+                if (showResult === true) {
+                    return typeof errors[name] == 'undefined' ? (typeof errors === 'string' ? errors : '') : errors[name][0];
                 }
-                return result;
+
+                return typeof errors[name] == 'undefined' ? (typeof errors === 'string' ? errors : '') : errors[name];
             },
         }
     }
