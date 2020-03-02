@@ -70,8 +70,8 @@ superadmin_files.keys().map(key => Vue.component(superadmin_files(key).default.n
 /**
  * Vehicles
  */
-// const vehicle_files = require.context('./components/admin/vehicles/', true, /\.vue$/i);
-// vehicle_files.keys().map(key => Vue.component(vehicle_files(key).default.name, vehicle_files(key).default));
+const vehicle_files = require.context('./components/admin/vehicles/', true, /\.vue$/i);
+vehicle_files.keys().map(key => Vue.component(vehicle_files(key).default.name, vehicle_files(key).default));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

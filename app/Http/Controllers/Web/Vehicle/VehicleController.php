@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Vehicle;
 
 use App\Http\Controllers\Controller;
+use App\Models\Vehicle;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 
@@ -25,28 +26,28 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        return view('admin.vehicle.create');
+        return view('admin.vehicle.createAndEditForm');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Vehicle $vehicle
      * @return Factory|View
      */
-    public function show($id)
+    public function show(Vehicle $vehicle)
     {
-        return view('admin.vehicle.show');
+        return view('admin.vehicle.show', ['vehicle' => $vehicle]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param Vehicle $vehicle
      * @return Factory|View
      */
-    public function edit($id)
+    public function edit(Vehicle $vehicle)
     {
-        return view('admin.vehicle.edit');
+        return view('admin.vehicle.createAndEditForm', ['vehicle' => $vehicle]);
     }
 }

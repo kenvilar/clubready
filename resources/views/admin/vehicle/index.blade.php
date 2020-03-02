@@ -1,1 +1,7 @@
-This is vehicle index page
+@extends('layouts.app')
+
+@section('content')
+
+    <vehicles-list-view-vue/>
+
+@endsection
