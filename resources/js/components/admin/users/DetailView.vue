@@ -7,6 +7,17 @@
             This is {{database_model}} show page
             <div>First Name: {{item.first_name}}</div>
             <div>Last Name: {{item.last_name}}</div>
+            <div>Email: {{item.email}}</div>
+            <div>Address: {{item.address}}</div>
+            <div>Suburb: {{item.suburb}}</div>
+            <div>State: {{item.state}}</div>
+            <div>Postcode: {{item.postcode}}</div>
+            <div>Country: {{item.country}}</div>
+            <div>Phone Home: {{item.phone_home}}</div>
+            <div>Phone Mobile: {{item.phone_mobile}}</div>
+            <div>Alternative Email: {{item.alternative_email}}</div>
+            <div>Date of Birth: {{item.date_of_birth}}</div>
+            <div>Club Racenumber: {{item.club_racenumber}}</div>
         </div>
         <div class="col-md-12">
             <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>

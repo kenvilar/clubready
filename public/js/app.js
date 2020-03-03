@@ -5334,6 +5334,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'users-detail-view-vue',
   props: {
@@ -44985,7 +44996,33 @@ var render = function() {
       ),
       _c("div", [_vm._v("First Name: " + _vm._s(_vm.item.first_name))]),
       _vm._v(" "),
-      _c("div", [_vm._v("Last Name: " + _vm._s(_vm.item.last_name))])
+      _c("div", [_vm._v("Last Name: " + _vm._s(_vm.item.last_name))]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Email: " + _vm._s(_vm.item.email))]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Address: " + _vm._s(_vm.item.address))]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Suburb: " + _vm._s(_vm.item.suburb))]),
+      _vm._v(" "),
+      _c("div", [_vm._v("State: " + _vm._s(_vm.item.state))]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Postcode: " + _vm._s(_vm.item.postcode))]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Country: " + _vm._s(_vm.item.country))]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Phone Home: " + _vm._s(_vm.item.phone_home))]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Phone Mobile: " + _vm._s(_vm.item.phone_mobile))]),
+      _vm._v(" "),
+      _c("div", [
+        _vm._v("Alternative Email: " + _vm._s(_vm.item.alternative_email))
+      ]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Date of Birth: " + _vm._s(_vm.item.date_of_birth))]),
+      _vm._v(" "),
+      _c("div", [
+        _vm._v("Club Racenumber: " + _vm._s(_vm.item.club_racenumber))
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-12" }, [
