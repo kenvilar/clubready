@@ -1,1 +1,7 @@
-This is user index page
+@extends('layouts.app')
+
+@section('content')
+
+    <users-list-view-vue/>
+
+@endsection

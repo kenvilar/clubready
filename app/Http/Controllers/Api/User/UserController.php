@@ -33,11 +33,22 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'first_name' => 'required|min:2',
+            'last_name' => 'required|min:2',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|confirmed',
             'admin' => 'in:' . User::ADMIN_USER . ',' . User::NON_ADMIN_USER,
+
+            'address' => 'nullable|min:2',
+            'suburb' => 'nullable|min:2',
+            'state' => 'nullable|min:2',
+            'postcode' => 'nullable|min:4|max:12',
+            'country' => 'nullable|min:2',
+            'phone_home' => 'nullable|min:5',
+            'phone_mobile' => 'nullable|min:5',
+            'alternative_email' => 'nullable|email|min:4',
+            'date_of_birth' => 'nullable|date',
+            'active' => 'nullable|in:' . User::ACTIVE_USER . ',' . User::INACTIVE_USER,
         ];
 
         $this->validate($request, $rules);
@@ -46,7 +57,11 @@ class UserController extends Controller
         $data['password'] = bcrypt($request->password);
         $data['verified'] = User::VERIFIED_USER;
         $data['member_number'] = (string)Str::uuid();
-        $data['verification_token'] = User::generateVerificationCode();
+
+        if ($data['verified'] == '0') {
+            $data['verification_token'] = User::generateVerificationCode();
+        }
+
         $data['admin'] = User::NON_ADMIN_USER;
 
         $user = User::query()->create($data);
@@ -76,17 +91,41 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $rules = [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'email|unique:users,email,' . $user->id,
-            'password' => 'min:6|confirmed',
+            'first_name' => 'required|min:2',
+            'last_name' => 'required|min:2',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            //'password' => 'nullable|min:6',
             'admin' => 'in:' . User::ADMIN_USER . ',' . User::NON_ADMIN_USER,
+
+            'address' => 'nullable|min:2',
+            'suburb' => 'nullable|min:2',
+            'state' => 'nullable|min:2',
+            'postcode' => 'nullable|min:4|max:12',
+            'country' => 'nullable|min:2',
+            'phone_home' => 'nullable|min:5',
+            'phone_mobile' => 'nullable|min:5',
+            'alternative_email' => 'nullable|email|min:4',
+            'date_of_birth' => 'nullable|date',
+            'active' => 'nullable|in:' . User::ACTIVE_USER . ',' . User::INACTIVE_USER,
         ];
 
         $this->validate($request, $rules);
 
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        //$user->password = $request->password;
+        $user->admin = $request->admin;
+        $user->address = $request->address;
+        $user->suburb = $request->suburb;
+        $user->state = $request->state;
+        $user->postcode = $request->postcode;
+        $user->country = $request->country;
+        $user->phone_home = $request->phone_home;
+        $user->phone_mobile = $request->phone_mobile;
+        $user->alternative_email = $request->alternative_email;
+        $user->date_of_birth = $request->date_of_birth;
+        $user->active = $request->active;
 
         if ($request->has('email') && $user->email !== $request->email) {
             $user->verification_token = User::generateVerificationCode();

@@ -73,7 +73,6 @@ class User extends Authenticatable
 
         static::creating(function ($user) {
             $user->member_number = (string)Str::uuid();
-            $user->verification_token = User::generateVerificationCode();
         });
     }
 

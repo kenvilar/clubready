@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\User;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 
@@ -25,28 +26,28 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        return view('admin.user.createAndEditForm');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param User $user
      * @return Factory|View
      */
-    public function show($id)
+    public function show(User $user)
     {
-        return view('admin.user.show');
+        return view('admin.user.show', ['user' => $user]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param User $user
      * @return Factory|View
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        return view('admin.user.edit');
+        return view('admin.user.createAndEditForm', ['user' => $user]);
     }
 }

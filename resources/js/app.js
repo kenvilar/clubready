@@ -64,8 +64,8 @@ superadmin_files.keys().map(key => Vue.component(superadmin_files(key).default.n
 /**
  * Users
  */
-// const user_files = require.context('./components/admin/users/', true, /\.vue$/i);
-// user_files.keys().map(key => Vue.component(user_files(key).default.name, user_files(key).default));
+const user_files = require.context('./components/admin/users/', true, /\.vue$/i);
+user_files.keys().map(key => Vue.component(user_files(key).default.name, user_files(key).default));
 
 /**
  * Vehicles
