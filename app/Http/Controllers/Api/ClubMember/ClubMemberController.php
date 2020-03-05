@@ -102,7 +102,7 @@ class ClubMemberController extends Controller
                         ->where('user_id', $request->user_id)
                         ->where('club_id', $request->club_id);
                 }),],
-            'admin' => 'in:' . ClubMember::ADMIN_USER . ',' . ClubMember::NON_ADMIN_USER,
+            'admin' => 'required|in:' . ClubMember::ADMIN_USER . ',' . ClubMember::NON_ADMIN_USER,
         ];
     }
 }

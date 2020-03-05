@@ -28,8 +28,8 @@ club_files.keys().map(key => Vue.component(club_files(key).default.name, club_fi
 /**
  * ClubMembers
  * */
-// const clubmember_files = require.context('./components/admin/club-members/', true, /\.vue$/i);
-// clubmember_files.keys().map(key => Vue.component(clubmember_files(key).default.name, clubmember_files(key).default));
+const clubmember_files = require.context('./components/admin/club-members/', true, /\.vue$/i);
+clubmember_files.keys().map(key => Vue.component(clubmember_files(key).default.name, clubmember_files(key).default));
 
 /**
  * Inductions
