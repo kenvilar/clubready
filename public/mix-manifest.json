@@ -1,4 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/vendors/bootstrapvalidator/css/bootstrapValidator.min.css": "/vendors/bootstrapvalidator/css/bootstrapValidator.min.css",
+    "/vendors/bootstrapvalidator/js/bootstrapValidator.min.js": "/vendors/bootstrapvalidator/js/bootstrapValidator.min.js",
+    "/vendors/iCheck/js/icheck.min.js": "/vendors/iCheck/js/icheck.min.js"
 }
