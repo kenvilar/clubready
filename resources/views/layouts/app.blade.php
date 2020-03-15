@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
-    <title>Clear Admin Template | Clear Admin Template </title>
+    <title>{{ config('app.name', '::Admin Login::') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}"/>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -33,7 +33,7 @@
 
 @include('inc.parts.header.header')
 
-<div class="wrapper row-offcanvas row-offcanvas-left" id="app">
+<div id="app" class="wrapper row-offcanvas row-offcanvas-left">
     <!-- Left side column. contains the logo and sidebar -->
     <aside class="left-side sidebar-offcanvas">
         <!-- sidebar: style can be found in sidebar-->
@@ -50,7 +50,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-5 col-8">
                     <div class="header-element">
-                        <h3>Clear/
+                        <h3>Clubready/
                             <small>Dashboard</small>
                         </h3>
                     </div>
@@ -67,16 +67,18 @@
                     </div>
                 </div>
             </div>
+
             <!--rightside bar -->
-        {{--@include('inc.parts.right-sidebar.rightsidebar-right-content')--}}
-        <!-- /#right -->
+            {{--@include('inc.parts.right-sidebar.rightsidebar-right-content')--}}
+            <!-- /#right -->
             <div class="background-overlay"></div>
         </section><!-- /.content -->
     </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-<!-- global js -->
 <div id="qn"></div>
+
+<!-- global js -->
 <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/app2.js') }}" type="text/javascript"></script>
 <!-- end of global js -->
