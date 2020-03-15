@@ -84,7 +84,7 @@ mix.styles(
         // destCss + 'bootstrap.css',
         destCss + 'font-awesome.min.css',
         destCss + 'themify-icons/css/themify-icons.css',
-        // destCss + 'custom_css/metisMenu.css',
+        destCss + 'custom_css/metisMenu.css',
         // destVendors + 'bootstrap-switch/css/bootstrap-switch.min.css'
     ], destCss + 'app2.css');
 
@@ -94,7 +94,7 @@ mix.scripts(
         // destJs + 'popper.min.js',
         // destJs + 'jquery.ui.min.js',
         // destJs + 'bootstrap.min.js',
-        // destJs + 'custom_js/leftmenu.js',
+        destJs + 'custom_js/leftmenu.js',
         destVendors + 'jquerynicescroll/jquery.nicescroll.min.js',
         destVendors + 'jquery-slimscroll/js/jquery.slimscroll.min.js',
         destJs + 'custom_js/rightside_bar.js',
