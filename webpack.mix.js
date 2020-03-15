@@ -45,6 +45,8 @@ mix.copy(srcCss, destCss);
 mix.copy('resources/img', 'public/img');
 mix.copy(srcJs + 'src', destJs);
 
+mix.js(srcJs + 'my_custom_js/dashboard1.js', destJs);
+
 // Copy fonts straight to public
 mix.copy(srcCss + 'themify-icons/' + 'fonts', destFonts);
 mix.copy(paths.fontawesome + 'fonts', destFonts);
@@ -102,14 +104,14 @@ mix.scripts(
     ], destJs + 'app2.js');
 
 // flot charts
-mix.copy(srcJs + 'flot/js/jquery.flot.js', destJs + 'flot/js');
+/*mix.copy(srcJs + 'flot/js/jquery.flot.js', destJs + 'flot/js');
 mix.copy(srcJs + 'flot/js/jquery.flot.stack.js', destJs + 'flot/js');
 mix.copy(srcJs + 'flot/js/jquery.flot.resize.js', destJs + 'flot/js');
 mix.copy(srcJs + 'flot/js/jquery.flot.time.js', destJs + 'flot/js');
 mix.copy(srcJs + 'flot/js/jquery.flot.categories.js', destJs + 'flot/js');
 mix.copy(srcJs + 'flot/js/jquery.flot.pie.js', destJs + 'flot/js');
 mix.copy(srcJs + 'flot/js/jquery.flot.spline.min.js', destJs + 'flotspline/js');
-mix.copy(srcJs + 'flot/js/jquery.flot.tooltip.js', destJs + 'flottooltip/js');
+mix.copy(srcJs + 'flot/js/jquery.flot.tooltip.js', destJs + 'flottooltip/js');*/
 
 /* custom css and js for dark */
 mix.sass(resourcesAssets + 'sass/custom.scss', destCss);

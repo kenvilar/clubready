@@ -143,20 +143,20 @@ $(document).ready(function () {
 
     /*var plot_1 = $.plot($("#live-chart"), [getRandomData_1()], options_1);*/
 
-    /*function update_1() {
-        plot_1.setData([getRandomData_1()]);
+    function update_1() {
+        /*plot_1.setData([getRandomData_1()]);*/
         // since the axes don't change, we don't need to call plot.setupGrid()
-        plot_1.draw();
+        /*plot_1.draw();*/
         if ($("#toggle_real").prop("checked")) {
             setTimeout(update_1, updateInterval_1);
         }
-    }*/
+    }
 
-    /*update_1();*/
+    update_1();
 
-    /*$('#toggle_real').on('lcs-statuschange', function () {
+    $('#toggle_real').on('lcs-statuschange', function () {
         update_1();
-    });*/
+    });
     //tab-1 ends
 
     //tab-2
@@ -367,17 +367,17 @@ $(document).ready(function () {
             .datum(cumulativeTestData())
             .call(clinechart);
         nv.utils.windowResize(clinechart.update);
-        /*$(".sidebar-toggle").on('click', function () {
+        $(".sidebar-toggle").on('click', function () {
             $(".nvd3-chart").find('svg').remove();
             $(".nvd3-chart").html("<svg></svg>");
             nv.addGraph(function () {
                 d3.select('.nvd3-chart svg')
                     .datum(cumulativeTestData())
                     .call(clinechart);
-                clinechart.update();
+                /*clinechart.update();*/
                 return clinechart;
             });
-        });*/
+        });
         clinechart.dispatch.on('stateChange', function (e) {
             nv.log('New State:', JSON.stringify(e));
         });
@@ -673,13 +673,13 @@ $(document).ready(function () {
 
     // dynamic chat
 
-    /*$(".conversation-list").slimscroll({
+    $(".conversation-list").slimscroll({
         height: "340px",
         size: '5px',
         allowPageScroll: true,
         opacity: 0.2,
         start: 'bottom'
-    });*/
+    });
 
     $("form#main_input_box").submit(function (event) {
         var conversation_list = $(".conversation-list");

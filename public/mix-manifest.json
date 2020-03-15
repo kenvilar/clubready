@@ -1,5 +1,19 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/custom.css": "/css/custom.css"
+    "/css/custom.css": "/css/custom.css",
+    "/js/dashboard1.js": "/js/dashboard1.js",
+    "/vendors/bootstrapvalidator/css/bootstrapValidator.min.css": "/vendors/bootstrapvalidator/css/bootstrapValidator.min.css",
+    "/vendors/bootstrapvalidator/js/bootstrapValidator.min.js": "/vendors/bootstrapvalidator/js/bootstrapValidator.min.js",
+    "/vendors/chartjs/js/Chart.js": "/vendors/chartjs/js/Chart.js",
+    "/vendors/iCheck/js/icheck.min.js": "/vendors/iCheck/js/icheck.min.js",
+    "/vendors/jquerynicescroll/jquery.nicescroll.min.js": "/vendors/jquerynicescroll/jquery.nicescroll.min.js",
+    "/vendors/moment/js/moment.min.js": "/vendors/moment/js/moment.min.js",
+    "/vendors/nvd3/css/nv.d3.min.css": "/vendors/nvd3/css/nv.d3.min.css",
+    "/vendors/nvd3/js/nv.d3.min.js": "/vendors/nvd3/js/nv.d3.min.js",
+    "/vendors/jquery-slimscroll/js/jquery.slimscroll.min.js": "/vendors/jquery-slimscroll/js/jquery.slimscroll.min.js",
+    "/vendors/swiper/css/swiper.min.css": "/vendors/swiper/css/swiper.min.css",
+    "/vendors/swiper/js/swiper.min.js": "/vendors/swiper/js/swiper.min.js",
+    "/css/app2.css": "/css/app2.css",
+    "/js/app2.js": "/js/app2.js"
 }
