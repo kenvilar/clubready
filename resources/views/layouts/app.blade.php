@@ -39,8 +39,8 @@
         <!-- sidebar: style can be found in sidebar-->
         <section class="sidebar">
             <div id="menu" role="navigation">
-                {{--@include('inc.parts.left-sidebar.profile')--}}
-                {{--@include('inc.parts.left-sidebar.navbar-left')--}}
+                @include('inc.parts.left-sidebar.profile')
+                @include('inc.parts.left-sidebar.navbar-left')
             </div><!-- menu -->
         </section><!-- /.sidebar -->
     </aside>
