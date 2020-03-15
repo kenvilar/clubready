@@ -2,8 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
-    <title>{{ config('app.name', '::Admin Login::') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'ClubReady') }}</title>
+
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}"/>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,7 +55,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-5 col-8">
                     <div class="header-element">
-                        <h3>Clubready/
+                        <h3>ClubReady/
                             <small>Dashboard</small>
                         </h3>
                     </div>
@@ -106,6 +111,8 @@
 <script src="{{ asset('js/newsTicker.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/dashboard1.js') }}" type="text/javascript"></script>
 <!-- end of page level js -->
+
+@stack('footer-scripts')
 
 </body>
 
