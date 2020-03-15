@@ -1,83 +1,110 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Clear Admin Template | Clear Admin Template </title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}"/>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- global css -->
+    <link href="{{ asset('css/app.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('css/app2.css') }}" type="text/css" rel="stylesheet"/>
+    <!-- end of global css -->
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!--page level css -->
+    <link href="{{ asset('vendors/swiper/css/swiper.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/nvd3/css/nv.d3.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/lc_switch.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/custom_css/dashboard1.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/custom_css/dashboard1_timeline.css') }}" rel="stylesheet"/>
+    <!--end of page level css-->
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<body class="skin-default">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+@include('inc.parts.preloader.preloader')
 
-                    </ul>
+@include('inc.parts.header.header')
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <span class="caret"></span>
-                                </a>
+<div class="wrapper row-offcanvas row-offcanvas-left" id="app">
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="left-side sidebar-offcanvas">
+        <!-- sidebar: style can be found in sidebar-->
+        <section class="sidebar">
+            <div id="menu" role="navigation">
+                {{--@include('inc.parts.left-sidebar.profile')--}}
+                {{--@include('inc.parts.left-sidebar.navbar-left')--}}
+            </div><!-- menu -->
+        </section><!-- /.sidebar -->
+    </aside>
+    <aside class="right-side">
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+        <section class="content-header">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-5 col-8">
+                    <div class="header-element">
+                        <h3>Clear/
+                            <small>Dashboard</small>
+                        </h3>
+                    </div>
                 </div>
             </div>
-        </nav>
-
-        <main class="py-4">
-            <div class="container">
-                @yield('content')
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-xl-12 col-12">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {{--content here--}}
+                        </div>
+                    </div>
+                </div>
             </div>
-        </main>
-    </div>
+            <!--rightside bar -->
+        {{--@include('inc.parts.right-sidebar.rightsidebar-right-content')--}}
+        <!-- /#right -->
+            <div class="background-overlay"></div>
+        </section><!-- /.content -->
+    </aside><!-- /.right-side -->
+</div><!-- ./wrapper -->
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    @stack('footer-scripts')
+<!-- global js -->
+<div id="qn"></div>
+<script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/app2.js') }}" type="text/javascript"></script>
+<!-- end of global js -->
+
+<!-- begining of page level js -->
+<!--Sparkline Chart-->
+<script src="{{ asset('js/custom_js/sparkline/jquery.flot.spline.js') }}" type="text/javascript"></script>
+<!-- flip --->
+<script src="{{ asset('js/flip.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/lc_switch.min.js') }}" type="text/javascript"></script>
+<!--flot chart-->
+<script src="{{ asset('js/flot/js/jquery.flot.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/flot/js/jquery.flot.resize.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/flot/js/jquery.flot.stack.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/flot/js/jquery.flot.spline.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/flot/js/jquery.flot.tooltip.js') }}" type="text/javascript"></script>
+<!--swiper-->
+<script src="{{ asset('vendors/swiper/js/swiper.min.js') }}" type="text/javascript"></script>
+<!--chartjs-->
+{{--<script src="{{ asset('vendors/chartjs/js/Chart.js') }}"></script>--}}
+<!--nvd3 chart-->
+<script src="{{ asset('js/nvd3/d3.v3.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendors/nvd3/js/nv.d3.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendors/moment/js/moment.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/newsTicker.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/dashboard1.js') }}" type="text/javascript"></script>
+<!-- end of page level js -->
+
 </body>
+
 </html>
