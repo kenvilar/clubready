@@ -31,6 +31,8 @@
     <link href="{{ asset('css/custom_css/dashboard1.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('css/custom_css/dashboard1_timeline.css') }}" rel="stylesheet"/>
     <!--end of page level css-->
+
+    @stack('stylesheets')
 </head>
 <body class="skin-default">
 
@@ -52,18 +54,12 @@
     <aside class="right-side">
 
         <section class="content-header">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-5 col-8">
-                    <div class="header-element">
-                        <h3>ClubReady/
-                            <small>Dashboard</small>
-                        </h3>
-                    </div>
-                </div>
-            </div>
+            @yield('breadcrumb')
         </section>
         <section class="content">
+            <!-- Main content -->
             @yield('content')
+
             {{--<div class="row">
                 <div class="col-xl-12 col-12">
                     <div class="row">

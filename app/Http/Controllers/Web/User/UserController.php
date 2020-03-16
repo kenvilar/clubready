@@ -50,9 +50,4 @@ class UserController extends Controller
     {
         return view('admin.user.createAndEditForm', ['user' => $user]);
     }
-
-    public function userInfo(User $user)
-    {
-        return view('admin.user.user-info', ['user' => $user]);
-    }
 }
