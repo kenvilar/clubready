@@ -63,15 +63,16 @@
             </div>
         </section>
         <section class="content">
-            <div class="row">
+            @yield('content')
+            {{--<div class="row">
                 <div class="col-xl-12 col-12">
                     <div class="row">
                         <div class="col-sm-12">
-                            {{--content here--}}
+                            --}}{{--content here--}}{{--
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--}}
 
             <!--rightside bar -->
             {{--@include('inc.parts.right-sidebar.rightsidebar-right-content')--}}
