@@ -5,57 +5,18 @@
 @endpush
 
 @section('breadcrumb')
-    <h1>Invoice</h1>
+    <h1>Dashboard</h1>
     <ol class="breadcrumb">
         <li>
-            <a href="/home">
-                <i class="fa fa-fw ti-home"></i> Dashboard
-            </a>
+            <a href="/home"><i class="fa fa-fw ti-home"></i> Dashboard</a>
         </li>
         <li> Extra Pages</li>
-        <li class="active">
-            Invoice
-        </li>
+        <li class="active">Invoice</li>
     </ol>
 @endsection
 
 @section('content')
-    {{--<users-current-user-info-vue>--}}
-    <section class="content p-l-r-15" id="invoice-stmt">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">
-                    <i class="fa fa-fw ti-credit-card"></i> My Profile
-                </h3>
-            </div>
-            <div class="card-body">
-                <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-condensed" id="customtable">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    Samsung Galaxy Grand
-                                </td>
-                                <td>
-                                    $700
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Samsung Galaxy Grand
-                                </td>
-                                <td>
-                                    $700
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <users-current-user-info-vue>
 @endsection
 
 @push('footer-scripts')
