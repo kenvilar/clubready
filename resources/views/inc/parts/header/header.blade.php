@@ -1,7 +1,7 @@
 <!-- header logo: style can be found in header-->
 <header class="header">
     <nav class="navbar navbar-static-top" role="navigation">
-        <a href="index.html" class="logo">
+        <a href="#" class="logo">
             <!-- Add the class icon to your logo image or logo icon to add the marginin -->
             <img src="{{ asset('img/logo/mra-logo.png') }}" alt="logo" width="80"/>
         </a>
