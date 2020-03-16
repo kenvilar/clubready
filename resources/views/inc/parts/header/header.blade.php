@@ -1,7 +1,7 @@
 <!-- header logo: style can be found in header-->
 <header class="header">
     <nav class="navbar navbar-static-top" role="navigation">
-        <a href="#" class="logo">
+        <a href="{{ route('home') }}" class="logo">
             <!-- Add the class icon to your logo image or logo icon to add the marginin -->
             <img src="{{ asset('img/logo/mra-logo.png') }}" alt="logo" width="80"/>
         </a>
@@ -14,10 +14,10 @@
         </div>
         <div class="navbar-right">
             <ul class="nav navbar-nav">
-            {{--@include('inc.parts.navbar-right.messages')--}}
-            <!--rightside toggle-->
-            {{--@include('inc.parts.navbar-right.users')--}}
-            <!-- User Account: style can be found in dropdown-->
+                {{--@include('inc.parts.navbar-right.messages')--}}
+                <!--rightside toggle-->
+                {{--@include('inc.parts.navbar-right.users')--}}
+                <!-- User Account: style can be found in dropdown-->
                 @include('inc.parts.navbar-right.user-account')
             </ul>
         </div>

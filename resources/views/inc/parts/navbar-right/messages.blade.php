@@ -20,7 +20,7 @@
         </li>
         <li>
             <a href="" class="message dropdown-item">
-                <img class="message-image rounded-circle" src="img/authors/avatar6.jpg" alt="avatar-image">
+                <img class="message-image rounded-circle" src="{{ asset('img/authors/avatar6.jpg') }}" alt="avatar-image">
 
                 <div class="message-body"><strong>John</strong>
                     <br>
@@ -33,7 +33,7 @@
         </li>
         <li>
             <a href="" class="message striped-col dropdown-item">
-                <img class="message-image rounded-circle" src="img/authors/avatar5.jpg" alt="avatar-image">
+                <img class="message-image rounded-circle" src="{{ asset('img/authors/avatar5.jpg') }}" alt="avatar-image">
 
                 <div class="message-body">
                     <strong>Wilton Zeph</strong>
@@ -47,7 +47,7 @@
         </li>
         <li>
             <a href="" class="message dropdown-item">
-                <img class="message-image rounded-circle" src="img/authors/avatar1.jpg" alt="avatar-image">
+                <img class="message-image rounded-circle" src="{{ asset('img/authors/avatar1.jpg') }}" alt="avatar-image">
                 <div class="message-body">
                     <strong>Jenny Kerry</strong>
                     <br>
@@ -59,7 +59,7 @@
         </li>
         <li>
             <a href="" class="message striped-col dropdown-item">
-                <img class="message-image rounded-circle" src="img/authors/avatar.jpg" alt="avatar-image">
+                <img class="message-image rounded-circle" src="{{ asset('img/authors/avatar.jpg') }}" alt="avatar-image">
                 <div class="message-body">
                     <strong>Tony</strong>
                     <br>

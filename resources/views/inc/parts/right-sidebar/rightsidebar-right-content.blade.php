@@ -194,7 +194,7 @@
                                 <li>
                                     <a href="" class="message icon-not">
                                         <img class="message-image rounded-circle"
-                                             src="img/authors/avatar1.jpg" alt="avatar-image">
+                                             src="{{ asset('img/authors/avatar1.jpg') }}" alt="avatar-image">
                                         <div class="message-body">
                                             <strong>Jenny Kerry</strong>
                                             <br>

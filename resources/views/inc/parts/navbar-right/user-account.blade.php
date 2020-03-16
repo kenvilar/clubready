@@ -1,6 +1,6 @@
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle padding-user d-block" data-toggle="dropdown">
-        <img src="img/authors/avatar1.jpg" width="35" class="rounded-circle img-fluid float-left"
+        <img src="{{ asset('img/authors/avatar1.jpg') }}" width="35" class="rounded-circle img-fluid float-left"
              height="35" alt="User Image">
         <div class="riot">
             <div>
@@ -12,7 +12,7 @@
     <ul class="dropdown-menu">
         <!-- User image -->
         <li class="user-header">
-            <img src="img/authors/avatar1.jpg" class="rounded-circle" alt="User Image">
+            <img src="{{ asset('img/authors/avatar1.jpg') }}" class="rounded-circle" alt="User Image">
             <p> Addison</p>
         </li>
         <!-- Menu Body -->
