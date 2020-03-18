@@ -132,8 +132,8 @@
         name: 'users-create-and-edit-view-vue',
         props: {
             model_id: {
-                type: Number,
-                default: 0,
+                type: String,
+                default: '',
                 required: false
             }
         },
