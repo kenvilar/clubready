@@ -108,6 +108,7 @@ class UserController extends Controller
             'alternative_email' => 'nullable|email|min:4',
             'date_of_birth' => 'nullable|date',
             'active' => 'nullable|in:' . User::ACTIVE_USER . ',' . User::INACTIVE_USER,
+            'club_racenumber' => 'nullable|numeric|min:1'
         ];
 
         $this->validate($request, $rules);
@@ -127,6 +128,7 @@ class UserController extends Controller
         $user->alternative_email = $request->alternative_email;
         $user->date_of_birth = $request->date_of_birth;
         $user->active = $request->active;
+        $user->club_racenumber = $request->club_racenumber;
 
         if ($request->has('email') && $user->email !== $request->email) {
             $user->verification_token = User::generateVerificationCode();
