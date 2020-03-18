@@ -2,6 +2,6 @@
 
 @section('content')
 
-    <users-detail-view-vue :model_id="{{isset($user->id) ? $user->id : 0}}"/>
+    <users-detail-view-vue :model_id="'{{isset($user->member_number) ? $user->member_number : ''}}'"/>
 
 @endsection

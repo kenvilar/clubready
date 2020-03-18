@@ -90,4 +90,14 @@ class User extends Authenticatable
     {
         return Str::random(40);
     }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'member_number';
+    }
 }

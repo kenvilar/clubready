@@ -20,8 +20,8 @@
             <div>Club Racenumber: {{item.club_racenumber}}</div>
         </div>
         <div class="col-md-12">
-            <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
-            <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
+            <a class="btn btn-success" @click="clickEdit(item.member_number)">Edit</a>
+            <a class="btn btn-danger" @click="clickDelete(item.member_number)">Delete</a>
         </div>
     </div>
 </template>
@@ -31,8 +31,8 @@
         name: 'users-detail-view-vue',
         props: {
             model_id: {
-                type: Number,
-                default: 0,
+                type: String,
+                default: '',
                 required: false
             }
         },

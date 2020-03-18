@@ -6,8 +6,8 @@
             <ul v-if="list.length">
                 <li v-for="item in list">
                     {{item.first_name}} {{item.last_name}}
-                    <a class="btn btn-success" @click="clickShow(item.id)">Show</a>
-                    <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
+                    <a class="btn btn-success" @click="clickShow(item.member_number)">Show</a>
+                    <a class="btn btn-danger" @click="clickDelete(item.member_number)">Delete</a>
                 </li>
             </ul>
         </div>
