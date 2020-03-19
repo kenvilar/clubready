@@ -4,7 +4,7 @@
              height="35" alt="User Image">
         <div class="riot">
             <div>
-                Addison
+                {{ Auth::user()->{'first_name'} }} {{ Auth::user()->{'last_name'}  }}
                 <span><i class="fa fa-sort-down"></i></span>
             </div>
         </div>
@@ -13,24 +13,18 @@
         <!-- User image -->
         <li class="user-header">
             <img src="{{ asset('img/authors/avatar1.jpg') }}" class="rounded-circle" alt="User Image">
-            <p> Addison</p>
+            <p>{{ Auth::user()->{'first_name'} }} {{ Auth::user()->{'last_name'}  }}</p>
         </li>
         <!-- Menu Body -->
-        <li class="p-t-3"><a href="user_profile.html" class="dropdown-item"> <i class="fa fa-fw ti-user"></i> My Profile
+        <li class="p-t-3"><a href="{{ route('home') }}" class="dropdown-item"> <i class="fa fa-fw ti-user"></i> My Profile
             </a>
         </li>
         <li role="presentation"></li>
-        <li><a href="edit_user.html" class="dropdown-item"><i class="fa fa-fw ti-settings"></i> Account Settings </a>
+        <li><a href="#" class="dropdown-item"><i class="fa fa-fw ti-settings"></i> Account Settings </a>
         </li>
         <li role="presentation" class="dropdown-divider"></li>
         <!-- Menu Footer-->
         <li class="user-footer">
-            <div class="float-left">
-                <a href="lockscreen.html">
-                    <i class="fa fa-fw ti-lock"></i>
-                    Lock
-                </a>
-            </div>
             <div class="float-right">
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
