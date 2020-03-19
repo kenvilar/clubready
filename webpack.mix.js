@@ -20,6 +20,7 @@ var paths = {
     'fontawesome': vendors + 'font-awesome/',
     'icheck': vendors + 'icheck/',
     'jquerynicescroll': vendors + 'jquery.nicescroll/dist/',
+    'simplelineicons': vendors + 'simple-line-icons/',
     'slimscroll': vendors + 'jquery-slimscroll/',
 };
 
@@ -55,6 +56,10 @@ mix.copy(paths.icheck + 'skins/', destVendors + 'iCheck/css');
 
 //jquery.nicescroll
 mix.copy(paths.jquerynicescroll + 'jquery.nicescroll.min.js', destVendors + 'jquerynicescroll');
+
+//simple-line-icons
+mix.copy(paths.simplelineicons + 'css/simple-line-icons.css', destVendors + 'simple-line-icons/css/simple-line-icons.css');
+mix.copy(paths.simplelineicons + 'fonts', destVendors + 'simple-line-icons/fonts');
 
 //slimscroll
 mix.copy(paths.slimscroll + 'jquery.slimscroll.min.js', destVendors + 'jquery-slimscroll/js');
