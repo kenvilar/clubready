@@ -7,8 +7,9 @@
  *
  */
 
-Route::get('users', 'UserController@index')->name('index');
-Route::get('users/create', 'UserController@create')->name('create');
-Route::get('users/{user}', 'UserController@show')->name('show');
-Route::get('users/{user}/edit', 'UserController@edit')->name('edit');
-
+Route::resource('users', 'UserController', ['except' => ['store', 'update', 'destroy',]])->names([
+    'index' => 'index',
+    'create' => 'create',
+    'show' => 'show',
+    'edit' => 'edit',
+]);

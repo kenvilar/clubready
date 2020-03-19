@@ -7,4 +7,10 @@
  *
  */
 
-Route::resource('membership-type-names', 'MembershipTypeNameController', ['except' => ['store', 'update', 'destroy',]]);
+Route::resource('membership-type-names', 'MembershipTypeNameController', ['except' => ['store', 'update', 'destroy',]])
+    ->names([
+        'index' => 'index',
+        'create' => 'create',
+        'show' => 'show',
+        'edit' => 'edit',
+    ]);

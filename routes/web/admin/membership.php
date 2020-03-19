@@ -7,4 +7,10 @@
  *
  */
 
-Route::resource('memberships', 'MembershipController', ['except' => ['store', 'update', 'destroy',]]);
+Route::resource('memberships', 'MembershipController', ['except' => ['store', 'update', 'destroy',]])
+    ->names([
+        'index' => 'index',
+        'create' => 'create',
+        'show' => 'show',
+        'edit' => 'edit',
+    ]);

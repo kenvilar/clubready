@@ -7,4 +7,9 @@
  *
  */
 
-Route::resource('clubs', 'ClubController', ['except' => ['store', 'update', 'destroy',]]);
+Route::resource('clubs', 'ClubController', ['except' => ['store', 'update', 'destroy',]])->names([
+    'index' => 'index',
+    'create' => 'create',
+    'show' => 'show',
+    'edit' => 'edit',
+]);
