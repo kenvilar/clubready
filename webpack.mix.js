@@ -17,6 +17,8 @@ let destVendors = dest + 'vendors/';
 
 var paths = {
     'bootstrapValidator': vendors + 'bootstrapvalidator/dist/',
+    'datatables': vendors + 'datatables.net/',
+    'datatablesbs4': vendors + 'datatables.net-bs4/',
     'fontawesome': vendors + 'font-awesome/',
     'icheck': vendors + 'icheck/',
     'jquerynicescroll': vendors + 'jquery.nicescroll/dist/',
@@ -49,6 +51,11 @@ mix.copy(paths.fontawesome + 'fonts', destFonts);
 //bootstrapvalidator
 mix.copy(paths.bootstrapValidator + 'css/bootstrapValidator.min.css', destVendors + 'bootstrapvalidator/css');
 mix.copy(paths.bootstrapValidator + 'js/bootstrapValidator.min.js', destVendors + 'bootstrapvalidator/js');
+
+// datatables
+mix.copy(paths.datatables + 'js/jquery.dataTables.js', destVendors + 'datatables/js');
+mix.copy(paths.datatablesbs4 + 'js/dataTables.bootstrap4.js', destVendors + 'datatables/js');
+mix.copy(paths.datatablesbs4 + 'css/dataTables.bootstrap4.css', destVendors + 'datatables/css');
 
 //icheck
 mix.copy(paths.icheck + 'icheck.min.js', destVendors + 'iCheck/js');
