@@ -1,6 +1,9 @@
 "use strict";
 $(document).ready(function () {
     $('#datatable').DataTable({
+        "responsive": true
+    });
+    $('#table2').DataTable({
         "scrollX": true,
         "responsive": true
     });
