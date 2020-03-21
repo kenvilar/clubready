@@ -39,7 +39,7 @@
                                     <td>{{item.first_name}}</td>
                                     <td>{{item.last_name}}</td>
                                     <td>{{item.email}}</td>
-                                    <td>{{item.created_at}}</td>
+                                    <td>{{formatDate(item.created_at)}}</td>
                                     <td>
                                         <button class="btn btn-primary btn-xs" data-toggle="modal"
                                                 @click="clickShow(item.member_number)"
@@ -64,6 +64,8 @@
 </template>
 
 <script>
+    const moment = require('moment');
+
     export default {
         name: 'users-list-view-vue',
         props: {
@@ -114,6 +116,9 @@
                         console.log('err', err.response);
                     });
                 this.read();
+            },
+            formatDate(date) {
+                return moment(date).format('MMMM D, YYYY');
             },
         }
     }
