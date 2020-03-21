@@ -65,7 +65,6 @@
 <!-- global js -->
 <script src="{{asset('js/app.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/app2.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendors/moment/js/moment.min.js')}}" type="text/javascript"></script>
 <!-- end of global js -->
 
 <!-- begining of page level js -->
