@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">
-                    <i class="fa fa-fw ti-credit-card"></i> My Profile
+                    <i class="ti-align-justify"></i> My Profile
                 </h3>
             </div>
             <div class="card-body">

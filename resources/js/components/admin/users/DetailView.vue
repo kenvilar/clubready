@@ -3,10 +3,16 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">
-                    <i class="fa fa-fw ti-credit-card"></i> {{item.first_name}} {{item.last_name}}
+                    <i class="ti-align-justify"></i> {{item.first_name}} {{item.last_name}}
                 </h3>
             </div>
             <div class="card-body">
+                <div class="col-md-12">
+                    <p>
+                        <a class="btn btn-success" @click="clickEdit(item.member_number)">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.member_number)">Delete</a>
+                    </p>
+                </div>
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <table class="table table-striped table-condensed" id="customtable">
@@ -66,6 +72,12 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="col-md-12">
+                    <p>
+                        <a class="btn btn-success" @click="clickEdit(item.member_number)">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.member_number)">Delete</a>
+                    </p>
                 </div>
             </div>
         </div>
