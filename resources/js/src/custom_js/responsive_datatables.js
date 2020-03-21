@@ -1,7 +1,10 @@
 "use strict";
 $(document).ready(function () {
     $('#datatable').DataTable({
-        "responsive": true
+        "responsive": true,
+        "columnDefs": [
+            { orderable: false, targets: [-1, -2], },
+        ],
     });
     $('#table2').DataTable({
         "scrollX": true,
