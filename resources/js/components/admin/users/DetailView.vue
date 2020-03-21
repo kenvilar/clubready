@@ -1,29 +1,75 @@
 <template>
-    <div>
-        <div class="col-md-12">
-            <a class="btn btn-info" :href="`/admin/${database_model}`">Back</a>
+    <section class="content p-l-r-15" id="invoice-stmt">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fa fa-fw ti-credit-card"></i> {{item.first_name}} {{item.last_name}}
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-condensed" id="customtable">
+                            <tbody>
+                            <tr>
+                                <td>First Name:</td>
+                                <td>{{item.first_name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Last Name:</td>
+                                <td>{{item.last_name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td>{{item.email}}</td>
+                            </tr>
+                            <tr>
+                                <td>Address:</td>
+                                <td>{{item.address}}</td>
+                            </tr>
+                            <tr>
+                                <td>Suburb:</td>
+                                <td>{{item.suburb}}</td>
+                            </tr>
+                            <tr>
+                                <td>State:</td>
+                                <td>{{item.state}}</td>
+                            </tr>
+                            <tr>
+                                <td>Postcode:</td>
+                                <td>{{item.postcode}}</td>
+                            </tr>
+                            <tr>
+                                <td>Country:</td>
+                                <td>{{item.country}}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone Home:</td>
+                                <td>{{item.phone_home}}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone Mobile:</td>
+                                <td>{{item.phone_mobile}}</td>
+                            </tr>
+                            <tr>
+                                <td>Alternative Email:</td>
+                                <td>{{item.alternative_email}}</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Birth:</td>
+                                <td>{{item.date_of_birth}}</td>
+                            </tr>
+                            <tr>
+                                <td>Club Racenumber:</td>
+                                <td>{{item.club_racenumber}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-12">
-            This is {{database_model}} show page
-            <div>First Name: {{item.first_name}}</div>
-            <div>Last Name: {{item.last_name}}</div>
-            <div>Email: {{item.email}}</div>
-            <div>Address: {{item.address}}</div>
-            <div>Suburb: {{item.suburb}}</div>
-            <div>State: {{item.state}}</div>
-            <div>Postcode: {{item.postcode}}</div>
-            <div>Country: {{item.country}}</div>
-            <div>Phone Home: {{item.phone_home}}</div>
-            <div>Phone Mobile: {{item.phone_mobile}}</div>
-            <div>Alternative Email: {{item.alternative_email}}</div>
-            <div>Date of Birth: {{item.date_of_birth}}</div>
-            <div>Club Racenumber: {{item.club_racenumber}}</div>
-        </div>
-        <div class="col-md-12">
-            <a class="btn btn-success" @click="clickEdit(item.member_number)">Edit</a>
-            <a class="btn btn-danger" @click="clickDelete(item.member_number)">Delete</a>
-        </div>
-    </div>
+    </section>
 </template>
 
 <script>

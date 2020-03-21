@@ -8,10 +8,8 @@
     <h1>Dashboard</h1>
     <ol class="breadcrumb">
         <li>
-            <a href="/home"><i class="fa fa-fw ti-home"></i> Dashboard</a>
+            <a href="{{route('home')}}"><i class="fa fa-fw ti-home"></i>Dashboard</a>
         </li>
-        <li> Extra Pages</li>
-        <li class="active">Invoice</li>
     </ol>
 @endsection
 
