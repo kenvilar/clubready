@@ -11,7 +11,7 @@
             <a href="{{route('home')}}"><i class="fa fa-fw ti-home"></i>Dashboard</a>
         </li>
         <li><a href="{{route('web.user.index')}}">Show List</a></li>
-        <li class="active">Show User</li>
+        <li class="active">Show Item</li>
     </ol>
 @endsection
 

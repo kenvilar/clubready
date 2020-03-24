@@ -14,9 +14,7 @@
 @endsection
 
 @section('content')
-
     <users-list-view-vue/>
-
 @endsection
 
 @push('footer-scripts')

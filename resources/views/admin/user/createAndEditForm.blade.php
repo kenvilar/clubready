@@ -13,9 +13,9 @@
         </li>
         <li><a href="{{route('web.user.index')}}">Show List</a></li>
         @if (isset($user->member_number))
-            <li><a href="{{route('web.user.show', $user->member_number)}}">Show User</a></li>
+            <li><a href="{{route('web.user.show', $user->member_number)}}">Show Item</a></li>
         @endif
-        <li class="active">@if (isset($user->member_number)) Edit @else Create @endif User</li>
+        <li class="active">@if (isset($user->member_number)) Edit @else Create @endif Item</li>
     </ol>
 @endsection
 
