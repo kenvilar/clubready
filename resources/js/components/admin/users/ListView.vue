@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <i class="ti-align-justify"></i> Users List
+                            <i class="ti-align-justify"></i> List
                         </h3>
                     </div>
                     <div class="card-body">

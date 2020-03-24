@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">
-                    <i class="ti-align-justify"></i> {{item.first_name}} {{item.last_name}}
+                    <i class="ti-align-justify"></i> Info
                 </h3>
             </div>
             <div class="card-body">
