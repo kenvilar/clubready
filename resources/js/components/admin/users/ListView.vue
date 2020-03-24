@@ -1,17 +1,4 @@
 <template>
-    <!--<div>
-        <div class="col-12">
-            <div>This is index page</div>
-            <a class="btn btn-primary" @click="clickCreate()">Create</a>
-            <ul v-if="list.length">
-                <li v-for="item in list">
-                    {{item.first_name}} {{item.last_name}}
-                    <a class="btn btn-success" @click="clickShow(item.member_number)">Show</a>
-                    <a class="btn btn-danger" @click="clickDelete(item.member_number)">Delete</a>
-                </li>
-            </ul>
-        </div>
-    </div>-->
     <section class="content">
         <div class="row">
             <div class="col-lg-12">
