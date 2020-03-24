@@ -104,6 +104,9 @@
             async clickCreate() {
                 window.location.href = `/admin/${this.database_model}/create`;
             },
+            async clickEdit() {
+                window.location.href = `/admin/${this.database_model}/edit`;
+            },
             async clickDelete(id) {
                 let remove = axios.delete(`/api/${this.database_model}/${id}`)
                     .then(response => {
