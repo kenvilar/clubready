@@ -29,14 +29,19 @@
                                     <th>First name</th>
                                     <th>Last name</th>
                                     <th>Email</th>
-                                    <th>Created date</th>
+                                    <th>Created Date</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr v-for="item in list">
-                                    <td>{{item.first_name}}</td>
+                                    <td>
+                                        <span role="link" @click="clickShow(item.member_number)"
+                                           style="text-decoration: underline !important;">
+                                            {{item.first_name}}
+                                        </span>
+                                    </td>
                                     <td>{{item.last_name}}</td>
                                     <td>{{item.email}}</td>
                                     <td>{{formatDate(item.created_at)}}</td>
