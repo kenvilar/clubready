@@ -41,7 +41,7 @@
                                     <td>{{formatDate(item.created_at)}}</td>
                                     <td>
                                         <button class="btn btn-primary btn-xs" data-toggle="modal"
-                                                @click="clickShow(item.member_number)"
+                                                @click="clickEdit(item.member_number)"
                                                 data-target="#edit" data-placement="top"><span
                                             class="fa fa-fw ti-pencil"></span></button>
                                     </td>
