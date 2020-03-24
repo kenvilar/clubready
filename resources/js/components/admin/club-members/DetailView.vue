@@ -73,13 +73,6 @@
                         console.log('err', err.response);
                     });
             },
-            async clearFields(param) {
-                if (param) {
-                    this.item = {};
-                    this.errors = {};
-                }
-                return this.item;
-            },
         }
     }
 </script>
