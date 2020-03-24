@@ -5,7 +5,7 @@
                 <div class="card striped_full">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <i class="ti-align-justify"></i> {{isEditView(item.id) ? 'Edit' : 'Create'}} User
+                            <i class="ti-align-justify"></i> {{isEditView(item.id) ? 'Edit' : 'Create'}} Item
                         </h3>
                     </div>
                     <div class="card-body border">

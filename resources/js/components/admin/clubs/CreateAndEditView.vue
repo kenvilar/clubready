@@ -1,82 +1,137 @@
 <template>
-    <div>
+    <section class="content">
         <div class="row">
-            <div class="col-md-12">
-                This is {{database_model}} {{isEditView(item.id) ? 'edit' : 'create'}} page
-            </div>
-            <div class="col-5">
-                <a class="btn btn-info" onclick="window.history.go(-1)">Back</a>
-            </div>
-            <div class="col-5">
-                <div class="form-group required">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" id="name" v-model="item.name"
-                           :class="{'is-invalid': hasError(errors, 'name')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'name', true)}}</strong></span>
-                </div>
-                <div class="form-group required">
-                    <label for="address">Address</label>
-                    <input type="text" class="form-control" name="address" id="address" v-model="item.address"
-                           :class="{'is-invalid': hasError(errors, 'address')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'address', true)}}</strong></span>
-                </div>
-                <div class="form-group required">
-                    <label for="suburb">Suburb</label>
-                    <input type="text" class="form-control" name="suburb" id="suburb" v-model="item.suburb"
-                           :class="{'is-invalid': hasError(errors, 'suburb')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'suburb', true)}}</strong></span>
-                </div>
-                <div class="form-group required">
-                    <label for="state">State</label>
-                    <input type="text" class="form-control" name="state" id="state" v-model="item.state"
-                           :class="{'is-invalid': hasError(errors, 'state')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'state', true)}}</strong></span>
-                </div>
-                <div class="form-group required">
-                    <label for="postcode">Postcode</label>
-                    <input type="text" class="form-control" name="postcode" id="postcode" v-model="item.postcode"
-                           :class="{'is-invalid': hasError(errors, 'postcode')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'postcode', true)}}</strong></span>
-                </div>
-                <div class="form-group required">
-                    <label for="country">Country</label>
-                    <input type="text" class="form-control" name="country" id="country" v-model="item.country"
-                           :class="{'is-invalid': hasError(errors, 'country')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'country', true)}}</strong></span>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" class="form-control" name="phone" id="phone" v-model="item.phone"
-                           :class="{'is-invalid': hasError(errors, 'phone')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'phone', true)}}</strong></span>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" id="email" v-model="item.email"
-                           :class="{'is-invalid': hasError(errors, 'email')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'email', true)}}</strong></span>
-                </div>
-                <div class="form-group">
-                    <label for="website">Website</label>
-                    <input type="text" class="form-control" name="website" id="website" v-model="item.website"
-                           :class="{'is-invalid': hasError(errors, 'website')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'website', true)}}</strong></span>
-                </div>
-                <div class="form-group">
-                    <button @click="storeOrUpdate">{{ isEditView(item.id) ? 'Update' : 'Create'}}</button>
+            <div class="col-lg-12">
+                <div class="card striped_full">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="ti-align-justify"></i> {{isEditView(item.id) ? 'Edit' : 'Create'}} Item
+                        </h3>
+                    </div>
+                    <div class="card-body border">
+                        <form method="POST" enctype="multipart/form-data" class="form-bordered-row">
+                            <div class="form-group row striped-col required">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="name">Name</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="name" id="name"
+                                           v-model="item.name"
+                                           :class="{'is-invalid': hasError(errors, 'name')}">
+                                    <span role="alert" class="invalid-feedback">
+                                        <strong>{{hasError(errors, 'name', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="address">Address</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="address" id="address"
+                                           v-model="item.address"
+                                           :class="{'is-invalid': hasError(errors, 'address')}">
+                                    <span role="alert" class="invalid-feedback">
+                                        <strong>{{hasError(errors, 'address', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group row striped-col required">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="suburb">Suburb</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="suburb" id="suburb"
+                                           v-model="item.suburb"
+                                           :class="{'is-invalid': hasError(errors, 'suburb')}">
+                                    <span role="alert" class="invalid-feedback">
+                                        <strong>{{hasError(errors, 'suburb', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="state">State</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="state" id="state"
+                                           v-model="item.state"
+                                           :class="{'is-invalid': hasError(errors, 'state')}">
+                                    <span role="alert" class="invalid-feedback">
+                                        <strong>{{hasError(errors, 'state', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group row striped-col required">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="postcode">Postcode</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="postcode" id="postcode"
+                                           v-model="item.postcode"
+                                           :class="{'is-invalid': hasError(errors, 'postcode')}">
+                                    <span role="alert" class="invalid-feedback">
+                                        <strong>{{hasError(errors, 'postcode', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="country">Country</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="country" id="country"
+                                           v-model="item.country"
+                                           :class="{'is-invalid': hasError(errors, 'country')}">
+                                    <span role="alert" class="invalid-feedback">
+                                        <strong>{{hasError(errors, 'country', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group row striped-col">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="phone">Phone</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="phone" id="phone"
+                                           v-model="item.phone"
+                                           :class="{'is-invalid': hasError(errors, 'phone')}">
+                                    <span role="alert" class="invalid-feedback">
+                                        <strong>{{hasError(errors, 'phone', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="email">Email</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="email" class="form-control" name="email" id="email"
+                                           v-model="item.email"
+                                           :class="{'is-invalid': hasError(errors, 'email')}">
+                                    <span role="alert" class="invalid-feedback">
+                                        <strong>{{hasError(errors, 'email', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group row striped-col">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="website">Website</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="website" id="website"
+                                           v-model="item.website"
+                                           :class="{'is-invalid': hasError(errors, 'website')}">
+                                    <span role="alert" class="invalid-feedback">
+                                        <strong>{{hasError(errors, 'website', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group form-actions">
+                                <div class="col-sm-9 col-sm-offset-3 ml-auto">
+                                    <button type="button"
+                                            class="btn btn-effect-ripple btn-primary"
+                                            @click="storeOrUpdate">
+                                        {{ isEditView(item.id) ? 'Update' : 'Create'}}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>

@@ -1,25 +1,71 @@
 <template>
-    <div>
-        <div class="col-md-12">
-            <a class="btn btn-info" :href="`/admin/${database_model}`">Back</a>
+    <section class="content p-l-r-15" id="invoice-stmt">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="ti-align-justify"></i> Info
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="col-md-12">
+                    <p>
+                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
+                    </p>
+                </div>
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-condensed" id="customtable">
+                            <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                <td>{{item.name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Address:</td>
+                                <td>{{item.address}}</td>
+                            </tr>
+                            <tr>
+                                <td>Suburb:</td>
+                                <td>{{item.suburb}}</td>
+                            </tr>
+                            <tr>
+                                <td>State:</td>
+                                <td>{{item.state}}</td>
+                            </tr>
+                            <tr>
+                                <td>Postcode:</td>
+                                <td>{{item.postcode}}</td>
+                            </tr>
+                            <tr>
+                                <td>Country:</td>
+                                <td>{{item.country}}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone:</td>
+                                <td>{{item.phone}}</td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td>{{item.email}}</td>
+                            </tr>
+                            <tr>
+                                <td>Website:</td>
+                                <td>{{item.website}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <p>
+                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="col-md-12">
-            This is {{database_model}} show page
-            <div>Name: {{item.name}}</div>
-            <div>Address: {{item.address}}</div>
-            <div>Suburb: {{item.suburb}}</div>
-            <div>State: {{item.state}}</div>
-            <div>Post Code: {{item.postcode}}</div>
-            <div>Country: {{item.country}}</div>
-            <div>Phone: {{item.phone}}</div>
-            <div>Email: {{item.email}}</div>
-            <div>Website: {{item.website}}</div>
-        </div>
-        <div class="col-md-12">
-            <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
-            <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
-        </div>
-    </div>
+    </section>
 </template>
 
 <script>
