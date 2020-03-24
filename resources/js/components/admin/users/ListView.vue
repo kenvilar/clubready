@@ -15,6 +15,13 @@
     <section class="content">
         <div class="row">
             <div class="col-lg-12">
+                <button class="btn btn-success btn-lg btn-block btn-responsive" role="button" @click="clickCreate()">
+                    Create New
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
