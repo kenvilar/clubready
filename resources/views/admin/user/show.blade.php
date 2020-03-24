@@ -5,13 +5,13 @@
 @endpush
 
 @section('breadcrumb')
-    <h1>User Info</h1>
+    <h1>Users</h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{route('home')}}"><i class="fa fa-fw ti-home"></i>Dashboard</a>
         </li>
-        <li><a href="{{route('web.user.index')}}">Users List</a></li>
-        <li class="active">{{$user->first_name}} {{$user->last_name}}</li>
+        <li><a href="{{route('web.user.index')}}">Show List</a></li>
+        <li class="active">Show User</li>
     </ol>
 @endsection
 
