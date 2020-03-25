@@ -1,20 +1,66 @@
 <template>
-    <div>
-        <div class="col-12">
-            <div>This is index page</div>
-            <a class="btn btn-primary" @click="clickCreate()">Create</a>
-            <ul v-if="list.length">
-                <li v-for="item in list">
-                    USER ID: {{item.user_id}}
-                    <a class="btn btn-success" @click="clickShow(item.id)">Show</a>
-                    <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
-                </li>
-            </ul>
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-12">
+                <button class="btn btn-success btn-lg btn-block btn-responsive" role="button" @click="clickCreate()">
+                    Create New
+                </button>
+            </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="ti-align-justify"></i> List
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" id="datatable">
+                                <thead>
+                                <tr>
+                                    <th>User ID</th>
+                                    <th>Created Date</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="item in list">
+                                    <td>
+                                        <span role="link" @click="clickShow(item.id)"
+                                              style="text-decoration: underline !important;">
+                                            {{item.user_id}}
+                                        </span>
+                                    </td>
+                                    <td>{{formatDate(item.created_at)}}</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                                @click="clickEdit(item.id)"
+                                                data-target="#edit" data-placement="top"><span
+                                            class="fa fa-fw ti-pencil"></span></button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                @click="clickDelete(item.id)"
+                                                data-target="#delete" data-placement="top"><span
+                                            class="fa fa-fw ti-trash"></span></button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </template>
 
 <script>
+    const moment = require('moment');
+
     export default {
         name: 'super-admins-list-view-vue',
         props: {
@@ -68,6 +114,9 @@
                         console.log('err', err.response);
                     });
                 this.read();
+            },
+            formatDate(date) {
+                return moment(date).format('MMMM D, YYYY');
             },
         }
     }
