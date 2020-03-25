@@ -17,6 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('admin', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->namespace('Web')->name('web.')->group(base_path('routes/web/admin/base.php'));
