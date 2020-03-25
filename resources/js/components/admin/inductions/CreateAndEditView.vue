@@ -35,25 +35,6 @@
             </div>
         </div>
     </section>
-    <!--<div>
-        <div class="row">
-            <div class="col-md-12">
-                This is {{database_model}} {{isEditView(item.id) ? 'edit' : 'create'}} page
-            </div>
-            <div class="col-5">
-                <a class="btn btn-info" onclick="window.history.go(-1)">Back</a>
-            </div>
-            <div class="col-5">
-                <div class="form-group required">
-
-
-                </div>
-                <div class="form-group">
-                    <button @click="storeOrUpdate">{{ isEditView(item.id) ? 'Update' : 'Create'}}</button>
-                </div>
-            </div>
-        </div>
-    </div>-->
 </template>
 
 <script>
