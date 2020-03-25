@@ -1,48 +1,78 @@
 <template>
-    <div>
+    <section class="content">
         <div class="row">
-            <div class="col-md-12">
-                This is {{database_model}} {{isEditView(item.id) ? 'edit' : 'create'}} page
-            </div>
-            <div class="col-5">
-                <a class="btn btn-info" onclick="window.history.go(-1)">Back</a>
-            </div>
-            <div class="col-5">
-                <div class="form-group required">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" id="name" v-model="item.name"
-                           :class="{'is-invalid': hasError(errors, 'name')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'name', true)}}</strong></span>
-                </div>
-                <div class="form-group required">
-                    <label for="value">Value</label>
-                    <input type="number" step="0.01" class="form-control" name="value" id="value" v-model="item.value"
-                           :class="{'is-invalid': hasError(errors, 'value')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'value', true)}}</strong></span>
-                </div>
-                <div class="form-group required">
-                    <label for="start_date">Start Date</label>
-                    <input type="date" class="form-control" name="start_date" id="start_date" v-model="item.start_date"
-                           pattern="\d{4}-\d{2}-\d{2}"
-                           :class="{'is-invalid': hasError(errors, 'start_date')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'start_date', true)}}</strong></span>
-                </div>
-                <div class="form-group required">
-                    <label for="expiry_date">Expiry Date</label>
-                    <input type="date" class="form-control" name="expiry_date" id="expiry_date" v-model="item.expiry_date"
-                           :class="{'is-invalid': hasError(errors, 'expiry_date')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'expiry_date', true)}}</strong></span>
-                </div>
-                <div class="form-group">
-                    <button @click="storeOrUpdate">{{ isEditView(item.id) ? 'Update' : 'Create'}}</button>
+            <div class="col-lg-12">
+                <div class="card striped_full">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="ti-align-justify"></i> {{isEditView(item.id) ? 'Edit' : 'Create'}} Item
+                        </h3>
+                    </div>
+                    <div class="card-body border">
+                        <form @submit.prevent="storeOrUpdate" enctype="multipart/form-data" class="form-bordered-row"
+                              novalidate>
+                            <div class="form-group row striped-col required">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="name">Name</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="name" id="name"
+                                           v-model="item.name"
+                                           :class="{'is-invalid': hasError(errors, 'name')}">
+                                    <span role="alert" class="invalid-feedback">
+                                        <strong>{{hasError(errors, 'name', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="value">Value</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="number" step="0.01" class="form-control" name="value" id="value"
+                                           v-model="item.value"
+                                           :class="{'is-invalid': hasError(errors, 'value')}">
+                                    <span role="alert" class="invalid-feedback">
+                                        <strong>{{hasError(errors, 'value', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group row striped-col required">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="start_date">Start Date</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="date" class="form-control" name="start_date" id="start_date"
+                                           v-model="item.start_date"
+                                           pattern="\d{4}-\d{2}-\d{2}"
+                                           :class="{'is-invalid': hasError(errors, 'start_date')}">
+                                    <span role="alert" class="invalid-feedback">
+                                        <strong>{{hasError(errors, 'start_date', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="expiry_date">Expiry Date</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="date" class="form-control" name="expiry_date" id="expiry_date"
+                                           v-model="item.expiry_date"
+                                           :class="{'is-invalid': hasError(errors, 'expiry_date')}">
+                                    <span role="alert" class="invalid-feedback">
+                                        <strong>{{hasError(errors, 'expiry_date', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group form-actions">
+                                <div class="col-sm-9 col-sm-offset-3 ml-auto">
+                                    <button type="submit"
+                                            class="btn btn-effect-ripple btn-primary">
+                                        {{ isEditView(item.id) ? 'Edit' : 'Create'}}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
