@@ -1,22 +1,59 @@
 <template>
-    <div>
-        <div class="col-md-12">
-            <a class="btn btn-info" :href="`/admin/${database_model}`">Back</a>
+    <section class="content p-l-r-15" id="invoice-stmt">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="ti-align-justify"></i> Details
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="col-md-12">
+                    <p>
+                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
+                    </p>
+                </div>
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-condensed" id="customtable">
+                            <tbody>
+                            <tr>
+                                <td>User ID:</td>
+                                <td>{{item.user_id}}</td>
+                            </tr>
+                            <tr>
+                                <td>Make:</td>
+                                <td>{{item.make}}</td>
+                            </tr>
+                            <tr>
+                                <td>Model:</td>
+                                <td>{{item.model}}</td>
+                            </tr>
+                            <tr>
+                                <td>Year:</td>
+                                <td>{{item.year}}</td>
+                            </tr>
+                            <tr>
+                                <td>Capacity:</td>
+                                <td>{{item.capacity}}</td>
+                            </tr>
+                            <tr>
+                                <td>Induction:</td>
+                                <td>{{item.induction}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <p>
+                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="col-md-12">
-            This is {{database_model}} show page
-            <div>User ID: {{item.user_id}}</div>
-            <div>Make: {{item.make}}</div>
-            <div>Model: {{item.model}}</div>
-            <div>Year: {{item.year}}</div>
-            <div>Capacity: {{item.capacity}}</div>
-            <div>Induction: {{item.induction}}</div>
-        </div>
-        <div class="col-md-12">
-            <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
-            <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
-        </div>
-    </div>
+    </section>
 </template>
 
 <script>
