@@ -61,6 +61,8 @@
 </template>
 
 <script>
+    const moment = require('moment');
+
     export default {
         name: 'club-members-list-view-vue',
         props: {
@@ -114,6 +116,9 @@
                         console.log('err', err.response);
                     });
                 this.read();
+            },
+            formatDate(date) {
+                return moment(date).format('MMMM D, YYYY');
             },
         }
     }
