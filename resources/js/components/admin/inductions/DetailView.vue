@@ -8,6 +8,12 @@
             </div>
             <div class="card-body">
                 <div class="col-md-12">
+                    <p>
+                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
+                    </p>
+                </div>
+                <div class="col-md-12">
                     <div class="table-responsive">
                         <table class="table table-striped table-condensed" id="customtable">
                             <tbody>

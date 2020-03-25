@@ -1,5 +1,48 @@
 <template>
-    <div>
+    <section class="content p-l-r-15" id="invoice-stmt">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="ti-align-justify"></i> Info
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="col-md-12">
+                    <p>
+                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
+                    </p>
+                </div>
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-condensed" id="customtable">
+                            <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                <td>{{item.name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Year:</td>
+                                <td>{{item.year}}</td>
+                            </tr>
+                            <tr>
+                                <td>Amount:</td>
+                                <td>{{item.amount}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <p>
+                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--<div>
         <div class="col-md-12">
             <a class="btn btn-info" :href="`/admin/${database_model}`">Back</a>
         </div>
@@ -13,7 +56,7 @@
             <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
             <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
         </div>
-    </div>
+    </div>-->
 </template>
 
 <script>

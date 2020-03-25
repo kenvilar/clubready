@@ -1,5 +1,64 @@
 <template>
-    <div>
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-12">
+                <button class="btn btn-success btn-lg btn-block btn-responsive" role="button" @click="clickCreate()">
+                    Create New
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="ti-align-justify"></i> List
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" id="datatable">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Year</th>
+                                    <th>Amount</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="item in list">
+                                    <td>
+                                        <span role="link" @click="clickShow(item.id)"
+                                              style="text-decoration: underline !important;">
+                                            {{item.name}}
+                                        </span>
+                                    </td>
+                                    <td>{{item.year}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                                @click="clickEdit(item.id)"
+                                                data-target="#edit" data-placement="top"><span
+                                            class="fa fa-fw ti-pencil"></span></button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                @click="clickDelete(item.id)"
+                                                data-target="#delete" data-placement="top"><span
+                                            class="fa fa-fw ti-trash"></span></button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--<div>
         <div class="col-12">
             <div>This is index page</div>
             <a class="btn btn-primary" @click="clickCreate()">Create</a>
@@ -11,7 +70,7 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div>-->
 </template>
 
 <script>
