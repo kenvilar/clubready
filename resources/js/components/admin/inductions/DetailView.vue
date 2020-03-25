@@ -1,17 +1,33 @@
 <template>
-    <div>
-        <div class="col-md-12">
-            <a class="btn btn-info" :href="`/admin/${database_model}`">Back</a>
+    <section class="content p-l-r-15" id="invoice-stmt">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="ti-align-justify"></i> Info
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-condensed" id="customtable">
+                            <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                <td>{{item.name}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <p>
+                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="col-md-12">
-            This is {{database_model}} show page
-            <div>Name: {{item.name}}</div>
-        </div>
-        <div class="col-md-12">
-            <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
-            <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
-        </div>
-    </div>
+    </section>
 </template>
 
 <script>

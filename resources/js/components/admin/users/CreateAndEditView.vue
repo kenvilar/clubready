@@ -9,7 +9,8 @@
                         </h3>
                     </div>
                     <div class="card-body border">
-                        <form method="POST" enctype="multipart/form-data" class="form-bordered-row">
+                        <form @submit.prevent="storeOrUpdate" enctype="multipart/form-data" class="form-bordered-row"
+                              novalidate>
                             <div class="form-group row striped-col required">
                                 <div class="col-sm-3 text-right txt_media">
                                     <label class="form-control-label" for="first_name">First Name</label>
@@ -197,9 +198,8 @@
                             </div>
                             <div class="form-group form-actions">
                                 <div class="col-sm-9 col-sm-offset-3 ml-auto">
-                                    <button type="button"
-                                            class="btn btn-effect-ripple btn-primary"
-                                            @click="storeOrUpdate">
+                                    <button type="submit"
+                                            class="btn btn-effect-ripple btn-primary">
                                         {{ isEditView(item.id) ? 'Edit' : 'Create'}}</button>
                                 </div>
                             </div>
