@@ -180,8 +180,8 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-fw ti-calendar"></i></div>
                                         <input class="form-control" name="date_of_birth"
+                                               id="date_of_birth"
                                                v-model="item.date_of_birth"
-                                               id="birthdate"
                                                :class="{'is-invalid': hasError(errors, 'date_of_birth')}"
                                                placeholder="Select Date (d/m/Y)">
                                     </div>

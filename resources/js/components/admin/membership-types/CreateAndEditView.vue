@@ -40,10 +40,15 @@
                                     <label class="form-control-label" for="start_date">Start Date</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="date" class="form-control" name="start_date" id="start_date"
-                                           v-model="item.start_date"
-                                           pattern="\d{4}-\d{2}-\d{2}"
-                                           :class="{'is-invalid': hasError(errors, 'start_date')}">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-fw ti-calendar"></i></div>
+                                        <input class="form-control" name="start_date"
+                                               id="start_date"
+                                               v-model="item.start_date"
+                                               :class="{'is-invalid': hasError(errors, 'start_date')}"
+                                               placeholder="Select Date (d/m/Y)">
+                                    </div>
                                     <span role="alert" class="invalid-feedback">
                                         <strong>{{hasError(errors, 'start_date', true)}}</strong></span>
                                 </div>
@@ -53,9 +58,15 @@
                                     <label class="form-control-label" for="expiry_date">Expiry Date</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="date" class="form-control" name="expiry_date" id="expiry_date"
-                                           v-model="item.expiry_date"
-                                           :class="{'is-invalid': hasError(errors, 'expiry_date')}">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-fw ti-calendar"></i></div>
+                                        <input class="form-control" name="expiry_date"
+                                               id="expiry_date"
+                                               v-model="item.expiry_date"
+                                               :class="{'is-invalid': hasError(errors, 'expiry_date')}"
+                                               placeholder="Select Date (d/m/Y)">
+                                    </div>
                                     <span role="alert" class="invalid-feedback">
                                         <strong>{{hasError(errors, 'expiry_date', true)}}</strong></span>
                                 </div>

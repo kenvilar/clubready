@@ -53,12 +53,32 @@ $(document).ready(function () {
         //     timepicker: false
         // });
         // hotel form
-        $('#birthdate').datetimepicker({
+        $('#date_of_birth').datetimepicker({
             timepickerScrollbar: 'false',
             format: 'd/m/Y',
             onShow: function (ct) {
                 this.setOptions({
                     maxDate: new Date(),
+                })
+            },
+            timepicker: false
+        });
+        $('#start_date').datetimepicker({
+            timepickerScrollbar: 'false',
+            format: 'd/m/Y',
+            onShow: function (ct) {
+                this.setOptions({
+                    maxDate: $('#expiry_date').val() ? $('#expiry_date').val() : false
+                })
+            },
+            timepicker: false
+        });
+        $('#expiry_date').datetimepicker({
+            timepickerScrollbar: 'false',
+            format: 'd/m/Y',
+            onShow: function (ct) {
+                this.setOptions({
+                    minDate: $('#start_date').val() ? $('#start_date').val() : false
                 })
             },
             timepicker: false
