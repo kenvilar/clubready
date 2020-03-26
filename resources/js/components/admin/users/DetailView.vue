@@ -63,7 +63,7 @@
                             </tr>
                             <tr>
                                 <td>Date of Birth:</td>
-                                <td>{{item.date_of_birth}}</td>
+                                <td>{{formatDate(item.date_of_birth)}}</td>
                             </tr>
                             <tr>
                                 <td>Club Racenumber:</td>
@@ -85,6 +85,8 @@
 </template>
 
 <script>
+    const moment = require('moment');
+
     export default {
         name: 'users-detail-view-vue',
         props: {
@@ -139,6 +141,9 @@
                     }).catch(err => {
                         console.log('err', err.response);
                     });
+            },
+            formatDate(date) {
+                return date ? moment(date).format('MMMM D, YYYY') : '';
             },
         }
     }

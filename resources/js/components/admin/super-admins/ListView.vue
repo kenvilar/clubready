@@ -116,7 +116,7 @@
                 this.read();
             },
             formatDate(date) {
-                return moment(date).format('MMMM D, YYYY');
+                return date ? moment(date).format('MMMM D, YYYY') : '';
             },
         }
     }
