@@ -170,6 +170,11 @@ class UserController extends Controller
         return $this->showOne($user);
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return JsonResponse
+     */
     public function currentUserInfo()
     {
         $user = Auth::user();
