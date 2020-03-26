@@ -176,9 +176,15 @@
                                     <label class="form-control-label" for="date_of_birth">Date of Birth</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="date" class="form-control" name="date_of_birth" id="date_of_birth"
-                                           v-model="item.date_of_birth"
-                                           :class="{'is-invalid': hasError(errors, 'date_of_birth')}">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-fw ti-calendar"></i></div>
+                                        <input class="form-control" name="date_of_birth"
+                                               v-model="item.date_of_birth"
+                                               id="birthdate"
+                                               :class="{'is-invalid': hasError(errors, 'date_of_birth')}"
+                                               placeholder="Select Date (d/m/Y)">
+                                    </div>
                                     <span role="alert" class="invalid-feedback">
                                     <strong>{{hasError(errors, 'date_of_birth', true)}}</strong></span>
                                 </div>
