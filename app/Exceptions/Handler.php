@@ -13,7 +13,7 @@ use Illuminate\Session\TokenMismatchException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Exception\MethodNotAllowedException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -82,18 +82,19 @@ class Handler extends ExceptionHandler
 
         if ($exception instanceof ModelNotFoundException) {
             $modelName = strtolower(class_basename($exception->getModel()));
-            return $this->errorResponse("Does not exists any {$modelName} with the specified identification", 404);
+
+            return $this->errorResponse("Does not exists any {$modelName} with the specified identificator", 404);
         }
 
         if ($exception instanceof AuthenticationException) {
-            return $this->errorResponse($exception->getMessage(), 401);
+            return $this->unauthenticated($request, $exception);
         }
 
         if ($exception instanceof AuthorizationException) {
             return $this->errorResponse($exception->getMessage(), 403);
         }
 
-        if ($exception instanceof MethodNotAllowedException) {
+        if ($exception instanceof MethodNotAllowedHttpException) {
             return $this->errorResponse('The specified method for the request is invalid', 405);
         }
 
@@ -140,9 +141,11 @@ class Handler extends ExceptionHandler
         if ($this->isFrontend($request)) {
             return redirect()->guest('login');
         }
-        return $request->expectsJson()
+        /*return $request->expectsJson()
             ? response()->json(['message' => $exception->getMessage()], 401)
-            : redirect()->guest($exception->redirectTo() ?? route('login'));
+            : redirect()->guest($exception->redirectTo() ?? route('login'));*/
+
+        return $this->errorResponse('Unauthenticated.', 401);
     }
 
     /**
