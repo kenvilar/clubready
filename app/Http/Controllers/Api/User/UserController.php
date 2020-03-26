@@ -105,7 +105,7 @@ class UserController extends Controller
             'country' => 'nullable|min:2',
             'phone_home' => 'nullable|min:5',
             'phone_mobile' => 'nullable|min:5',
-            'alternative_email' => 'nullable|email|min:4',
+            'alternative_email' => 'nullable|email|min:4|different:email',
             'date_of_birth' => 'nullable|date',
             'active' => 'nullable|in:' . User::ACTIVE_USER . ',' . User::INACTIVE_USER,
             'club_racenumber' => 'nullable|numeric|min:1'
@@ -139,9 +139,9 @@ class UserController extends Controller
             $user->password = bcrypt($request->password);
         }
 
-        if ($request->has('admin')) {
-            if (!$user->isVerified()) {
-                return $this->errorResponse('Only verified users can modify the admin field', 409);
+        if ($request->admin == 1) {
+            if (!$user->isAdmin()) {
+                return $this->errorResponse('Only admin users can modify the admin field', 409);
             }
 
             $user->admin = $request->admin;
