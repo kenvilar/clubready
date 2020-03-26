@@ -139,7 +139,7 @@ class UserController extends Controller
             $user->password = bcrypt($request->password);
         }
 
-        if ($request->admin == 1) {
+        if ($request->has('admin')) {
             if (!$user->isAdmin()) {
                 return $this->errorResponse('Only admin users can modify the admin field', 409);
             }
