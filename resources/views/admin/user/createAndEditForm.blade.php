@@ -3,6 +3,9 @@
 @push('stylesheets')
     <link href="{{asset('vendors/iCheck/css/all.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('css/form_layouts.css')}}" rel="stylesheet" type="text/css"/>
+
+    <!--datedropper-->
+    <link href="{{asset('vendors/datedropper/datedropper.min.css')}}" rel="stylesheet" type="text/css">
 @endpush
 
 @section('breadcrumb')
