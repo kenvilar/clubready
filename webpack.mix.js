@@ -19,6 +19,7 @@ var paths = {
     'bootstrapValidator': vendors + 'bootstrapvalidator/dist/',
     'datatables': vendors + 'datatables.net/',
     'datatablesbs4': vendors + 'datatables.net-bs4/',
+    'datedropper': vendors + 'datedropper/',
     'fontawesome': vendors + 'font-awesome/',
     'icheck': vendors + 'icheck/',
     'jquerynicescroll': vendors + 'jquery.nicescroll/dist/',
@@ -57,6 +58,11 @@ mix.copy(paths.bootstrapValidator + 'js/bootstrapValidator.min.js', destVendors 
 mix.copy(paths.datatables + 'js/jquery.dataTables.js', destVendors + 'datatables/js');
 mix.copy(paths.datatablesbs4 + 'js/dataTables.bootstrap4.js', destVendors + 'datatables/js');
 mix.copy(paths.datatablesbs4 + 'css/dataTables.bootstrap4.css', destVendors + 'datatables/css');
+
+// datedropper
+mix.copy(paths.datedropper + 'datedropper.min.css', destVendors + 'datedropper');
+mix.copy(paths.datedropper + 'datedropper.min.js', destVendors + 'datedropper');
+mix.copy(paths.datedropper + 'dd-icon', destVendors + 'datedropper/dd-icon');
 
 //icheck
 mix.copy(paths.icheck + 'icheck.min.js', destVendors + 'iCheck/js');
