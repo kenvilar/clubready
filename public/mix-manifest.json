@@ -7,6 +7,8 @@
     "/vendors/datatables/js/jquery.dataTables.js": "/vendors/datatables/js/jquery.dataTables.js",
     "/vendors/datatables/js/dataTables.bootstrap4.js": "/vendors/datatables/js/dataTables.bootstrap4.js",
     "/vendors/datatables/css/dataTables.bootstrap4.css": "/vendors/datatables/css/dataTables.bootstrap4.css",
+    "/vendors/datedropper/datedropper.min.css": "/vendors/datedropper/datedropper.min.css",
+    "/vendors/datedropper/datedropper.min.js": "/vendors/datedropper/datedropper.min.js",
     "/vendors/iCheck/js/icheck.min.js": "/vendors/iCheck/js/icheck.min.js",
     "/vendors/jquerynicescroll/jquery.nicescroll.min.js": "/vendors/jquerynicescroll/jquery.nicescroll.min.js",
     "/vendors/moment/js/moment.min.js": "/vendors/moment/js/moment.min.js",

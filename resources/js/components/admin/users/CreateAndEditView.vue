@@ -218,10 +218,6 @@
 </template>
 
 <script>
-    import $ from 'jquery';
-    import 'datedropper';
-    import moment from 'moment';
-
     export default {
         name: 'users-create-and-edit-view-vue',
         props: {

@@ -11,6 +11,12 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+
+    /**
+     * vendors js
+     * */
+    require('datedropper');
+    window.moment = require('moment');
 } catch (e) {}
 
 /**
