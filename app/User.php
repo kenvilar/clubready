@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -99,5 +100,15 @@ class User extends Authenticatable
     public function getRouteKeyName()
     {
         return 'member_number';
+    }
+
+    public function setDateOfBirthAttribute($value)
+    {
+        $this->attributes['date_of_birth'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
+    }
+
+    public function getDateOfBirthAttribute($value)
+    {
+        return Carbon::parse($value)->format('m/d/Y');
     }
 }
