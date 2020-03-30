@@ -179,11 +179,11 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-fw ti-calendar"></i></div>
-                                        <input class="form-control" name="date_of_birth"
+                                        <input type="text" class="form-control" name="date_of_birth"
                                                id="date_of_birth"
                                                v-model="item.date_of_birth"
                                                :class="{'is-invalid': hasError(errors, 'date_of_birth')}"
-                                               placeholder="Select Date (d/m/Y)">
+                                               placeholder="Select Date (MM/DD/YYYY)">
                                     </div>
                                     <span role="alert" class="invalid-feedback">
                                     <strong>{{hasError(errors, 'date_of_birth', true)}}</strong></span>
@@ -218,6 +218,10 @@
 </template>
 
 <script>
+    import $ from 'jquery';
+    import 'datedropper';
+    import moment from 'moment';
+
     export default {
         name: 'users-create-and-edit-view-vue',
         props: {
@@ -229,6 +233,14 @@
         },
         mounted() {
             this.edit();
+
+            $("#date_of_birth").dateDropper({
+                format: "m/d/Y",
+                dropPrimaryColor: "#6699cc",
+                fx: false,
+                fxMobile: false,
+                animate: false,
+            });
         },
         created() {
             //
@@ -246,7 +258,9 @@
         methods: {
             async storeOrUpdate() {
                 if (this.model_id) {
-                    let update = axios.put(`/api/${this.database_model}/${this.model_id}`, this.item)
+                    this.item.date_of_birth = moment($('#date_of_birth').val()).format("MM/DD/YYYY");
+
+                    let update = axios.put(`/api/${this.database_model}/${this.model_id}/`, this.item)
                         .then(response => {
                             this.item = response.data;
                             window.location.href = `/admin/${this.database_model}/${this.model_id}`;
