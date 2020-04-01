@@ -57,8 +57,6 @@
 </template>
 
 <script>
-    const moment = require('moment');
-
     export default {
         name: 'inductions-list-view-vue',
         props: {

@@ -61,8 +61,6 @@
 </template>
 
 <script>
-    const moment = require('moment');
-
     export default {
         name: 'club-members-list-view-vue',
         props: {

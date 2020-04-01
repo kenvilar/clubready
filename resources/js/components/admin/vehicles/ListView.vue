@@ -65,8 +65,6 @@
 </template>
 
 <script>
-    const moment = require('moment');
-
     export default {
         name: 'vehicles-list-view-vue',
         props: {

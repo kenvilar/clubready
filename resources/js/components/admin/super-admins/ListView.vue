@@ -59,8 +59,6 @@
 </template>
 
 <script>
-    const moment = require('moment');
-
     export default {
         name: 'super-admins-list-view-vue',
         props: {

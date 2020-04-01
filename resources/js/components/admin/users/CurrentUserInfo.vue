@@ -73,8 +73,6 @@
 </template>
 
 <script>
-    const moment = require('moment');
-
     export default {
         name: 'users-current-user-info-vue',
         props: {},

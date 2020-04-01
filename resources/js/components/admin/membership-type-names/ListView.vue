@@ -70,8 +70,6 @@
 </template>
 
 <script>
-    const moment = require('moment');
-
     export default {
         name: 'membership-type-names-list-view-vue',
         props: {
