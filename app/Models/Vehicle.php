@@ -13,10 +13,10 @@ class Vehicle extends Model
         'year',
         'capacity',
         'induction',
+        'created_at',
     ];
 
     protected $hidden = [
-        'created_at',
         'updated_at',
     ];
 
