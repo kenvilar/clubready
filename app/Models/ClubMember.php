@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ClubMember extends Model
 {
@@ -20,21 +23,41 @@ class ClubMember extends Model
         'updated_at',
     ];
 
-    public function clubs()
+    /**
+     * @return BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function club()
     {
         return $this->belongsTo(Club::class);
     }
 
+    /**
+     * @return HasMany
+     */
     public function vehicles()
     {
         return $this->hasMany(Vehicle::class);
     }
 
+    /**
+     * @return HasMany
+     */
     public function memberships()
     {
         return $this->hasMany(Membership::class);
     }
 
+    /**
+     * @return HasMany
+     */
     public function membershipTypes()
     {
         return $this->hasMany(MembershipType::class);
