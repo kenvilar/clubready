@@ -150,7 +150,6 @@
 
                 let store = axios.post(`/api/${this.database_model}`, this.item)
                     .then(response => {
-                        console.log('response', response);
                         //clear all the fields after successful create
                         this.clearFields(this.item);
                     }, error => {
@@ -184,9 +183,6 @@
             },
             hasError(errors, name, showResult = false) {
                 if (showResult === true) {
-                    if (errors !== {}) {
-                        console.log('errors[name]', errors[name]);
-                    }
                     return typeof errors[name] == 'undefined' ? (typeof errors === 'string' ? errors : '') : errors[name][0];
                 }
 

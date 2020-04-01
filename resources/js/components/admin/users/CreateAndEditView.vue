@@ -253,9 +253,9 @@
         },
         methods: {
             async storeOrUpdate() {
-                if (this.model_id) {
-                    this.item.date_of_birth = moment($('#date_of_birth').val()).format("MM/DD/YYYY");
+                this.item.date_of_birth = moment($('#date_of_birth').val()).format("MM/DD/YYYY");
 
+                if (this.model_id) {
                     let update = axios.put(`/api/${this.database_model}/${this.model_id}/`, this.item)
                         .then(response => {
                             this.item = response.data;
