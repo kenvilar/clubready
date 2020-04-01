@@ -19,15 +19,15 @@
                             <tbody>
                             <tr>
                                 <td>User:</td>
-                                <td>{{item.user_id}}</td>
+                                <td>{{item.user['first_name']}} {{item.user['last_name']}}</td>
                             </tr>
                             <tr>
                                 <td>Club:</td>
-                                <td>{{item.club_id}}</td>
+                                <td>{{item.club['name']}}</td>
                             </tr>
                             <tr>
                                 <td>Admin:</td>
-                                <td>{{item.admin}}</td>
+                                <td>{{item.admin == '1' ? 'True' : 'False'}}</td>
                             </tr>
                             </tbody>
                         </table>

@@ -22,6 +22,7 @@
                                 <tr>
                                     <th>User</th>
                                     <th>Club</th>
+                                    <th>Admin</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -31,12 +32,11 @@
                                     <td>
                                         <span role="link" @click="clickShow(item.id)"
                                               style="text-decoration: underline !important;">
-                                            {{item.user_id}}
+                                            {{item.user['first_name']}} {{item.user['last_name']}}
                                         </span>
                                     </td>
-                                    <td>
-                                        {{item.club_id}}
-                                    </td>
+                                    <td>{{item.club['name']}}</td>
+                                    <td>{{item.admin == '1' ? 'True' : 'False'}}</td>
                                     <td>
                                         <button class="btn btn-primary btn-xs" data-toggle="modal"
                                                 @click="clickEdit(item.id)"
