@@ -24,6 +24,8 @@ var paths = {
     'icheck': vendors + 'icheck/',
     'jquerynicescroll': vendors + 'jquery.nicescroll/dist/',
     'moment': vendors + 'moment/',
+    'select2': vendors + 'select2/dist/',
+    'select2BootstrapTheme': vendors + 'select2-bootstrap-theme/dist/',
     'simplelineicons': vendors + 'simple-line-icons/',
     'slimscroll': vendors + 'jquery-slimscroll/',
 };
@@ -73,6 +75,11 @@ mix.copy(paths.jquerynicescroll + 'jquery.nicescroll.min.js', destVendors + 'jqu
 
 // moment
 mix.copy(paths.moment + 'min/moment.min.js', destVendors + 'moment/js');
+
+//select2
+mix.copy(paths.select2 + 'css/select2.min.css', destVendors + 'select2/css');
+mix.copy(paths.select2 + 'js/select2.min.js', destVendors + 'select2/js');
+mix.copy(paths.select2BootstrapTheme + 'select2-bootstrap.min.css', destVendors + 'select2/css');
 
 //simple-line-icons
 mix.copy(paths.simplelineicons + 'css/simple-line-icons.css', destVendors + 'simple-line-icons/css/simple-line-icons.css');
