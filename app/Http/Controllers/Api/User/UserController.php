@@ -20,6 +20,18 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+        $columns = [];
+
+        //display specific columns
+        if (\request()->all() && \request()->select == true) {
+            foreach (\request()->all() as $key => $value) {
+                if ($key !== 'select' && $value == 'true') {
+                    array_push($columns, $key);
+                }
+            }
+
+            $users = User::all($columns);
+        }
 
         return $this->showAll($users);
     }
