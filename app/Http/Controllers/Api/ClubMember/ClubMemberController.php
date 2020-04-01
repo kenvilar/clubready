@@ -19,7 +19,15 @@ class ClubMemberController extends Controller
      */
     public function index()
     {
-        $clubMembers = ClubMember::all();
+        $clubMembers = ClubMember::query()
+            ->with([
+                'user' => function ($q) {
+                    $q->select(['id', 'first_name', 'last_name',]);
+                },
+                'club' => function ($q) {
+                    $q->select(['id', 'name',]);
+                },
+            ])->get();
 
         return $this->showAll($clubMembers);
     }
