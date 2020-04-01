@@ -57,7 +57,20 @@ class ClubMemberController extends Controller
      */
     public function show(ClubMember $clubMember)
     {
-        return $this->showOne($clubMember);
+        $clubMember = $clubMember
+            ->newModelQuery()
+            ->with([
+                'user' => function ($q) {
+                    $q->select(['id', 'first_name', 'last_name',]);
+                },
+                'club' => function ($q) {
+                    $q->select(['id', 'name',]);
+                },
+            ])
+            ->find($clubMember)
+            ->shift();
+
+        return $clubMember;
     }
 
     /**
