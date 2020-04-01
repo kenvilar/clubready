@@ -21,6 +21,10 @@
                                 <td>User ID:</td>
                                 <td>{{item.user_id}}</td>
                             </tr>
+                            <tr>
+                                <td>Create Date:</td>
+                                <td>{{formatDate(item.created_at)}}</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -91,6 +95,9 @@
                     }).catch(err => {
                         console.log('err', err.response);
                     });
+            },
+            formatDate(date) {
+                return date ? moment(date).format('MMMM D, YYYY') : '';
             },
         }
     }
