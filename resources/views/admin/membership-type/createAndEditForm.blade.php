@@ -2,9 +2,10 @@
 
 @push('stylesheets')
     <link href="{{asset('vendors/iCheck/css/all.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('css/jquery.datetimepicker.css')}}" rel="stylesheet">
-    <link href="{{asset('css/custom_css/realtime_form.css')}}" rel="stylesheet">
     <link href="{{asset('css/form_layouts.css')}}" rel="stylesheet" type="text/css"/>
+
+    <!--datedropper-->
+    <link href="{{asset('vendors/datedropper/datedropper.min.css')}}" rel="stylesheet" type="text/css">
 @endpush
 
 @section('breadcrumb')
@@ -27,7 +28,5 @@
 
 @push('footer-scripts')
     <script src="{{asset('vendors/iCheck/js/icheck.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/jquery.datetimepicker.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/custom_js/realtime_form.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/custom_js/form_layouts.js')}}" type="text/javascript"></script>
 @endpush

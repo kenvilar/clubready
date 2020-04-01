@@ -43,14 +43,14 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-fw ti-calendar"></i></div>
-                                        <input class="form-control" name="start_date"
+                                        <input type="text" class="form-control" name="start_date"
                                                id="start_date"
                                                v-model="item.start_date"
                                                :class="{'is-invalid': hasError(errors, 'start_date')}"
-                                               placeholder="Select Date (d/m/Y)">
+                                               placeholder="Select Date (MM/DD/YYYY)">
+                                        <span role="alert" class="invalid-feedback">
+                                            <strong>{{hasError(errors, 'start_date', true)}}</strong></span>
                                     </div>
-                                    <span role="alert" class="invalid-feedback">
-                                        <strong>{{hasError(errors, 'start_date', true)}}</strong></span>
                                 </div>
                             </div>
                             <div class="form-group row required">
@@ -61,14 +61,14 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-fw ti-calendar"></i></div>
-                                        <input class="form-control" name="expiry_date"
+                                        <input type="text" class="form-control" name="expiry_date"
                                                id="expiry_date"
                                                v-model="item.expiry_date"
                                                :class="{'is-invalid': hasError(errors, 'expiry_date')}"
-                                               placeholder="Select Date (d/m/Y)">
+                                               placeholder="Select Date (MM/DD/YYYY)">
+                                        <span role="alert" class="invalid-feedback">
+                                            <strong>{{hasError(errors, 'expiry_date', true)}}</strong></span>
                                     </div>
-                                    <span role="alert" class="invalid-feedback">
-                                        <strong>{{hasError(errors, 'expiry_date', true)}}</strong></span>
                                 </div>
                             </div>
                             <div class="form-group form-actions">
@@ -98,6 +98,22 @@
         },
         mounted() {
             this.edit();
+
+            $("#start_date").dateDropper({
+                format: "m/d/Y",
+                dropPrimaryColor: "#6699cc",
+                fx: false,
+                fxMobile: false,
+                animate: false,
+            });
+
+            $("#expiry_date").dateDropper({
+                format: "m/d/Y",
+                dropPrimaryColor: "#6699cc",
+                fx: false,
+                fxMobile: false,
+                animate: false,
+            });
         },
         created() {
             //
@@ -114,6 +130,9 @@
         },
         methods: {
             async storeOrUpdate() {
+                this.item.start_date = moment($('#start_date').val()).format("MM/DD/YYYY");
+                this.item.expiry_date = moment($('#expiry_date').val()).format("MM/DD/YYYY");
+
                 if (this.model_id) {
                     let update = axios.put(`/api/${this.database_model}/${this.model_id}`, this.item)
                         .then(response => {
@@ -165,6 +184,9 @@
             },
             hasError(errors, name, showResult = false) {
                 if (showResult === true) {
+                    if (errors !== {}) {
+                        console.log('errors[name]', errors[name]);
+                    }
                     return typeof errors[name] == 'undefined' ? (typeof errors === 'string' ? errors : '') : errors[name][0];
                 }
 

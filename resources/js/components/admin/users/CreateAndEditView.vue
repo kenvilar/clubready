@@ -184,9 +184,9 @@
                                                v-model="item.date_of_birth"
                                                :class="{'is-invalid': hasError(errors, 'date_of_birth')}"
                                                placeholder="Select Date (MM/DD/YYYY)">
+                                        <span role="alert" class="invalid-feedback">
+                                            <strong>{{hasError(errors, 'date_of_birth', true)}}</strong></span>
                                     </div>
-                                    <span role="alert" class="invalid-feedback">
-                                    <strong>{{hasError(errors, 'date_of_birth', true)}}</strong></span>
                                 </div>
                             </div>
                             <div class="form-group row striped-col">
