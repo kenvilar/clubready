@@ -27,11 +27,11 @@
                             </tr>
                             <tr>
                                 <td>Start Date:</td>
-                                <td>{{item.start_date}}</td>
+                                <td>{{formatDate(item.start_date)}}</td>
                             </tr>
                             <tr>
                                 <td>Expiry Date:</td>
-                                <td>{{item.expiry_date}}</td>
+                                <td>{{formatDate(item.expiry_date)}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -103,6 +103,9 @@
                     }).catch(err => {
                         console.log('err', err.response);
                     });
+            },
+            formatDate(date) {
+                return date ? moment(date).format('MMMM D, YYYY') : '';
             },
         }
     }

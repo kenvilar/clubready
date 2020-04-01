@@ -37,8 +37,8 @@
                                         </span>
                                     </td>
                                     <td>{{item.value}}</td>
-                                    <td>{{item.start_date}}</td>
-                                    <td>{{item.expiry_date}}</td>
+                                    <td>{{formatDate(item.start_date)}}</td>
+                                    <td>{{formatDate(item.expiry_date)}}</td>
                                     <td>
                                         <button class="btn btn-primary btn-xs" data-toggle="modal"
                                                 @click="clickEdit(item.id)"
