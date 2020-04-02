@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\SuperAdmin;
 
 use App\Http\Controllers\Controller;
 use App\Models\SuperAdmin;
+use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -17,7 +18,29 @@ class SuperAdminController extends Controller
      */
     public function index()
     {
-        $superAdmins = SuperAdmin::all();
+        $columns = [];
+        $superAdmins = SuperAdmin::query()
+            ->with([
+                'user' => function ($q) {
+                    $q->select(['id', 'first_name', 'last_name',]);
+                },
+            ])->get();
+
+        //display specific columns
+        if (\request()->all() && \request()->select == true) {
+            foreach (\request()->all() as $key => $value) {
+                if ($key !== 'select' && $value == 'true') {
+                    array_push($columns, $key);
+                }
+            }
+
+            $superAdmins = SuperAdmin::query()
+                ->with([
+                    'user' => function ($q) {
+                        $q->select(['id', 'first_name', 'last_name',]);
+                    },
+                ])->get($columns);
+        }
 
         return $this->showAll($superAdmins);
     }
