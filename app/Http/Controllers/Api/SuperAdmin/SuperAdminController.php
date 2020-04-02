@@ -47,6 +47,16 @@ class SuperAdminController extends Controller
      */
     public function show(SuperAdmin $superAdmin)
     {
+        $superAdmin = $superAdmin
+            ->newModelQuery()
+            ->with([
+                'user' => function ($q) {
+                    $q->select(['id', 'first_name', 'last_name',]);
+                },
+            ])
+            ->find($superAdmin)
+            ->shift();
+
         return $this->showOne($superAdmin);
     }
 
