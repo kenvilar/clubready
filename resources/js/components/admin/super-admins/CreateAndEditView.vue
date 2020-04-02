@@ -16,9 +16,18 @@
                                     <label class="form-control-label" for="user_id">User ID:</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="user_id" id="user_id"
-                                           v-model="item.user_id"
-                                           :class="{'is-invalid': hasError(errors, 'user_id')}">
+                                    <select name="user_id" id="user_id" class="form-control select2"
+                                            v-model.lazy="item.user_id"
+                                            :class="{'is-invalid': hasError(errors, 'user_id')}"
+                                            style="width:100%">
+                                        <option disabled value="0">Select value...</option>
+                                        <option v-for="user in all_users"
+                                                :key="user.id"
+                                                :value="user.id"
+                                                :selected="user.id === item.user_id">
+                                            {{user.first_name}} {{user.last_name}}
+                                        </option>
+                                    </select>
                                     <span role="alert" class="invalid-feedback">
                                         <strong>{{hasError(errors, 'user_id', true)}}</strong></span>
                                 </div>
@@ -39,6 +48,8 @@
 </template>
 
 <script>
+    import 'select2';
+
     export default {
         name: 'super-admins-create-and-edit-view-vue',
         props: {
@@ -49,7 +60,19 @@
             }
         },
         mounted() {
+            let user_id = $("#user_id");
+
             this.edit();
+
+            user_id.select2({
+                theme: "bootstrap",
+                placeholder: "Select value...",
+                allowClear: true,
+            });
+
+            user_id.on("input change", function () {
+                //this.item.user_id = $(this).val();
+            });
         },
         created() {
             //
@@ -62,10 +85,13 @@
                 database_model: 'super-admins',
                 item: {},
                 errors: {},
+                all_users: {},
             }
         },
         methods: {
             async storeOrUpdate() {
+                this.item.user_id = $("#user_id").val();
+
                 if (this.model_id) {
                     let update = axios.put(`/api/${this.database_model}/${this.model_id}`, this.item)
                         .then(response => {
@@ -93,6 +119,15 @@
                     });
             },
             async edit() {
+                let all_users = axios.get(`/api/users/?select=true&id=true&first_name=true&last_name=true`)
+                    .then(response => {
+                        this.all_users = response.data;
+                    }, error => {
+                        this.errors = error.response.data.error;
+                    }).catch(err => {
+                        //
+                    });
+
                 if (this.model_id) {
                     let edit = axios.get(`/api/${this.database_model}/${this.model_id}`, this.item)
                         .then(response => {
