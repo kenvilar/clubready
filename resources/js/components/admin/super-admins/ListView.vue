@@ -31,7 +31,7 @@
                                     <td>
                                         <span role="link" @click="clickShow(item.id)"
                                               style="text-decoration: underline !important;">
-                                            {{item.user_id}}
+                                            {{item.user['first_name']}} {{item.user['last_name']}}
                                         </span>
                                     </td>
                                     <td>{{formatDate(item.created_at)}}</td>
