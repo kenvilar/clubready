@@ -62,6 +62,7 @@
         mounted() {
             let user_id = $("#user_id");
 
+            this.getAllUsers();
             this.edit();
 
             setTimeout(() => this.userIdSelect2(), 500);
@@ -118,15 +119,6 @@
                     });
             },
             async edit() {
-                let all_users = axios.get(`/api/users/?select=true&id=true&first_name=true&last_name=true`)
-                    .then(response => {
-                        this.all_users = response.data;
-                    }, error => {
-                        this.errors = error.response.data.error;
-                    }).catch(err => {
-                        //
-                    });
-
                 if (this.model_id) {
                     let edit = axios.get(`/api/${this.database_model}/${this.model_id}`, this.item)
                         .then(response => {
@@ -144,6 +136,16 @@
                     this.errors = {};
                 }
                 return this.item;
+            },
+            async getAllUsers() {
+                let all_users = axios.get(`/api/users/?select=true&id=true&first_name=true&last_name=true`)
+                    .then(response => {
+                        this.all_users = response.data;
+                    }, error => {
+                        this.errors = error.response.data.error;
+                    }).catch(err => {
+                        //
+                    });
             },
             isEditView(param) {
                 return typeof param !== "undefined" || param !== undefined;
