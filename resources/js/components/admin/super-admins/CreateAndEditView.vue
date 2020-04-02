@@ -64,15 +64,7 @@
 
             this.edit();
 
-            user_id.select2({
-                theme: "bootstrap",
-                placeholder: "Select value...",
-                allowClear: true,
-            });
-
-            user_id.on("input change", function () {
-                //this.item.user_id = $(this).val();
-            });
+            setTimeout(() => this.userIdSelect2(), 500);
         },
         created() {
             //
@@ -100,6 +92,8 @@
                         }, error => {
                             this.errors = error.response.data.error;
                             console.log('this.errors', this.errors);
+
+                            setTimeout(() => this.userIdSelect2(), 3);
                         }).catch(err => {
                             //
                         });
@@ -111,9 +105,14 @@
                     .then(() => {
                         //clear all the fields after successful create
                         this.clearFields(this.item);
+
+                        //clear the select2 field
+                        setTimeout(() => this.userIdSelect2(), 3);
                     }, error => {
                         this.errors = error.response.data.error;
                         console.log('this.errors', this.errors);
+
+                        setTimeout(() => this.userIdSelect2(), 3);
                     }).catch(err => {
                         //
                     });
@@ -155,6 +154,14 @@
                 }
 
                 return typeof errors[name] == 'undefined' ? (typeof errors === 'string' ? errors : '') : errors[name];
+            },
+            userIdSelect2() {
+                let user_id = $("#user_id");
+                user_id.select2({
+                    theme: "bootstrap",
+                    placeholder: "Select value...",
+                    allowClear: true,
+                });
             },
         }
     }
