@@ -60,8 +60,6 @@
             }
         },
         mounted() {
-            let user_id = $("#user_id");
-
             this.getAllUsers();
             this.edit();
 
