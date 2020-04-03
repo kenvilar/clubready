@@ -3,10 +3,6 @@
 @push('stylesheets')
     <link href="{{asset('vendors/iCheck/css/all.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('css/form_layouts.css')}}" rel="stylesheet" type="text/css"/>
-
-    <!--select2-->
-    <link href="{{asset('vendors/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('vendors/select2/css/select2-bootstrap.min.css')}}" rel="stylesheet" type="text/css">
 @endpush
 
 @section('breadcrumb')

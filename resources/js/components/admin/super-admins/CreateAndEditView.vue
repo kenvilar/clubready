@@ -17,7 +17,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <select name="user_id" id="user_id" class="form-control select2"
-                                            v-model.lazy="item.user_id"
+                                            v-model="item.user_id"
                                             :class="{'is-invalid': hasError(errors, 'user_id')}"
                                             style="width:100%">
                                         <option disabled value="0">Select value...</option>
@@ -58,10 +58,8 @@
             }
         },
         mounted() {
-            this.getAllUsers();
             this.edit();
-
-            setTimeout(() => this.userIdSelect2(), 500);
+            this.getAllUsers();
         },
         created() {
             //
@@ -89,8 +87,6 @@
                         }, error => {
                             this.errors = error.response.data.error;
                             console.log('this.errors', this.errors);
-
-                            setTimeout(() => this.userIdSelect2(), 3);
                         }).catch(err => {
                             //
                         });
@@ -102,14 +98,9 @@
                     .then(() => {
                         //clear all the fields after successful create
                         this.clearFields(this.item);
-
-                        //clear the select2 field
-                        setTimeout(() => this.userIdSelect2(), 3);
                     }, error => {
                         this.errors = error.response.data.error;
                         console.log('this.errors', this.errors);
-
-                        setTimeout(() => this.userIdSelect2(), 3);
                     }).catch(err => {
                         //
                     });
@@ -134,12 +125,13 @@
                 return this.item;
             },
             async getAllUsers() {
-                let all_users = axios.get(`/api/users/?select=true&id=true&first_name=true&last_name=true`)
+                axios.get(`/api/users/?select=true&id=true&first_name=true&last_name=true`)
                     .then(response => {
                         this.all_users = response.data;
                     }, error => {
                         this.errors = error.response.data.error;
-                    }).catch(err => {
+                    })
+                    .catch(err => {
                         //
                     });
             },
@@ -152,14 +144,6 @@
                 }
 
                 return typeof errors[name] == 'undefined' ? (typeof errors === 'string' ? errors : '') : errors[name];
-            },
-            userIdSelect2() {
-                let user_id = $("#user_id");
-                user_id.select2({
-                    theme: "bootstrap",
-                    placeholder: "Select value...",
-                    allowClear: true,
-                });
             },
         }
     }
