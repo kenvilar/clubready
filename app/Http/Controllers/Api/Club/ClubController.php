@@ -17,7 +17,19 @@ class ClubController extends Controller
      */
     public function index()
     {
-        $clubs = Club::all();
+        $columns = [];
+        $clubs = Club::query()->get();
+
+        //display specific columns
+        if (\request()->all() && \request()->select == true) {
+            foreach (\request()->all() as $key => $value) {
+                if ($key !== 'select' && $value == 'true') {
+                    array_push($columns, $key);
+                }
+            }
+
+            $clubs = Club::query()->get($columns);
+        }
 
         return $this->showAll($clubs);
     }
