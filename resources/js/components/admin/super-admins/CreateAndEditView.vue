@@ -48,8 +48,6 @@
 </template>
 
 <script>
-    import 'select2';
-
     export default {
         name: 'super-admins-create-and-edit-view-vue',
         props: {

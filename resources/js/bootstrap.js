@@ -16,6 +16,7 @@ try {
      * vendors js
      * */
     require('datedropper');
+    require('select2');
     window.moment = require('moment');
 } catch (e) {}
 
