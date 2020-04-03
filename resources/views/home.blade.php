@@ -14,7 +14,7 @@
 @endsection
 
 @section('content')
-    <users-current-user-info-vue>
+    <users-current-user-info-vue :auth-user='@json(auth()->user())'>
 @endsection
 
 @push('footer-scripts')
