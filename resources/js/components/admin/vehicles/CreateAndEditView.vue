@@ -16,9 +16,21 @@
                                     <label class="form-control-label" for="user_id">User ID</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="number" class="form-control" name="user_id" id="user_id"
+                                    <!--<input type="number" class="form-control" name="user_id" id="user_id"
                                            v-model="item.user_id"
-                                           :class="{'is-invalid': hasError(errors, 'user_id')}">
+                                           :class="{'is-invalid': hasError(errors, 'user_id')}">-->
+                                    <select name="user_id" id="user_id" class="form-control select2"
+                                            v-model="item.user_id"
+                                            :class="{'is-invalid': hasError(errors, 'user_id')}"
+                                            style="width:100%">
+                                        <option disabled value="0">Select value...</option>
+                                        <option v-for="user in all_users"
+                                                :key="user.id"
+                                                :value="user.id"
+                                                :selected="user.id === item.user_id">
+                                            {{user.first_name}} {{user.last_name}}
+                                        </option>
+                                    </select>
                                     <span role="alert" class="invalid-feedback">
                                         <strong>{{hasError(errors, 'user_id', true)}}</strong></span>
                                 </div>
@@ -96,63 +108,6 @@
             </div>
         </div>
     </section>
-    <!--<div>
-        <div class="row">
-            <div class="col-md-12">
-                This is {{database_model}} {{isEditView(item.id) ? 'edit' : 'create'}} page
-            </div>
-            <div class="col-5">
-                <a class="btn btn-info" onclick="window.history.go(-1)">Back</a>
-            </div>
-            <div class="col-5">
-                <div class="form-group required">
-                    <label for="user_id">User ID</label>
-                    <input type="number" class="form-control" name="user_id" id="user_id" v-model="item.user_id"
-                           :class="{'is-invalid': hasError(errors, 'user_id')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'user_id', true)}}</strong></span>
-                </div>
-                <div class="form-group required">
-                    <label for="make">Make</label>
-                    <input type="text" class="form-control" name="make" id="make" v-model="item.make"
-                           :class="{'is-invalid': hasError(errors, 'make')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'make', true)}}</strong></span>
-                </div>
-                <div class="form-group required">
-                    <label for="model">Model</label>
-                    <input type="text" class="form-control" name="model" id="model" v-model="item.model"
-                           :class="{'is-invalid': hasError(errors, 'model')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'model', true)}}</strong></span>
-                </div>
-                <div class="form-group required">
-                    <label for="year">Year</label>
-                    <input type="text" class="form-control" name="year" id="year" v-model="item.year"
-                           :class="{'is-invalid': hasError(errors, 'year')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'year', true)}}</strong></span>
-                </div>
-                <div class="form-group required">
-                    <label for="capacity">Capacity</label>
-                    <input type="text" class="form-control" name="capacity" id="capacity" v-model="item.capacity"
-                           :class="{'is-invalid': hasError(errors, 'capacity')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'capacity', true)}}</strong></span>
-                </div>
-                <div class="form-group required">
-                    <label for="induction">Induction</label>
-                    <input type="text" class="form-control" name="induction" id="induction" v-model="item.induction"
-                           :class="{'is-invalid': hasError(errors, 'induction')}">
-                    <span role="alert" class="invalid-feedback">
-                        <strong>{{hasError(errors, 'induction', true)}}</strong></span>
-                </div>
-                <div class="form-group">
-                    <button @click="storeOrUpdate">{{ isEditView(item.id) ? 'Update' : 'Create'}}</button>
-                </div>
-            </div>
-        </div>
-    </div>-->
 </template>
 
 <script>
@@ -167,6 +122,7 @@
         },
         mounted() {
             this.edit();
+            this.getAllUsers();
         },
         created() {
             //
@@ -179,6 +135,7 @@
                 database_model: 'vehicles',
                 item: {},
                 errors: {},
+                all_users: {},
             }
         },
         methods: {
@@ -228,6 +185,17 @@
                     this.errors = {};
                 }
                 return this.item;
+            },
+            async getAllUsers() {
+                axios.get(`/api/users/?select=true&id=true&first_name=true&last_name=true`)
+                    .then(response => {
+                        this.all_users = response.data;
+                    }, error => {
+                        this.errors = error.response.data.error;
+                    })
+                    .catch(err => {
+                        //
+                    });
             },
             isEditView(param) {
                 return typeof param !== "undefined" || param !== undefined;
