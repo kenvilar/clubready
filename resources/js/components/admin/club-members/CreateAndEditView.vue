@@ -16,9 +16,18 @@
                                     <label class="form-control-label" for="user_id">User ID</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="number" class="form-control" name="user_id" id="user_id"
-                                           v-model="item.user_id"
-                                           :class="{'is-invalid': hasError(errors, 'user_id')}">
+                                    <select name="user_id" id="user_id" class="form-control"
+                                            v-model="item.user_id"
+                                            :class="{'is-invalid': hasError(errors, 'user_id')}"
+                                            style="width:100%">
+                                        <option disabled value="0">Select value...</option>
+                                        <option v-for="user in all_users"
+                                                :key="user.id"
+                                                :value="user.id"
+                                                :selected="user.id === item.user_id">
+                                            {{user.first_name}} {{user.last_name}}
+                                        </option>
+                                    </select>
                                     <span role="alert" class="invalid-feedback">
                                         <strong>{{hasError(errors, 'user_id', true)}}</strong></span>
                                 </div>
@@ -28,9 +37,18 @@
                                     <label class="form-control-label" for="club_id">Club ID</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="number" class="form-control" name="club_id" id="club_id"
-                                           v-model="item.club_id"
-                                           :class="{'is-invalid': hasError(errors, 'club_id')}">
+                                    <select name="club_id" id="club_id" class="form-control"
+                                            v-model="item.club_id"
+                                            :class="{'is-invalid': hasError(errors, 'club_id')}"
+                                            style="width:100%">
+                                        <option disabled value="0">Select value...</option>
+                                        <option v-for="club in all_clubs"
+                                                :key="club.id"
+                                                :value="club.id"
+                                                :selected="club.id === item.club_id">
+                                            {{club.name}}
+                                        </option>
+                                    </select>
                                     <span role="alert" class="invalid-feedback">
                                         <strong>{{hasError(errors, 'club_id', true)}}</strong></span>
                                 </div>
@@ -74,6 +92,8 @@
         },
         mounted() {
             this.edit();
+            this.getAllUsers();
+            this.getAllClubs();
         },
         created() {
             //
@@ -86,6 +106,8 @@
                 database_model: 'club-members',
                 item: {},
                 errors: {},
+                all_users: {},
+                all_clubs: {},
             }
         },
         methods: {
@@ -134,6 +156,28 @@
                     this.errors = {};
                 }
                 return this.item;
+            },
+            async getAllUsers() {
+                axios.get(`/api/users/?select=true&id=true&first_name=true&last_name=true`)
+                    .then(response => {
+                        this.all_users = response.data;
+                    }, error => {
+                        this.errors = error.response.data.error;
+                    })
+                    .catch(err => {
+                        //
+                    });
+            },
+            async getAllClubs() {
+                axios.get(`/api/clubs/?select=true&id=true&name=true`)
+                    .then(response => {
+                        this.all_clubs = response.data;
+                    }, error => {
+                        this.errors = error.response.data.error;
+                    })
+                    .catch(err => {
+                        //
+                    });
             },
             isEditView(param) {
                 return typeof param !== "undefined" || param !== undefined;
