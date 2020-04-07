@@ -1,4 +1,31 @@
 <ul class="navigation">
+    @if (auth()->user()->id === 1)
+        <li class="{{request()->routeIs('web.passport.*') ? 'active' : ''}} menu-dropdown" id="active">
+            <a>
+                <i class="menu-icon ti-settings"></i>
+                <span class="mm-text ">Passports</span>
+                <span class="fa arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="{{request()->routeIs('web.passport.passport-clients') ? 'active' : ''}}">
+                    <a href="{{route('web.passport.passport-clients')}}">
+                        <i class="menu-icon ti-settings"></i> Passport Clients
+                    </a>
+                </li>
+                <li class="{{request()->routeIs('web.passport.passport-authorized-clients') ? 'active' : ''}}">
+                    <a href="{{route('web.passport.passport-authorized-clients')}}">
+                        <i class="menu-icon ti-settings"></i> Passport Authorized Clients
+                    </a>
+                </li>
+                <li class="{{request()->routeIs('web.passport.passport-personal-access-tokens') ? 'active' : ''}}">
+                    <a href="{{route('web.passport.passport-personal-access-tokens')}}">
+                        <i class="menu-icon ti-settings"></i> Passport Personal Access Tokens
+                    </a>
+                </li>
+            </ul>
+        </li>
+    @endif
+
     <li class="{{request()->routeIs('web.user.*') ? 'active' : ''}}" id="active">
         <a href="{{ route('web.user.index') }}">
             <i class="menu-icon ti-user"></i>
