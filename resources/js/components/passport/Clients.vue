@@ -381,13 +381,15 @@
             },
 
             getAuthorizationCode(client) {
-                //window.location.href = `/oauth/authorize/?client_id=${client.id}&redirect_uri=${${client.redirect}}&response_type=code`;
-                window.open(`/oauth/authorize/?client_id=${client.id}&redirect_uri=${client.redirect}&response_type=code`, "_blank");
+                window.open(
+                    `/oauth/authorize/?client_id=${client.id}&redirect_uri=${client.redirect}&response_type=code`,
+                    "_blank");
             },
 
             getAuthorizationToken(client) {
-                //window.location.href = `/oauth/authorize/?client_id=${client.id}&redirect_uri=${${client.redirect}}&response_type=code`;
-                window.open(`/oauth/authorize/?client_id=${client.id}&redirect_uri=${client.redirect}&response_type=token`, "_blank");
+                window.open(
+                    `/oauth/authorize/?client_id=${client.id}&redirect_uri=${client.redirect}&response_type=token`,
+                    "_blank");
             },
         }
     }
