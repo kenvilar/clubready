@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api\Club;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Models\Club;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-class ClubController extends Controller
+class ClubController extends ApiController
 {
     /**
      * Create a new controller instance.

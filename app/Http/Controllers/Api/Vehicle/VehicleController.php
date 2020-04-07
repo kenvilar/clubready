@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api\Vehicle;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Models\Vehicle;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-class VehicleController extends Controller
+class VehicleController extends ApiController
 {
     /**
      * Create a new controller instance.

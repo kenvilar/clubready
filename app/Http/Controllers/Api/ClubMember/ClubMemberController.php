@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\ClubMember;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Models\ClubMember;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\JsonResponse;
@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 
-class ClubMemberController extends Controller
+class ClubMemberController extends ApiController
 {
     /**
      * Create a new controller instance.

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api\MembershipType;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Models\MembershipType;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-class MembershipTypeController extends Controller
+class MembershipTypeController extends ApiController
 {
     /**
      * Create a new controller instance.

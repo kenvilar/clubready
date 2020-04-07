@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Api\SuperAdmin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Models\SuperAdmin;
 use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-class SuperAdminController extends Controller
+class SuperAdminController extends ApiController
 {
     /**
      * Create a new controller instance.
