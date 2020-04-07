@@ -13,6 +13,16 @@ use Illuminate\Validation\ValidationException;
 class UserController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('client');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return JsonResponse
