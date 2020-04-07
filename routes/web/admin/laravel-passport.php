@@ -7,6 +7,9 @@
  *
  */
 
-Route::get('passport-clients', 'PassportController@passportClients');
-Route::get('passport-authorized-clients', 'PassportController@passportAuthorizedClients');
-Route::get('passport-personal-access-tokens', 'PassportController@passportPersonalAccessTokens');
+Route::get('passport-clients', 'PassportController@passportClients')
+    ->name('passport-clients');
+Route::get('passport-authorized-clients', 'PassportController@passportAuthorizedClients')
+    ->name('passport-authorized-clients');
+Route::get('passport-personal-access-tokens', 'PassportController@passportPersonalAccessTokens')
+    ->name('passport-personal-access-tokens');
