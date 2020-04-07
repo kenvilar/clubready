@@ -1,0 +1,6 @@
+body > .header .logo img {
+    @media screen and (min-width: 560px) {
+        width: 160px;
+        margin-top: -24px;
+    }
+}
