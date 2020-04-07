@@ -19,6 +19,7 @@ class ClubMemberController extends ApiController
      */
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('client');
     }
 
