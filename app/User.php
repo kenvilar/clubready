@@ -112,4 +112,15 @@ class User extends Authenticatable
     {
         return Carbon::parse($value)->format('m/d/Y');
     }
+
+    /**
+     * Find the user instance for the given username.
+     *
+     * @param string $username
+     * @return User
+     */
+    public function findForPassport($username)
+    {
+        return $this->where('username', $username)->first();
+    }
 }
