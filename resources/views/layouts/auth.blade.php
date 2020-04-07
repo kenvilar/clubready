@@ -31,7 +31,7 @@
             <div class="col-lg-4 col-10 col-sm-8 m-auto login-form">
 
                 <h2 class="text-center logo_h2">
-                    <img src="{{ asset('img/logo/mra-logo.png') }}" alt="Logo" width="200">
+                    <img src="{{ asset('img/logo/clubready.png') }}" alt="Logo" width="200">
                 </h2>
 
                 <div class="card-body">

@@ -53,6 +53,5 @@ Route::namespace('Vehicle')->name('vehicle.')->group(base_path('routes/web/admin
 
 /**
  * Laravel Passport
- * TODO: remove these after testing the laravel passport
  */
 Route::namespace('Passport')->name('passport.')->group(base_path('routes/web/admin/laravel-passport.php'));

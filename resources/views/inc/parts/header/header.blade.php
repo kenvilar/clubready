@@ -3,7 +3,7 @@
     <nav class="navbar navbar-static-top" role="navigation">
         <a href="{{ route('home') }}" class="logo">
             <!-- Add the class icon to your logo image or logo icon to add the marginin -->
-            <img src="{{ asset('img/logo/mra-logo.png') }}" alt="logo" width="80"/>
+            <img src="{{ asset('img/logo/clubready.png') }}" alt="logo" width="80"/>
         </a>
         <!-- Header Navbar: style can be found in header-->
         <!-- Sidebar toggle button-->

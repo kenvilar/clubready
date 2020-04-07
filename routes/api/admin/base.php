@@ -50,3 +50,8 @@ Route::namespace('User')->name('user.')->group(base_path('routes/api/admin/user.
  * Vehicle
  */
 Route::namespace('Vehicle')->name('vehicle.')->group(base_path('routes/api/admin/vehicle.php'));
+
+/**
+ * Laravel Passport
+ */
+Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
