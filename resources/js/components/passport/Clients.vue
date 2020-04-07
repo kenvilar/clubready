@@ -33,6 +33,8 @@
                             <th>Secret</th>
                             <th></th>
                             <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
 
@@ -64,6 +66,20 @@
                             <td style="vertical-align: middle;">
                                 <a class="action-link text-danger" @click="destroy(client)">
                                     Delete
+                                </a>
+                            </td>
+
+                            <!-- Authorization Code Button -->
+                            <td style="vertical-align: middle;">
+                                <a class="btn btn-info" tabindex="-1" @click="getAuthorizationCode(client)">
+                                    Get Code
+                                </a>
+                            </td>
+
+                            <!-- Authorization Token Button -->
+                            <td style="vertical-align: middle;">
+                                <a class="btn btn-default" tabindex="-1" @click="getAuthorizationToken(client)">
+                                    Get Token
                                 </a>
                             </td>
                         </tr>
@@ -362,7 +378,17 @@
                         .then(response => {
                             this.getClients();
                         });
-            }
+            },
+
+            getAuthorizationCode(client) {
+                //window.location.href = `/oauth/authorize/?client_id=${client.id}&redirect_uri=${${client.redirect}}&response_type=code`;
+                window.open(`/oauth/authorize/?client_id=${client.id}&redirect_uri=${client.redirect}&response_type=code`, "_blank");
+            },
+
+            getAuthorizationToken(client) {
+                //window.location.href = `/oauth/authorize/?client_id=${client.id}&redirect_uri=${${client.redirect}}&response_type=code`;
+                window.open(`/oauth/authorize/?client_id=${client.id}&redirect_uri=${client.redirect}&response_type=token`, "_blank");
+            },
         }
     }
 </script>
