@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;
 
@@ -122,5 +123,16 @@ class User extends Authenticatable
     public function findForPassport($username)
     {
         return $this->where('email', $username)->first();
+    }
+
+    /**
+     * Validate the password of the user for the Passport password grant.
+     *
+     * @param string $password
+     * @return bool
+     */
+    public function validateForPassportPasswordGrant($password)
+    {
+        return Hash::check($password, $this->password);
     }
 }
