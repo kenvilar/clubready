@@ -4,7 +4,9 @@
              height="35" alt="User Image">
         <div class="riot">
             <div>
-                {{ Auth::user()->{'first_name'} }} {{ Auth::user()->{'last_name'}  }}
+                @if (Auth::check())
+                    {{ Auth::user()->{'first_name'} }} {{ Auth::user()->{'last_name'}  }}
+                @endif
                 <span><i class="fa fa-sort-down"></i></span>
             </div>
         </div>
@@ -13,7 +15,9 @@
         <!-- User image -->
         <li class="user-header">
             <img src="{{ asset('img/authors/avatar1.jpg') }}" class="rounded-circle" alt="User Image">
-            <p>{{ Auth::user()->{'first_name'} }} {{ Auth::user()->{'last_name'}  }}</p>
+            @if (Auth::check())
+                <p>{{ Auth::user()->{'first_name'} }} {{ Auth::user()->{'last_name'}  }}</p>
+            @endif
         </li>
         <!-- Menu Body -->
         <li class="p-t-3"><a href="{{ route('home') }}" class="dropdown-item"> <i class="fa fa-fw ti-user"></i> My Profile
