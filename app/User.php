@@ -115,17 +115,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Find the user instance for the given username.
-     *
-     * @param string $username
-     * @return User
-     */
-    public function findForPassport($username)
-    {
-        return $this->where('email', $username)->first();
-    }
-
-    /**
      * Validate the password of the user for the Passport password grant.
      *
      * @param string $password
