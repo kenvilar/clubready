@@ -1,3 +1,4 @@
+# composer dump-autoload
 alias laravelclear_compiled='php artisan clear-compiled'
 alias laravelclear_cache='php artisan cache:clear'
 alias laravelclear_config='php artisan config:clear'
