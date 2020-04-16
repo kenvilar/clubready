@@ -7,6 +7,8 @@
  *
  */
 
+Route::get('users/user-token', 'UserController@userToken');
+
 Route::resource('users', 'UserController', ['except' => ['store', 'update', 'destroy',]])->names([
     'index' => 'index',
     'create' => 'create',

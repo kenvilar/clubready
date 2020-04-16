@@ -60,4 +60,17 @@ class UserController extends Controller
     {
         return view('admin.user.createAndEditForm', ['user' => $user]);
     }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function userToken()
+    {
+        if (!auth()->check()) {
+            return response()->json(['error' => 'Not authenticated user.', 'code' => 401], 401);
+        }
+        $user = auth()->user()->token;
+
+        return response()->json($user, 200);
+    }
 }
