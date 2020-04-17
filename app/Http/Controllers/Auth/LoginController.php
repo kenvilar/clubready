@@ -156,8 +156,6 @@ class LoginController extends Controller
         $request->session()->put('myToken', $accessToken);
         $user['token'] = $accessToken;
         $user->save();
-
-        return $accessToken;
     }
 
     /**
@@ -193,15 +191,6 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        // Delete the personal access token session
-        $user = \auth()->user();
-        $user['token'] = null;
-
-        $request->session()->forget('myToken');
-
-        $user->save();
-
-
         $this->guard()->logout();
 
         $request->session()->invalidate();
