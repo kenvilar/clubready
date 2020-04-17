@@ -6,7 +6,6 @@ use App\Http\Controllers\ApiController;
 use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -191,5 +190,23 @@ class UserController extends ApiController
         $user->delete();
 
         return $this->showOne($user);
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function logoutApi(Request $request)
+    {
+        // Delete the personal access token session and token field in users table
+        session()->forget('myToken');
+        // Revoke the token in passport table
+        $request->user()->token()->revoke();
+
+        $user = \auth()->user();
+        $user['token'] = null;
+        $user->save();
     }
 }
