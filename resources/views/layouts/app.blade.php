@@ -63,7 +63,7 @@
 <div id="qn"></div>
 
 <script>
-    window.Laravel = {!! json_encode(['csrfToken' => csrf_token(), 'apiToken' => auth()->user()->token ?? null,]) !!};
+    window.Laravel = {!! json_encode(['apiToken' => auth()->user()->token ?? null,]) !!};
 </script>
 
 <!-- global js -->
