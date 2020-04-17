@@ -10,7 +10,6 @@ class ApiController extends Controller
 
     public function __construct()
     {
-        //if you want to enable this, change the middleware to api from mapApiRoutes() in app/Providers/RouteServiceProvider.php
-        //$this->middleware('auth:api');
+        $this->middleware('auth:api');
     }
 }
