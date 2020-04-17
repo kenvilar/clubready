@@ -75,11 +75,6 @@
 <script>
     export default {
         name: 'users-current-user-info-vue',
-        props: {
-            authUser: {
-                type: Object,
-            }
-        },
         mounted() {
             this.show();
         },
@@ -98,7 +93,10 @@
         },
         methods: {
             async show() {
-                this.item = this.authUser;
+                axios.get(`/api/user`)
+                    .then(response => {
+                        this.item = response.data;
+                    });
             },
             formatDate(date) {
                 return date ? moment(date).format('MMMM D, YYYY') : '';
