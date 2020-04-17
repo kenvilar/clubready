@@ -26,6 +26,7 @@ var paths = {
     'moment': vendors + 'moment/',
     'simplelineicons': vendors + 'simple-line-icons/',
     'slimscroll': vendors + 'jquery-slimscroll/',
+    'sweetalert2': vendors + 'sweetalert2/dist/',
 };
 
 /*
@@ -80,6 +81,10 @@ mix.copy(paths.simplelineicons + 'fonts', destVendors + 'simple-line-icons/fonts
 
 //slimscroll
 mix.copy(paths.slimscroll + 'jquery.slimscroll.min.js', destVendors + 'jquery-slimscroll/js');
+
+// Sweet Alert
+mix.copy(paths.sweetalert2 + 'sweetalert2.min.css', destVendors + 'sweetalert2/css');
+mix.copy(paths.sweetalert2 + 'sweetalert2.min.js', destVendors + 'sweetalert2/js');
 
 mix.styles(
     [
