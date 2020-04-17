@@ -29,16 +29,26 @@
         <li role="presentation" class="dropdown-divider"></li>
         <!-- Menu Footer-->
         <li class="user-footer">
-            <div class="float-right">
-                <a href="{{ route('logout') }}"
-                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            <div class="float-right" id="logout">
+                <a @click="clickLogout" href>
                     <i class="fa fa-fw ti-shift-right"></i>
                     {{ __('Logout') }}
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
             </div>
         </li>
     </ul>
 </li>
+
+@push('footer-scripts')
+    <script>
+        new Vue({
+            el: '#logout',
+            methods: {
+                async clickLogout() {
+                    axios.post(`/api/logoutapi`, '', {headers: {Authorization: 'Bearer ' + Laravel.apiToken}});
+                    axios.post(`/logout`,);
+                },
+            }
+        });
+    </script>
+@endpush
