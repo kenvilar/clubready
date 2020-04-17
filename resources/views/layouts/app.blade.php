@@ -62,6 +62,10 @@
 
 <div id="qn"></div>
 
+<script>
+    window.Laravel = {!! json_encode(['csrfToken' => csrf_token(), 'apiToken' => auth()->user()->token ?? null,]) !!};
+</script>
+
 <!-- global js -->
 <script src="{{asset('js/app.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/app2.js')}}" type="text/javascript"></script>
