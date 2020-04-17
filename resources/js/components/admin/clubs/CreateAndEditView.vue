@@ -135,6 +135,8 @@
 </template>
 
 <script>
+    import swal from 'sweetalert2';
+
     export default {
         name: 'clubs-create-and-edit-view-vue',
         props: {
@@ -181,6 +183,12 @@
                     .then(() => {
                         //clear all the fields after successful create
                         this.clearFields(this.item);
+
+                        swal.fire({
+                            title: "Success",
+                            text: "New club has been saved.",
+                            type: "success",
+                        });
                     }, error => {
                         this.errors = error.response.data.error;
                         console.log('this.errors', this.errors);
