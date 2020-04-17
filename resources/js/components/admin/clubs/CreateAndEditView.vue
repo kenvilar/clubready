@@ -135,8 +135,6 @@
 </template>
 
 <script>
-    import swal from 'sweetalert2';
-
     export default {
         name: 'clubs-create-and-edit-view-vue',
         props: {

@@ -17,6 +17,7 @@ try {
      * */
     require('datedropper');
     window.moment = require('moment');
+    window.swal = require('sweetalert2');
 } catch (e) {}
 
 /**
