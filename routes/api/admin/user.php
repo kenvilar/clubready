@@ -7,4 +7,5 @@
  *
  */
 
+Route::post('logoutapi', 'UserController@logoutApi')->name('logoutapi');
 Route::resource('users', 'UserController', ['except' => ['create', 'edit']]);
