@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'ClubReady') }}</title>
+    <title>{{ config('app.name', 'MyApp') }}</title>
 
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}"/>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -63,7 +63,7 @@
 <div id="qn"></div>
 
 <script>
-    window.Laravel = {!! json_encode(['apiToken' => auth()->user()->token ?? null,]) !!};
+    window.Laravel = {!! json_encode(['apiToken' => session('myToken') ?? null]) !!};
 </script>
 
 <!-- global js -->

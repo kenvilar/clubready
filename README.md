@@ -1,6 +1,6 @@
-## About ClubReady
+## About the Project
 
-ClubReady is a web app for creating clubs and organizing its members
+This project is a web app for creating clubs and organizing its members
 
 ## TODO
 

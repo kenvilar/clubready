@@ -31,7 +31,7 @@
             <div class="col-lg-4 col-10 col-sm-8 m-auto login-form">
 
                 <h2 class="text-center logo_h2">
-                    <img src="{{ asset('img/logo/clubready.png') }}" alt="Logo" width="200">
+                    <img src="{{ asset('img/logo/my-logo.png') }}" alt="Logo" width="200">
                 </h2>
 
                 <div class="card-body">
@@ -50,7 +50,7 @@
                                            placeholder="{{ __('E-mail') }}">
 
                                     @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                             <small>{{ $message }}</small>
                                         </span>
                                     @enderror
@@ -63,7 +63,7 @@
                                            autocomplete="current-password">
 
                                     @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                             <small>{{ $message }}</small>
                                         </span>
                                     @enderror
@@ -120,6 +120,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    window.Laravel = {!! json_encode(['apiToken' => session('myToken') ?? null]) !!};
+</script>
 
 <!-- global js -->
 <script src="{{ asset('js/app.js') }}"></script>
