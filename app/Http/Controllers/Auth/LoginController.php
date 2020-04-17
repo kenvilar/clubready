@@ -154,8 +154,6 @@ class LoginController extends Controller
         //Add the passport personal access token
         $accessToken = $user->createToken($request->email . '-' . now())->accessToken;
         $request->session()->put('myToken', $accessToken);
-        $user['token'] = $accessToken;
-        $user->save();
     }
 
     /**
