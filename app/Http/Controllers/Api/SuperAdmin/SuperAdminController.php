@@ -88,8 +88,7 @@ class SuperAdminController extends ApiController
                     $q->select(['id', 'first_name', 'last_name',]);
                 },
             ])
-            ->find($superAdmin)
-            ->shift();
+            ->find($superAdmin->id);
 
         return $this->showOne($superAdmin);
     }

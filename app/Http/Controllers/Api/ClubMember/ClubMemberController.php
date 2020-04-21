@@ -78,10 +78,9 @@ class ClubMemberController extends ApiController
                     $q->select(['id', 'name',]);
                 },
             ])
-            ->find($clubMember)
-            ->shift();
+            ->find($clubMember->id);
 
-        return $clubMember;
+        return $this->showOne($clubMember);
     }
 
     /**
