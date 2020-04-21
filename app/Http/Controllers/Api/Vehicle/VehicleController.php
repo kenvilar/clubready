@@ -58,6 +58,15 @@ class VehicleController extends ApiController
      */
     public function show(Vehicle $vehicle)
     {
+        $vehicle = $vehicle
+            ->newModelQuery()
+            ->with([
+                'user' => function ($q) {
+                    $q->select(['id', 'first_name', 'last_name',]);
+                },
+            ])
+            ->find($vehicle->id);
+
         return $this->showOne($vehicle);
     }
 
