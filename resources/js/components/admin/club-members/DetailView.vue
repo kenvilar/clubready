@@ -19,11 +19,11 @@
                             <tbody>
                             <tr>
                                 <td>User:</td>
-                                <td>{{item.user['first_name']}} {{item.user['last_name']}}</td>
+                                <td v-if="item.user">{{item.user['first_name']}} {{item.user['last_name']}}</td>
                             </tr>
                             <tr>
                                 <td>Club:</td>
-                                <td>{{item.club['name']}}</td>
+                                <td v-if="item.club">{{item.club['name']}}</td>
                             </tr>
                             <tr>
                                 <td>Admin:</td>
