@@ -20,7 +20,7 @@
                             <table class="table table-striped table-bordered" id="datatable">
                                 <thead>
                                 <tr>
-                                    <th>User ID</th>
+                                    <th>User</th>
                                     <th>Created Date</th>
                                     <th>Edit</th>
                                     <th>Delete</th>

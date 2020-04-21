@@ -18,11 +18,11 @@
                         <table class="table table-striped table-condensed" id="customtable">
                             <tbody>
                             <tr>
-                                <td>User ID:</td>
-                                <td>{{item.user_id}}</td>
+                                <td>User:</td>
+                                <td v-if="item.user">{{item.user.first_name}} {{item.user.last_name}}</td>
                             </tr>
                             <tr>
-                                <td>Create Date:</td>
+                                <td>Created Date:</td>
                                 <td>{{formatDate(item.created_at)}}</td>
                             </tr>
                             </tbody>
