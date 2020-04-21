@@ -100,16 +100,44 @@
                 window.location.href = `/admin/${this.database_model}/${id}/edit`;
             },
             async clickDelete(id) {
-                let remove = axios.delete(`/api/${this.database_model}/${id}`)
-                    .then(response => {
-                        console.log('response.data', response.data);
-                    }, error => {
-                        this.errors = error.response.data;
-                        console.log('this.errors', this.errors);
-                    }).catch(err => {
-                        console.log('err', err.response);
-                    });
-                this.read();
+                swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then(result => {
+                    if (result.value) {
+                        axios.delete(`/api/${this.database_model}/${id}`)
+                            .then(response => {
+                                console.log('response.data', response.data);
+
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                ).then(response => {
+                                    if (response.value) {
+                                        this.read();
+                                    }
+                                });
+                            }, error => {
+                                this.errors = error.response.data;
+                                if (this.errors.error === "Cannot remove this resource permanently. It is related with any other resource") {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Cannot remove this item. It is related with any other resource!',
+                                    });
+                                }
+                                console.log('this.errors', this.errors);
+                            }).catch(err => {
+                            console.log('err', err.response);
+                        });
+                    }
+                })
             },
             formatDate(date) {
                 return date ? moment(date).format('MMMM D, YYYY') : '';
