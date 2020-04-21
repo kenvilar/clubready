@@ -137,7 +137,17 @@
                     let update = axios.put(`/api/${this.database_model}/${this.model_id}`, this.item)
                         .then(response => {
                             this.item = response.data;
-                            window.location.href = `/admin/${this.database_model}/${this.model_id}`;
+
+                            swal.fire({
+                                icon: 'success',
+                                title: "Success",
+                                text: "Membership type has been updated successfully.",
+                                type: "success",
+                            }).then(result => {
+                                if (result.value) {
+                                    window.location.href = `/admin/${this.database_model}/${this.model_id}`;
+                                }
+                            });
                         }, error => {
                             this.errors = error.response.data.error;
                             console.log('this.errors', this.errors);
@@ -150,8 +160,17 @@
 
                 let store = axios.post(`/api/${this.database_model}`, this.item)
                     .then(response => {
-                        //clear all the fields after successful create
-                        this.clearFields(this.item);
+                        swal.fire({
+                            icon: 'success',
+                            title: "Success",
+                            text: "New membership type has been created successfully.",
+                            type: "success",
+                        }).then(result => {
+                            if (result.value) {
+                                //clear all the fields after successful create
+                                this.clearFields(this.item);
+                            }
+                        });
                     }, error => {
                         this.errors = error.response.data.error;
                         console.log('this.errors', this.errors);

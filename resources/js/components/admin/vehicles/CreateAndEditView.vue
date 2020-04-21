@@ -13,12 +13,9 @@
                               novalidate>
                             <div class="form-group row striped-col required">
                                 <div class="col-sm-3 text-right txt_media">
-                                    <label class="form-control-label" for="user_id">User ID</label>
+                                    <label class="form-control-label" for="user_id">User</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <!--<input type="number" class="form-control" name="user_id" id="user_id"
-                                           v-model="item.user_id"
-                                           :class="{'is-invalid': hasError(errors, 'user_id')}">-->
                                     <select name="user_id" id="user_id" class="form-control select2"
                                             v-model="item.user_id"
                                             :class="{'is-invalid': hasError(errors, 'user_id')}"
@@ -144,7 +141,17 @@
                     let update = axios.put(`/api/${this.database_model}/${this.model_id}`, this.item)
                         .then(response => {
                             this.item = response.data;
-                            window.location.href = `/admin/${this.database_model}/${this.model_id}`;
+
+                            swal.fire({
+                                icon: 'success',
+                                title: "Success",
+                                text: "Vehicle has been updated successfully.",
+                                type: "success",
+                            }).then(result => {
+                                if (result.value) {
+                                    window.location.href = `/admin/${this.database_model}/${this.model_id}`;
+                                }
+                            });
                         }, error => {
                             this.errors = error.response.data.error;
                             console.log('this.errors', this.errors);
@@ -157,9 +164,17 @@
 
                 let store = axios.post(`/api/${this.database_model}`, this.item)
                     .then(response => {
-                        console.log('response', response);
-                        //clear all the fields after successful create
-                        this.clearFields(this.item);
+                        swal.fire({
+                            icon: 'success',
+                            title: "Success",
+                            text: "New vehicle has been created successfully.",
+                            type: "success",
+                        }).then(result => {
+                            if (result.value) {
+                                //clear all the fields after successful create
+                                this.clearFields(this.item);
+                            }
+                        });
                     }, error => {
                         this.errors = error.response.data.error;
                         console.log('this.errors', this.errors);
