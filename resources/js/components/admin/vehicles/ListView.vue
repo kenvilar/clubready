@@ -124,7 +124,7 @@
 
                                 swal.fire(
                                     'Deleted!',
-                                    'Your file has been deleted.',
+                                    'Item has been deleted.',
                                     'success'
                                 ).then(response => {
                                     if (response.value) {
