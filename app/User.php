@@ -109,7 +109,8 @@ class User extends Authenticatable
      */
     public function setDateOfBirthAttribute($value)
     {
-        $this->attributes['date_of_birth'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
+        $value = $value ? Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d') : null;
+        $this->attributes['date_of_birth'] = $value;
     }
 
     /**
