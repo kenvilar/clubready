@@ -32,6 +32,20 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + Laravel.apiToken;
 
 /**
+ * Interceptor
+ */
+axios.interceptors.response.use(response => {
+    return response;
+}, error => {
+    if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
+        axios.post(`/logout`,);
+        window.location = "/login";
+    }
+
+    return Promise.reject(error);
+});
+
+/**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just
  * a simple convenience so we don't have to attach every token manually.
@@ -44,23 +58,6 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-
-/**
- * Interceptor
- */
-axios.interceptors.response.use(response => {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
-    return response;
-}, error => {
-    if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
-        axios.post(`/logout`,);
-        window.location = "/login";
-    }
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
-    return Promise.reject(error);
-});
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
