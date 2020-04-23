@@ -18,6 +18,7 @@ try {
     require('datedropper');
     window.moment = require('moment');
     window.swal = require('sweetalert2');
+    window.DataTable = require('datatables.net');
 } catch (e) {}
 
 /**
@@ -31,19 +32,7 @@ window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + Laravel.apiToken;
 
-/**
- * Interceptor
- */
-axios.interceptors.response.use(response => {
-    return response;
-}, error => {
-    if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
-        axios.post(`/logout`,);
-        window.location = "/login";
-    }
-
-    return Promise.reject(error);
-});
+require('./interceptors');
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
