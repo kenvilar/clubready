@@ -58,19 +58,6 @@
             </div>
         </div>
     </section>
-    <!--<div>
-        <div class="col-12">
-            <div>This is index page</div>
-            <a class="btn btn-primary" @click="clickCreate()">Create</a>
-            <ul v-if="list.length">
-                <li v-for="item in list">
-                    {{item.name}}
-                    <a class="btn btn-success" @click="clickShow(item.id)">Show</a>
-                    <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
-                </li>
-            </ul>
-        </div>
-    </div>-->
 </template>
 
 <script>

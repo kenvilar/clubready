@@ -42,21 +42,6 @@
             </div>
         </div>
     </section>
-    <!--<div>
-        <div class="col-md-12">
-            <a class="btn btn-info" :href="`/admin/${database_model}`">Back</a>
-        </div>
-        <div class="col-md-12">
-            This is {{database_model}} show page
-            <div>Name: {{item.name}}</div>
-            <div>Year: {{item.year}}</div>
-            <div>Amount: {{item.amount}}</div>
-        </div>
-        <div class="col-md-12">
-            <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
-            <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
-        </div>
-    </div>-->
 </template>
 
 <script>
