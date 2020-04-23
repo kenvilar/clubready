@@ -3,8 +3,10 @@ $(document).ready(function () {
     $('#datatable').DataTable({
         "responsive": true,
         "columnDefs": [
-            { orderable: false, targets: [-1, -2], },
+            {orderable: false, targets: [-1, -2],},
         ],
+        "pageLength": 1000,
+        "lengthMenu": [[10, 25, 50, 1000, -1], [10, 25, 50, 1000, "All"]],
     });
     $('#table2').DataTable({
         "scrollX": true,

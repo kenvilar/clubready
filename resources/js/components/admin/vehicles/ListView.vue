@@ -30,7 +30,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="item in list">
+                                <tr v-for="item in list" :key="item.id">
                                     <td>
                                         <span role="link" @click="clickShow(item.id)"
                                               style="text-decoration: underline !important;">
