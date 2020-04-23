@@ -13,7 +13,7 @@
                               novalidate>
                             <div class="form-group row striped-col required">
                                 <div class="col-sm-3 text-right txt_media">
-                                    <label class="form-control-label" for="user_id">User ID</label>
+                                    <label class="form-control-label" for="user_id">User</label>
                                 </div>
                                 <div class="col-sm-6">
                                     <select name="user_id" id="user_id" class="form-control"
@@ -34,7 +34,7 @@
                             </div>
                             <div class="form-group row required">
                                 <div class="col-sm-3 text-right txt_media">
-                                    <label class="form-control-label" for="club_id">Club ID</label>
+                                    <label class="form-control-label" for="club_id">Club</label>
                                 </div>
                                 <div class="col-sm-6">
                                     <select name="club_id" id="club_id" class="form-control"
