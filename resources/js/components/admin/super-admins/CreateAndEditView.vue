@@ -91,7 +91,7 @@
                                 type: "success",
                             }).then(result => {
                                 if (result.value) {
-                                    window.location.href = `/admin/${this.database_model}/${this.model_id}`;
+                                    //
                                 }
                             });
                         }, error => {
