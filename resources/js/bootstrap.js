@@ -46,6 +46,23 @@ if (token) {
 }
 
 /**
+ * Interceptor
+ */
+axios.interceptors.response.use(response => {
+    // Any status code that lie within the range of 2xx cause this function to trigger
+    // Do something with response data
+    return response;
+}, error => {
+    if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
+        axios.post(`/logout`,);
+        window.location = "/login";
+    }
+    // Any status codes that falls outside the range of 2xx cause this function to trigger
+    // Do something with response error
+    return Promise.reject(error);
+});
+
+/**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
