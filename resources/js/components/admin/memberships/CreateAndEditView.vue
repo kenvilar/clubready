@@ -99,7 +99,7 @@
                                 type: "success",
                             }).then(result => {
                                 if (result.value) {
-                                    //
+                                    this.automaticFocusTheFirstInput();
                                 }
                             });
                         }, error => {
@@ -121,8 +121,8 @@
                             type: "success",
                         }).then(result => {
                             if (result.value) {
-                                //clear all the fields after successful create
                                 this.clearFields(this.item);
+                                this.automaticFocusTheFirstInput();
                             }
                         });
                     }, error => {
@@ -160,6 +160,12 @@
                 }
 
                 return typeof errors[name] == 'undefined' ? (typeof errors === 'string' ? errors : '') : errors[name];
+            },
+            automaticFocusTheFirstInput() {
+                setTimeout(() => {
+                    $('input:visible:enabled').toggleClass('focus-visible');
+                    $('form:first *:input[type!=hidden]:first').focus();
+                }, 300);
             },
         }
     }
