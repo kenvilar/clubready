@@ -5,8 +5,8 @@ $(document).ready(function () {
         "columnDefs": [
             {orderable: false, targets: [-1, -2],},
         ],
-        "pageLength": 1000,
-        "lengthMenu": [[10, 25, 50, 1000, -1], [10, 25, 50, 1000, "All"]],
+        "pageLength": 500,
+        "lengthMenu": [[10, 25, 50, 500, -1], [10, 25, 50, 500, "All"]],
     });
     $('#table2').DataTable({
         "scrollX": true,
