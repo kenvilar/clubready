@@ -37,61 +37,10 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <form action="{{ route('login') }}" id="authentication" method="post"
-                                  class="login_validator">
-                                @csrf
-
-                                <div class="form-group @error('email') has-error @enderror">
-                                    <label for="email" class="sr-only">{{ __('E-mail') }}</label>
-                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                           id="email" name="email"
-                                           value="{{ old('email') }}"
-                                           autocomplete="email" autofocus
-                                           placeholder="{{ __('E-mail') }}">
-
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <small>{{ $message }}</small>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group @error('password') has-error @enderror">
-                                    <label for="password" class="sr-only">{{ __('Password') }}</label>
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                           id="password"
-                                           name="password" placeholder="{{ __('Password') }}"
-                                           autocomplete="current-password">
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <small>{{ $message }}</small>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group checkbox">
-                                    <label for="remember">
-                                        <input type="checkbox" name="remember"
-                                               id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                        &nbsp; {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="{{ __('Login') }}" class="btn btn-primary btn-block"/>
-                                </div>
-
-                                @if (Route::has('password.request'))
-                                    <a href="{{ route('password.request') }}" id="forgot"
-                                       class="forgot"> {{ __('Forgot Password') }} ? </a>
-                                @endif
-
-                                @if (Route::has('register'))
-                                    <span class="float-right sign-up">{{ __('New') }} ? <a
-                                            href="{{ route('register') }}">{{ __('Sign Up') }}</a></span>
-                                @endif
-                            </form>
+                            @yield('content')
                         </div>
                     </div>
-                    <div class="row text-center social">
+                    {{--<div class="row text-center social">
                         <div class="col-12">
                             <p class="alter">{{ __('Sign in with') }}</p>
                         </div>
@@ -114,7 +63,7 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div>--}}
                 </div>
             </div>
         </div>
