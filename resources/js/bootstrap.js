@@ -18,7 +18,11 @@ try {
     require('datedropper');
     window.moment = require('moment');
     window.swal = require('sweetalert2');
-    window.DataTable = require('datatables.net');
+
+    let datatableElement = $("#datatable");
+    if (datatableElement) {
+        window.DataTable = require('datatables.net');
+    }
 } catch (e) {}
 
 /**

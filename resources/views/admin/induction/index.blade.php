@@ -18,7 +18,5 @@
 @endsection
 
 @push('footer-scripts')
-    <script src="{{asset('vendors/datatables/js/jquery.dataTables.js')}}" type="text/javascript"></script>
     <script src="{{asset('vendors/datatables/js/dataTables.bootstrap4.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/custom_js/responsive_datatables.js')}}" type="text/javascript"></script>
 @endpush
