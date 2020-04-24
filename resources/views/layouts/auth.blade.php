@@ -40,30 +40,6 @@
                             @yield('content')
                         </div>
                     </div>
-                    {{--<div class="row text-center social">
-                        <div class="col-12">
-                            <p class="alter">{{ __('Sign in with') }}</p>
-                        </div>
-                        <div class="row m-auto">
-
-                            <div class="col-4">
-                                <a href="#" class="btn btn-lg btn-facebook">
-                                    <i class="ti-facebook"></i>
-                                </a>
-                            </div>
-                            <div class="col-4">
-                                <a href="#" class="btn btn-lg btn-twitter">
-                                    <i class="ti-twitter-alt"></i>
-                                </a>
-                            </div>
-                            <div class="col-4">
-                                <a href="#" class="btn btn-lg btn-google">
-                                    <i class="ti-google"></i>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>--}}
                 </div>
             </div>
         </div>
@@ -81,7 +57,7 @@
 <!-- page level js -->
 <script src="{{ asset('vendors/iCheck/js/icheck.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendors/bootstrapvalidator/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/custom_js/login.js') }}" type="text/javascript"></script>
+@stack('footer-scripts')
 <!-- end of page level js -->
 </body>
 

@@ -47,3 +47,7 @@
         @endif
     </form>
 @endsection
+
+@push('footer-scripts')
+    <script src="{{ asset('js/custom_js/login.js') }}" type="text/javascript"></script>
+@endpush
