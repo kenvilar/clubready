@@ -61,7 +61,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -77,17 +77,23 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \App\User
      */
     protected function create(array $data)
     {
-        return User::create([
+        $users = User::query()->first();
+
+        $dataArr = [
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'verification_token' => User::generateVerificationCode(),
-        ]);
+            'verified' => !$users ? 1 : 0,
+            'verification_token' => !$users ? null : User::generateVerificationCode(),
+            'admin' => !$users ? 1 : 0,
+        ];
+
+        return User::create($dataArr);
     }
 }
