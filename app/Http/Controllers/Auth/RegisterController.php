@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\SuperAdmin;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Auth\Events\Registered;
@@ -94,6 +95,24 @@ class RegisterController extends Controller
             'admin' => !$users ? 1 : 0,
         ];
 
-        return User::create($dataArr);
+        $createdUser = User::create($dataArr);
+
+        $this->createSuperAdmin($users, $createdUser);
+
+        return $createdUser;
+    }
+
+    /**
+     * @param $users
+     * @param $createdUser
+     * @return void
+     */
+    private function createSuperAdmin($users, $createdUser)
+    {
+        if (!$users) {
+            SuperAdmin::query()->create([
+                'user_id' => $createdUser->id,
+            ]);
+        }
     }
 }
