@@ -1,6 +1,6 @@
 @if (Auth::check())
     <ul class="navigation">
-        @if (auth()->user()->admin == 1)
+        @if (UserHelper::isSuperAdmin())
             <li class="{{request()->routeIs('web.passport.*') ? 'active' : ''}} menu-dropdown" id="active">
                 <a>
                     <i class="menu-icon ti-settings"></i>
@@ -83,7 +83,7 @@
             </a>
         </li>
 
-        @if (auth()->user()->admin == 1)
+        @if (UserHelper::isSuperAdmin())
             <li class="{{request()->routeIs('web.super-admin.*') ? 'active' : ''}}">
                 <a href="{{ route('web.super-admin.index') }}">
                     <i class="menu-icon fa fa-fw fa-users"></i>
