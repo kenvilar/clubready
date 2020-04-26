@@ -4,9 +4,11 @@ namespace App\Helpers;
 
 use App\Models\SuperAdmin;
 
-class User
+class UserHelper
 {
     /**
+     * Returns true if the current authenticated user is a super admin
+     *
      * @return bool
      */
     public static function isSuperAdmin()

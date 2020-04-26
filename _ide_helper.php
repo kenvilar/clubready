@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.14.0 on 2020-04-08 14:51:43.
+ * Generated for Laravel 6.14.0 on 2020-04-26 23:46:44.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -14889,6 +14889,18 @@ namespace Illuminate\Support {
  
 }
 
+namespace App\Helpers { 
+
+    /**
+     * 
+     *
+     */ 
+    class UserHelper {
+         
+    }
+ 
+}
+
 namespace Facade\Ignition\Facades { 
 
     /**
@@ -18029,6 +18041,8 @@ namespace  {
     class Str extends \Illuminate\Support\Str {}
 
     class URL extends \Illuminate\Support\Facades\URL {}
+
+    class UserHelper extends \App\Helpers\UserHelper {}
 
     class Validator extends \Illuminate\Support\Facades\Validator {}
 
