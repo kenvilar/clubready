@@ -1,6 +1,6 @@
 <ul class="navigation">
     @if (Auth::check())
-        @if (auth()->user()->id === 1)
+        @if (auth()->user()->admin == 1)
             <li class="{{request()->routeIs('web.passport.*') ? 'active' : ''}} menu-dropdown" id="active">
                 <a>
                     <i class="menu-icon ti-settings"></i>
@@ -28,11 +28,24 @@
         @endif
     @endif
 
-    <li class="{{request()->routeIs('web.user.*') ? 'active' : ''}}" id="active">
+    <li class="{{request()->routeIs('web.user.*') ? 'active' : ''}} menu-dropdown" id="active">
         <a href="{{ route('web.user.index') }}">
             <i class="menu-icon ti-user"></i>
             <span class="mm-text ">Users</span>
+            <span class="fa arrow"></span>
         </a>
+        <ul class="sub-menu">
+            <li class="{{request()->routeIs('web.user.index') ? 'active' : ''}}">
+                <a href="{{route('web.user.index')}}">
+                    <i class="menu-icon ti-user"></i> Verified Users
+                </a>
+            </li>
+            <li class="{{request()->routeIs('web.user.index') ? 'active' : ''}}">
+                <a href="{{route('web.user.index')}}">
+                    <i class="menu-icon ti-user"></i> Unverified Users
+                </a>
+            </li>
+        </ul>
     </li>
     <li class="{{request()->routeIs('web.club.*') ? 'active' : ''}}">
         <a href="{{ route('web.club.index') }}">
