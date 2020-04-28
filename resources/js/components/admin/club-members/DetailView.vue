@@ -9,10 +9,8 @@
             <div class="card-body">
                 <div class="col-md-12">
                     <p>
-                        <a class="btn btn-success" @click="clickEdit(item.id)"
-                           v-if="current_user.admin == 1">Edit</a>
-                        <a class="btn btn-danger" @click="clickDelete(item.id)"
-                           v-if="current_user.admin == 1">Delete</a>
+                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
                     </p>
                 </div>
                 <div class="col-md-12">
@@ -27,7 +25,7 @@
                                 <td>Club:</td>
                                 <td v-if="item.club">{{item.club['name']}}</td>
                             </tr>
-                            <tr v-if="current_user.admin == 1">
+                            <tr>
                                 <td>Admin:</td>
                                 <td>{{item.admin == '1' ? 'True' : 'False'}}</td>
                             </tr>
@@ -37,10 +35,8 @@
                 </div>
                 <div class="col-md-12">
                     <p>
-                        <a class="btn btn-success" @click="clickEdit(item.id)"
-                           v-if="current_user.admin == 1">Edit</a>
-                        <a class="btn btn-danger" @click="clickDelete(item.id)"
-                           v-if="current_user.admin == 1">Delete</a>
+                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
                     </p>
                 </div>
             </div>
