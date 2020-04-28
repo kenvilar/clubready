@@ -9,8 +9,10 @@
             <div class="card-body">
                 <div class="col-md-12">
                     <p>
-                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
-                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
+                        <a class="btn btn-success" @click="clickEdit(item.id)"
+                           v-if="current_user.admin == 1">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.id)"
+                           v-if="current_user.admin == 1">Delete</a>
                     </p>
                 </div>
                 <div class="col-md-12">
@@ -18,14 +20,14 @@
                         <table class="table table-striped table-condensed" id="customtable">
                             <tbody>
                             <tr>
-                                <td>User:</td>
+                                <td>Name:</td>
                                 <td v-if="item.user">{{item.user['first_name']}} {{item.user['last_name']}}</td>
                             </tr>
                             <tr>
                                 <td>Club:</td>
                                 <td v-if="item.club">{{item.club['name']}}</td>
                             </tr>
-                            <tr>
+                            <tr v-if="current_user.admin == 1">
                                 <td>Admin:</td>
                                 <td>{{item.admin == '1' ? 'True' : 'False'}}</td>
                             </tr>
@@ -35,8 +37,10 @@
                 </div>
                 <div class="col-md-12">
                     <p>
-                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
-                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
+                        <a class="btn btn-success" @click="clickEdit(item.id)"
+                           v-if="current_user.admin == 1">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.id)"
+                           v-if="current_user.admin == 1">Delete</a>
                     </p>
                 </div>
             </div>
@@ -56,6 +60,7 @@
         },
         mounted() {
             this.show();
+            this.getCurrentUser();
         },
         created() {
             //
@@ -68,6 +73,7 @@
                 database_model: 'club-members',
                 item: {},
                 errors: {},
+                current_user: {},
             }
         },
         methods: {
@@ -83,6 +89,13 @@
                             //
                         });
                 }
+            },
+            async getCurrentUser() {
+                axios.get(`/api/user`)
+                    .then(response => {
+                        this.current_user = response.data;
+                        console.log('ken this.current_user', this.current_user);
+                    });
             },
             async clickEdit(id) {
                 window.location.href = `/admin/${this.database_model}/${id}/edit`;

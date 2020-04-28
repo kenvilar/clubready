@@ -21,7 +21,7 @@
                             <table class="table table-striped table-bordered" id="datatable">
                                 <thead>
                                 <tr>
-                                    <th>User</th>
+                                    <th>Name</th>
                                     <th>Club</th>
                                     <th v-if="current_user.admin == 1">Admin</th>
                                     <th v-if="current_user.admin == 1">Edit</th>
