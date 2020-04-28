@@ -25,6 +25,14 @@ class ClubAdminMiddleware
             $error = redirect('/');
         }
 
+        if ($request->expectsJson()) {
+            $error = response()
+                ->json([
+                    'error' => 'You cannot access this page! This is for only CLUB ADMIN.',
+                    'code' => 403
+                ], 403);
+        }
+
         if ($request->user() && $club_member != null) {
             if ($club_member->admin != 1) {
                 return $error;

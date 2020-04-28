@@ -25,6 +25,14 @@ class SuperAdminMiddleware
             $error = redirect('/');
         }
 
+        if ($request->expectsJson()) {
+            $error = response()
+                ->json([
+                    'error' => 'You cannot access this page! This is for only SUPER ADMIN.',
+                    'code' => 403
+                ], 403);
+        }
+
         if ($request->user() && $super_admin != null) {
             if ($request->user()->id != $super_admin->user_id) {
                 return $error;
