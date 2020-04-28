@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\ClubMember;
+use App\Models\SuperAdmin;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -131,5 +133,21 @@ class User extends Authenticatable
     public function validateForPassportPasswordGrant($password)
     {
         return Hash::check($password, $this->password);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function club_member()
+    {
+        return $this->hasOne(ClubMember::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function super_admin()
+    {
+        return $this->hasOne(SuperAdmin::class);
     }
 }
