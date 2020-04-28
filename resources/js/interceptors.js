@@ -1,7 +1,10 @@
 /**
  * Interceptor
  */
+var howManyInterceptorsEncountered = 0;
 axios.interceptors.response.use(response => {
+    howManyInterceptorsEncountered = howManyInterceptorsEncountered + 1;
+
     let datatableElement = $("#datatable");
 
     if (datatableElement.length) {
@@ -10,7 +13,7 @@ axios.interceptors.response.use(response => {
             datatableElement.dataTable().fnDestroy();
         }
 
-        if (response.config.method === "get") {
+        if (response.config.method === "get" && howManyInterceptorsEncountered === 1) {
             // initialize the datatable
             setTimeout(() => {
                 $('#datatable').DataTable({
