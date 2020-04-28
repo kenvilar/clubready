@@ -2,7 +2,8 @@
     <section class="content">
         <div class="row">
             <div class="col-lg-12">
-                <button class="btn btn-success btn-lg btn-block btn-responsive" role="button" @click="clickCreate()">
+                <button class="btn btn-success btn-lg btn-block btn-responsive" role="button" @click="clickCreate()"
+                        v-if="current_user.admin == 1">
                     Create New
                 </button>
             </div>
@@ -22,9 +23,9 @@
                                 <tr>
                                     <th>User</th>
                                     <th>Club</th>
-                                    <th>Admin</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <th v-if="current_user.admin == 1">Admin</th>
+                                    <th v-if="current_user.admin == 1">Edit</th>
+                                    <th v-if="current_user.admin == 1">Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -36,14 +37,14 @@
                                         </span>
                                     </td>
                                     <td>{{item.club['name']}}</td>
-                                    <td>{{item.admin == '1' ? 'True' : 'False'}}</td>
-                                    <td>
+                                    <td v-if="current_user.admin == 1">{{item.admin == '1' ? 'True' : 'False'}}</td>
+                                    <td v-if="current_user.admin == 1">
                                         <button class="btn btn-primary btn-xs" data-toggle="modal"
                                                 @click="clickEdit(item.id)"
                                                 data-target="#edit" data-placement="top"><span
                                             class="fa fa-fw ti-pencil"></span></button>
                                     </td>
-                                    <td>
+                                    <td v-if="current_user.admin == 1">
                                         <button class="btn btn-danger btn-xs" data-toggle="modal"
                                                 @click="clickDelete(item.id)"
                                                 data-target="#delete" data-placement="top"><span
@@ -68,6 +69,7 @@
         },
         mounted() {
             this.read();
+            this.getCurrentUser();
         },
         created() {
             //
@@ -81,6 +83,7 @@
                 list: [],
                 item: {},
                 errors: {},
+                current_user: {},
             }
         },
         methods: {
@@ -92,6 +95,12 @@
                         this.errors = error.response.data.error;
                     }).catch(err => {
                         //
+                    });
+            },
+            async getCurrentUser() {
+                axios.get(`/api/user`)
+                    .then(response => {
+                        this.current_user = response.data;
                     });
             },
             async clickShow(id) {
