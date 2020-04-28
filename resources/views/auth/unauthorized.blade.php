@@ -10,7 +10,7 @@
                         <div class="card-title text-center">
                             <h6>
                                 You cannot access this page!
-                                @if ($role)
+                                @if (isset($role))
                                     This is for only '{{$role}}'.
                                 @endif
                             </h6>
