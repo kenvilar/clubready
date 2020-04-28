@@ -25,7 +25,7 @@ class SuperAdminMiddleware
             $error = redirect('/');
         }
 
-        if ($request->expectsJson()) {
+        if (!$request->acceptsHtml() || !collect($request->route()->middleware())->contains('web')) {
             $error = response()
                 ->json([
                     'error' => 'You cannot access this page! This is for only SUPER ADMIN.',
