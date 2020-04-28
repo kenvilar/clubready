@@ -65,7 +65,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         // Custom route middlewares
-        'member' => \App\Http\Middleware\MemberMiddleware::class,
         'club-admin' => \App\Http\Middleware\ClubAdminMiddleware::class,
         'super-admin' => \App\Http\Middleware\SuperAdminMiddleware::class,
     ];
@@ -87,7 +86,6 @@ class Kernel extends HttpKernel
         \Illuminate\Auth\Middleware\Authorize::class,
 
         //Custom route middlewares
-        \App\Http\Middleware\MemberMiddleware::class,
         \App\Http\Middleware\ClubAdminMiddleware::class,
         \App\Http\Middleware\SuperAdminMiddleware::class,
     ];
