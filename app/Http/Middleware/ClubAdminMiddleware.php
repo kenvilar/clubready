@@ -28,7 +28,7 @@ class ClubAdminMiddleware
         if (!$request->acceptsHtml() || !collect($request->route()->middleware())->contains('web')) {
             $error = response()
                 ->json([
-                    'error' => 'You cannot access this page! This is for only CLUB ADMIN.',
+                    'error' => 'This action is unauthorized. This is for only CLUB ADMIN.',
                     'code' => 403
                 ], 403);
         }
