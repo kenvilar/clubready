@@ -14,3 +14,14 @@ Route::resource('club-members', 'ClubMemberController', ['except' => ['store', '
         'show' => 'show',
         'edit' => 'edit',
     ]);
+
+Route::group(['as' => 'vehicles.'], function () {
+    Route::resource('club-members.vehicles', 'ClubMemberVehicleController',
+        ['except' => ['store', 'update', 'destroy',]])
+        ->names([
+            'index' => 'index',
+            'create' => 'create',
+            'show' => 'show',
+            'edit' => 'edit',
+        ]);
+});
