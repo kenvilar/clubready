@@ -5,7 +5,7 @@
                 <div class="card striped_full">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <i class="ti-align-justify"></i> {{isEditView(item.id) ? 'Edit' : 'Create'}} Item
+                            <i class="ti-align-justify"></i> {{isEditView(item.uuid) ? 'Edit' : 'Create'}} Item
                         </h3>
                     </div>
                     <div class="card-body border">
@@ -69,7 +69,7 @@
                                 <div class="col-sm-9 col-sm-offset-3 ml-auto">
                                     <button type="submit"
                                             class="btn btn-effect-ripple btn-primary">
-                                        {{ isEditView(item.id) ? 'Edit' : 'Create'}}</button>
+                                        {{ isEditView(item.uuid) ? 'Edit' : 'Create'}}</button>
                                 </div>
                             </div>
                         </form>
@@ -85,8 +85,8 @@
         name: 'club-members-create-and-edit-view-vue',
         props: {
             model_id: {
-                type: Number,
-                default: 0,
+                type: String,
+                default: '',
                 required: false
             }
         },

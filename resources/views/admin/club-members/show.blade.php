@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-    <club-members-detail-view-vue :model_id="{{isset($clubMember->id) ? $clubMember->id : 0}}"/>
+    <club-members-detail-view-vue :model_id="'{{isset($clubMember->uuid) ? $clubMember->uuid : ''}}'"/>
 @endsection
 
 @push('footer-scripts')

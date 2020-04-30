@@ -12,15 +12,15 @@
             <a href="{{route('home')}}"><i class="fa fa-fw ti-home"></i>Dashboard</a>
         </li>
         <li><a href="{{route('web.club-member.index')}}">Show List</a></li>
-        @if (isset($clubMember->id))
-            <li><a href="{{route('web.club-member.show', $clubMember->id)}}">Show Item</a></li>
+        @if (isset($clubMember->uuid))
+            <li><a href="{{route('web.club-member.show', $clubMember->uuid)}}">Show Item</a></li>
         @endif
-        <li class="active">@if (isset($clubMember->id)) Edit @else Create @endif Item</li>
+        <li class="active">@if (isset($clubMember->uuid)) Edit @else Create @endif Item</li>
     </ol>
 @endsection
 
 @section('content')
-    <club-members-create-and-edit-view-vue :model_id="{{isset($clubMember->id) ? $clubMember->id : 0}}"/>
+    <club-members-create-and-edit-view-vue :model_id="'{{isset($clubMember->uuid) ? $clubMember->uuid : ''}}'"/>
 @endsection
 
 @push('footer-scripts')
