@@ -26,22 +26,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="item in list" :key="item.id">
+                                <tr v-for="item in list" :key="item.uuid">
                                     <td>
-                                        <span role="link" @click="clickShow(item.id)"
+                                        <span role="link" @click="clickShow(item.uuid)"
                                               style="text-decoration: underline !important;">
                                             {{item.name}}
                                         </span>
                                     </td>
                                     <td>
                                         <button class="btn btn-primary btn-xs" data-toggle="modal"
-                                                @click="clickEdit(item.id)"
+                                                @click="clickEdit(item.uuid)"
                                                 data-target="#edit" data-placement="top"><span
                                             class="fa fa-fw ti-pencil"></span></button>
                                     </td>
                                     <td>
                                         <button class="btn btn-danger btn-xs" data-toggle="modal"
-                                                @click="clickDelete(item.id)"
+                                                @click="clickDelete(item.uuid)"
                                                 data-target="#delete" data-placement="top"><span
                                             class="fa fa-fw ti-trash"></span></button>
                                     </td>

@@ -9,8 +9,8 @@
             <div class="card-body">
                 <div class="col-md-12">
                     <p>
-                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
-                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
+                        <a class="btn btn-success" @click="clickEdit(item.uuid)">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.uuid)">Delete</a>
                     </p>
                 </div>
                 <div class="col-md-12">
@@ -59,8 +59,8 @@
                 </div>
                 <div class="col-md-12">
                     <p>
-                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
-                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
+                        <a class="btn btn-success" @click="clickEdit(item.uuid)">Edit</a>
+                        <a class="btn btn-danger" @click="clickDelete(item.uuid)">Delete</a>
                     </p>
                 </div>
             </div>
@@ -73,8 +73,8 @@
         name: 'clubs-detail-view-vue',
         props: {
             model_id: {
-                type: Number,
-                default: 0,
+                type: String,
+                default: '',
                 required: false
             }
         },
