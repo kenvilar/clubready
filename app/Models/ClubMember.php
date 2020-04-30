@@ -30,7 +30,7 @@ class ClubMember extends Model
         parent::boot();
 
         static::creating(function ($clubMember) {
-            $clubMember->uuid = (string)Str::uuid();
+            $clubMember->uuid = (User::query()->find($clubMember->user_id))->member_number;
         });
     }
 
