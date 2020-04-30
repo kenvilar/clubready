@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Club extends Model
 {
@@ -24,6 +25,25 @@ class Club extends Model
         'created_at',
         'updated_at',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($club) {
+            $club->uuid = (string)Str::uuid();
+        });
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 
     public function clubMembers()
     {

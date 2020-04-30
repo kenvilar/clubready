@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class ClubMember extends Model
 {
@@ -23,6 +24,25 @@ class ClubMember extends Model
         'created_at',
         'updated_at',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($clubMember) {
+            $clubMember->uuid = (string)Str::uuid();
+        });
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 
     /**
      * @return BelongsTo
