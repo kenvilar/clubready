@@ -25,6 +25,7 @@ class CreateClubsTable extends Migration
             $table->string('email')->nullable();
             $table->string('website')->nullable();
             $table->string('stripe_keys')->nullable();
+            $table->string('uuid')->unique();
             $table->timestamps();
         });
     }

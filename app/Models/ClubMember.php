@@ -16,6 +16,7 @@ class ClubMember extends Model
         'user_id',
         'club_id',
         'admin',
+        'uuid',
     ];
 
     protected $hidden = [

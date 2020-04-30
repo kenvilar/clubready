@@ -17,6 +17,7 @@ class Club extends Model
         'email',
         'website',
         'stripe_keys',
+        'uuid',
     ];
 
     protected $hidden = [
