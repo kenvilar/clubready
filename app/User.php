@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\ClubMember;
 use App\Models\SuperAdmin;
+use App\Models\Vehicle;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -149,5 +150,13 @@ class User extends Authenticatable
     public function super_admin()
     {
         return $this->hasOne(SuperAdmin::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function vehicles()
+    {
+        return $this->hasMany(Vehicle::class);
     }
 }
