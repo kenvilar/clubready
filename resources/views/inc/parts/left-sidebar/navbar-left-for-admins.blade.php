@@ -23,19 +23,24 @@
     </ul>
 </li>
 <li class="{{request()->routeIs('web.user.*') ? 'active' : ''}} menu-dropdown">
-    <a href="{{ route('web.user.index') }}">
+    <a href="">
         <i class="menu-icon ti-user"></i>
-        <span class="mm-text ">Users</span>
+        <span class="mm-text">Users</span>
         <span class="fa arrow"></span>
     </a>
     <ul class="sub-menu">
-        <li class="{{request()->routeIs('web.user.index') ? 'active' : ''}}">
-            <a href="{{route('web.user.index')}}">
+        <li class="{{request()->routeIs('web.user.index') && request()->input('users') == 'all' ? 'active' : ''}}">
+            <a href="{{route('web.user.index', ['users' => 'all'])}}">
+                <i class="menu-icon ti-user"></i> Users
+            </a>
+        </li>
+        <li class="{{request()->routeIs('web.user.index') && request()->input('users') == 'verified' ? 'active' : ''}}">
+            <a href="{{route('web.user.index', ['users' => 'verified'])}}">
                 <i class="menu-icon ti-user"></i> Verified Users
             </a>
         </li>
-        <li class="{{request()->routeIs('web.user.index') ? 'active' : ''}}">
-            <a href="{{route('web.user.index')}}">
+        <li class="{{request()->routeIs('web.user.index') && request()->input('users') == 'unverified' ? 'active' : ''}}">
+            <a href="{{route('web.user.index', ['users' => 'unverified'])}}">
                 <i class="menu-icon ti-user"></i> Unverified Users
             </a>
         </li>

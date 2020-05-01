@@ -90,6 +90,15 @@
                 let read = axios.get(`/api/${this.database_model}`)
                     .then(response => {
                         this.list = response.data;
+
+                        let userUrlParams = new URLSearchParams(window.location.search);
+                        if (userUrlParams.has('users')) {
+                            if (userUrlParams.get('users') === 'verified') {
+                                this.list = _.filter(this.list, ['verified', "1"]);
+                            } else if (userUrlParams.get('users') === 'unverified') {
+                                this.list = _.filter(this.list, ['verified', "0"]);
+                            }
+                        }
                     }, error => {
                         this.errors = error.response.data.error;
                     }).catch(err => {
