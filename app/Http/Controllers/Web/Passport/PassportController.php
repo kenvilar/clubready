@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Web\Passport;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class PassportController extends Controller
 {

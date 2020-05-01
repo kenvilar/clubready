@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Web\ClubMember;
 use App\Http\Controllers\Controller;
 use App\Models\ClubMember;
 use App\Models\Vehicle;
-use App\User;
-use Illuminate\Http\Request;
 
 class ClubMemberVehicleController extends Controller
 {
