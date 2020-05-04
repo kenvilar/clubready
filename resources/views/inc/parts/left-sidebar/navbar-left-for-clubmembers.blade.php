@@ -1,3 +1,11 @@
+@if (UserHelper::isClubAdmin())
+    <li class="{{request()->routeIs('web.club-member.*') ? 'active' : ''}}">
+        <a href="{{ route('web.club-member.index') }}">
+            <i class="menu-icon icon-people icons"></i>
+            <span class="mm-text ">Club Members</span>
+        </a>
+    </li>
+@endif
 <li class="{{request()->routeIs('web.membership.*') ? 'active' : ''}}">
     <a href="{{ route('web.membership.index') }}">
         <i class="menu-icon ti-tag"></i>
