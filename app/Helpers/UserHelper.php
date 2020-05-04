@@ -22,12 +22,18 @@ class UserHelper
     /**
      * Returns true if the current authenticated user is a club admin
      *
-     * @return mixed
+     * @return bool
      */
     public static function isClubAdmin()
     {
-        $club_member = User::query()->find(auth()->user()->id)->club_member();
+        $club_member = User::query()->find(auth()->user()->id)->club_member;
 
-        return $club_member->count();
+        if ($club_member == null) {
+            $club_member = 0;
+        } else {
+            $club_member = $club_member->admin;
+        }
+
+        return (int)$club_member == 1;
     }
 }
