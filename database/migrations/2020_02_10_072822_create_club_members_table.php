@@ -19,7 +19,7 @@ class CreateClubMembersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('club_id');
             $table->string('admin')->default(ClubMember::NON_ADMIN_USER);
-            $table->string('uuid')->unique();
+            $table->string('uuid');
             $table->timestamps();
         });
 
