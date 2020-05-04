@@ -93,7 +93,7 @@ class ClubMemberController extends ApiController
      */
     public function update(Request $request, ClubMember $clubMember)
     {
-        $this->validate($request, $this->validationRules($request));
+        $this->validate($request, $this->validationRules($request, $clubMember));
 
         $clubMember->user_id = $request->user_id;
         $clubMember->club_id = $request->club_id;
@@ -122,17 +122,30 @@ class ClubMemberController extends ApiController
         return $this->showOne($clubMember);
     }
 
-    private function validationRules(Request $request)
+    private function validationRules(Request $request, $clubMember = null)
     {
+        if ($request->method() == "POST") {
+            $club_id_rule = Rule::unique('club_members')
+                ->where(function (Builder $query) use ($request) {
+                    $query
+                        ->where('user_id', $request->user_id)
+                        ->where('club_id', $request->club_id);
+                });
+        } else {
+            $club_id_rule = Rule::unique('club_members')
+                ->where(function (Builder $query) use ($request, $clubMember) {
+                    $query
+                        ->where('user_id', $request->user_id)
+                        ->where('club_id', $request->club_id)
+                        ->whereNotIn('id', [$clubMember->id]);
+                });
+        }
+
         return [
             'user_id' => 'required|integer',
             'club_id' => ['required', 'integer',
                 //Don't save if both user_id and club_id exist
-                Rule::unique('club_members')->where(function (Builder $query) use ($request) {
-                    $query
-                        ->where('user_id', $request->user_id)
-                        ->where('club_id', $request->club_id);
-                }),],
+                $club_id_rule,],
             'admin' => 'required|in:' . ClubMember::ADMIN_USER . ',' . ClubMember::NON_ADMIN_USER,
         ];
     }
