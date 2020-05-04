@@ -3,6 +3,9 @@
         @if (UserHelper::isSuperAdmin())
             @include('inc.parts.left-sidebar.navbar-left-for-admins')
         @endif
+        @if (!UserHelper::isSuperAdmin())
+            @include('inc.parts.left-sidebar.navbar-left-for-clubmembers')
+        @endif
     </ul>
 @endif
 
