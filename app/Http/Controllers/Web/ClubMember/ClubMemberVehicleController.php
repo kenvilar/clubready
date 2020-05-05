@@ -22,7 +22,7 @@ class ClubMemberVehicleController extends Controller
      */
     public function index(ClubMember $clubMember)
     {
-        return view('admin.club-members.vehicles.index', ['clubMember' => $clubMember]);
+        return view('members.club-members.vehicles.index', ['clubMember' => $clubMember]);
     }
 
     /**
@@ -33,7 +33,7 @@ class ClubMemberVehicleController extends Controller
      */
     public function create(ClubMember $clubMember)
     {
-        return view('admin.club-members.vehicles.createAndEditForm', ['clubMember' => $clubMember]);
+        return view('members.club-members.vehicles.createAndEditForm', ['clubMember' => $clubMember]);
     }
 
     /**
@@ -45,7 +45,7 @@ class ClubMemberVehicleController extends Controller
      */
     public function show(ClubMember $clubMember, Vehicle $vehicle)
     {
-        return view('admin.club-members.vehicles.show', ['clubMember' => $clubMember, 'vehicle' => $vehicle]);
+        return view('members.club-members.vehicles.show', ['clubMember' => $clubMember, 'vehicle' => $vehicle]);
     }
 
     /**
@@ -57,7 +57,7 @@ class ClubMemberVehicleController extends Controller
      */
     public function edit(ClubMember $clubMember, Vehicle $vehicle)
     {
-        return view('admin.club-members.vehicles.createAndEditForm',
+        return view('members.club-members.vehicles.createAndEditForm',
             ['clubMember' => $clubMember, 'vehicle' => $vehicle]);
     }
 }
