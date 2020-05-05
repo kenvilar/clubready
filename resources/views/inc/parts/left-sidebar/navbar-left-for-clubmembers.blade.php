@@ -24,8 +24,8 @@
         <span class="mm-text ">Membership Type Names</span>
     </a>
 </li>
-<li class="{{request()->routeIs('web.vehicle.*') ? 'active' : ''}}">
-    <a href="{{ route('web.vehicle.index') }}">
+<li class="{{request()->routeIs('web.club-member.vehicles.*') ? 'active' : ''}}">
+    <a href="{{ route('web.club-member.vehicles.index', auth()->user()->member_number) }}">
         <i class="menu-icon ti-car"></i>
         <span class="mm-text ">Vehicles</span>
     </a>
