@@ -58,9 +58,15 @@
                                     <label class="form-control-label" for="admin">Admin</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="admin" id="admin"
-                                           v-model="item.admin"
-                                           :class="{'is-invalid': hasError(errors, 'admin')}">
+                                    <span class="radio-inline iradio"
+                                          :class="{'is-invalid': hasError(errors, 'admin')}">
+                                        <input type="radio" name="admin" class="form-control" id="admin" value="1"
+                                               v-model="item.admin"> Yes
+                                    </span>
+                                    <span class="radio-inline iradio">
+                                        <input type="radio" name="admin" class="form-control" id="admin2" value="0"
+                                               v-model="item.admin"> No
+                                    </span>
                                     <span role="alert" class="invalid-feedback">
                                         <strong>{{hasError(errors, 'admin', true)}}</strong></span>
                                 </div>
@@ -112,6 +118,8 @@
         },
         methods: {
             async storeOrUpdate() {
+                this.item.admin = $("input[name='admin']:checked").val();
+
                 if (this.model_id) {
                     let update = axios.put(`/api/${this.database_model}/${this.model_id}`, this.item)
                         .then(response => {
