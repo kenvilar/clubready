@@ -15,6 +15,39 @@ Route::resource('club-members', 'ClubMemberController', ['except' => ['store', '
         'edit' => 'edit',
     ]);
 
+Route::group(['as' => 'memberships.'], function () {
+    Route::resource('club-members.memberships', 'ClubMemberMembershipController',
+        ['except' => ['store', 'update', 'destroy',]])
+        ->names([
+            'index' => 'index',
+            'create' => 'create',
+            'show' => 'show',
+            'edit' => 'edit',
+        ]);
+});
+
+Route::group(['as' => 'membership-types.'], function () {
+    Route::resource('club-members.membership-types', 'ClubMemberMembershipTypeController',
+        ['except' => ['store', 'update', 'destroy',]])
+        ->names([
+            'index' => 'index',
+            'create' => 'create',
+            'show' => 'show',
+            'edit' => 'edit',
+        ]);
+});
+
+Route::group(['as' => 'membership-type-names.'], function () {
+    Route::resource('club-members.membership-type-names', 'ClubMemberMembershipTypeNameController',
+        ['except' => ['store', 'update', 'destroy',]])
+        ->names([
+            'index' => 'index',
+            'create' => 'create',
+            'show' => 'show',
+            'edit' => 'edit',
+        ]);
+});
+
 Route::group(['as' => 'vehicles.'], function () {
     Route::resource('club-members.vehicles', 'ClubMemberVehicleController',
         ['except' => ['store', 'update', 'destroy',]])
