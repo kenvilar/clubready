@@ -8,6 +8,11 @@ use App\Models\Membership;
 
 class ClubMemberMembershipController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth');
