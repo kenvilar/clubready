@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\ClubMember;
 
 use App\Http\Controllers\ApiController;
+use App\Models\ClubMember;
+use App\Models\MembershipTypeName;
 use Illuminate\Http\Request;
 
 class ClubMemberMembershipTypeNameController extends ApiController
@@ -21,9 +23,10 @@ class ClubMemberMembershipTypeNameController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param ClubMember $clubMember
+     * @return void
      */
-    public function index()
+    public function index(ClubMember $clubMember)
     {
         //
     }
@@ -31,10 +34,11 @@ class ClubMemberMembershipTypeNameController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param ClubMember $clubMember
+     * @return void
      */
-    public function store(Request $request)
+    public function store(Request $request, ClubMember $clubMember)
     {
         //
     }
@@ -42,10 +46,11 @@ class ClubMemberMembershipTypeNameController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ClubMember $clubMember
+     * @param MembershipTypeName $membershipTypeName
+     * @return void
      */
-    public function show($id)
+    public function show(ClubMember $clubMember, MembershipTypeName $membershipTypeName)
     {
         //
     }
@@ -53,11 +58,12 @@ class ClubMemberMembershipTypeNameController extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param ClubMember $clubMember
+     * @param MembershipTypeName $membershipTypeName
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ClubMember $clubMember, MembershipTypeName $membershipTypeName)
     {
         //
     }
@@ -65,11 +71,22 @@ class ClubMemberMembershipTypeNameController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ClubMember $clubMember
+     * @param MembershipTypeName $membershipTypeName
+     * @return void
      */
-    public function destroy($id)
+    public function destroy(ClubMember $clubMember, MembershipTypeName $membershipTypeName)
     {
         //
+    }
+
+    /**
+     * @return array
+     */
+    private function validationRules()
+    {
+        return [
+            'name' => 'required|min:2',
+        ];
     }
 }

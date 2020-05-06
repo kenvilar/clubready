@@ -98,6 +98,9 @@ class InductionController extends ApiController
         return $this->showOne($induction);
     }
 
+    /**
+     * @return array
+     */
     private function validationRules()
     {
         return [

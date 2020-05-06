@@ -112,6 +112,9 @@ class VehicleController extends ApiController
         return $this->showOne($vehicle);
     }
 
+    /**
+     * @return array
+     */
     private function validationRules()
     {
         $now = date('Y');

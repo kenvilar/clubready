@@ -125,6 +125,9 @@ class SuperAdminController extends ApiController
         return $this->showOne($superAdmin);
     }
 
+    /**
+     * @return array
+     */
     private function validationRules()
     {
         return [

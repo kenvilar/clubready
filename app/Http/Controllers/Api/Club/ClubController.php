@@ -118,6 +118,9 @@ class ClubController extends ApiController
         return $this->showOne($club);
     }
 
+    /**
+     * @return array
+     */
     private function validationRules()
     {
         return [

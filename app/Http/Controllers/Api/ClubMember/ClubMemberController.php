@@ -122,6 +122,11 @@ class ClubMemberController extends ApiController
         return $this->showOne($clubMember);
     }
 
+    /**
+     * @param Request $request
+     * @param null $clubMember
+     * @return array
+     */
     private function validationRules(Request $request, $clubMember = null)
     {
         if ($request->method() == "POST") {

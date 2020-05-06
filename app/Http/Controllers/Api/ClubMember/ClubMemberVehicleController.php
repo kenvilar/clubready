@@ -22,13 +22,12 @@ class ClubMemberVehicleController extends ApiController
 
     /**
      * Display a listing of the resource.
-     * @param Request $request
      * @param ClubMember $clubMember
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request, ClubMember $clubMember)
+    public function index(ClubMember $clubMember)
     {
-        $vehicles = Vehicle::query()->where('user_id', $request->user()->id)->get();
+        $vehicles = Vehicle::query()->where('user_id', auth()->user()->id)->get();
 
         return $this->showAll($vehicles);
     }

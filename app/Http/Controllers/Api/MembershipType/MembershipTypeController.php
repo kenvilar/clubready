@@ -101,6 +101,9 @@ class MembershipTypeController extends ApiController
         return $this->showOne($membershipType);
     }
 
+    /**
+     * @return array
+     */
     private function validationRules()
     {
         return [
