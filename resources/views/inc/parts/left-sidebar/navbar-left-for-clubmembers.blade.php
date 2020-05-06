@@ -6,20 +6,20 @@
         </a>
     </li>
 @endif
-<li class="{{request()->routeIs('web.membership.*') ? 'active' : ''}}">
-    <a href="{{ route('web.membership.index') }}">
+<li class="{{request()->routeIs('web.club-member.memberships.*') ? 'active' : ''}}">
+    <a href="{{ route('web.club-member.memberships.index') }}">
         <i class="menu-icon ti-tag"></i>
         <span class="mm-text ">Memberships</span>
     </a>
 </li>
-<li class="{{request()->routeIs('web.membership-type.*') ? 'active' : ''}}">
-    <a href="{{ route('web.membership-type.index') }}">
+<li class="{{request()->routeIs('web.club-member.membership-types.*') ? 'active' : ''}}">
+    <a href="{{ route('web.club-member.membership-types.index') }}">
         <i class="menu-icon ti-bookmark-alt"></i>
         <span class="mm-text ">Membership Types</span>
     </a>
 </li>
-<li class="{{request()->routeIs('web.membership-type-name.*') ? 'active' : ''}}">
-    <a href="{{ route('web.membership-type-name.index') }}">
+<li class="{{request()->routeIs('web.club-member.membership-type-names.*') ? 'active' : ''}}">
+    <a href="{{ route('web.club-member.membership-type-names.index') }}">
         <i class="menu-icon ti-id-badge"></i>
         <span class="mm-text ">Membership Type Names</span>
     </a>
