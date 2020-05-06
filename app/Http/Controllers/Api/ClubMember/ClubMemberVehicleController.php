@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class ClubMemberVehicleController extends ApiController
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
