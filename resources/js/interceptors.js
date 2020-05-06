@@ -2,6 +2,8 @@
  * Interceptor
  */
 var howManyInterceptorsEncountered = 0;
+var resetDataTableAfterDelete = false;
+
 axios.interceptors.response.use(response => {
     howManyInterceptorsEncountered = howManyInterceptorsEncountered + 1;
 
@@ -11,9 +13,12 @@ axios.interceptors.response.use(response => {
         if (response.config.method === "delete") {
             // destroy the datatable after deleting an item to enable the re-initialization
             datatableElement.dataTable().fnDestroy();
+
+            // make resetDataTableAfterDelete set to true to reset the datatable
+            resetDataTableAfterDelete = true;
         }
 
-        if (response.config.method === "get" && howManyInterceptorsEncountered === 1) {
+        if (response.config.method === "get" && (howManyInterceptorsEncountered === 1 || resetDataTableAfterDelete)) {
             // initialize the datatable
             setTimeout(() => {
                 $('#datatable').DataTable({
@@ -27,7 +32,10 @@ axios.interceptors.response.use(response => {
                     "pageLength": 500,
                     "lengthMenu": [[10, 25, 50, 500, -1], [10, 25, 50, 500, "All"]],
                 });
-            }, 100);
+            }, 300);
+
+            // back to resetDataTableAfterDelete as default
+            resetDataTableAfterDelete = false;
         }
     }
 
