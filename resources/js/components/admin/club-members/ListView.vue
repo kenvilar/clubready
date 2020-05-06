@@ -28,7 +28,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="item in list" :key="item.uuid">
+                                <tr v-for="item in list" :key="item.id">
                                     <td>
                                         <span role="link" @click="clickShow(item.uuid)"
                                               style="text-decoration: underline !important;">
