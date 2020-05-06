@@ -8,6 +8,14 @@ axios.interceptors.response.use(response => {
     howManyInterceptorsEncountered = howManyInterceptorsEncountered + 1;
 
     let datatableElement = $("#datatable");
+    let iradio = $(".iradio");
+
+    if (iradio) {
+        setTimeout(() => {
+            // update the iCheck
+            $("input").iCheck("update");
+        }, 100);
+    }
 
     if (datatableElement.length) {
         if (response.config.method === "delete") {
@@ -19,8 +27,8 @@ axios.interceptors.response.use(response => {
         }
 
         if (response.config.method === "get" && (howManyInterceptorsEncountered === 1 || resetDataTableAfterDelete)) {
-            // initialize the datatable
             setTimeout(() => {
+                // initialize the datatable
                 $('#datatable').DataTable({
                     "responsive": true,
                     "columnDefs": [

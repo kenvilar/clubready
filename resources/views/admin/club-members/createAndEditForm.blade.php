@@ -22,8 +22,3 @@
 @section('content')
     <club-members-create-and-edit-view-vue :model_id="'{{isset($clubMember->uuid) ? $clubMember->uuid : ''}}'"/>
 @endsection
-
-@push('footer-scripts')
-    <script src="{{asset('vendors/iCheck/js/icheck.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/custom_js/form_layouts.js')}}" type="text/javascript"></script>
-@endpush

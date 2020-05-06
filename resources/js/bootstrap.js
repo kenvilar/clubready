@@ -16,13 +16,26 @@ try {
      * vendors js
      * */
     require('datedropper');
+    require('icheck');
     window.moment = require('moment');
     window.swal = require('sweetalert2');
 
-    let datatableElement = $("#datatable");
-    if (datatableElement) {
-        window.DataTable = require('datatables.net');
-    }
+    setTimeout(() => {
+        let datatableElement = $("#datatable");
+        let iradio = $(".iradio");
+
+        if (datatableElement) {
+            window.DataTable = require('datatables.net');
+        }
+
+        if (iradio) {
+            $("#app").find('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        }
+    }, 100);
 } catch (e) {}
 
 /**
