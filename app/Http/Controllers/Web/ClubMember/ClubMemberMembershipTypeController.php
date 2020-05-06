@@ -4,16 +4,10 @@ namespace App\Http\Controllers\Web\ClubMember;
 
 use App\Http\Controllers\Controller;
 use App\Models\ClubMember;
-use App\Models\Membership;
+use App\Models\MembershipType;
 
-class ClubMemberMembershipController extends Controller
+class ClubMemberMembershipTypeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('strict-user');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +16,7 @@ class ClubMemberMembershipController extends Controller
      */
     public function index(ClubMember $clubMember)
     {
-        return view('members.club-members.memberships.index', ['clubMember' => $clubMember]);
+        return view('members.club-members.membership-types.index', ['clubMember' => $clubMember]);
     }
 
     /**
@@ -33,32 +27,32 @@ class ClubMemberMembershipController extends Controller
      */
     public function create(ClubMember $clubMember)
     {
-        return view('members.club-members.memberships.createAndEditForm', ['clubMember' => $clubMember]);
+        return view('members.club-members.membership-types.createAndEditForm', ['clubMember' => $clubMember]);
     }
 
     /**
      * Display the specified resource.
      *
      * @param ClubMember $clubMember
-     * @param Membership $membership
+     * @param MembershipType $membershipType
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(ClubMember $clubMember, Membership $membership)
+    public function show(ClubMember $clubMember, MembershipType $membershipType)
     {
-        return view('members.club-members.memberships.show',
-            ['clubMember' => $clubMember, 'membership' => $membership]);
+        return view('members.club-members.membership-types.show',
+            ['clubMember' => $clubMember, 'membershipType' => $membershipType]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param ClubMember $clubMember
-     * @param Membership $membership
+     * @param MembershipType $membershipType
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(ClubMember $clubMember, Membership $membership)
+    public function edit(ClubMember $clubMember, MembershipType $membershipType)
     {
-        return view('members.club-members.memberships.createAndEditForm',
-            ['clubMember' => $clubMember, 'membership' => $membership]);
+        return view('members.club-members.membership-types.createAndEditForm',
+            ['clubMember' => $clubMember, 'membershipType' => $membershipType]);
     }
 }

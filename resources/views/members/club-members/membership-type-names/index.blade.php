@@ -6,7 +6,7 @@
 @endpush
 
 @section('breadcrumb')
-    <h1>Vehicles</h1>
+    <h1>Membership Type Names</h1>
     <ol class="breadcrumb">
         <li><a href="{{route('home')}}"><i class="fa fa-fw ti-home"></i>Dashboard</a></li>
         <li class="active">Show List</li>
@@ -14,7 +14,7 @@
 @endsection
 
 @section('content')
-    This is the club-members.vehicles index page
+    This is the club-members.membership-type-names index page
 @endsection
 
 @push('footer-scripts')

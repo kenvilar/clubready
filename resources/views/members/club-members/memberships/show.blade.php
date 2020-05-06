@@ -5,18 +5,18 @@
 @endpush
 
 @section('breadcrumb')
-    <h1>Vehicles</h1>
+    <h1>Memberships</h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{route('home')}}"><i class="fa fa-fw ti-home"></i>Dashboard</a>
         </li>
-        <li><a href="{{route('web.club-member.vehicles.index')}}">Show List</a></li>
+        <li><a href="{{route('web.club-member.memberships.index')}}">Show List</a></li>
         <li class="active">Show Item</li>
     </ol>
 @endsection
 
 @section('content')
-    This is the club-members.vehicles show page
+    This is the club-members.memberships show page
 @endsection
 
 @push('footer-scripts')

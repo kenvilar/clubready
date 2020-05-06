@@ -6,21 +6,21 @@
 @endpush
 
 @section('breadcrumb')
-    <h1>Vehicles</h1>
+    <h1>Memberships</h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{route('home')}}"><i class="fa fa-fw ti-home"></i>Dashboard</a>
         </li>
-        <li><a href="{{route('web.club-member.vehicles.index', $clubMember->uuid)}}">Show List</a></li>
-        @if (isset($clubMember->uuid) && isset($vehicle->id))
-            <li><a href="{{route('web.club-member.vehicles.show', $clubMember->uuid, $vehicle->id)}}">Show Item</a></li>
+        <li><a href="{{route('web.club-member.memberships.index', $clubMember->uuid)}}">Show List</a></li>
+        @if (isset($clubMember->uuid) && isset($membership->id))
+            <li><a href="{{route('web.club-member.memberships.show', $clubMember->uuid, $membership->id)}}">Show Item</a></li>
         @endif
         <li class="active">@if (isset($clubMember->uuid)) Edit @else Create @endif Item</li>
     </ol>
 @endsection
 
 @section('content')
-    This is the club-members.vehicles create and edit page
+    This is the club-members.memberships create and edit page
 @endsection
 
 @push('footer-scripts')
