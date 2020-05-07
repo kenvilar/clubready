@@ -49,8 +49,10 @@ class StrictUserPermissionMiddleware
 
                 if ($request->segments()[$clubMemberIndex] || $request->segments()[$clubMemberIndex] != null ||
                     $request->segments()[$clubMemberIndex] != "") {
-                    $user = User::query()->where('member_number',
-                        $request->segments()[$clubMemberIndex])->get()->first();
+
+                    $club_member_uuid = $this->getClubMemberUUID($request->segments()[$clubMemberIndex]);
+                    $user = User::query()->where('member_number', $club_member_uuid)->get()->first();
+
                     if ($user->member_number !== $request->user()->member_number) {
                         return $error;
                     }
@@ -61,5 +63,18 @@ class StrictUserPermissionMiddleware
         }
 
         return $next($request);
+    }
+
+    /**
+     * @param $val
+     * @return string
+     */
+    function getClubMemberUUID($val)
+    {
+        $club_member_uuid = $val;
+        $club_member_uuid_arr = explode("-", $club_member_uuid);
+
+        $club_id = $club_member_uuid_arr[count($club_member_uuid_arr) - 1];
+        return rtrim($club_member_uuid, "-" . $club_id);
     }
 }
