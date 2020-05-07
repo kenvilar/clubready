@@ -16,7 +16,6 @@ try {
      * vendors js
      * */
     require('datedropper');
-    require('icheck');
     window.moment = require('moment');
     window.swal = require('sweetalert2');
 
@@ -29,6 +28,9 @@ try {
         }
 
         if (iradio) {
+            require('icheck');
+
+            // initialized iCheck
             $("#app").find('input').iCheck({
                 checkboxClass: 'icheckbox_square-blue',
                 radioClass: 'iradio_square-blue',

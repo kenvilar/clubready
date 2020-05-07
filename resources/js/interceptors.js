@@ -10,7 +10,7 @@ axios.interceptors.response.use(response => {
     let datatableElement = $("#datatable");
     let iradio = $(".iradio");
 
-    if (iradio) {
+    if (iradio.length) {
         setTimeout(() => {
             // update the iCheck
             $("input").iCheck("update");
