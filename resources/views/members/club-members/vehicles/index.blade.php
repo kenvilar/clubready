@@ -16,7 +16,3 @@
 @section('content')
     This is the club-members.vehicles index page
 @endsection
-
-@push('footer-scripts')
-    <script src="{{asset('vendors/datatables/js/dataTables.bootstrap4.js')}}" type="text/javascript"></script>
-@endpush

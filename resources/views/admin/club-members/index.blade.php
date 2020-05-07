@@ -16,7 +16,3 @@
 @section('content')
     <club-members-list-view-vue/>
 @endsection
-
-@push('footer-scripts')
-    <script src="{{asset('vendors/datatables/js/dataTables.bootstrap4.js')}}" type="text/javascript"></script>
-@endpush

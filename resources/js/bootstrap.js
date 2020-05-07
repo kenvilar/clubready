@@ -24,6 +24,7 @@ try {
         let iradio = $(".iradio");
 
         if (datatableElement) {
+            require('datatables.net-bs4');
             window.DataTable = require('datatables.net');
         }
 
