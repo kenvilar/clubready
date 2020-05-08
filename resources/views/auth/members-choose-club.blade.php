@@ -9,6 +9,21 @@
                     <div class="card-body">
                         <div class="card-title text-center">
                             <h6>PLEASE CHOOSE A CLUB!!</h6>
+                            <div class="w-50 m-auto">
+                                @foreach($clubs as $club)
+                                    <a href="" onclick="postForm({{ $club['club']['id'] }});event.preventDefault();">
+                                        <div class="card-header card_small mb-3">
+                                            {{ $club['club']['name'] }} <i class="fa fa-fw fa-angle-right"></i>
+                                        </div>
+                                    </a>
+                                @endforeach
+
+                                <form id="selected-club" action="{{ route('selectedClub') }}" method="POST"
+                                      style="display: none;">
+                                    @csrf
+                                    <input type="hidden" name="club_id" value="" id="club_id"/>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -23,5 +38,11 @@
         $("img[alt='Logo'], .left-side, .right-side .content-header, " +
             ".user.user-menu li:nth-child(2), .user.user-menu li:nth-child(4), .navbar-btn.sidebar-toggle").hide();
         $(".right-side").css({"margin-left": 0});
+
+        function postForm(club_id) {
+            var form = $("#selected-club");
+            $("#selected-club input[name='club_id']").val(club_id);
+            form.submit();
+        }
     </script>
 @endpush

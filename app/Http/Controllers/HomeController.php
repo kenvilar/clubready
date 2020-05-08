@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClubMember;
 use App\Models\SuperAdmin;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -14,7 +16,7 @@ class HomeController extends Controller
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('member-has-club')->except(['chooseClub']);
+        $this->middleware('member-has-club')->except(['chooseClub', 'selectedClub',]);
     }
 
     /**
@@ -33,11 +35,31 @@ class HomeController extends Controller
     public function chooseClub()
     {
         $super_admin = SuperAdmin::query()->where('user_id', auth()->user()->id);
+        $clubs = ClubMember::query()
+            ->where('user_id', auth()->user()->id)
+            ->with([
+                'club' => function ($q) {
+                    $q->select(['id', 'name',]);
+                },
+            ])->get(['id', 'user_id', 'club_id',]);
 
         if ($super_admin->count()) {
             return redirect('/admin');
         }
 
-        return view('auth.members-choose-club');
+        return view('auth.members-choose-club', ['clubs' => $clubs]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function selectedClub(Request $request)
+    {
+        if ($request->has('club_id')) {
+            $request->session()->put('my_app__member__club_id', $request->input('club_id'));
+        }
+
+        return redirect()->route('home');
     }
 }

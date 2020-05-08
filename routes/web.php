@@ -21,6 +21,7 @@ Route::get('admin', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->group(function () {
     Route::get('choose-club', 'HomeController@chooseClub')->name('chooseClub');
+    Route::post('selected-club', 'HomeController@selectedClub')->name('selectedClub');
 });
 
 Route::prefix('admin')->namespace('Web')->name('web.')->group(base_path('routes/web/admin/base.php'));

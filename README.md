@@ -3,6 +3,7 @@
 This project is a web app for creating clubs and organizing its members
 
 ## TODO
+- Fix the Base Controller of ApiController, remove the middleware auth in api controller
 
 ## FIXED
 - Fix the currentUserInfo method in API (try login and logout with and without remember_token)
