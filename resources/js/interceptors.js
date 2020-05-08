@@ -52,9 +52,7 @@ axios.interceptors.response.use(response => {
     if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
         axios.post(`/logout`);
         window.location = "/login";
-    }
-
-    if (error.response.data.code === 403 && error.response.data.error.includes("This action is unauthorized.")) {
+    } else if (error.response.data.code === 403 && error.response.data.error.includes("This action is unauthorized.")) {
         swal.fire({
             icon: 'error',
             title: 'Oops...',
