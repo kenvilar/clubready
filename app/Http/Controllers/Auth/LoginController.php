@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\ClubMember;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -157,6 +158,11 @@ class LoginController extends Controller
             //Add the passport personal access token
             $accessToken = $user->createToken($request->email . '-' . now())->accessToken;
             $request->session()->put('myToken', $accessToken);
+
+            $club_member = ClubMember::query()->where('user_id', $user->id);
+            if ($club_member->count()) {
+                return redirect('/admin/choose-club');
+            }
         } else {
             $this->guard()->logout();
             $request->session()->invalidate();
