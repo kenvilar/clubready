@@ -202,6 +202,7 @@ class UserController extends ApiController
     {
         // Delete the personal access token session and token field in users table
         session()->forget('myToken');
+        session()->forget('my_app__member__club_id');
 
         // Revoke the token in passport table
         $request->user()->token()->revoke();
