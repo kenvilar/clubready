@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        parent::__construct();
         $this->middleware('super-admin');
     }
 
@@ -28,7 +28,6 @@ class UserController extends Controller
     public function index()
     {
         return view('admin.user.index');
-        $this->middleware('super-admin');
     }
 
     /**
