@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
         // Custom route middlewares
         'strict-user' => \App\Http\Middleware\StrictUserPermissionMiddleware::class,
         'club-admin' => \App\Http\Middleware\ClubAdminMiddleware::class,
+        'member-has-club' => \App\Http\Middleware\CheckIfUserHasClub::class,
         'super-admin' => \App\Http\Middleware\SuperAdminMiddleware::class,
     ];
 
@@ -89,6 +90,7 @@ class Kernel extends HttpKernel
         //Custom route middlewares
         \App\Http\Middleware\StrictUserPermissionMiddleware::class,
         \App\Http\Middleware\ClubAdminMiddleware::class,
+        \App\Http\Middleware\CheckIfUserHasClub::class,
         \App\Http\Middleware\SuperAdminMiddleware::class,
     ];
 }
