@@ -61,4 +61,4 @@ Route::namespace('Passport')->name('passport.')->group(base_path('routes/web/adm
  */
 Route::get('choose-club', function () {
     return view('auth.members-choose-club');
-});
+})->middleware(['auth']);
