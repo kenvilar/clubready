@@ -17,6 +17,5 @@ class Controller extends BaseController
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('member-has-club');
     }
 }

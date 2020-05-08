@@ -16,6 +16,7 @@ class ClubMemberVehicleController extends Controller
     public function __construct()
     {
         parent::__construct();
+        $this->middleware('member-has-club');
         $this->middleware('strict-user');
     }
 

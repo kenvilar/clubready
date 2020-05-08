@@ -19,4 +19,8 @@ Auth::routes();
 
 Route::get('admin', 'HomeController@index')->name('home');
 
+Route::prefix('admin')->group(function () {
+    Route::get('choose-club', 'HomeController@chooseClub')->name('chooseClub');
+});
+
 Route::prefix('admin')->namespace('Web')->name('web.')->group(base_path('routes/web/admin/base.php'));

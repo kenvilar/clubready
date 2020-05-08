@@ -12,6 +12,7 @@ class HomeController extends Controller
     public function __construct()
     {
         parent::__construct();
+        $this->middleware('member-has-club')->except(['chooseClub']);
     }
 
     /**
@@ -22,5 +23,13 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function chooseClub()
+    {
+        return view('auth.members-choose-club');
     }
 }

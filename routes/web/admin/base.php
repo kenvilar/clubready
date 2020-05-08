@@ -55,10 +55,3 @@ Route::namespace('Vehicle')->name('vehicle.')->group(base_path('routes/web/admin
  * Laravel Passport
  */
 Route::namespace('Passport')->name('passport.')->group(base_path('routes/web/admin/laravel-passport.php'));
-
-/**
- * Choose Club Page
- */
-Route::get('choose-club', function () {
-    return view('auth.members-choose-club');
-})->middleware(['auth']);
