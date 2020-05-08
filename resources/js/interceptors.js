@@ -53,11 +53,13 @@ axios.interceptors.response.use(response => {
         axios.post(`/logout`);
         window.location = "/login";
     } else if (error.response.data.code === 403 && error.response.data.error.includes("This action is unauthorized.")) {
-        swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: error.response.data.error,
-        });
+        setTimeout(() => {
+            swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.response.data.error,
+            });
+        }, 200);
     }
 
     return Promise.reject(error);
