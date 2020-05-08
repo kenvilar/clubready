@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SuperAdmin;
+
 class HomeController extends Controller
 {
     /**
@@ -30,6 +32,12 @@ class HomeController extends Controller
      */
     public function chooseClub()
     {
+        $super_admin = SuperAdmin::query()->where('user_id', auth()->user()->id);
+
+        if ($super_admin->count()) {
+            return redirect('/admin');
+        }
+
         return view('auth.members-choose-club');
     }
 }
