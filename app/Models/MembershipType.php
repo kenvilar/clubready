@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class MembershipType extends Model
 {
     protected $fillable = [
+        'club_member_id',
+        'club_id',
         'name',
         'value',
         'start_date',

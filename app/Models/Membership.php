@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Membership extends Model
 {
     protected $fillable = [
+        'club_member_id',
+        'club_id',
         'year',
         'name',
         'amount',
