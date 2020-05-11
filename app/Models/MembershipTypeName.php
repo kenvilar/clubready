@@ -8,7 +8,6 @@ class MembershipTypeName extends Model
 {
     protected $fillable = [
         'club_member_id',
-        'club_id',
         'name',
     ];
 

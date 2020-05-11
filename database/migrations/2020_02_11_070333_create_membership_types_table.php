@@ -16,7 +16,6 @@ class CreateMembershipTypesTable extends Migration
         Schema::create('membership_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('club_member_id');
-            $table->unsignedBigInteger('club_id');
             $table->string('name');
             $table->string('value')->nullable();
             $table->date('start_date')->nullable();
@@ -26,7 +25,6 @@ class CreateMembershipTypesTable extends Migration
 
         Schema::table('membership_types', function (Blueprint $table) {
             $table->foreign('club_member_id')->references('id')->on('club_members');
-            $table->foreign('club_id')->references('id')->on('clubs');
         });
     }
 

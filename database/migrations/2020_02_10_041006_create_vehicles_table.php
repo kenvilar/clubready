@@ -16,7 +16,6 @@ class CreateVehiclesTable extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('club_member_id');
-            $table->unsignedBigInteger('club_id');
             $table->string('make');
             $table->string('model');
             $table->unsignedInteger('year');
@@ -27,7 +26,6 @@ class CreateVehiclesTable extends Migration
 
         Schema::table('vehicles', function (Blueprint $table) {
             $table->foreign('club_member_id')->references('id')->on('club_members');
-            $table->foreign('club_id')->references('id')->on('clubs');
         });
     }
 
