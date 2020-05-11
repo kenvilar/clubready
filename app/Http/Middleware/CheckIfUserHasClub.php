@@ -18,7 +18,7 @@ class CheckIfUserHasClub
     {
         $club_member = ClubMember::query()->where('user_id', $request->user()->id);
         if ($club_member->count()) {
-            if (!session()->has('my_app__member__club_id')) {
+            if (!session()->has('my_app__current_member')) {
                 return redirect('/admin/choose-club');
             }
         }

@@ -41,7 +41,7 @@ class HomeController extends Controller
                 'club' => function ($q) {
                     $q->select(['id', 'name',]);
                 },
-            ])->get(['id', 'user_id', 'club_id',]);
+            ])->get();
 
         if ($super_admin->count()) {
             return redirect('/admin');
@@ -56,10 +56,25 @@ class HomeController extends Controller
      */
     public function selectedClub(Request $request)
     {
-        if ($request->has('club_id')) {
-            $request->session()->put('my_app__member__club_id', $request->input('club_id'));
+        $club = [];
+        $club['admin'] = $request->input('admin');
+        $club['club_id'] = $request->input('club_id');
+        $club['id'] = $request->input('id');
+        $club['user_id'] = $request->input('user_id');
+        $club['uuid'] = $request->input('uuid');
+
+        if ($request->has('uuid')) {
+            $request->session()->put('my_app__current_member', $request->toArray());
         }
 
         return redirect()->route('home');
+    }
+
+    /**
+     * @return array
+     */
+    public function getAllSessionData()
+    {
+        return session()->all();
     }
 }
