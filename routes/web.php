@@ -22,6 +22,9 @@ Route::get('admin', 'HomeController@index')->name('home');
 Route::prefix('admin')->group(function () {
     Route::get('choose-club', 'HomeController@chooseClub')->name('chooseClub');
     Route::post('selected-club', 'HomeController@selectedClub')->name('selectedClub');
+
+    // display all values of session, display only if APP_DEBUG is true
+    Route::get('get-all-session-data', 'HomeController@getAllSessionData')->name('getAllSessionData');
 });
 
 Route::prefix('admin')->namespace('Web')->name('web.')->group(base_path('routes/web/admin/base.php'));
