@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\ClubMember;
+use App\Models\SuperAdmin;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -160,8 +161,17 @@ class LoginController extends Controller
             $request->session()->put('myToken', $accessToken);
 
             $club_member = ClubMember::query()->where('user_id', $user->id);
-            if ($club_member->count()) {
+            $superAdmin = SuperAdmin::query()->where('user_id', $user->id);
+            if ($club_member->count() && !$superAdmin->count()) {
                 return redirect('/admin/choose-club');
+            } elseif (!$club_member->count() && !$superAdmin->count()) {
+                $this->guard()->logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                throw ValidationException::withMessages([
+                    $this->username() => [trans('auth.no-club')],
+                ]);
             }
         } else {
             $this->guard()->logout();

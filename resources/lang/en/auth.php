@@ -16,5 +16,6 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'verified' => 'Your account needs to be verified by the admin.',
+    'no-club' => 'You need to join at least one club.',
 
 ];
