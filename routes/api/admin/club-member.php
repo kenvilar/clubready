@@ -9,4 +9,6 @@
 
 Route::resource('club-members', 'ClubMemberController', ['except' => ['create', 'edit']]);
 
+Route::resource('club-members.memberships', 'ClubMemberMembershipController', ['except' => ['create', 'edit']]);
+
 Route::resource('club-members.vehicles', 'ClubMemberVehicleController', ['except' => ['create', 'edit']]);
