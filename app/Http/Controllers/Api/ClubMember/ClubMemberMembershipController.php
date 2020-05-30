@@ -25,11 +25,13 @@ class ClubMemberMembershipController extends ApiController
      * Display a listing of the resource.
      *
      * @param ClubMember $clubMember
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(ClubMember $clubMember)
     {
-        //
+        $memberships = Membership::all();
+
+        return $this->showAll($memberships);
     }
 
     /**
@@ -37,11 +39,16 @@ class ClubMemberMembershipController extends ApiController
      *
      * @param \Illuminate\Http\Request $request
      * @param ClubMember $clubMember
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request, ClubMember $clubMember)
     {
-        //
+        $this->validate($request, $this->validationRules());
+        $data = $request->all();
+        $membership = Membership::query()->create($data);
+
+        return $this->showOne($membership, 201);
     }
 
     /**
@@ -49,11 +56,11 @@ class ClubMemberMembershipController extends ApiController
      *
      * @param ClubMember $clubMember
      * @param Membership $membership
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(ClubMember $clubMember, Membership $membership)
     {
-        //
+        return $this->showOne($membership);
     }
 
     /**
@@ -62,11 +69,24 @@ class ClubMemberMembershipController extends ApiController
      * @param \Illuminate\Http\Request $request
      * @param ClubMember $clubMember
      * @param Membership $membership
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, ClubMember $clubMember, Membership $membership)
     {
-        //
+        $this->validate($request, $this->validationRules());
+
+        $membership->year = $request->year;
+        $membership->name = $request->name;
+        $membership->amount = $request->amount;
+
+        if (!$membership->isDirty()) {
+            return $this->errorResponse('You need to specify a different value to update', 422);
+        }
+
+        $membership->save();
+
+        return $this->showOne($membership);
     }
 
     /**
@@ -74,11 +94,14 @@ class ClubMemberMembershipController extends ApiController
      *
      * @param ClubMember $clubMember
      * @param Membership $membership
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function destroy(ClubMember $clubMember, Membership $membership)
     {
-        //
+        $membership->delete();
+
+        return $this->showOne($membership);
     }
 
     /**
