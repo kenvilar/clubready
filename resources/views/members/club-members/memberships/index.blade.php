@@ -14,5 +14,5 @@
 @endsection
 
 @section('content')
-    This is the club-members.memberships index page
+    <club-members-list-view-vue/>
 @endsection
