@@ -7,5 +7,14 @@
  *
  */
 
-Route::post('logoutapi', 'UserController@logoutApi')->name('logoutapi');
+use Illuminate\Http\Request;
+
+Route::post('logoutapi', function (Request $request) {
+    // Delete the personal access token session and token field in users table
+    session()->forget('myToken');
+    session()->forget('my_app__current_member');
+
+    // Revoke the token in passport table
+    $request->user()->token()->revoke();
+})->middleware('auth:api')->name('logoutapi');
 Route::resource('users', 'UserController', ['except' => ['create', 'edit']]);

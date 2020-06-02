@@ -191,20 +191,4 @@ class UserController extends ApiController
 
         return $this->showOne($user);
     }
-
-    /**
-     * Log the user out of the application.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function logoutApi(Request $request)
-    {
-        // Delete the personal access token session and token field in users table
-        session()->forget('myToken');
-        session()->forget('my_app__current_member');
-
-        // Revoke the token in passport table
-        $request->user()->token()->revoke();
-    }
 }
