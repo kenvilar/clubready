@@ -14,7 +14,7 @@
         <li>
             <a href="{{route('home')}}"><i class="fa fa-fw ti-home"></i>Dashboard</a>
         </li>
-        <li><a href="{{route('web.user.index')}}">Show List</a></li>
+        <li><a href="{{route('web.user.index', ['users' => 'all'])}}">Show List</a></li>
         @if (isset($user->member_number))
             <li><a href="{{route('web.user.show', $user->member_number)}}">Show Item</a></li>
         @endif
