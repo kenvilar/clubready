@@ -14,5 +14,5 @@
 @endsection
 
 @section('content')
-    <club-members-list-view-vue/>
+    <club-members--memberships-list-view-vue/>
 @endsection
