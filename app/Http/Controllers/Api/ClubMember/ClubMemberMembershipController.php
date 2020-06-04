@@ -29,7 +29,7 @@ class ClubMemberMembershipController extends ApiController
      */
     public function index(ClubMember $clubMember)
     {
-        $memberships = Membership::all();
+        $memberships = $clubMember->memberships;
 
         return $this->showAll($memberships);
     }
@@ -46,6 +46,7 @@ class ClubMemberMembershipController extends ApiController
     {
         $this->validate($request, $this->validationRules());
         $data = $request->all();
+        $data['club_member_id'] = $clubMember->id;
         $membership = Membership::query()->create($data);
 
         return $this->showOne($membership, 201);
@@ -60,6 +61,8 @@ class ClubMemberMembershipController extends ApiController
      */
     public function show(ClubMember $clubMember, Membership $membership)
     {
+        $membership = $clubMember->memberships()->findOrFail($membership->id);
+
         return $this->showOne($membership);
     }
 
@@ -76,9 +79,9 @@ class ClubMemberMembershipController extends ApiController
     {
         $this->validate($request, $this->validationRules());
 
-        $membership->year = $request->year;
-        $membership->name = $request->name;
-        $membership->amount = $request->amount;
+        foreach ($request->all() as $key => $value) {
+            $membership->$key = $value;
+        }
 
         if (!$membership->isDirty()) {
             return $this->errorResponse('You need to specify a different value to update', 422);
@@ -99,6 +102,8 @@ class ClubMemberMembershipController extends ApiController
      */
     public function destroy(ClubMember $clubMember, Membership $membership)
     {
+        $membership = $clubMember->memberships()->findOrFail($membership->id);
+
         $membership->delete();
 
         return $this->showOne($membership);
