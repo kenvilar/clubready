@@ -60,6 +60,8 @@ axios.interceptors.response.use(response => {
                 text: error.response.data.error,
             });
         }, 200);
+    } else if (error.response.status === 404 && error.response.statusText.toLowerCase === "not found") {
+        window.location = "/not-found";
     }
 
     return Promise.reject(error);
