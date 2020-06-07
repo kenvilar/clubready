@@ -61,14 +61,8 @@
 
 <script>
     export default {
-        name: 'memberships-create-and-edit-view-vue',
-        props: {
-            model_id: {
-                type: Number,
-                default: 0,
-                required: false
-            }
-        },
+        name: 'club-members--memberships-create-and-edit-view-vue',
+        props: {},
         mounted() {
             this.edit();
         },
@@ -80,15 +74,16 @@
         },
         data() {
             return {
-                database_model: 'memberships',
+                database_model: 'club-members/' + MEMBER.UUID + '/memberships',
+                database_model_id: this.getDatabaseModelIdFromUrl(URLPATHNAME),
                 item: {},
                 errors: {},
             }
         },
         methods: {
             async storeOrUpdate() {
-                if (this.model_id) {
-                    let update = axios.put(`/api/${this.database_model}/${this.model_id}`, this.item)
+                if (this.database_model_id) {
+                    let update = axios.put(`/api/${this.database_model}/${this.database_model_id}`, this.item)
                         .then(response => {
                             this.item = response.data;
 
@@ -133,8 +128,8 @@
                     });
             },
             async edit() {
-                if (this.model_id) {
-                    let edit = axios.get(`/api/${this.database_model}/${this.model_id}`, this.item)
+                if (this.database_model_id) {
+                    let edit = axios.get(`/api/${this.database_model}/${this.database_model_id}`, this.item)
                         .then(response => {
                             this.item = response.data;
                         }, error => {
@@ -166,6 +161,13 @@
                     $('input:visible:enabled').toggleClass('focus-visible');
                     $('form:first *:input[type!=hidden]:first').focus();
                 }, 300);
+            },
+            getDatabaseModelIdFromUrl(url) {
+                let index;
+                url = url.split('/');
+                index = _.findIndex(url, item => item === 'memberships');
+
+                return Number(url[index + 1]);
             },
         }
     }
