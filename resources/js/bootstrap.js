@@ -39,6 +39,8 @@ try {
             });
         }
     }, 100);
+
+    window.URLPATHNAME = document.location.pathname;
 } catch (e) {}
 
 /**
