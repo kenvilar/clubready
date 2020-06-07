@@ -25,11 +25,13 @@ class ClubMemberMembershipTypeController extends ApiController
      * Display a listing of the resource.
      *
      * @param ClubMember $clubMember
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(ClubMember $clubMember)
     {
-        //
+        $membershipTypes = $clubMember->membershipTypes;
+
+        return $this->showAll($membershipTypes);
     }
 
     /**
