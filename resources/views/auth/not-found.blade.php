@@ -8,7 +8,7 @@
                 <div class="text-center">
 
                     <div class="error_img">
-                        <img src="img/pages/404.gif" alt="404 error image">
+                        <img src="{{ asset('img/pages/404.gif') }}" alt="404 error image">
                     </div>
                     <hr class="seperator">
                     <a href="/admin" class="btn btn-primary link-home">Go to dashboard page</a>
