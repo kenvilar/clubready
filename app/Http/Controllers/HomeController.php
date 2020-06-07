@@ -77,4 +77,12 @@ class HomeController extends Controller
     {
         return session()->all();
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function get404()
+    {
+        return view('auth.not-found');
+    }
 }
