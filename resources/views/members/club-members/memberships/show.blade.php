@@ -10,13 +10,13 @@
         <li>
             <a href="{{route('home')}}"><i class="fa fa-fw ti-home"></i>Dashboard</a>
         </li>
-        <li><a href="{{route('web.club-member.memberships.index')}}">Show List</a></li>
+        <li><a href="{{route('web.club-member.memberships.index', session('my_app__current_member')['uuid'])}}">Show List</a></li>
         <li class="active">Show Item</li>
     </ol>
 @endsection
 
 @section('content')
-    This is the club-members.memberships show page
+    <club-members--memberships-detail-view-vue/>
 @endsection
 
 @push('footer-scripts')
