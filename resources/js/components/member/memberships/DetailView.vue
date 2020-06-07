@@ -120,7 +120,7 @@
                 url = url.split('/');
                 index = _.findIndex(url, item => item === 'memberships');
 
-                return url[index + 1];
+                return Number(url[index + 1]);
             },
         }
     }
