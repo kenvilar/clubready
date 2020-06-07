@@ -23,6 +23,8 @@ Route::prefix('admin')->group(function () {
     Route::get('choose-club', 'HomeController@chooseClub')->name('chooseClub');
     Route::post('selected-club', 'HomeController@selectedClub')->name('selectedClub');
 
+    Route::get('not-found', 'HomeController@get404')->name('not-found');
+
     // display all values of session, display only if APP_DEBUG is true
     Route::get('get-all-session-data', 'HomeController@getAllSessionData')->name('getAllSessionData');
 });
