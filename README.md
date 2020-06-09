@@ -6,7 +6,7 @@ This project is a web app for creating clubs and organizing its members
 - [ ] For club members
     - [x] Fix the memberships crud pages
     - [x] Fix the membership types crud pages
-    - [ ] Fix the membership type names crud pages
+    - [x] Fix the membership type names crud pages
     - [ ] Fix the vehicles crud pages
     - [ ] As a club admin
         - [ ] I can edit the club details
