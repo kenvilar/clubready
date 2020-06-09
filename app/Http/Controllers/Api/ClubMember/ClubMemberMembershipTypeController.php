@@ -39,11 +39,17 @@ class ClubMemberMembershipTypeController extends ApiController
      *
      * @param \Illuminate\Http\Request $request
      * @param ClubMember $clubMember
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request, ClubMember $clubMember)
     {
-        //
+        $this->validate($request, $this->validationRules());
+        $data = $request->all();
+        $data['club_member_id'] = $clubMember->id;
+        $membership = MembershipType::query()->create($data);
+
+        return $this->showOne($membership, 201);
     }
 
     /**
@@ -51,11 +57,13 @@ class ClubMemberMembershipTypeController extends ApiController
      *
      * @param ClubMember $clubMember
      * @param MembershipType $membershipType
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(ClubMember $clubMember, MembershipType $membershipType)
     {
-        //
+        $membershipType = $clubMember->membershipTypes()->findOrFail($membershipType->id);
+
+        return $this->showOne($membershipType);
     }
 
     /**
@@ -64,11 +72,24 @@ class ClubMemberMembershipTypeController extends ApiController
      * @param \Illuminate\Http\Request $request
      * @param ClubMember $clubMember
      * @param MembershipType $membershipType
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, ClubMember $clubMember, MembershipType $membershipType)
     {
-        //
+        $this->validate($request, $this->validationRules());
+
+        foreach ($request->all() as $key => $value) {
+            $membershipType->$key = $value;
+        }
+
+        if (!$membershipType->isDirty()) {
+            return $this->errorResponse('You need to specify a different value to update', 422);
+        }
+
+        $membershipType->save();
+
+        return $this->showOne($membershipType);
     }
 
     /**
@@ -76,11 +97,16 @@ class ClubMemberMembershipTypeController extends ApiController
      *
      * @param ClubMember $clubMember
      * @param MembershipType $membershipType
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function destroy(ClubMember $clubMember, MembershipType $membershipType)
     {
-        //
+        $membershipType = $clubMember->membershipTypes()->findOrFail($membershipType->id);
+
+        $membershipType->delete();
+
+        return $this->showOne($membershipType);
     }
 
     /**
