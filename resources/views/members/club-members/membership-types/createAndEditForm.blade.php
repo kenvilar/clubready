@@ -16,7 +16,7 @@
         </li>
         <li><a href="{{route('web.club-member.membership-types.index', $clubMember->uuid)}}">Show List</a></li>
         @if (isset($clubMember->uuid) && isset($membershipType->id))
-            <li><a href="{{route('web.club-member.membership-types.show', $clubMember->uuid, $membershipType->id)}}">
+            <li><a href="{{route('web.club-member.membership-types.show', [$clubMember->uuid, $membershipType->id])}}">
                     Show Item</a></li>
         @endif
         <li class="active">@if (isset($clubMember->uuid)) Edit @else Create @endif Item</li>
