@@ -129,8 +129,8 @@
                 this.item.start_date = moment($('#start_date').val()).format("MM/DD/YYYY");
                 this.item.expiry_date = moment($('#expiry_date').val()).format("MM/DD/YYYY");
 
-                if (this.model_id) {
-                    let update = axios.put(`/api/${this.database_model}/${this.model_id}`, this.item)
+                if (this.database_model_id) {
+                    let update = axios.put(`/api/${this.database_model}/${this.database_model_id}`, this.item)
                         .then(response => {
                             this.item = response.data;
 
@@ -175,8 +175,8 @@
                     });
             },
             async edit() {
-                if (this.model_id) {
-                    let edit = axios.get(`/api/${this.database_model}/${this.model_id}`, this.item)
+                if (this.database_model_id) {
+                    let edit = axios.get(`/api/${this.database_model}/${this.database_model_id}`, this.item)
                         .then(response => {
                             this.item = response.data;
                         }, error => {
