@@ -46,7 +46,7 @@
 
 <script>
     export default {
-        name: 'club-members--memberships-detail-view-vue',
+        name: 'club-members--membership-types-detail-view-vue',
         props: {},
         mounted() {
             this.show();
@@ -59,7 +59,7 @@
         },
         data() {
             return {
-                database_model: 'club-members/' + MEMBER.UUID + '/memberships',
+                database_model: 'club-members/' + MEMBER.UUID + '/membership-types',
                 database_model_id: this.getDatabaseModelIdFromUrl(URLPATHNAME),
                 item: {},
                 errors: {},
@@ -118,7 +118,7 @@
             getDatabaseModelIdFromUrl(url) {
                 let index;
                 url = url.split('/');
-                index = _.findIndex(url, item => item === 'memberships');
+                index = _.findIndex(url, item => item === 'membership-types');
 
                 return Number(url[index + 1]);
             },
