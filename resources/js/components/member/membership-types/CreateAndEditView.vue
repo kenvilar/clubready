@@ -16,7 +16,8 @@
                                     <label class="form-control-label" for="name">Name</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="name" id="name" v-model="item.name"
+                                    <input type="text" class="form-control" name="name" id="name"
+                                           v-model="item.name"
                                            :class="{'is-invalid': hasError(errors, 'name')}">
                                     <span role="alert" class="invalid-feedback">
                                         <strong>{{hasError(errors, 'name', true)}}</strong></span>
@@ -24,31 +25,58 @@
                             </div>
                             <div class="form-group row required">
                                 <div class="col-sm-3 text-right txt_media">
-                                    <label class="form-control-label" for="year">Year</label>
+                                    <label class="form-control-label" for="value">Value</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="number" class="form-control" name="year" id="year" v-model="item.year"
-                                           :class="{'is-invalid': hasError(errors, 'year')}">
+                                    <input type="number" step="0.01" class="form-control" name="value" id="value"
+                                           v-model="item.value"
+                                           :class="{'is-invalid': hasError(errors, 'value')}">
                                     <span role="alert" class="invalid-feedback">
-                                        <strong>{{hasError(errors, 'year', true)}}</strong></span>
+                                        <strong>{{hasError(errors, 'value', true)}}</strong></span>
                                 </div>
                             </div>
                             <div class="form-group row striped-col required">
                                 <div class="col-sm-3 text-right txt_media">
-                                    <label class="form-control-label" for="amount">Amount</label>
+                                    <label class="form-control-label" for="start_date">Start Date</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="amount" id="amount" v-model="item.amount"
-                                           :class="{'is-invalid': hasError(errors, 'amount')}">
-                                    <span role="alert" class="invalid-feedback">
-                                        <strong>{{hasError(errors, 'amount', true)}}</strong></span>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-fw ti-calendar"></i></div>
+                                        <input type="text" class="form-control" name="start_date"
+                                               id="start_date"
+                                               v-model="item.start_date"
+                                               :class="{'is-invalid': hasError(errors, 'start_date')}"
+                                               placeholder="Select Date (MM/DD/YYYY)">
+                                        <span role="alert" class="invalid-feedback">
+                                            <strong>{{hasError(errors, 'start_date', true)}}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="expiry_date">Expiry Date</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-fw ti-calendar"></i></div>
+                                        <input type="text" class="form-control" name="expiry_date"
+                                               id="expiry_date"
+                                               v-model="item.expiry_date"
+                                               :class="{'is-invalid': hasError(errors, 'expiry_date')}"
+                                               placeholder="Select Date (MM/DD/YYYY)">
+                                        <span role="alert" class="invalid-feedback">
+                                            <strong>{{hasError(errors, 'expiry_date', true)}}</strong></span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group form-actions">
                                 <div class="col-sm-9 col-sm-offset-3 ml-auto">
                                     <button type="submit"
                                             class="btn btn-effect-ripple btn-primary">
-                                        {{ isEditView(item.id) ? 'Edit' : 'Create'}}</button>
+                                        {{ isEditView(item.id) ? 'Edit' : 'Create'}}
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -61,10 +89,26 @@
 
 <script>
     export default {
-        name: 'club-members--memberships-create-and-edit-view-vue',
+        name: 'club-members--membership-types-create-and-edit-view-vue',
         props: {},
         mounted() {
             this.edit();
+
+            $("#start_date").dateDropper({
+                format: "m/d/Y",
+                dropPrimaryColor: "#6699cc",
+                fx: false,
+                fxMobile: false,
+                animate: false,
+            });
+
+            $("#expiry_date").dateDropper({
+                format: "m/d/Y",
+                dropPrimaryColor: "#6699cc",
+                fx: false,
+                fxMobile: false,
+                animate: false,
+            });
         },
         created() {
             //
@@ -74,7 +118,7 @@
         },
         data() {
             return {
-                database_model: 'club-members/' + MEMBER.UUID + '/memberships',
+                database_model: 'club-members/' + MEMBER.UUID + '/membership-types',
                 database_model_id: this.getDatabaseModelIdFromUrl(URLPATHNAME),
                 item: {},
                 errors: {},
@@ -82,15 +126,18 @@
         },
         methods: {
             async storeOrUpdate() {
-                if (this.database_model_id) {
-                    let update = axios.put(`/api/${this.database_model}/${this.database_model_id}`, this.item)
+                this.item.start_date = moment($('#start_date').val()).format("MM/DD/YYYY");
+                this.item.expiry_date = moment($('#expiry_date').val()).format("MM/DD/YYYY");
+
+                if (this.model_id) {
+                    let update = axios.put(`/api/${this.database_model}/${this.model_id}`, this.item)
                         .then(response => {
                             this.item = response.data;
 
                             swal.fire({
                                 icon: 'success',
                                 title: "Success",
-                                text: "Membership has been updated successfully.",
+                                text: "Membership type has been updated successfully.",
                                 type: "success",
                             }).then(result => {
                                 if (result.value) {
@@ -108,11 +155,11 @@
                 }
 
                 let store = axios.post(`/api/${this.database_model}`, this.item)
-                    .then(() => {
+                    .then(response => {
                         swal.fire({
                             icon: 'success',
                             title: "Success",
-                            text: "New membership has been created successfully.",
+                            text: "New membership type has been created successfully.",
                             type: "success",
                         }).then(result => {
                             if (result.value) {
@@ -128,8 +175,8 @@
                     });
             },
             async edit() {
-                if (this.database_model_id) {
-                    let edit = axios.get(`/api/${this.database_model}/${this.database_model_id}`, this.item)
+                if (this.model_id) {
+                    let edit = axios.get(`/api/${this.database_model}/${this.model_id}`, this.item)
                         .then(response => {
                             this.item = response.data;
                         }, error => {
@@ -165,7 +212,7 @@
             getDatabaseModelIdFromUrl(url) {
                 let index;
                 url = url.split('/');
-                index = _.findIndex(url, item => item === 'memberships');
+                index = _.findIndex(url, item => item === 'membership-types');
 
                 return Number(url[index + 1]);
             },
