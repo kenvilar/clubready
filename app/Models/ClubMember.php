@@ -83,4 +83,12 @@ class ClubMember extends Model
     {
         return $this->hasMany(MembershipType::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function membershipTypeNames()
+    {
+        return $this->hasMany(MembershipTypeName::class);
+    }
 }
