@@ -21,7 +21,7 @@
 @endsection
 
 @section('content')
-    This is the club-members.membership-types create and edit page
+    <club-members--membership-types-create-and-edit-view-vue/>
 @endsection
 
 @push('footer-scripts')
