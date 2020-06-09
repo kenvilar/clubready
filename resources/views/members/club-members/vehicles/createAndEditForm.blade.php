@@ -13,14 +13,14 @@
         </li>
         <li><a href="{{route('web.club-member.vehicles.index', $clubMember->uuid)}}">Show List</a></li>
         @if (isset($clubMember->uuid) && isset($vehicle->id))
-            <li><a href="{{route('web.club-member.vehicles.show', $clubMember->uuid, $vehicle->id)}}">Show Item</a></li>
+            <li><a href="{{route('web.club-member.vehicles.show', [$clubMember->uuid, $vehicle->id])}}">Show Item</a></li>
         @endif
         <li class="active">@if (isset($clubMember->uuid)) Edit @else Create @endif Item</li>
     </ol>
 @endsection
 
 @section('content')
-    This is the club-members.vehicles create and edit page
+    <club-members--vehicles-create-and-edit-view-vue/>
 @endsection
 
 @push('footer-scripts')

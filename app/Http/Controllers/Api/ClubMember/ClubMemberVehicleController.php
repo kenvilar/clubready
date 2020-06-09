@@ -28,7 +28,7 @@ class ClubMemberVehicleController extends ApiController
      */
     public function index(ClubMember $clubMember)
     {
-        $vehicles = Vehicle::query()->where('user_id', auth()->user()->id)->get();
+        $vehicles = $clubMember->vehicles;
 
         return $this->showAll($vehicles);
     }
@@ -44,9 +44,8 @@ class ClubMemberVehicleController extends ApiController
     public function store(Request $request, ClubMember $clubMember)
     {
         $this->validate($request, $this->validationRules());
-
         $data = $request->all();
-        $data['user_id'] = $request->user()->id;
+        $data['club_member_id'] = $clubMember->id;
         $vehicle = Vehicle::query()->create($data);
 
         return $this->showOne($vehicle, 201);
@@ -61,6 +60,8 @@ class ClubMemberVehicleController extends ApiController
      */
     public function show(ClubMember $clubMember, Vehicle $vehicle)
     {
+        $vehicle = $clubMember->vehicles()->findOrFail($vehicle->id);
+
         return $this->showOne($vehicle);
     }
 
@@ -77,12 +78,9 @@ class ClubMemberVehicleController extends ApiController
     {
         $this->validate($request, $this->validationRules());
 
-        $vehicle->user_id = $request->user()->id;
-        $vehicle->make = $request->make;
-        $vehicle->model = $request->model;
-        $vehicle->year = $request->year;
-        $vehicle->capacity = $request->capacity;
-        $vehicle->induction = $request->induction;
+        foreach ($request->all() as $key => $value) {
+            $vehicle->$key = $value;
+        }
 
         if (!$vehicle->isDirty()) {
             return $this->errorResponse('You need to specify a different value to update', 422);
@@ -103,6 +101,8 @@ class ClubMemberVehicleController extends ApiController
      */
     public function destroy(ClubMember $clubMember, Vehicle $vehicle)
     {
+        $vehicle = $clubMember->vehicles()->findOrFail($vehicle->id);
+
         $vehicle->delete();
 
         return $this->showOne($vehicle);
@@ -117,7 +117,6 @@ class ClubMemberVehicleController extends ApiController
         $nowPlus10 = (String)((int)$now + 10);
 
         return [
-            'user_id' => 'required|integer',
             'make' => 'required|min:2',
             'model' => 'required|min:2',
             'year' => 'required|integer|between:1700,' . $nowPlus10,
