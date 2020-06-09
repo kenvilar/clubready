@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\ClubMember;
 
 use App\Http\Controllers\ApiController;
 use App\Models\ClubMember;
+use App\Models\MembershipType;
 use App\Models\MembershipTypeName;
 use Illuminate\Http\Request;
 
@@ -25,11 +26,13 @@ class ClubMemberMembershipTypeNameController extends ApiController
      * Display a listing of the resource.
      *
      * @param ClubMember $clubMember
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(ClubMember $clubMember)
     {
-        //
+        $membershipTypeNames = $clubMember->membershipTypeNames;
+
+        return $this->showAll($membershipTypeNames);
     }
 
     /**
@@ -37,11 +40,17 @@ class ClubMemberMembershipTypeNameController extends ApiController
      *
      * @param \Illuminate\Http\Request $request
      * @param ClubMember $clubMember
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request, ClubMember $clubMember)
     {
-        //
+        $this->validate($request, $this->validationRules());
+        $data = $request->all();
+        $data['club_member_id'] = $clubMember->id;
+        $membershipTypeName = MembershipTypeName::query()->create($data);
+
+        return $this->showOne($membershipTypeName, 201);
     }
 
     /**
@@ -49,11 +58,13 @@ class ClubMemberMembershipTypeNameController extends ApiController
      *
      * @param ClubMember $clubMember
      * @param MembershipTypeName $membershipTypeName
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(ClubMember $clubMember, MembershipTypeName $membershipTypeName)
     {
-        //
+        $membershipTypeName = $clubMember->membershipTypeNames()->findOrFail($membershipTypeName->id);
+
+        return $this->showOne($membershipTypeName);
     }
 
     /**
@@ -62,11 +73,24 @@ class ClubMemberMembershipTypeNameController extends ApiController
      * @param \Illuminate\Http\Request $request
      * @param ClubMember $clubMember
      * @param MembershipTypeName $membershipTypeName
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, ClubMember $clubMember, MembershipTypeName $membershipTypeName)
     {
-        //
+        $this->validate($request, $this->validationRules());
+
+        foreach ($request->all() as $key => $value) {
+            $membershipTypeName->$key = $value;
+        }
+
+        if (!$membershipTypeName->isDirty()) {
+            return $this->errorResponse('You need to specify a different value to update', 422);
+        }
+
+        $membershipTypeName->save();
+
+        return $this->showOne($membershipTypeName);
     }
 
     /**
@@ -74,11 +98,16 @@ class ClubMemberMembershipTypeNameController extends ApiController
      *
      * @param ClubMember $clubMember
      * @param MembershipTypeName $membershipTypeName
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function destroy(ClubMember $clubMember, MembershipTypeName $membershipTypeName)
     {
-        //
+        $membershipTypeName = $clubMember->membershipTypeNames()->findOrFail($membershipTypeName->id);
+
+        $membershipTypeName->delete();
+
+        return $this->showOne($membershipTypeName);
     }
 
     /**

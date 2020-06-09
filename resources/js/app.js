@@ -37,6 +37,9 @@ clubmember_membership_files.keys().map(key => Vue.component(clubmember_membershi
 const clubmember_membershiptype_files = require.context('./components/member/membership-types/', true, /\.vue$/i);
 clubmember_membershiptype_files.keys().map(key => Vue.component(clubmember_membershiptype_files(key).default.name, clubmember_membershiptype_files(key).default));
 
+const clubmember_membershiptypename_files = require.context('./components/member/membership-type-names/', true, /\.vue$/i);
+clubmember_membershiptypename_files.keys().map(key => Vue.component(clubmember_membershiptypename_files(key).default.name, clubmember_membershiptypename_files(key).default));
+
 /**
  * Inductions
  * */

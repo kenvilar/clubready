@@ -13,7 +13,7 @@
         </li>
         <li><a href="{{route('web.club-member.membership-type-names.index', $clubMember->uuid)}}">Show List</a></li>
         @if (isset($clubMember->uuid) && isset($membershipTypeName->id))
-            <li><a href="{{route('web.club-member.membership-type-names.show', $clubMember->uuid, $membershipTypeName->id)}}">
+            <li><a href="{{route('web.club-member.membership-type-names.show', [$clubMember->uuid, $membershipTypeName->id])}}">
                     Show Item</a></li>
         @endif
         <li class="active">@if (isset($clubMember->uuid)) Edit @else Create @endif Item</li>
@@ -21,7 +21,7 @@
 @endsection
 
 @section('content')
-    This is the club-members.membership-type-names create and edit page
+    <club-members--membership-type-names-create-and-edit-view-vue/>
 @endsection
 
 @push('footer-scripts')
