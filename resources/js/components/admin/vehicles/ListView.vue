@@ -2,13 +2,6 @@
     <section class="content">
         <div class="row">
             <div class="col-lg-12">
-                <button class="btn btn-success btn-lg btn-block btn-responsive" role="button" @click="clickCreate()">
-                    Create New
-                </button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
@@ -20,39 +13,27 @@
                             <table class="table table-striped table-bordered" id="datatable">
                                 <thead>
                                 <tr>
-                                    <th>Make/Model</th>
+                                    <th>User</th>
+                                    <th>Make</th>
+                                    <th>Model</th>
                                     <th>Induction</th>
                                     <th>Year</th>
                                     <th>Capacity</th>
                                     <th>Created Date</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr v-for="item in list" :key="item.id">
+                                    <td>{{item.club_member.user.first_name + ' ' + item.club_member.user.last_name}}</td>
                                     <td>
                                         <span role="link" @click="clickShow(item.id)"
-                                              style="text-decoration: underline !important;">
-                                            {{item.make}} / {{item.model}}
-                                        </span>
+                                              style="text-decoration: underline !important;">{{item.make}}</span>
                                     </td>
+                                    <td>{{item.model}}</td>
                                     <td>{{item.induction}}</td>
                                     <td>{{item.year}}</td>
                                     <td>{{item.capacity}}</td>
                                     <td>{{formatDate(item.created_at)}}</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-xs" data-toggle="modal"
-                                                @click="clickEdit(item.id)"
-                                                data-target="#edit" data-placement="top"><span
-                                            class="fa fa-fw ti-pencil"></span></button>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger btn-xs" data-toggle="modal"
-                                                @click="clickDelete(item.id)"
-                                                data-target="#delete" data-placement="top"><span
-                                            class="fa fa-fw ti-trash"></span></button>
-                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -92,6 +73,7 @@
                 let read = axios.get(`/api/${this.database_model}`)
                     .then(response => {
                         this.list = response.data;
+                        this.list = _.sortBy(this.list, [item => -item.id]);
                     }, error => {
                         this.errors = error.response.data.error;
                     }).catch(err => {
