@@ -25,7 +25,7 @@ class Vehicle extends Model
     /**
      * @return BelongsTo
      */
-    public function clubMembers()
+    public function club_member()
     {
         return $this->belongsTo(ClubMember::class);
     }
