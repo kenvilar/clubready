@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Api\Vehicle;
 
 use App\Http\Controllers\ApiController;
-use App\Models\ClubMember;
-use App\Models\SuperAdmin;
 use App\Models\Vehicle;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
