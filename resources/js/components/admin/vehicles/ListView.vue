@@ -13,6 +13,7 @@
                             <table class="table table-striped table-bordered" id="datatable">
                                 <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>User</th>
                                     <th>Make</th>
                                     <th>Model</th>
@@ -24,11 +25,10 @@
                                 </thead>
                                 <tbody>
                                 <tr v-for="item in list" :key="item.id">
+                                    <td><span role="link" @click="clickShow(item.id)"
+                                              style="text-decoration: underline !important;">{{item.id}}</span></td>
                                     <td>{{item.club_member.user.first_name + ' ' + item.club_member.user.last_name}}</td>
-                                    <td>
-                                        <span role="link" @click="clickShow(item.id)"
-                                              style="text-decoration: underline !important;">{{item.make}}</span>
-                                    </td>
+                                    <td>{{item.make}}</td>
                                     <td>{{item.model}}</td>
                                     <td>{{item.induction}}</td>
                                     <td>{{item.year}}</td>
@@ -73,7 +73,6 @@
                 let read = axios.get(`/api/${this.database_model}`)
                     .then(response => {
                         this.list = response.data;
-                        this.list = _.sortBy(this.list, [item => -item.id]);
                     }, error => {
                         this.errors = error.response.data.error;
                     }).catch(err => {

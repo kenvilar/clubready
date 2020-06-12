@@ -69,8 +69,10 @@ class VehicleController extends ApiController
         $vehicle = $vehicle
             ->newModelQuery()
             ->with([
-                'user' => function ($q) {
-                    $q->select(['id', 'first_name', 'last_name',]);
+                'club_member' => function ($q) {
+                    $q->with(['user' => function ($q) {
+                        $q->select(['id', 'first_name', 'last_name',]);
+                    }])->select(['id', 'user_id',]);
                 },
             ])
             ->find($vehicle->id);

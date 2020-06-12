@@ -12,6 +12,10 @@
                         <table class="table table-striped table-condensed" id="customtable">
                             <tbody>
                             <tr>
+                                <td>User:</td>
+                                <td>{{item.club_member.user.first_name + ' ' + item.club_member.user.last_name}}</td>
+                            </tr>
+                            <tr>
                                 <td>Make:</td>
                                 <td>{{item.make}}</td>
                             </tr>
@@ -30,6 +34,10 @@
                             <tr>
                                 <td>Induction:</td>
                                 <td>{{item.induction}}</td>
+                            </tr>
+                            <tr>
+                                <td>Created Date:</td>
+                                <td>{{formatDate(item.created_at)}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -95,6 +103,9 @@
                     }).catch(err => {
                         console.log('err', err.response);
                     });
+            },
+            formatDate(date) {
+                return date ? moment(date).format('MMMM D, YYYY') : '';
             },
         }
     }
