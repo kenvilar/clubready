@@ -7,11 +7,9 @@ This project is a web app for creating clubs and organizing its members
     - [x] Fix the memberships crud pages
     - [x] Fix the membership types crud pages
     - [x] Fix the membership type names crud pages
-    - [ ] Fix the vehicles crud pages
+    - [x] Fix the vehicles crud pages
     - [ ] As a club admin
         - [ ] I can edit the club details
-    - [ ] As a club member
-        - todo
 - [x] Fix the currentUserInfo method in API (try login and logout with and without remember_token)
 - [x] Fix the Base Controller of ApiController, remove the middleware auth in api controller
 
