@@ -18,6 +18,8 @@ axios.interceptors.response.use(response => {
     }
 
     if (datatableElement.length) {
+        let firstIndexOfTable = $("#datatable").find('th:first').index();
+
         if (response.config.method === "delete") {
             // destroy the datatable after deleting an item to enable the re-initialization
             datatableElement.dataTable().fnDestroy();
@@ -28,8 +30,7 @@ axios.interceptors.response.use(response => {
 
         if (response.config.method === "get" && (howManyInterceptorsEncountered === 1 || resetDataTableAfterDelete)) {
             setTimeout(() => {
-                // initialize the datatable
-                $('#datatable').DataTable({
+                let options = {
                     "responsive": true,
                     "columnDefs": [
                         {
@@ -39,7 +40,14 @@ axios.interceptors.response.use(response => {
                     ],
                     "pageLength": 500,
                     "lengthMenu": [[10, 25, 50, 500, -1], [10, 25, 50, 500, "All"]],
-                });
+                };
+
+                if (MEMBER.UUID === 'admin') {
+                    options["order"] = [[firstIndexOfTable, 'desc']];
+                }
+
+                // initialize the datatable
+                $('#datatable').DataTable(options);
             }, 300);
 
             // back to resetDataTableAfterDelete as default

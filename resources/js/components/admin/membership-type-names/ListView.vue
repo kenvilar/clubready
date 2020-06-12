@@ -2,13 +2,6 @@
     <section class="content">
         <div class="row">
             <div class="col-lg-12">
-                <button class="btn btn-success btn-lg btn-block btn-responsive" role="button" @click="clickCreate()">
-                    Create New
-                </button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
@@ -20,9 +13,10 @@
                             <table class="table table-striped table-bordered" id="datatable">
                                 <thead>
                                 <tr>
+                                    <th>ID</th>
+                                    <th>User</th>
                                     <th>Name</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <th>Created Date</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -30,21 +24,12 @@
                                     <td>
                                         <span role="link" @click="clickShow(item.id)"
                                               style="text-decoration: underline !important;">
-                                            {{item.name}}
+                                            {{item.id}}
                                         </span>
                                     </td>
-                                    <td>
-                                        <button class="btn btn-primary btn-xs" data-toggle="modal"
-                                                @click="clickEdit(item.id)"
-                                                data-target="#edit" data-placement="top"><span
-                                            class="fa fa-fw ti-pencil"></span></button>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger btn-xs" data-toggle="modal"
-                                                @click="clickDelete(item.id)"
-                                                data-target="#delete" data-placement="top"><span
-                                            class="fa fa-fw ti-trash"></span></button>
-                                    </td>
+                                    <td>{{item.club_member.user.first_name + ' ' + item.club_member.user.last_name}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td>{{formatDate(item.created_at)}}</td>
                                 </tr>
                                 </tbody>
                             </table>

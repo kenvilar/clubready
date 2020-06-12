@@ -8,15 +8,13 @@
             </div>
             <div class="card-body">
                 <div class="col-md-12">
-                    <p>
-                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
-                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
-                    </p>
-                </div>
-                <div class="col-md-12">
                     <div class="table-responsive">
                         <table class="table table-striped table-condensed" id="customtable">
                             <tbody>
+                            <tr>
+                                <td>User</td>
+                                <td>{{item.club_member.user.first_name + ' ' + item.club_member.user.last_name}}</td>
+                            </tr>
                             <tr>
                                 <td>Name:</td>
                                 <td>{{item.name}}</td>
@@ -24,12 +22,6 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <p>
-                        <a class="btn btn-success" @click="clickEdit(item.id)">Edit</a>
-                        <a class="btn btn-danger" @click="clickDelete(item.id)">Delete</a>
-                    </p>
                 </div>
             </div>
         </div>

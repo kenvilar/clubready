@@ -28,7 +28,15 @@ class MembershipTypeNameController extends ApiController
      */
     public function index()
     {
-        $membershipTypeNames = MembershipTypeName::all();
+        $membershipTypeNames = MembershipTypeName::query()
+            ->with([
+                'club_member' => function ($q) {
+                    $q->with(['user' => function ($q) {
+                        $q->select(['id', 'first_name', 'last_name',]);
+                    }])->select(['id', 'user_id',]);
+                },
+            ])
+            ->get();
 
         return $this->showAll($membershipTypeNames);
     }
@@ -58,6 +66,19 @@ class MembershipTypeNameController extends ApiController
      */
     public function show(MembershipTypeName $membershipTypeName)
     {
+        /*return $this->showOne($membershipTypeName);*/
+
+        $membershipTypeName = $membershipTypeName
+            ->newModelQuery()
+            ->with([
+                'club_member' => function ($q) {
+                    $q->with(['user' => function ($q) {
+                        $q->select(['id', 'first_name', 'last_name',]);
+                    }])->select(['id', 'user_id',]);
+                },
+            ])
+            ->find($membershipTypeName->id);
+
         return $this->showOne($membershipTypeName);
     }
 
