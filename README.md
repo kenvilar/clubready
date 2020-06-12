@@ -8,6 +8,7 @@ This project is a web app for creating clubs and organizing its members
     - [x] Fix the membership types crud operations
     - [x] Fix the membership type names crud operations
     - [x] Fix the vehicles crud operations
+    - [ ] Add choose-club menu at the upper rightmost corner
     - [ ] As a club admin
         - [ ] Fix the club members crud operations 
         - [ ] I can edit the club details
