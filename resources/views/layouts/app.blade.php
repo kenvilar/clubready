@@ -64,9 +64,7 @@
 
 <script>
     window.Laravel = {!! json_encode(['apiToken' => session('myToken') ?? null]) !!};
-    @if(session('my_app__current_member'))
-        window.MEMBER = {!! json_encode(['UUID' => session('my_app__current_member')['uuid'] ?? null]) !!};
-    @endif
+    window.MEMBER = {!! json_encode(['UUID' => session('my_app__current_member')['uuid'] ?? 'admin']) !!};
 </script>
 
 <!-- global js -->
