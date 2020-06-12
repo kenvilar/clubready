@@ -20,6 +20,7 @@
                             <table class="table table-striped table-bordered" id="datatable">
                                 <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Make/Model</th>
                                     <th>Induction</th>
                                     <th>Year</th>
@@ -31,6 +32,7 @@
                                 </thead>
                                 <tbody>
                                 <tr v-for="item in list" :key="item.id">
+                                    <td>{{item.id}}</td>
                                     <td>
                                         <span role="link" @click="clickShow(item.id)"
                                               style="text-decoration: underline !important;">

@@ -37,14 +37,15 @@ axios.interceptors.response.use(response => {
                             orderable: false,
                             targets: [-1, -2],
                         },
+                        {
+                            targets: [0],
+                            visible: false,
+                        },
                     ],
                     "pageLength": 500,
                     "lengthMenu": [[10, 25, 50, 500, -1], [10, 25, 50, 500, "All"]],
+                    "order": [[firstIndexOfTable, 'desc']],
                 };
-
-                if (MEMBER.UUID === 'admin') {
-                    options["order"] = [[firstIndexOfTable, 'desc']];
-                }
 
                 // initialize the datatable
                 $('#datatable').DataTable(options);
