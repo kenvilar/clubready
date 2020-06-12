@@ -61,11 +61,11 @@ class ClubMember extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return HasMany
      */
     public function vehicles()
     {
-        return $this->belongsToMany(Vehicle::class);
+        return $this->hasMany(Vehicle::class);
     }
 
     /**
