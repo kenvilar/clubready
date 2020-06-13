@@ -15,6 +15,17 @@ Route::resource('club-members', 'ClubMemberController', ['except' => ['store', '
         'edit' => 'edit',
     ]);
 
+Route::group(['as' => 'members.'], function () {
+    Route::resource('club-members.members', 'ClubMemberClubMemberController',
+        ['except' => ['store', 'update', 'destroy',]])
+        ->names([
+            'index' => 'index',
+            'create' => 'create',
+            'show' => 'show',
+            'edit' => 'edit',
+        ]);
+});
+
 Route::group(['as' => 'memberships.'], function () {
     Route::resource('club-members.memberships', 'ClubMemberMembershipController',
         ['except' => ['store', 'update', 'destroy',]])

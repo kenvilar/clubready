@@ -11,6 +11,8 @@ This project is a web app for creating clubs and organizing its members
     - [ ] Add choose-club menu at the upper rightmost corner
     - [ ] As a club admin
         - [ ] Fix the club members crud operations 
+        - [ ] Fix the create and edit members operation
+        - [ ] Fix the delete members operation
         - [ ] I can edit the club details
 - [x] Fix the currentUserInfo method in API (try login and logout with and without remember_token)
 - [x] Fix the Base Controller of ApiController, remove the middleware auth in api controller

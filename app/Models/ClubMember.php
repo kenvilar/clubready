@@ -18,10 +18,10 @@ class ClubMember extends Model
         'club_id',
         'admin',
         'uuid',
+        'created_at',
     ];
 
     protected $hidden = [
-        'created_at',
         'updated_at',
     ];
 
