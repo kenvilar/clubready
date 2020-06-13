@@ -24,8 +24,10 @@
             </a>
         </li>
         <li role="presentation"></li>
-        <li><a href="#" class="dropdown-item"><i class="fa fa-fw ti-settings"></i> Account Settings </a>
-        </li>
+        <li><a href="#" class="dropdown-item"><i class="fa fa-fw ti-settings"></i> Account Settings </a></li>
+        @if (!UserHelper::isSuperAdmin())
+            <li><a href="{{route('chooseClub')}}" class="dropdown-item"><i class="fa fa-fw ti-settings"></i> Choose Club </a></li>
+        @endif
         <li role="presentation" class="dropdown-divider"></li>
         <!-- Menu Footer-->
         <li class="user-footer">
