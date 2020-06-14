@@ -183,7 +183,7 @@
                     });
             },
             async edit() {
-                if (this.database_model_id) {
+                if (this.database_model_id && this.database_model_id !== 'create') {
                     axios.get(`/api/${this.database_model}/${this.database_model_id}`, this.item)
                         .then(response => {
                             this.item = response.data;
