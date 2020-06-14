@@ -18,9 +18,10 @@
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" name="first_name" id="first_name"
                                            v-model="item.first_name"
-                                           :class="{'is-invalid': hasError(errors, 'first_name')}">
+                                           :disabled="isEditView(item.id)"
+                                           :class="{'is-invalid': isEditView(item.id) ? null : hasError(errors, 'first_name')}">
                                     <span role="alert" class="invalid-feedback">
-                                    <strong>{{hasError(errors, 'first_name', true)}}</strong></span>
+                                    <strong>{{isEditView(item.id) ? null : hasError(errors, 'first_name', true)}}</strong></span>
                                 </div>
                             </div>
                             <div class="form-group row required">
@@ -30,9 +31,10 @@
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" name="last_name" id="last_name"
                                            v-model="item.last_name"
-                                           :class="{'is-invalid': hasError(errors, 'last_name')}">
+                                           :disabled="isEditView(item.id)"
+                                           :class="{'is-invalid': isEditView(item.id) ? null : hasError(errors, 'last_name')}">
                                     <span role="alert" class="invalid-feedback">
-                                    <strong>{{hasError(errors, 'last_name', true)}}</strong></span>
+                                    <strong>{{isEditView(item.id) ? null : hasError(errors, 'last_name', true)}}</strong></span>
                                 </div>
                             </div>
                             <div class="form-group row striped-col required">
@@ -42,9 +44,10 @@
                                 <div class="col-sm-6">
                                     <input type="email" class="form-control" name="email" id="email"
                                            v-model="item.email"
-                                           :class="{'is-invalid': hasError(errors, 'email')}">
+                                           :disabled="isEditView(item.id)"
+                                           :class="{'is-invalid': isEditView(item.id) ? null : hasError(errors, 'email')}">
                                     <span role="alert" class="invalid-feedback">
-                                    <strong>{{hasError(errors, 'email', true)}}</strong></span>
+                                    <strong>{{isEditView(item.id) ? null : hasError(errors, 'email', true)}}</strong></span>
                                 </div>
                             </div>
                             <div class="form-group row required" v-if="!isEditView(item.id)">
@@ -54,9 +57,9 @@
                                 <div class="col-sm-6">
                                     <input type="password" class="form-control" name="password" id="password"
                                            v-model="item.password"
-                                           :class="{'is-invalid': hasError(errors, 'password')}">
+                                           :class="{'is-invalid': isEditView(item.id) ? null : hasError(errors, 'password')}">
                                     <span role="alert" class="invalid-feedback">
-                                    <strong>{{hasError(errors, 'password', true)}}</strong></span>
+                                    <strong>{{isEditView(item.id) ? null : hasError(errors, 'password', true)}}</strong></span>
                                 </div>
                             </div>
                             <div class="form-group row striped-col required" v-if="!isEditView(item.id)">
@@ -144,7 +147,7 @@
                                 type: "success",
                             }).then(result => {
                                 if (result.value) {
-                                    this.automaticFocusTheFirstInput();
+                                    this.edit();
                                 }
                             });
                         }, error => {
@@ -184,6 +187,9 @@
                     axios.get(`/api/${this.database_model}/${this.database_model_id}`, this.item)
                         .then(response => {
                             this.item = response.data;
+                            this.item.first_name = response.data.user.first_name;
+                            this.item.last_name = response.data.user.last_name;
+                            this.item.email = response.data.user.email;
                         }, error => {
                             this.errors = error.response.data.error;
                         })
@@ -218,9 +224,9 @@
             getDatabaseModelIdFromUrl(url) {
                 let index;
                 url = url.split('/');
-                index = _.findIndex(url, item => item === 'membership-type-names');
+                index = _.findIndex(url, item => item === 'members');
 
-                return Number(url[index + 1]);
+                return url[index + 1];
             },
         }
     }

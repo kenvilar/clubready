@@ -104,7 +104,7 @@ class ClubMemberClubMemberController extends ApiController
             ->newModelQuery()
             ->with([
                 'user' => function ($q) {
-                    $q->select(['id', 'first_name', 'last_name',]);
+                    $q->select(['id', 'first_name', 'last_name', 'email',]);
                 },
                 'club' => function ($q) {
                     $q->select(['id', 'name',]);
@@ -120,24 +120,24 @@ class ClubMemberClubMemberController extends ApiController
      *
      * @param Request $request
      * @param ClubMember $clubMember
+     * @param ClubMember $member
      * @return JsonResponse
      * @throws ValidationException
      */
-    public function update(Request $request, ClubMember $clubMember)
+    public function update(Request $request, ClubMember $clubMember, ClubMember $member)
     {
-        $this->validate($request, $this->validationRules($request, $clubMember));
+        $this->validate($request, $this->validationRules($request, null, $member));
 
-        $clubMember->user_id = $request->user_id;
-        $clubMember->club_id = $request->club_id;
-        $clubMember->admin = $request->admin;
+        $data2['club_id'] = $member->club_id;
+        $member->admin = $request->admin;
 
-        if (!$clubMember->isDirty()) {
+        if (!$member->isDirty()) {
             return $this->errorResponse('You need to specify a different value to update', 422);
         }
 
-        $clubMember->save();
+        $member->save();
 
-        return $this->showOne($clubMember);
+        return $this->showOne($member);
     }
 
     /**
@@ -188,13 +188,7 @@ class ClubMemberClubMemberController extends ApiController
                         ->where('club_id', $clubMember->club_id);
                 });
         } else {
-            $club_id_rule = Rule::unique('club_members')
-                ->where(function (Builder $query) use ($request, $clubMember) {
-                    $query
-                        ->where('user_id', $request->user_id)
-                        ->where('club_id', $request->club_id)
-                        ->whereNotIn('id', [$clubMember->id]);
-                });
+            $club_id_rule = null;
         }
 
         return [
@@ -202,6 +196,7 @@ class ClubMemberClubMemberController extends ApiController
             'club_id' => ['integer',
                 //Don't save if both user_id and club_id exist
                 $club_id_rule,],
+            'admin' => 'required|in:' . ClubMember::ADMIN_USER . ',' . ClubMember::NON_ADMIN_USER,
         ];
     }
 }
