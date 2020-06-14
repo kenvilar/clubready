@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Club;
 use App\Models\SuperAdmin;
 use App\User;
 
@@ -35,5 +36,16 @@ class UserHelper
         }
 
         return (int)$club_member == 1;
+    }
+
+    /**
+     * @param $clubId
+     * @return mixed
+     */
+    public static function getClubName($clubId)
+    {
+        $club = Club::query()->find($clubId)->first();
+
+        return $club->name;
     }
 }
