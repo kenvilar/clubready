@@ -116,8 +116,8 @@ class ClubMemberMembershipController extends ApiController
     {
         return [
             'year' => 'required|min:4|max:4',
-            'name' => 'required|min:2',
-            'amount' => 'required|numeric|min:1',
+            'name' => 'required',
+            'amount' => 'required|numeric',
         ];
     }
 }

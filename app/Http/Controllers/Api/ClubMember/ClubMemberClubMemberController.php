@@ -46,6 +46,7 @@ class ClubMemberClubMemberController extends ApiController
             ])
             ->where('club_id', $clubMember->club_id)
             ->where('user_id', '<>', $clubMember->user_id)
+            ->where('verified', '1')
             ->get();
 
         return $this->showAll($clubMembers);
@@ -164,12 +165,10 @@ class ClubMemberClubMemberController extends ApiController
     public function unverifiedUser(ClubMember $clubMember, $member)
     {
         $clubMember = ClubMember::query()->where('uuid', $member)->get()->first();
-        $user = User::query()->findOrFail($clubMember->user_id);
-        $user->verified = '0';
-        $user->verification_token = User::generateVerificationCode();
-        $user->save();
+        $clubMember->verified = '0';
+        $clubMember->save();
 
-        return $this->showOne($user);
+        return $this->showOne($clubMember);
     }
 
     /**

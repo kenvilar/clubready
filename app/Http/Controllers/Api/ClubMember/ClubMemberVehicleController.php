@@ -117,11 +117,11 @@ class ClubMemberVehicleController extends ApiController
         $nowPlus10 = (String)((int)$now + 10);
 
         return [
-            'make' => 'required|min:2',
-            'model' => 'required|min:2',
+            'make' => 'required',
+            'model' => 'required',
             'year' => 'required|integer|between:1700,' . $nowPlus10,
-            'capacity' => 'required|integer|min:1',
-            'induction' => 'required|min:2',
+            'capacity' => 'required|integer',
+            'induction' => 'required',
         ];
     }
 }

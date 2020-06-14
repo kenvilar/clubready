@@ -18,6 +18,7 @@ class ClubMember extends Model
         'club_id',
         'admin',
         'uuid',
+        'verified',
         'created_at',
     ];
 

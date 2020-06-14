@@ -135,7 +135,7 @@
             async storeOrUpdate() {
                 this.item.admin = $("input[name='admin']:checked").val();
 
-                if (this.database_model_id) {
+                if (this.database_model_id && this.database_model_id !== 'create') {
                     axios.put(`/api/${this.database_model}/${this.database_model_id}`, this.item)
                         .then(response => {
                             this.item = response.data;

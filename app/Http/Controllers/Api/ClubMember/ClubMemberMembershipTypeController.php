@@ -115,8 +115,8 @@ class ClubMemberMembershipTypeController extends ApiController
     private function validationRules()
     {
         return [
-            'name' => 'required|min:2',
-            'value' => 'required|min:1',
+            'name' => 'required',
+            'value' => 'required',
             'start_date' => 'required|date',
             'expiry_date' => 'required|date',
         ];

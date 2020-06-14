@@ -9,7 +9,7 @@
 
 Route::resource('club-members', 'ClubMemberController', ['except' => ['create', 'edit']]);
 
-Route::post('club-members/{club_member}/unverified-user/{member}', 'ClubMemberClubMemberController@unverifiedUser');
+Route::delete('club-members/{club_member}/unverified-user/{member}', 'ClubMemberClubMemberController@unverifiedUser');
 
 Route::resource('club-members.members', 'ClubMemberClubMemberController', ['except' => ['create', 'edit', 'unverifiedUser',]]);
 

@@ -113,7 +113,7 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then(result => {
                     if (result.value) {
-                        axios.post(`/api/${this.database_model_for_delete}/${id}`)
+                        axios.delete(`/api/${this.database_model_for_delete}/${id}`)
                             .then(response => {
                                 console.log('response.data', response.data);
 

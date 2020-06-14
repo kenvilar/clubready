@@ -116,7 +116,7 @@ class ClubMemberMembershipTypeNameController extends ApiController
     private function validationRules()
     {
         return [
-            'name' => 'required|min:2',
+            'name' => 'required',
         ];
     }
 }

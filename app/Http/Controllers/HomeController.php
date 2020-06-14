@@ -37,6 +37,7 @@ class HomeController extends Controller
         $super_admin = SuperAdmin::query()->where('user_id', auth()->user()->id);
         $clubs = ClubMember::query()
             ->where('user_id', auth()->user()->id)
+            ->where('verified', '1')
             ->with([
                 'club' => function ($q) {
                     $q->select(['id', 'name',]);
