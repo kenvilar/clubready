@@ -9,7 +9,9 @@
 
 Route::resource('club-members', 'ClubMemberController', ['except' => ['create', 'edit']]);
 
-Route::resource('club-members.members', 'ClubMemberClubMemberController', ['except' => ['create', 'edit']]);
+Route::post('club-members/{club_member}/unverified-user/{member}', 'ClubMemberClubMemberController@unverifiedUser');
+
+Route::resource('club-members.members', 'ClubMemberClubMemberController', ['except' => ['create', 'edit', 'unverifiedUser',]]);
 
 Route::resource('club-members.memberships', 'ClubMemberMembershipController', ['except' => ['create', 'edit']]);
 

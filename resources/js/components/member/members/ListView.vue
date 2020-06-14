@@ -22,7 +22,6 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Club</th>
                                     <th>Admin</th>
                                     <th>Created Date</th>
                                     <th>Edit</th>
@@ -38,7 +37,6 @@
                                             {{item.user['first_name']}} {{item.user['last_name']}}
                                         </span>
                                     </td>
-                                    <td>{{item.club['name']}}</td>
                                     <td>{{item.admin == '1' ? 'True' : 'False'}}</td>
                                     <td>{{formatDate(item.created_at)}}</td>
                                     <td>
@@ -77,6 +75,7 @@
         data() {
             return {
                 database_model: 'club-members/' + MEMBER.UUID + '/members',
+                database_model_for_delete: 'club-members/' + MEMBER.UUID + '/unverified-user',
                 list: [],
                 item: {},
                 errors: {},
@@ -114,7 +113,7 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then(result => {
                     if (result.value) {
-                        axios.delete(`/api/${this.database_model}/${id}`)
+                        axios.post(`/api/${this.database_model_for_delete}/${id}`)
                             .then(response => {
                                 console.log('response.data', response.data);
 

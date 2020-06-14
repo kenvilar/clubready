@@ -60,6 +60,7 @@
         data() {
             return {
                 database_model: 'club-members/' + MEMBER.UUID + '/members',
+                database_model_for_delete: 'club-members/' + MEMBER.UUID + '/unverified-user',
                 database_model_id: this.getDatabaseModelIdFromUrl(URLPATHNAME),
                 item: {},
                 errors: {},
@@ -83,17 +84,45 @@
                 window.location.href = `/admin/${this.database_model}/${id}/edit`;
             },
             async clickDelete(id) {
-                let remove = axios.delete(`/api/${this.database_model}/${id}`)
-                    .then(response => {
-                        if (response.data) {
-                            window.location.href = `/admin/${this.database_model}`;
-                        }
-                    }, error => {
-                        this.errors = error.response.data;
-                        console.log('this.errors', this.errors);
-                    }).catch(err => {
-                        console.log('err', err.response);
-                    });
+                swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then(result => {
+                    if (result.value) {
+                        axios.post(`/api/${this.database_model_for_delete}/${id}`)
+                            .then(response => {
+                                if (response.data) {
+                                    swal.fire(
+                                        'Deleted!',
+                                        'Item has been deleted.',
+                                        'success'
+                                    ).then(response => {
+                                        if (response.value) {
+                                            window.location.href = `/admin/${this.database_model}`;
+                                        }
+                                    });
+                                }
+                            }, error => {
+                                this.errors = error.response.data;
+                                if (this.errors.error === "Cannot remove this resource permanently. It is related with any other resource") {
+                                    swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Cannot remove this item. It is related with any other resource!',
+                                    });
+                                }
+                                console.log('this.errors', this.errors);
+                            })
+                            .catch(err => {
+                                console.log('err', err.response);
+                            });
+                    }
+                })
             },
             getDatabaseModelIdFromUrl(url) {
                 let index;

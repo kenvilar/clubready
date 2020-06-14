@@ -9,10 +9,11 @@ This project is a web app for creating clubs and organizing its members
     - [x] Fix the membership type names crud operations
     - [x] Fix the vehicles crud operations
     - [x] Add choose-club menu at the upper rightmost corner
+    - [ ] Display the club name at the upper leftmost menu
     - [ ] As a club admin
         - [x] Fix the club members crud operations 
         - [ ] Fix the create and edit members operation
-        - [ ] Fix the delete members operation
+        - [x] Unverified the member instead of deleting them
         - [ ] I can edit the club details
 - [x] Fix the currentUserInfo method in API (try login and logout with and without remember_token)
 - [x] Fix the Base Controller of ApiController, remove the middleware auth in api controller

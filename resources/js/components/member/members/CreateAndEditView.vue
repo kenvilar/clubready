@@ -13,44 +13,64 @@
                               novalidate>
                             <div class="form-group row striped-col required">
                                 <div class="col-sm-3 text-right txt_media">
-                                    <label class="form-control-label" for="user_id">User</label>
+                                    <label class="form-control-label" for="first_name">First Name</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <select name="user_id" id="user_id" class="form-control"
-                                            v-model="item.user_id"
-                                            :class="{'is-invalid': hasError(errors, 'user_id')}"
-                                            style="width:100%">
-                                        <option disabled value="0">Select value...</option>
-                                        <option v-for="user in all_users"
-                                                :key="user.id"
-                                                :value="user.id"
-                                                :selected="user.id === item.user_id">
-                                            {{user.first_name}} {{user.last_name}}
-                                        </option>
-                                    </select>
+                                    <input type="text" class="form-control" name="first_name" id="first_name"
+                                           v-model="item.first_name"
+                                           :class="{'is-invalid': hasError(errors, 'first_name')}">
                                     <span role="alert" class="invalid-feedback">
-                                        <strong>{{hasError(errors, 'user_id', true)}}</strong></span>
+                                    <strong>{{hasError(errors, 'first_name', true)}}</strong></span>
                                 </div>
                             </div>
                             <div class="form-group row required">
                                 <div class="col-sm-3 text-right txt_media">
-                                    <label class="form-control-label" for="club_id">Club</label>
+                                    <label class="form-control-label" for="last_name">Last Name</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <select name="club_id" id="club_id" class="form-control"
-                                            v-model="item.club_id"
-                                            :class="{'is-invalid': hasError(errors, 'club_id')}"
-                                            style="width:100%">
-                                        <option disabled value="0">Select value...</option>
-                                        <option v-for="club in all_clubs"
-                                                :key="club.id"
-                                                :value="club.id"
-                                                :selected="club.id === item.club_id">
-                                            {{club.name}}
-                                        </option>
-                                    </select>
+                                    <input type="text" class="form-control" name="last_name" id="last_name"
+                                           v-model="item.last_name"
+                                           :class="{'is-invalid': hasError(errors, 'last_name')}">
                                     <span role="alert" class="invalid-feedback">
-                                        <strong>{{hasError(errors, 'club_id', true)}}</strong></span>
+                                    <strong>{{hasError(errors, 'last_name', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group row striped-col required">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="email">Email</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="email" class="form-control" name="email" id="email"
+                                           v-model="item.email"
+                                           :class="{'is-invalid': hasError(errors, 'email')}">
+                                    <span role="alert" class="invalid-feedback">
+                                    <strong>{{hasError(errors, 'email', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group row required" v-if="!isEditView(item.id)">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="password">Password</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control" name="password" id="password"
+                                           v-model="item.password"
+                                           :class="{'is-invalid': hasError(errors, 'password')}">
+                                    <span role="alert" class="invalid-feedback">
+                                    <strong>{{hasError(errors, 'password', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group row striped-col required" v-if="!isEditView(item.id)">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="password_confirmation">
+                                        Confirm Password</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control" name="password_confirmation"
+                                           id="password_confirmation"
+                                           v-model="item.password_confirmation"
+                                           :class="{'is-invalid': hasError(errors, 'password_confirmation')}">
+                                    <span role="alert" class="invalid-feedback">
+                                    <strong>{{hasError(errors, 'password_confirmation', true)}}</strong></span>
                                 </div>
                             </div>
                             <div class="form-group row striped-col required">
@@ -112,8 +132,8 @@
             async storeOrUpdate() {
                 this.item.admin = $("input[name='admin']:checked").val();
 
-                if (this.model_id) {
-                    axios.put(`/api/${this.database_model}/${this.model_id}`, this.item)
+                if (this.database_model_id) {
+                    axios.put(`/api/${this.database_model}/${this.database_model_id}`, this.item)
                         .then(response => {
                             this.item = response.data;
 
@@ -160,8 +180,8 @@
                     });
             },
             async edit() {
-                if (this.model_id) {
-                    axios.get(`/api/${this.database_model}/${this.model_id}`, this.item)
+                if (this.database_model_id) {
+                    axios.get(`/api/${this.database_model}/${this.database_model_id}`, this.item)
                         .then(response => {
                             this.item = response.data;
                         }, error => {
