@@ -3,7 +3,7 @@
         <a class="float-left profile-thumb" href="#">
             <img src="{{ asset('img/authors/avatar1.jpg') }}" class="rounded-circle" alt="User Image"></a>
         <div class="content-profile">
-            @if (session('my_app__current_member')['club_id'])
+            @if (session('my_app__current_member'))
                 <h4 class="media-heading">{{UserHelper::getClubName(session('my_app__current_member')['club_id'])}}</h4>
             @endif
             <h4 class="media-heading">
