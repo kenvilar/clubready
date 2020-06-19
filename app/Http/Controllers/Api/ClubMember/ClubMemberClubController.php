@@ -2,63 +2,144 @@
 
 namespace App\Http\Controllers\Api\ClubMember;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
+use App\Models\Club;
+use App\Models\ClubMember;
 use Illuminate\Http\Request;
 
-class ClubMemberClubController extends Controller
+class ClubMemberClubController extends ApiController
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('member-has-club');
+        $this->middleware('club-admin');
+        $this->middleware('strict-user');
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param ClubMember $clubMember
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(ClubMember $clubMember)
     {
-        //
+        $columns = [];
+        $clubs = Club::query()->get();
+
+        //display specific columns
+        if (\request()->all() && \request()->select == true) {
+            foreach (\request()->all() as $key => $value) {
+                if ($key !== 'select' && $value == 'true') {
+                    array_push($columns, $key);
+                }
+            }
+
+            $clubs = Club::query()->get($columns);
+        }
+
+        return $this->showAll($clubs);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param Club $club
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request, Club $club)
     {
-        //
+        $this->validate($request, $this->validationRules());
+        $data = $request->all();
+
+        $club = Club::query()->create($data);
+
+        return $this->showOne($club, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ClubMember $clubMember
+     * @param Club $club
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show(ClubMember $clubMember, Club $club)
     {
-        //
+        return $this->showOne($club);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param ClubMember $clubMember
+     * @param Club $club
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ClubMember $clubMember, Club $club)
     {
-        //
+        $this->validate($request, $this->validationRules());
+
+        $club->name = $request->name;
+        $club->address = $request->address;
+        $club->suburb = $request->suburb;
+        $club->state = $request->state;
+        $club->postcode = $request->postcode;
+        $club->country = $request->country;
+        $club->phone = $request->phone;
+        $club->email = $request->email;
+        $club->website = $request->website;
+
+        if (!$club->isDirty()) {
+            return $this->errorResponse('You need to specify a different value to update', 422);
+        }
+
+        $club->save();
+
+        return $this->showOne($club);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Club $club
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Club $club)
     {
-        //
+        $club->delete();
+
+        return $this->showOne($club);
+    }
+
+    /**
+     * @return array
+     */
+    private function validationRules()
+    {
+        return [
+            'name' => 'required|min:2',
+            'address' => 'required|min:2',
+            'suburb' => 'required|min:2',
+            'state' => 'required|min:2',
+            'postcode' => 'required|min:4|max:12',
+            'country' => 'required|min:2',
+            'phone' => 'nullable|min:2',
+            'email' => 'nullable|email',
+            'website' => 'nullable|min:3',
+            //'stripe_keys' => 'required',
+        ];
     }
 }
