@@ -11,6 +11,8 @@ Route::resource('club-members', 'ClubMemberController', ['except' => ['create', 
 
 Route::delete('club-members/{club_member}/unverified-user/{member}', 'ClubMemberClubMemberController@unverifiedUser');
 
+Route::resource('club-members.clubs', 'ClubMemberClubController', ['except' => ['store', 'create', 'edit', 'show', 'destroy',]]);
+
 Route::resource('club-members.members', 'ClubMemberClubMemberController', ['except' => ['create', 'edit', 'unverifiedUser',]]);
 
 Route::resource('club-members.memberships', 'ClubMemberMembershipController', ['except' => ['create', 'edit']]);

@@ -30,50 +30,8 @@ class ClubMemberClubController extends ApiController
      */
     public function index(ClubMember $clubMember)
     {
-        $columns = [];
-        $clubs = Club::query()->get();
+        $club = Club::query()->find($clubMember->club_id);
 
-        //display specific columns
-        if (\request()->all() && \request()->select == true) {
-            foreach (\request()->all() as $key => $value) {
-                if ($key !== 'select' && $value == 'true') {
-                    array_push($columns, $key);
-                }
-            }
-
-            $clubs = Club::query()->get($columns);
-        }
-
-        return $this->showAll($clubs);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param Club $club
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(Request $request, Club $club)
-    {
-        $this->validate($request, $this->validationRules());
-        $data = $request->all();
-
-        $club = Club::query()->create($data);
-
-        return $this->showOne($club, 201);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param ClubMember $clubMember
-     * @param Club $club
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function show(ClubMember $clubMember, Club $club)
-    {
         return $this->showOne($club);
     }
 
@@ -90,15 +48,9 @@ class ClubMemberClubController extends ApiController
     {
         $this->validate($request, $this->validationRules());
 
-        $club->name = $request->name;
-        $club->address = $request->address;
-        $club->suburb = $request->suburb;
-        $club->state = $request->state;
-        $club->postcode = $request->postcode;
-        $club->country = $request->country;
-        $club->phone = $request->phone;
-        $club->email = $request->email;
-        $club->website = $request->website;
+        foreach ($request->all() as $key => $value) {
+            $club->$key = $value;
+        }
 
         if (!$club->isDirty()) {
             return $this->errorResponse('You need to specify a different value to update', 422);
@@ -108,20 +60,6 @@ class ClubMemberClubController extends ApiController
 
         return $this->showOne($club);
 
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Club $club
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
-     */
-    public function destroy(Club $club)
-    {
-        $club->delete();
-
-        return $this->showOne($club);
     }
 
     /**
