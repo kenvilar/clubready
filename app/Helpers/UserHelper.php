@@ -42,10 +42,8 @@ class UserHelper
      * @param $clubId
      * @return mixed
      */
-    public static function getClubName($clubId)
+    public static function getClub()
     {
-        $club = Club::query()->find($clubId)->first();
-
-        return $club->name;
+        return Club::query()->find(session('my_app__current_member')['club_id'])->first();
     }
 }

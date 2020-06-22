@@ -10,7 +10,7 @@ This project is a web app for creating clubs and organizing its members
     - [x] Fix the vehicles crud operations
     - [x] Add choose-club menu at the upper rightmost corner
     - [x] Display the club name at the upper leftmost menu
-    - [ ] As a club admin
+    - [x] As a club admin
         - [x] Fix the club members crud operations 
         - [x] Fix the create and edit members operation
         - [x] Unverified the member instead of deleting them
