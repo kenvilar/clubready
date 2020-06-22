@@ -3,7 +3,7 @@
 This project is a web app for creating clubs and organizing its members
 
 ## TODO
-- [ ] For club members
+- [x] For club members
     - [x] Fix the memberships crud operations
     - [x] Fix the membership types crud operations
     - [x] Fix the membership type names crud operations
