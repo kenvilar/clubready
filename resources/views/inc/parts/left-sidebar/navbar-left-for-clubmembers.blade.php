@@ -1,16 +1,22 @@
-@if (UserHelper::isClubAdmin() && session()->has('my_app__current_member'))
-    <li class="{{request()->routeIs('web.club-member.*') ? 'active' : ''}}">
-        <a href="{{ route('web.club-member.members.index', session('my_app__current_member')['uuid']) }}">
-            <i class="menu-icon icon-people icons"></i>
-            <span class="mm-text ">Club Members</span>
-        </a>
-    </li>
-@endif
 @if (env('APP_DEBUG'))
     <li class="{{request()->routeIs('getAllSessionData') ? 'active' : ''}}">
         <a href="{{ route('getAllSessionData') }}" target="_blank">
             <i class="menu-icon ti-tag"></i>
             <span class="mm-text ">All Session Data</span>
+        </a>
+    </li>
+@endif
+@if (UserHelper::isClubAdmin() && session()->has('my_app__current_member'))
+    {{--<li class="{{request()->routeIs('web.club-member.clubs.*') ? 'active' : ''}}">
+        <a href="{{ route('web.club-member.clubs.show', session('my_app__current_member')['uuid']) }}">
+            <i class="menu-icon icon-people icons"></i>
+            <span class="mm-text ">Club Details</span>
+        </a>
+    </li>--}}
+    <li class="{{request()->routeIs('web.club-member.members.*') ? 'active' : ''}}">
+        <a href="{{ route('web.club-member.members.index', session('my_app__current_member')['uuid']) }}">
+            <i class="menu-icon icon-people icons"></i>
+            <span class="mm-text ">Club Members</span>
         </a>
     </li>
 @endif

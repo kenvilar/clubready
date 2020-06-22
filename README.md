@@ -14,7 +14,7 @@ This project is a web app for creating clubs and organizing its members
         - [x] Fix the club members crud operations 
         - [x] Fix the create and edit members operation
         - [x] Unverified the member instead of deleting them
-        - [ ] I can edit the club details
+        - [x] I can edit the club details
 - [x] Fix the currentUserInfo method in API (try login and logout with and without remember_token)
 - [x] Fix the Base Controller of ApiController, remove the middleware auth in api controller
 

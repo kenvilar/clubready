@@ -3,83 +3,35 @@
 namespace App\Http\Controllers\Web\ClubMember;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Club;
+use App\Models\ClubMember;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 
 class ClubMemberClubController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ClubMember $clubMember
+     * @param Club $club
+     * @return Factory|View
      */
-    public function show($id)
+    public function show(ClubMember $clubMember, Club $club)
     {
-        //
+        return view('members.club-members.clubs.show', ['clubMember' => $clubMember, 'club' => $club]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ClubMember $clubMember
+     * @param Club $club
+     * @return Factory|View
      */
-    public function edit($id)
+    public function edit(ClubMember $clubMember, Club $club)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('members.club-members.clubs.edit',
+            ['clubMember' => $clubMember, 'club' => $club]);
     }
 }

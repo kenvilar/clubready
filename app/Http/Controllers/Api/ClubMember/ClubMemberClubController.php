@@ -23,12 +23,13 @@ class ClubMemberClubController extends ApiController
     }
 
     /**
-     * Display a listing of the resource.
+     * Display the specified resource.
      *
      * @param ClubMember $clubMember
+     * @param Club $club
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(ClubMember $clubMember)
+    public function show(ClubMember $clubMember, Club $club)
     {
         $club = Club::query()->find($clubMember->club_id);
 

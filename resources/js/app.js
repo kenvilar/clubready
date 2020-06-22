@@ -31,6 +31,9 @@ club_files.keys().map(key => Vue.component(club_files(key).default.name, club_fi
 const clubmember_files = require.context('./components/admin/club-members/', true, /\.vue$/i);
 clubmember_files.keys().map(key => Vue.component(clubmember_files(key).default.name, clubmember_files(key).default));
 
+const clubmember_clubs_files = require.context('./components/member/clubs/', true, /\.vue$/i);
+clubmember_clubs_files.keys().map(key => Vue.component(clubmember_clubs_files(key).default.name, clubmember_clubs_files(key).default));
+
 const clubmember_members_files = require.context('./components/member/members/', true, /\.vue$/i);
 clubmember_members_files.keys().map(key => Vue.component(clubmember_members_files(key).default.name, clubmember_members_files(key).default));
 
