@@ -18,3 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::namespace('Api')->name('api.')->group(base_path('routes/api/admin/base.php'));
+
+Route::fallback(function () {
+    return response()->json(['message' => 'The specified URL cannot be found', 'code' => 404], 404);
+})->name('api.fallback.404');

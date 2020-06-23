@@ -11,14 +11,14 @@ class Membership extends Model
         'year',
         'name',
         'amount',
+        'created_at',
     ];
 
     protected $hidden = [
-        'created_at',
         'updated_at',
     ];
 
-    public function clubMembers()
+    public function club_member()
     {
         return $this->belongsTo(ClubMember::class);
     }

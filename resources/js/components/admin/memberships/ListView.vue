@@ -20,15 +20,22 @@
                             <table class="table table-striped table-bordered" id="datatable">
                                 <thead>
                                 <tr>
+                                    <th>ID</th>
+                                    <th>User</th>
+                                    <th>Club</th>
                                     <th>Name</th>
                                     <th>Year</th>
                                     <th>Amount</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <th>Created Date</th>
+                                    <!--<th>Edit</th>
+                                    <th>Delete</th>-->
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr v-for="item in list" :key="item.id">
+                                    <td>{{item.id}}</td>
+                                    <td>{{item.club_member.user.first_name + ' ' + item.club_member.user.last_name}}</td>
+                                    <td>{{item.club_member.club.name}}</td>
                                     <td>
                                         <span role="link" @click="clickShow(item.id)"
                                               style="text-decoration: underline !important;">
@@ -37,7 +44,8 @@
                                     </td>
                                     <td>{{item.year}}</td>
                                     <td>{{item.amount}}</td>
-                                    <td>
+                                    <td>{{formatDate(item.created_at)}}</td>
+                                    <!--<td>
                                         <button class="btn btn-primary btn-xs" data-toggle="modal"
                                                 @click="clickEdit(item.id)"
                                                 data-target="#edit" data-placement="top"><span
@@ -48,7 +56,7 @@
                                                 @click="clickDelete(item.id)"
                                                 data-target="#delete" data-placement="top"><span
                                             class="fa fa-fw ti-trash"></span></button>
-                                    </td>
+                                    </td>-->
                                 </tr>
                                 </tbody>
                             </table>

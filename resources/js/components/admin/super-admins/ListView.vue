@@ -20,6 +20,7 @@
                             <table class="table table-striped table-bordered" id="datatable">
                                 <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>User</th>
                                     <th>Created Date</th>
                                     <th>Edit</th>
@@ -28,6 +29,7 @@
                                 </thead>
                                 <tbody>
                                 <tr v-for="item in list" :key="item.id">
+                                    <td>{{item.id}}</td>
                                     <td>
                                         <span role="link" @click="clickShow(item.id)"
                                               style="text-decoration: underline !important;">

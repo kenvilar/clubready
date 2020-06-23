@@ -25,6 +25,7 @@
                                     <th>Value</th>
                                     <th>Start Date</th>
                                     <th>Expiry Date</th>
+                                    <th>Created Date</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -41,6 +42,7 @@
                                     <td>{{item.value}}</td>
                                     <td>{{formatDate(item.start_date)}}</td>
                                     <td>{{formatDate(item.expiry_date)}}</td>
+                                    <td>{{formatDate(item.created_at)}}</td>
                                     <td>
                                         <button class="btn btn-primary btn-xs" data-toggle="modal"
                                                 @click="clickEdit(item.id)"

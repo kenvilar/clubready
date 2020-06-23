@@ -24,6 +24,8 @@
                                     <th>Name</th>
                                     <th>Club</th>
                                     <th>Admin</th>
+                                    <th>Verified</th>
+                                    <th>Created Date</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -38,7 +40,17 @@
                                         </span>
                                     </td>
                                     <td>{{item.club['name']}}</td>
-                                    <td>{{item.admin == '1' ? 'True' : 'False'}}</td>
+                                    <td>
+                                        <div class="card_small alert" :class="item.admin == '1' ? 'alert-success' : 'alert-danger'">
+                                            {{item.admin == '1' ? 'True' : 'False'}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="card_small alert" :class="item.verified == '1' ? 'alert-success' : 'alert-danger'">
+                                            {{item.verified == '1' ? 'True' : 'False'}}
+                                        </div>
+                                    </td>
+                                    <td>{{formatDate(item.created_at)}}</td>
                                     <td>
                                         <button class="btn btn-primary btn-xs" data-toggle="modal"
                                                 @click="clickEdit(item.uuid)"

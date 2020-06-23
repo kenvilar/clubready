@@ -28,7 +28,20 @@ class MembershipController extends ApiController
      */
     public function index()
     {
-        $memberships = Membership::all();
+        $memberships = Membership::query()
+            ->with([
+                'club_member' => function ($q) {
+                    $q
+                        ->with(['user' => function ($q) {
+                            $q->select(['id', 'first_name', 'last_name',]);
+                        }])
+                        ->with(['club' => function ($q) {
+                            $q->select(['id', 'name',]);
+                        }])
+                        ->select(['id', 'user_id', 'club_id',]);
+                },
+            ])
+            ->get();
 
         return $this->showAll($memberships);
     }

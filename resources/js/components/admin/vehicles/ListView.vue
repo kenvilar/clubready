@@ -15,6 +15,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>User</th>
+                                    <th>Club</th>
                                     <th>Make</th>
                                     <th>Model</th>
                                     <th>Induction</th>
@@ -25,10 +26,17 @@
                                 </thead>
                                 <tbody>
                                 <tr v-for="item in list" :key="item.id">
-                                    <td><span role="link" @click="clickShow(item.id)"
-                                              style="text-decoration: underline !important;">{{item.id}}</span></td>
+                                    <td>
+                                        {{item.id}}
+                                    </td>
                                     <td>{{item.club_member.user.first_name + ' ' + item.club_member.user.last_name}}</td>
-                                    <td>{{item.make}}</td>
+                                    <td>{{item.club_member.club.name}}</td>
+                                    <td>
+                                        <span role="link" @click="clickShow(item.id)"
+                                              style="text-decoration: underline !important;">
+                                            {{item.make}}
+                                        </span>
+                                    </td>
                                     <td>{{item.model}}</td>
                                     <td>{{item.induction}}</td>
                                     <td>{{item.year}}</td>

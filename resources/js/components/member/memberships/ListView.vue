@@ -24,6 +24,7 @@
                                     <th>Name</th>
                                     <th>Year</th>
                                     <th>Amount</th>
+                                    <th>Created Date</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -39,6 +40,7 @@
                                     </td>
                                     <td>{{item.year}}</td>
                                     <td>{{item.amount}}</td>
+                                    <td>{{formatDate(item.created_at)}}</td>
                                     <td>
                                         <button class="btn btn-primary btn-xs" data-toggle="modal"
                                                 @click="clickEdit(item.id)"

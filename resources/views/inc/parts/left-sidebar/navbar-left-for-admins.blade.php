@@ -64,12 +64,6 @@
         <span class="mm-text ">Clubs</span>
     </a>
 </li>
-<li class="{{request()->routeIs('web.induction.*') ? 'active' : ''}}">
-    <a href="{{ route('web.induction.index') }}">
-        <i class="menu-icon fa fa-fw fa-tachometer"></i>
-        <span class="mm-text ">Inductions</span>
-    </a>
-</li>
 <li class="{{request()->routeIs('web.membership.*') ? 'active' : ''}}">
     <a href="{{ route('web.membership.index') }}">
         <i class="menu-icon ti-tag"></i>
@@ -93,5 +87,11 @@
     <a href="{{ route('web.vehicle.index') }}">
         <i class="menu-icon ti-car"></i>
         <span class="mm-text ">Vehicles</span>
+    </a>
+</li>
+<li class="{{request()->routeIs('web.induction.*') ? 'active' : ''}}">
+    <a href="{{ route('web.induction.index') }}">
+        <i class="menu-icon fa fa-fw fa-tachometer"></i>
+        <span class="mm-text ">Inductions</span>
     </a>
 </li>

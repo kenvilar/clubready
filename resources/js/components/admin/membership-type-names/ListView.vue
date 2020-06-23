@@ -15,6 +15,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>User</th>
+                                    <th>Club</th>
                                     <th>Name</th>
                                     <th>Created Date</th>
                                 </tr>
@@ -22,13 +23,16 @@
                                 <tbody>
                                 <tr v-for="item in list" :key="item.id">
                                     <td>
-                                        <span role="link" @click="clickShow(item.id)"
-                                              style="text-decoration: underline !important;">
-                                            {{item.id}}
-                                        </span>
+                                        {{item.id}}
                                     </td>
                                     <td>{{item.club_member.user.first_name + ' ' + item.club_member.user.last_name}}</td>
-                                    <td>{{item.name}}</td>
+                                    <td>{{item.club_member.club.name}}</td>
+                                    <td>
+                                        <span role="link" @click="clickShow(item.id)"
+                                              style="text-decoration: underline !important;">
+                                            {{item.name}}
+                                        </span>
+                                    </td>
                                     <td>{{formatDate(item.created_at)}}</td>
                                 </tr>
                                 </tbody>

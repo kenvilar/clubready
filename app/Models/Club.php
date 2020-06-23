@@ -19,10 +19,10 @@ class Club extends Model
         'website',
         'stripe_keys',
         'uuid',
+        'created_at',
     ];
 
     protected $hidden = [
-        'created_at',
         'updated_at',
     ];
 

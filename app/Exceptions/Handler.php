@@ -99,6 +99,10 @@ class Handler extends ExceptionHandler
         }
 
         if ($exception instanceof NotFoundHttpException) {
+            if ($request->acceptsHtml() || collect($request->route()->middleware())->contains('web')) {
+                return redirect('/admin/not-found');
+            }
+
             return $this->errorResponse('The specified URL cannot be found', 404);
         }
 

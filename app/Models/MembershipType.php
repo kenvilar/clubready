@@ -13,17 +13,17 @@ class MembershipType extends Model
         'value',
         'start_date',
         'expiry_date',
+        'created_at',
     ];
 
     protected $hidden = [
-        'created_at',
         'updated_at',
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function clubMembers()
+    public function club_member()
     {
         return $this->belongsTo(ClubMember::class);
     }

@@ -3,6 +3,9 @@
 This project is a web app for creating clubs and organizing its members
 
 ## TODO
+- [x] Fix all the list tables especially the ID and User columns
+- [ ] Fix the club members to display verified and unverified users for club-admins
+- [x] Redirect to 404 page if json content is "The specified URL cannot be found"
 - [x] For club members
     - [x] Fix the memberships crud operations
     - [x] Fix the membership types crud operations

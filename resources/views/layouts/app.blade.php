@@ -24,6 +24,7 @@
     <!-- end of global css -->
 
     <!--page level css -->
+    <link href="{{ asset('css/alertmessage.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css">
     <!--end of page level css-->
 

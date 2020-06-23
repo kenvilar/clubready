@@ -20,19 +20,23 @@
                             <table class="table table-striped table-bordered" id="datatable">
                                 <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Name</th>
+                                    <th>Created Date</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr v-for="item in list" :key="item.id">
+                                    <td>{{item.id}}</td>
                                     <td>
                                         <span role="link" @click="clickShow(item.uuid)"
                                               style="text-decoration: underline !important;">
                                             {{item.name}}
                                         </span>
                                     </td>
+                                    <td>{{formatDate(item.created_at)}}</td>
                                     <td>
                                         <button class="btn btn-primary btn-xs" data-toggle="modal"
                                                 @click="clickEdit(item.uuid)"
