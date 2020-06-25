@@ -46,7 +46,6 @@ class ClubMemberClubMemberController extends ApiController
             ])
             ->where('club_id', $clubMember->club_id)
             ->where('user_id', '<>', $clubMember->user_id)
-            ->where('verified', '1')
             ->get();
 
         return $this->showAll($clubMembers);
@@ -131,6 +130,7 @@ class ClubMemberClubMemberController extends ApiController
 
         $data2['club_id'] = $member->club_id;
         $member->admin = $request->admin;
+        $member->verified = $request->verified;
 
         if (!$member->isDirty()) {
             return $this->errorResponse('You need to specify a different value to update', 422);
@@ -186,8 +186,10 @@ class ClubMemberClubMemberController extends ApiController
                         ->where('user_id', $user->id)
                         ->where('club_id', $clubMember->club_id);
                 });
+            $admin_rule = 'required|in:' . ClubMember::ADMIN_USER . ',' . ClubMember::NON_ADMIN_USER;
         } else {
             $club_id_rule = null;
+            $admin_rule = 'in:' . ClubMember::ADMIN_USER . ',' . ClubMember::NON_ADMIN_USER;
         }
 
         return [
@@ -195,7 +197,7 @@ class ClubMemberClubMemberController extends ApiController
             'club_id' => ['integer',
                 //Don't save if both user_id and club_id exist
                 $club_id_rule,],
-            'admin' => 'required|in:' . ClubMember::ADMIN_USER . ',' . ClubMember::NON_ADMIN_USER,
+            'admin' => $admin_rule,
         ];
     }
 }

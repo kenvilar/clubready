@@ -13,11 +13,24 @@
             <span class="mm-text ">Club Details</span>
         </a>
     </li>
-    <li class="{{request()->routeIs('web.club-member.members.*') ? 'active' : ''}}">
-        <a href="{{ route('web.club-member.members.index', session('my_app__current_member')['uuid']) }}">
+    <li class="{{request()->routeIs('web.club-member.members.*') ? 'active' : ''}} menu-dropdown">
+        <a href="">
             <i class="menu-icon icon-people icons"></i>
-            <span class="mm-text ">Club Members</span>
+            <span class="mm-text">Club Members</span>
+            <span class="fa arrow"></span>
         </a>
+        <ul class="sub-menu">
+            <li class="{{request()->routeIs('web.club-member.members.index') && request()->input('users') != 'deleted' ? 'active' : ''}}">
+                <a href="{{route('web.club-member.members.index', session('my_app__current_member')['uuid'])}}">
+                    <i class="menu-icon ti-user"></i> Active
+                </a>
+            </li>
+            <li class="{{request()->routeIs('web.club-member.members.index') && request()->input('users') == 'deleted' ? 'active' : ''}}">
+                <a href="{{route('web.club-member.members.index', [session('my_app__current_member')['uuid'], 'users' => 'deleted'])}}">
+                    <i class="menu-icon ti-user"></i> Deleted
+                </a>
+            </li>
+        </ul>
     </li>
 @endif
 @if (session()->has('my_app__current_member'))

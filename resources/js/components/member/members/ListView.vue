@@ -24,8 +24,11 @@
                                     <th>Name</th>
                                     <th>Admin</th>
                                     <th>Created Date</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <th v-if="isActiveUsersPage">Edit</th>
+                                    <th>
+                                        <span v-if="isActiveUsersPage">Deactivate</span>
+                                        <span v-else>Activate</span>
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -39,17 +42,23 @@
                                     </td>
                                     <td>{{item.admin == '1' ? 'True' : 'False'}}</td>
                                     <td>{{formatDate(item.created_at)}}</td>
-                                    <td>
+                                    <td v-if="isActiveUsersPage">
                                         <button class="btn btn-primary btn-xs" data-toggle="modal"
                                                 @click="clickEdit(item.uuid)"
                                                 data-target="#edit" data-placement="top"><span
                                             class="fa fa-fw ti-pencil"></span></button>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger btn-xs" data-toggle="modal"
-                                                @click="clickDelete(item.uuid)"
+                                        <button v-if="isActiveUsersPage" class="btn btn-danger btn-xs"
+                                                data-toggle="modal"
+                                                @click="clickDelete(item.uuid, item.admin)"
                                                 data-target="#delete" data-placement="top"><span
                                             class="fa fa-fw ti-trash"></span></button>
+                                        <button v-else class="btn btn-info btn-xs" data-toggle="modal"
+                                                @click="clickActivate(item.uuid, item.admin)"
+                                                data-target="#delete" data-placement="top"><span
+                                            class="fa fa-fw ti-check"></span>
+                                        </button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -79,13 +88,22 @@
                 list: [],
                 item: {},
                 errors: {},
+                isActiveUsersPage: true,
             }
         },
         methods: {
             async read() {
                 axios.get(`/api/${this.database_model}`)
                     .then(response => {
-                        this.list = response.data;
+                        this.list = _.filter(response.data, ['verified', "1"]);
+
+                        let userUrlParams = new URLSearchParams(window.location.search);
+                        if (userUrlParams.has('users')) {
+                            if (userUrlParams.get('users') === 'deleted') {
+                                this.isActiveUsersPage = false;
+                                this.list = _.filter(response.data, ['verified', "0"]);
+                            }
+                        }
                     }, error => {
                         this.errors = error.response.data.error;
                     })
@@ -102,44 +120,78 @@
             async clickEdit(id) {
                 window.location.href = `/admin/${this.database_model}/${id}/edit`;
             },
-            async clickDelete(id) {
+            async clickDelete(uuid, admin) {
                 swal.fire({
                     title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText: 'Yes, deactivate it!'
                 }).then(result => {
                     if (result.value) {
-                        axios.delete(`/api/${this.database_model_for_delete}/${id}`)
+                        let options = {
+                            verified: "0",
+                            admin: admin,
+                        };
+                        axios.put(`/api/${this.database_model}/${uuid}`, options)
                             .then(response => {
-                                console.log('response.data', response.data);
+                                this.item = response.data;
 
-                                swal.fire(
-                                    'Deleted!',
-                                    'Item has been deleted.',
-                                    'success'
-                                ).then(response => {
-                                    if (response.value) {
+                                swal.fire({
+                                    icon: 'success',
+                                    title: "Success",
+                                    text: "Item has been deactivated.",
+                                    type: "success",
+                                }).then(result => {
+                                    if (result.value) {
                                         this.read();
                                     }
                                 });
                             }, error => {
-                                this.errors = error.response.data;
-                                if (this.errors.error === "Cannot remove this resource permanently. It is related with any other resource") {
-                                    swal.fire({
-                                        icon: 'error',
-                                        title: 'Oops...',
-                                        text: 'Cannot remove this item. It is related with any other resource!',
-                                    });
-                                }
+                                this.errors = error.response.data.error;
                                 console.log('this.errors', this.errors);
                             })
                             .catch(err => {
-                                console.log('err', err.response);
+                                //
                             });
+                    }
+                })
+            },
+            async clickActivate(uuid, admin) {
+                swal.fire({
+                    title: 'Are you sure?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, activate it!'
+                }).then(result => {
+                    if (result.value) {
+                        let options = {
+                            verified: "1",
+                            admin: admin,
+                        };
+                        axios.put(`/api/${this.database_model}/${uuid}`, options)
+                            .then(response => {
+                                this.item = response.data;
+
+                                swal.fire({
+                                    icon: 'success',
+                                    title: "Success",
+                                    text: "Club member has been activated successfully.",
+                                    type: "success",
+                                }).then(result => {
+                                    if (result.value) {
+                                        this.read();
+                                    }
+                                });
+                            }, error => {
+                                this.errors = error.response.data.error;
+                                console.log('this.errors', this.errors);
+                            }).catch(err => {
+                            //
+                        });
                     }
                 })
             },

@@ -20,7 +20,7 @@ axios.interceptors.response.use(response => {
     if (datatableElement.length) {
         let firstIndexOfTable = $("#datatable").find('th:first').index();
 
-        if (response.config.method === "delete") {
+        if (response.config.method === "delete" || response.config.method === "put") {
             // destroy the datatable after deleting an item to enable the re-initialization
             datatableElement.dataTable().fnDestroy();
 
