@@ -20,7 +20,7 @@ This project is a web app for creating clubs and organizing its members
         - [x] I can edit the club details
 - [x] Fix the currentUserInfo method in API (try login and logout with and without remember_token)
 - [x] Fix the Base Controller of ApiController, remove the middleware auth in api controller
-- [ ] When the system not the user logout its account, its oauth token should revoked 
+- [x] When the system not the user logout its account, its oauth token should revoked 
 
 ## PRODUCTION DEPLOYMENT
 1. Deploying Passport.   
