@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
@@ -156,6 +157,8 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if ($user->verified) {
+            $this->revokeAnyTokenZeroValue($user);
+
             //Add the passport personal access token
             $accessToken = $user->createToken($request->email . '-' . now())->accessToken;
             $request->session()->put('myToken', $accessToken);
@@ -259,5 +262,17 @@ class LoginController extends Controller
         }
 
         return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+    }
+
+    /**
+     * When the system not the user logout its account, its oauth token should revoked
+     *
+     * @param mixed $user
+     */
+    private function revokeAnyTokenZeroValue($user)
+    {
+        DB::table('oauth_access_tokens')
+            ->where(['user_id' => $user->id, 'revoked' => 0])
+            ->update(['revoked' => 1]);
     }
 }
