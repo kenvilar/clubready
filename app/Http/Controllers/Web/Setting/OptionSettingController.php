@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api\Setting;
+namespace App\Http\Controllers\Web\Setting;
 
-use App\Http\Controllers\ApiController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class OptionSettingController extends ApiController
+class OptionSettingController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -29,12 +28,11 @@ class OptionSettingController extends ApiController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Show the form for creating a new resource.
      *
-     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function create()
     {
         //
     }
@@ -51,24 +49,12 @@ class OptionSettingController extends ApiController
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
+     * Show the form for editing the specified resource.
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function edit($id)
     {
         //
     }
