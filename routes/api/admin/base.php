@@ -55,3 +55,8 @@ Route::namespace('Vehicle')->group(base_path('routes/api/admin/vehicle.php'));
  * Laravel Passport
  */
 Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
+
+/**
+ * Setting
+ */
+Route::namespace('Setting')->group(base_path('routes/api/admin/settings.php'));

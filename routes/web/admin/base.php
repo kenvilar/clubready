@@ -55,3 +55,8 @@ Route::namespace('Vehicle')->name('vehicle.')->group(base_path('routes/web/admin
  * Laravel Passport
  */
 Route::namespace('Passport')->name('passport.')->group(base_path('routes/web/admin/laravel-passport.php'));
+
+/**
+ * Setting
+ */
+Route::namespace('Setting')->name('setting.')->group(base_path('routes/web/admin/setting.php'));
