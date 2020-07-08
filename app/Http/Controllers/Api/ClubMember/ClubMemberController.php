@@ -72,7 +72,7 @@ class ClubMemberController extends ApiController
             ->newModelQuery()
             ->with([
                 'user' => function ($q) {
-                    $q->select(['id', 'first_name', 'last_name',]);
+                    $q->select();
                 },
                 'club' => function ($q) {
                     $q->select(['id', 'name',]);

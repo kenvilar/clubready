@@ -22,6 +22,54 @@
                                 <td v-if="item.user">{{item.user['first_name']}} {{item.user['last_name']}}</td>
                             </tr>
                             <tr>
+                                <td>Email:</td>
+                                <td v-if="item.user">{{item.user['email']}}</td>
+                            </tr>
+                            <tr>
+                                <td>Address:</td>
+                                <td v-if="item.user">{{item.user['address']}}</td>
+                            </tr>
+                            <tr>
+                                <td>Suburb:</td>
+                                <td v-if="item.user">{{item.user['suburb']}}</td>
+                            </tr>
+                            <tr>
+                                <td>State:</td>
+                                <td v-if="item.user">{{item.user['state']}}</td>
+                            </tr>
+                            <tr>
+                                <td>Postcode:</td>
+                                <td v-if="item.user">{{item.user['postcode']}}</td>
+                            </tr>
+                            <tr>
+                                <td>Country:</td>
+                                <td v-if="item.user">{{item.user['country']}}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone Home:</td>
+                                <td v-if="item.user">{{item.user['phone_home']}}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone Mobile:</td>
+                                <td v-if="item.user">{{item.user['phone_mobile']}}</td>
+                            </tr>
+                            <tr>
+                                <td>Alternative Email:</td>
+                                <td v-if="item.user">{{item.user['alternative_email']}}</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Birth:</td>
+                                <td v-if="item.user">{{formatDate(item.user['date_of_birth'])}}</td>
+                            </tr>
+                            <tr>
+                                <td>Club Racenumber:</td>
+                                <td v-if="item.user">{{item.user['club_racenumber']}}</td>
+                            </tr>
+                            <tr>
+                                <td>Member Number:</td>
+                                <td v-if="item.user">{{item.user['member_number']}}</td>
+                            </tr>
+                            <tr>
                                 <td>Club:</td>
                                 <td v-if="item.club">{{item.club['name']}}</td>
                             </tr>
@@ -90,7 +138,6 @@
                 axios.get(`/api/user`)
                     .then(response => {
                         this.current_user = response.data;
-                        console.log('ken this.current_user', this.current_user);
                     });
             },
             async clickEdit(id) {
@@ -108,6 +155,9 @@
                     }).catch(err => {
                         console.log('err', err.response);
                     });
+            },
+            formatDate(date) {
+                return date ? moment(date).format('MMMM D, YYYY') : '';
             },
         }
     }
