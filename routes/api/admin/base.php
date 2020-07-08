@@ -59,4 +59,4 @@ Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenContro
 /**
  * Setting
  */
-Route::namespace('Setting')->group(base_path('routes/api/admin/settings.php'));
+Route::namespace('Setting')->group(base_path('routes/api/admin/setting.php'));
