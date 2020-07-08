@@ -6,6 +6,7 @@ use App\Http\Controllers\ApiController;
 use App\Models\SuperAdmin;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class SuperAdminController extends ApiController
@@ -34,7 +35,9 @@ class SuperAdminController extends ApiController
                 'user' => function ($q) {
                     $q->select(['id', 'first_name', 'last_name',]);
                 },
-            ])->get();
+            ])
+            ->where('user_id', '!=', Auth::id())
+            ->get();
 
         //display specific columns
         if (\request()->all() && \request()->select == true) {

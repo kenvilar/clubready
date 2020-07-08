@@ -29,7 +29,7 @@ class UserController extends ApiController
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::query()->where('id', '!=', \Auth::id())->get();
         $columns = [];
 
         //display specific columns
@@ -40,7 +40,7 @@ class UserController extends ApiController
                 }
             }
 
-            $users = User::all($columns);
+            $users = User::query()->where('id', '!=', \Auth::id())->get($columns);
         }
 
         return $this->showAll($users);

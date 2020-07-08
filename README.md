@@ -21,6 +21,7 @@ This project is a web app for creating clubs and organizing its members
 - [x] Fix the currentUserInfo method in API (try login and logout with and without remember_token)
 - [x] Fix the Base Controller of ApiController, remove the middleware auth in api controller
 - [x] When the system not the user logout its account, its oauth token should revoked 
+- [x] Hide the current user in super-admin list
 
 ## PRODUCTION DEPLOYMENT
 1. Deploying Passport.   
