@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Setting;
 
 use App\Http\Controllers\ApiController;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class OptionSettingController extends ApiController
@@ -32,23 +33,33 @@ class OptionSettingController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Setting $setting
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show(Setting $setting)
     {
-        //
+        return $this->showOne($setting);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Setting $setting
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Setting $setting)
     {
-        //
+        foreach ($request->all() as $key => $value) {
+            $setting->$key = $value;
+        }
+
+        if (!$setting->isDirty()) {
+            return $this->errorResponse('You need to specify a different value to update', 422);
+        }
+
+        $setting->save();
+
+        return $this->showOne($setting);
     }
 }
