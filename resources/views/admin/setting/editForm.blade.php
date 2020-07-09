@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-    asdasdad
+    <settings-edit-view-vue></settings-edit-view-vue>
 @endsection
 
 @push('footer-scripts')
