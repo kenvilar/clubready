@@ -92,6 +92,12 @@ const vehicle_files = require.context('./components/admin/vehicles/', true, /\.v
 vehicle_files.keys().map(key => Vue.component(vehicle_files(key).default.name, vehicle_files(key).default));
 
 /**
+ * Settings
+ */
+const setting_files = require.context('./components/admin/settings/', true, /\.vue$/i);
+setting_files.keys().map(key => Vue.component(setting_files(key).default.name, setting_files(key).default));
+
+/**
  * Laravel Passport Vue Components
  */
 Vue.component('passport-clients', require('./components/passport/Clients.vue').default);
