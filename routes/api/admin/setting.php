@@ -7,4 +7,4 @@
  *
  */
 
-Route::resource('settings', 'OptionSettingController', ['except' => ['create', 'edit']]);
+Route::resource('settings', 'OptionSettingController', ['except' => ['index', 'create', 'edit', 'destroy',]]);
