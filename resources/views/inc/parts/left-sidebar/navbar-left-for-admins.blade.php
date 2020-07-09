@@ -95,3 +95,9 @@
         <span class="mm-text ">Inductions</span>
     </a>
 </li>
+<li class="{{request()->routeIs('web.setting.*') ? 'active' : ''}}">
+    <a href="{{ route('web.setting.index') }}">
+        <i class="menu-icon fa fa-fw fa-tachometer"></i>
+        <span class="mm-text ">Settings</span>
+    </a>
+</li>
