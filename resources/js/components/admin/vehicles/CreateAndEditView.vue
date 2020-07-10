@@ -13,23 +13,22 @@
                               novalidate>
                             <div class="form-group row striped-col required">
                                 <div class="col-sm-3 text-right txt_media">
-                                    <label class="form-control-label" for="user_id">User</label>
+                                    <label class="form-control-label" for="club_member_id">User</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <select name="user_id" id="user_id" class="form-control select2"
-                                            v-model="item.user_id"
-                                            :class="{'is-invalid': hasError(errors, 'user_id')}"
+                                    <select name="club_member_id" id="club_member_id" class="form-control select2"
+                                            :class="{'is-invalid': hasError(errors, 'club_member_id')}"
                                             style="width:100%">
                                         <option disabled value="0">Select value...</option>
                                         <option v-for="user in all_users"
                                                 :key="user.id"
                                                 :value="user.id"
-                                                :selected="user.id === item.user_id">
+                                                :selected="user.id === item.club_member.user_id">
                                             {{user.first_name}} {{user.last_name}}
                                         </option>
                                     </select>
                                     <span role="alert" class="invalid-feedback">
-                                        <strong>{{hasError(errors, 'user_id', true)}}</strong></span>
+                                        <strong>{{hasError(errors, 'club_member_id', true)}}</strong></span>
                                 </div>
                             </div>
                             <div class="form-group row required">
@@ -150,6 +149,7 @@
                             }).then(result => {
                                 if (result.value) {
                                     this.automaticFocusTheFirstInput();
+                                    this.errors = {};
                                 }
                             });
                         }, error => {
@@ -173,6 +173,7 @@
                             if (result.value) {
                                 this.clearFields(this.item);
                                 this.automaticFocusTheFirstInput();
+                                this.errors = {};
                             }
                         });
                     }, error => {
