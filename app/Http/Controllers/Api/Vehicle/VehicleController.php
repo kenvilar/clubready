@@ -97,7 +97,7 @@ class VehicleController extends ApiController
     {
         $this->validate($request, $this->validationRules());
 
-        $vehicle->user_id = $request->user_id;
+        $vehicle->club_member_id = $request->club_member_id;
         $vehicle->make = $request->make;
         $vehicle->model = $request->model;
         $vehicle->year = $request->year;
@@ -136,12 +136,12 @@ class VehicleController extends ApiController
         $nowPlus10 = (String)((int)$now + 10);
 
         return [
-            'user_id' => 'required|integer',
-            'make' => 'required|min:2',
-            'model' => 'required|min:2',
+            'club_member_id' => 'required|integer',
+            'make' => 'required',
+            'model' => 'required',
             'year' => 'required|integer|between:1700,' . $nowPlus10,
             'capacity' => 'required|integer|min:1',
-            'induction' => 'required|min:2',
+            'induction' => 'required',
         ];
     }
 }
