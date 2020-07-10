@@ -13,7 +13,9 @@
                             <tbody>
                             <tr>
                                 <td>User:</td>
-                                <td>{{item.club_member.user.first_name + ' ' + item.club_member.user.last_name}}</td>
+                                <td v-if="item.club_member">
+                                    {{item.club_member.user.first_name + ' ' + item.club_member.user.last_name}}
+                                </td>
                             </tr>
                             <tr>
                                 <td>Make:</td>
