@@ -146,6 +146,7 @@
                             }).then(result => {
                                 if (result.value) {
                                     this.automaticFocusTheFirstInput();
+                                    this.errors = {};
                                 }
                             });
                         }, error => {
@@ -169,6 +170,7 @@
                             if (result.value) {
                                 this.clearFields(this.item);
                                 this.automaticFocusTheFirstInput();
+                                this.errors = {};
                             }
                         });
                     }, error => {

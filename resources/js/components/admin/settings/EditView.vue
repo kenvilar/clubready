@@ -72,6 +72,7 @@
                         }).then(result => {
                             if (result.value) {
                                 this.automaticFocusTheFirstInput();
+                                this.errors = {};
                             }
                         });
                     }, error => {
