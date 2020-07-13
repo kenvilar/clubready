@@ -176,6 +176,8 @@ class LoginController extends Controller
                     $this->username() => [trans('auth.no-club')],
                 ]);
             }
+
+            return redirect('/admin');
         } else {
             $this->guard()->logout();
             $request->session()->invalidate();
@@ -261,7 +263,7 @@ class LoginController extends Controller
             return $this->redirectTo();
         }
 
-        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/admin';
     }
 
     /**
