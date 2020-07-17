@@ -54,7 +54,7 @@ class OptionSettingController extends ApiController
             }
 
             $fileName = date('Y-m-d-His') . '.' . $extension;
-            $path = public_path('uploads') . '/' . $fileName;
+            $path = public_path('storage') . '/' . $fileName;
             file_put_contents($path, $decoded);
 
             $setting->logo = $fileName;
