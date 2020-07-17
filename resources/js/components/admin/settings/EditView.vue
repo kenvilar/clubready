@@ -11,7 +11,7 @@
                     <div class="card-body border">
                         <form @submit.prevent="update" enctype="multipart/form-data" class="form-bordered-row"
                               novalidate>
-                            <div class="form-group row striped-col required">
+                            <div class="form-group row striped-col">
                                 <div class="col-sm-3 text-right txt_media">
                                     <label class="form-control-label" for="site_name">Site Name</label>
                                 </div>
@@ -21,6 +21,18 @@
                                            :class="{'is-invalid': hasError(errors, 'site_name')}">
                                     <span role="alert" class="invalid-feedback">
                                         <strong>{{hasError(errors, 'site_name', true)}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label" for="logo">Logo</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="file" class="form-control" name="logo" id="logo"
+                                           v-on:change="onImageChange"
+                                           :class="{'is-invalid': hasError(errors, 'logo')}">
+                                    <span role="alert" class="invalid-feedback">
+                                        <strong>{{hasError(errors, 'logo', true)}}</strong></span>
                                 </div>
                             </div>
                             <div class="form-group form-actions">
@@ -56,10 +68,12 @@
                 database_model: 'settings',
                 item: {},
                 errors: {},
+                image: "",
             }
         },
         methods: {
             async update() {
+                this.item.logo = this.image;
                 axios.put(`/api/${this.database_model}/1`, this.item)
                     .then(response => {
                         this.item = response.data;
@@ -113,6 +127,20 @@
                     $('input:visible:enabled').toggleClass('focus-visible');
                     $('form:first *:input[type!=hidden]:first').focus();
                 }, 300);
+            },
+            onImageChange(e) {
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                let reader = new FileReader();
+                let vm = this;
+                reader.onload = e => {
+                    vm.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
             },
         }
     }

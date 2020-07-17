@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Setting;
 use App\Http\Controllers\ApiController;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class OptionSettingController extends ApiController
 {
@@ -39,8 +40,24 @@ class OptionSettingController extends ApiController
      */
     public function update(Request $request, Setting $setting)
     {
-        foreach ($request->all() as $key => $value) {
-            $setting->$key = $value;
+        $setting->site_name = $request->site_name;
+
+        $fileName = null;
+
+        if ($request->logo) {
+            $exploded = explode(',', $request->logo);
+            $decoded = base64_decode($exploded[1]);
+            if (Str::contains($exploded[0], 'jpeg')) {
+                $extension = "jpg";
+            } else {
+                $extension = "png";
+            }
+
+            $fileName = date('Y-m-d-His') . '.' . $extension;
+            $path = public_path('uploads') . '/' . $fileName;
+            file_put_contents($path, $decoded);
+
+            $setting->logo = $fileName;
         }
 
         if (!$setting->isDirty()) {
