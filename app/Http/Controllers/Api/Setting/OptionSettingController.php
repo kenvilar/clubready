@@ -47,6 +47,12 @@ class OptionSettingController extends ApiController
             $this->validate($request, $this->validationRules());
         }
 
+        if ($setting->logo &&
+            Str::contains($request->logo, 'data:') &&
+            Str::contains($request->logo, ';base64,')) {
+            Storage::delete('public/' . $setting->logo);
+        }
+
         $setting->site_name = $request->site_name;
         $setting->logo = $request->logo;
 
