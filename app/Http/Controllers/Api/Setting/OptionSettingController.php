@@ -6,6 +6,7 @@ use App\Http\Controllers\ApiController;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Validator;
 
 class OptionSettingController extends ApiController
 {
@@ -37,20 +38,33 @@ class OptionSettingController extends ApiController
      * @param \Illuminate\Http\Request $request
      * @param Setting $setting
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, Setting $setting)
     {
+        if (Str::contains($request->logo, 'data:') && Str::contains($request->logo, ';base64,')) {
+            $this->validate($request, $this->validationRules());
+        }
+
         $setting->site_name = $request->site_name;
+        $setting->logo = $request->logo;
 
         $fileName = null;
 
-        if ($request->logo) {
+        if ($request->logo &&
+            Str::contains($request->logo, 'data:') &&
+            Str::contains($request->logo, ';base64,')) {
+
             $exploded = explode(',', $request->logo);
             $decoded = base64_decode($exploded[1]);
             if (Str::contains($exploded[0], 'jpeg')) {
+                $extension = "jpeg";
+            } else if (Str::contains($exploded[0], 'jpg')) {
                 $extension = "jpg";
-            } else {
+            } else if (Str::contains($exploded[0], 'png')) {
                 $extension = "png";
+            } else if (Str::contains($exploded[0], 'gif')) {
+                $extension = "gif";
             }
 
             $fileName = date('Y-m-d-His') . '.' . $extension;
@@ -67,5 +81,15 @@ class OptionSettingController extends ApiController
         $setting->save();
 
         return $this->showOne($setting);
+    }
+
+    /**
+     * @return array
+     */
+    private function validationRules()
+    {
+        return [
+            'logo' => 'image64:jpeg,jpg,png,gif',
+        ];
     }
 }

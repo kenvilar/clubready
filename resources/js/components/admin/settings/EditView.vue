@@ -23,12 +23,18 @@
                                         <strong>{{hasError(errors, 'site_name', true)}}</strong></span>
                                 </div>
                             </div>
+                            <div class="row" v-if="item.logo">
+                                <div class="col-md-4 offset-md-3 text-right txt_media">
+                                    <img :src="'../storage/' + item.logo" class="img-responsive" alt="logo"
+                                         height="auto" width="70%">
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <div class="col-sm-3 text-right txt_media">
                                     <label class="form-control-label" for="logo">Logo</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="file" class="form-control" name="logo" id="logo"
+                                    <input type="file" class="" name="logo" id="logo"
                                            v-on:change="onImageChange"
                                            :class="{'is-invalid': hasError(errors, 'logo')}">
                                     <span role="alert" class="invalid-feedback">
@@ -73,7 +79,10 @@
         },
         methods: {
             async update() {
-                this.item.logo = this.image;
+                if (this.image) {
+                    this.item.logo = this.image;
+                }
+
                 axios.put(`/api/${this.database_model}/1`, this.item)
                     .then(response => {
                         this.item = response.data;
