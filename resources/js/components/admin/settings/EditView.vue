@@ -23,7 +23,7 @@
                                         <strong>{{hasError(errors, 'site_name', true)}}</strong></span>
                                 </div>
                             </div>
-                            <div class="row" v-if="item.logo">
+                            <div class="row" v-if="item.logo && !this.errors.logo">
                                 <div class="col-md-4 offset-md-3 text-right txt_media">
                                     <img :src="'../storage/' + item.logo" class="img-responsive" alt="logo"
                                          height="auto" width="70%">
