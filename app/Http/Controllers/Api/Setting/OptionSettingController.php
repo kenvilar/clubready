@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Setting;
 use App\Http\Controllers\ApiController;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Validator;
 
@@ -69,7 +70,7 @@ class OptionSettingController extends ApiController
 
             $fileName = date('Y-m-d-His') . '.' . $extension;
             $path = public_path('storage') . '/' . $fileName;
-            file_put_contents($path, $decoded);
+            Storage::put('public/' . $fileName, $decoded);
 
             $setting->logo = $fileName;
         }
