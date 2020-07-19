@@ -75,12 +75,20 @@
                 item: {},
                 errors: {},
                 image: "",
+                bigImage: false,
             }
         },
         methods: {
             async update() {
                 if (this.image) {
                     this.item.logo = this.image;
+                }
+
+                if (this.bigImage) {
+                    this.errors.logo = [];
+                    this.errors.logo.push("The logo may not be greater than 5 MB.");
+
+                    return false;
                 }
 
                 axios.put(`/api/${this.database_model}/1`, this.item)
@@ -141,6 +149,7 @@
                 let files = e.target.files || e.dataTransfer.files;
                 if (!files.length)
                     return;
+                this.bigImage = files[0].size > 5242880;
                 this.createImage(files[0]);
             },
             createImage(file) {
