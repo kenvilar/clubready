@@ -102,8 +102,7 @@
                             type: "success",
                         }).then(result => {
                             if (result.value) {
-                                this.automaticFocusTheFirstInput();
-                                this.errors = {};
+                                window.location.reload();
                             }
                         });
                     }, error => {
