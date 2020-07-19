@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <title>{{ config('app.name', '::Admin Login::') }}</title>
+    <title>{{ \App\Models\Setting::query()->first()->site_name ??  config('app.name', '::Admin Login::') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}"/>
 

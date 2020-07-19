@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'MyApp') }}</title>
+    <title>{{ \App\Models\Setting::query()->first()->site_name ?? config('app.name', 'MyApp') }}</title>
 
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}"/>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
