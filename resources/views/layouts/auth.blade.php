@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <title>{{ \App\Models\Setting::query()->first()->site_name ??  config('app.name', '::Admin Login::') }}</title>
+    <title>{{ \App\Models\Setting::query()->first()->site_name ?? config('app.name', '::Admin Login::') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}"/>
 
@@ -30,8 +30,8 @@
         <div class="row">
             <div class="col-lg-4 col-10 col-sm-8 m-auto login-form">
 
-                <h2 class="text-center logo_h2">
-                    <img src="{{ asset('img/logo/logo-black-text.png') }}" alt="Logo" width="200">
+                <h2 class="text-center logo_h2 text-uppercase font-weight-bold">
+                    {{ \App\Models\Setting::query()->first()->site_name ?? config('app.name', '::Admin Login::') }}
                 </h2>
 
                 <div class="card-body">
