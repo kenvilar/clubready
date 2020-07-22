@@ -23,7 +23,8 @@ This project is a web app for creating clubs and organizing its members
 - [x] When the system not the user logout its account, its oauth token should revoked 
 - [x] Hide the current user in super-admin list
 - [x] Redirect to dashboard page after login for super-admin users
-- [ ] Add settings for site name and logo
+- [x] Add settings for site name and logo
+- [ ] Can remove the logo image
 
 ## PRODUCTION DEPLOYMENT
 1. Deploying Passport.   
