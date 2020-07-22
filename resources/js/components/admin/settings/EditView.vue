@@ -31,7 +31,8 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-3 text-right txt_media">
-                                    <label class="form-control-label" for="logo">Logo</label>
+                                    <label class="form-control-label" for="logo">Logo <br> Recommended resolution: <br>
+                                        (width: 160px, height: 70px)</label>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="file" class="" name="logo" id="logo"
