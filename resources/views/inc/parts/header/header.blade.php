@@ -6,8 +6,7 @@
             <img
                 src="{{ \App\Models\Setting::query()->first()->logo ?
                         '../storage/' . \App\Models\Setting::query()->first()->logo :
-                        asset('img/logo/logo-white-text.png') }}"
-                alt="logo" width="160" height="70"/>
+                        asset('img/logo/logo-white-text.png') }}" alt="logo" width="80"/>
         </a>
         <!-- Header Navbar: style can be found in header-->
         <!-- Sidebar toggle button-->
