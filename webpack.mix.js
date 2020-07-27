@@ -16,6 +16,7 @@ let destImg = dest + 'img/';
 let destVendors = dest + 'vendors/';
 
 var paths = {
+    'bootstrapfileinput': vendors + 'bootstrap-fileinput/',
     'bootstrapValidator': vendors + 'bootstrapvalidator/dist/',
     'datatables': vendors + 'datatables.net/',
     'datatablesbs4': vendors + 'datatables.net-bs4/',
@@ -49,6 +50,12 @@ mix.copy(srcJs + 'src', destJs);
 // Copy fonts straight to public
 mix.copy(srcCss + 'themify-icons/' + 'fonts', destFonts);
 mix.copy(paths.fontawesome + 'fonts', destFonts);
+
+// bootstrap-fileinput
+mix.copy(paths.bootstrapfileinput + 'css/fileinput.min.css', destVendors + 'bootstrap-fileinput/css/');
+mix.copy(paths.bootstrapfileinput + 'js/fileinput.min.js', destVendors + 'bootstrap-fileinput/js/');
+mix.copy(paths.bootstrapfileinput + 'themes/fa/theme.js', destVendors + 'bootstrap-fileinput/js/');
+mix.copy(paths.bootstrapfileinput + 'img/loading.gif', destVendors + 'bootstrap-fileinput/img');
 
 //bootstrapvalidator
 mix.copy(paths.bootstrapValidator + 'css/bootstrapValidator.min.css', destVendors + 'bootstrapvalidator/css');

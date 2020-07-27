@@ -31,11 +31,11 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-3 text-right txt_media">
-                                    <label class="form-control-label" for="logo">Logo <br> Recommended resolution: <br>
+                                    <label class="form-control-label" for="bootstrap-fileinput">Logo <br> Recommended resolution: <br>
                                         (width: 160px, height: 70px)</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="file" class="" name="logo" id="logo"
+                                    <input type="file" class="" name="logo" id="bootstrap-fileinput"
                                            v-on:change="onImageChange"
                                            :class="{'is-invalid': hasError(errors, 'logo')}">
                                     <span role="alert" class="invalid-feedback">
