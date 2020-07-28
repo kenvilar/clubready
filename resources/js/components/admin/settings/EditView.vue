@@ -23,19 +23,13 @@
                                         <strong>{{hasError(errors, 'site_name', true)}}</strong></span>
                                 </div>
                             </div>
-                            <div class="row" v-if="item.logo && !this.errors.logo">
-                                <div class="col-md-4 offset-md-3 text-right txt_media">
-                                    <img :src="'../storage/' + item.logo" class="img-responsive" alt="logo"
-                                         height="auto" width="70%">
-                                </div>
-                            </div>
                             <div class="form-group row">
                                 <div class="col-sm-3 text-right txt_media">
-                                    <label class="form-control-label" for="bootstrap-fileinput">Logo <br> Recommended resolution: <br>
-                                        (width: 160px, height: 70px)</label>
+                                    <label class="form-control-label" for="logo">Logo <br> Recommended
+                                        resolution: <br>(width: 160px, height: 70px)</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="file" class="" name="logo" id="bootstrap-fileinput"
+                                    <input type="file" class="" name="logo" id="logo"
                                            v-on:change="onImageChange"
                                            :class="{'is-invalid': hasError(errors, 'logo')}">
                                     <span role="alert" class="invalid-feedback">
@@ -124,6 +118,22 @@
                     .catch(err => {
                         //
                     });
+
+                setTimeout(() => {
+                    let logoImage = '../storage/' + this.item.logo;
+
+                    $("#logo").fileinput({
+                        theme: "fa",
+                        browseClass: "btn btn-info btn-block",
+                        initialPreview: [logoImage],
+                        initialPreviewAsData: true,
+                        showCaption: false,
+                        showRemove: false,
+                        showUpload: false,
+                        maxFileSize: 5120,
+                        allowedFileExtensions: ["jpeg", "jpg", "png", "gif"],
+                    });
+                }, 500);
             },
             async clearFields(param) {
                 if (param) {

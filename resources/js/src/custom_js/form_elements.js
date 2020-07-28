@@ -6,14 +6,14 @@ $(document).ready(function () {
         radioClass: 'iradio_square-blue',
         increaseArea: '20%' // optional
     });
-    $("#bootstrap-fileinput").fileinput({
-        theme: "fa",
-        browseClass: "btn btn-info btn-block",
-        showCaption: false,
-        showRemove: false,
-        showUpload: false,
-        allowedFileExtensions: ["jpeg", "jpg", "png", "gif"],
-    });
+    // $("#bootstrap-fileinput").fileinput({
+    //     theme: "fa",
+    //     browseClass: "btn btn-info btn-block",
+    //     showCaption: false,
+    //     showRemove: false,
+    //     showUpload: false,
+    //     allowedFileExtensions: ["jpeg", "jpg", "png", "gif"],
+    // });
     $("#input-43").fileinput({
         theme: "fa",
         browseClass: "btn btn-info",
