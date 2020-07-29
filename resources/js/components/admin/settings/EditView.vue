@@ -124,14 +124,52 @@
 
                     $("#logo").fileinput({
                         theme: "fa",
-                        browseClass: "btn btn-info btn-block",
+                        browseClass: "btn btn-info",
                         initialPreview: [logoImage],
                         initialPreviewAsData: true,
                         showCaption: false,
-                        showRemove: false,
+                        showRemove: true,
                         showUpload: false,
                         maxFileSize: 5120,
                         allowedFileExtensions: ["jpeg", "jpg", "png", "gif"],
+                        initialPreviewShowDelete: false,
+                        showClose: false,
+                        removeClass: 'btn btn-danger',
+                    });
+
+                    $('#logo').on('fileclear', function () {
+                        swal.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, remove it!'
+                        }).then(result => {
+                            if (result.value) {
+                                axios.delete(`/api/${this.database_model}/${id}`)
+                                    .then(response => {
+                                        console.log('response.data', response.data);
+
+                                        swal.fire(
+                                            'Deleted!',
+                                            'Item has been deleted.',
+                                            'success'
+                                        ).then(response => {
+                                            if (response.value) {
+                                                this.edit();
+                                            }
+                                        });
+                                    }, error => {
+                                        this.errors = error.response.data;
+                                        console.log('this.errors', this.errors);
+                                    })
+                                    .catch(err => {
+                                        console.log('err', err.response);
+                                    });
+                            }
+                        })
                     });
                 }, 500);
             },

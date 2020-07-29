@@ -31,5 +31,4 @@
     <!--file input-->
     <script src="{{asset('vendors/bootstrap-fileinput/js/fileinput.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('vendors/bootstrap-fileinput/js/theme.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/custom_js/form_elements.js')}}"></script>
 @endpush
