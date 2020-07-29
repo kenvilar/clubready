@@ -25,7 +25,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-3 text-right txt_media">
-                                    <label class="form-control-label" for="logo">Logo <br> Recommended
+                                    <label class="form-control-label">Logo <br> Recommended
                                         resolution: <br>(width: 160px, height: 70px)</label>
                                 </div>
                                 <div class="col-sm-6">
@@ -120,7 +120,7 @@
                     });
 
                 setTimeout(() => {
-                    let logoImage = '../storage/' + this.item.logo;
+                    let logoImage = this.item.logo ? '../storage/' + this.item.logo : null;
 
                     $("#logo").fileinput({
                         theme: "fa",
@@ -137,39 +137,47 @@
                         removeClass: 'btn btn-danger',
                     });
 
-                    $('#logo').on('fileclear', function () {
-                        swal.fire({
-                            title: 'Are you sure?',
-                            text: "You won't be able to revert this!",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Yes, remove it!'
-                        }).then(result => {
-                            if (result.value) {
-                                axios.delete(`/api/${this.database_model}/${id}`)
-                                    .then(response => {
-                                        console.log('response.data', response.data);
+                    var self = this;
 
-                                        swal.fire(
-                                            'Deleted!',
-                                            'Item has been deleted.',
-                                            'success'
-                                        ).then(response => {
-                                            if (response.value) {
-                                                this.edit();
-                                            }
+                    $('#logo').on('fileclear', function () {
+                        if (self.item.logo) {
+                            swal.fire({
+                                title: 'Are you sure?',
+                                text: "You won't be able to revert this!",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, remove it!',
+                            }).then(result => {
+                                if (result.value) {
+                                    axios.delete(`/api/settings/1`)
+                                        .then(response => {
+                                            console.log('response.data', response.data);
+
+                                            swal.fire(
+                                                'Deleted!',
+                                                'Item has been deleted.',
+                                                'success'
+                                            ).then(response => {
+                                                if (response.value) {
+                                                    window.location.reload();
+                                                }
+                                            });
+                                        }, error => {
+                                            this.errors = error.response.data;
+                                            console.log('this.errors', this.errors);
+                                        })
+                                        .catch(err => {
+                                            console.log('err', err.response);
                                         });
-                                    }, error => {
-                                        this.errors = error.response.data;
-                                        console.log('this.errors', this.errors);
-                                    })
-                                    .catch(err => {
-                                        console.log('err', err.response);
-                                    });
-                            }
-                        })
+                                } else {
+                                    window.location.reload();
+                                }
+                            });
+                        } else {
+                            self.image = "";
+                        }
                     });
                 }, 500);
             },

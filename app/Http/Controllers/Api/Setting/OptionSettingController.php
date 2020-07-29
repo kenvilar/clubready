@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Api\Setting;
 
 use App\Http\Controllers\ApiController;
 use App\Models\Setting;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Validator;
+use Illuminate\Validation\ValidationException;
 
 class OptionSettingController extends ApiController
 {
@@ -26,7 +27,7 @@ class OptionSettingController extends ApiController
      * Display the specified resource.
      *
      * @param Setting $setting
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function show(Setting $setting)
     {
@@ -36,10 +37,10 @@ class OptionSettingController extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param Setting $setting
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Validation\ValidationException
+     * @return JsonResponse
+     * @throws ValidationException
      */
     public function update(Request $request, Setting $setting)
     {
@@ -83,6 +84,24 @@ class OptionSettingController extends ApiController
 
         if (!$setting->isDirty()) {
             return $this->errorResponse('You need to specify a different value to update', 422);
+        }
+
+        $setting->save();
+
+        return $this->showOne($setting);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Setting $setting
+     * @return JsonResponse
+     */
+    public function destroy(Setting $setting)
+    {
+        if ($setting->logo) {
+            Storage::delete('public/' . $setting->logo);
+            $setting->logo = null;
         }
 
         $setting->save();
