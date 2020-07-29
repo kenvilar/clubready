@@ -76,8 +76,9 @@ class OptionSettingController extends ApiController
             }
 
             $fileName = date('Y-m-d-His') . '.' . $extension;
-            $path = public_path('storage') . '/' . $fileName;
-            Storage::put('public/' . $fileName, $decoded);
+            // $path = public_path('storage') . '/' . $fileName;
+            $path = 'public/' . $fileName;
+            Storage::put($path, $decoded);
 
             $setting->logo = $fileName;
         }
