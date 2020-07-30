@@ -9,6 +9,7 @@ class Setting extends Model
     protected $fillable = [
         'site_name',
         'logo',
+        'favicon',
     ];
 
     protected $hidden = [
