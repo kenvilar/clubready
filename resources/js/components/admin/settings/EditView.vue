@@ -131,7 +131,7 @@
                         console.log('this.errors', this.errors);
                     })
                     .catch(err => {
-                        //
+                        console.log('err', err.response);
                     });
             },
             async edit() {
@@ -142,7 +142,7 @@
                         this.errors = error.response.data.error;
                     })
                     .catch(err => {
-                        //
+                        console.log('err', err.response);
                     });
 
                 setTimeout(() => {
@@ -220,25 +220,19 @@
             createImage(file) {
                 let reader = new FileReader();
                 let vm = this;
-                reader.onload = e => {
-                    vm.image = e.target.result;
-                    console.log('ken vm.image', vm.image);
-                };
+                reader.onload = e => vm.image = e.target.result;
                 reader.readAsDataURL(file);
             },
             createFaviconImage(file) {
                 let reader = new FileReader();
                 let vm = this;
-                reader.onload = e => {
-                    vm.faviconImage = e.target.result;
-                    console.log('ken vm.faviconImage', vm.faviconImage);
-                };
+                reader.onload = e => vm.faviconImage = e.target.result;
                 reader.readAsDataURL(file);
             },
             logoFileClear() {
                 var self = this;
 
-                $('#logo').on('fileclear', function () {
+                $('#logo').on('fileclear', () => {
                     if (self.item.logo) {
                         swal.fire({
                             title: 'Are you sure?',
@@ -282,7 +276,7 @@
             faviconFileClear() {
                 var self = this;
 
-                $('#favicon').on('fileclear', function () {
+                $('#favicon').on('fileclear', () => {
                     if (self.item.favicon) {
                         swal.fire({
                             title: 'Are you sure?',
