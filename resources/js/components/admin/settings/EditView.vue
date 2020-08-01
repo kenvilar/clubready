@@ -36,6 +36,19 @@
                                         <strong>{{hasError(errors, 'logo', true)}}</strong></span>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3 text-right txt_media">
+                                    <label class="form-control-label">Favicon <br> Recommended
+                                        resolution: <br>32x32</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="file" class="" name="favicon" id="favicon"
+                                           v-on:change="onFaviconImageChange"
+                                           :class="{'is-invalid': hasError(errors, 'favicon')}">
+                                    <span role="alert" class="invalid-feedback">
+                                        <strong>{{hasError(errors, 'favicon', true)}}</strong></span>
+                                </div>
+                            </div>
                             <div class="form-group form-actions">
                                 <div class="col-sm-9 col-sm-offset-3 ml-auto">
                                     <button type="submit"
@@ -70,7 +83,9 @@
                 item: {},
                 errors: {},
                 image: "",
+                faviconImage: "",
                 bigImage: false,
+                bigFaviconImage: false,
             }
         },
         methods: {
@@ -79,9 +94,20 @@
                     this.item.logo = this.image;
                 }
 
+                if (this.faviconImage) {
+                    this.item.favicon = this.faviconImage;
+                }
+
                 if (this.bigImage) {
                     this.errors.logo = [];
                     this.errors.logo.push("The logo may not be greater than 5 MB.");
+
+                    return false;
+                }
+
+                if (this.bigFaviconImage) {
+                    this.errors.favicon = [];
+                    this.errors.favicon.push("The favicon may not be greater than 2 MB.");
 
                     return false;
                 }
@@ -137,48 +163,7 @@
                         removeClass: 'btn btn-danger',
                     });
 
-                    var self = this;
-
-                    $('#logo').on('fileclear', function () {
-                        if (self.item.logo) {
-                            swal.fire({
-                                title: 'Are you sure?',
-                                text: "You won't be able to revert this!",
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Yes, remove it!',
-                            }).then(result => {
-                                if (result.value) {
-                                    axios.delete(`/api/settings/1`)
-                                        .then(response => {
-                                            console.log('response.data', response.data);
-
-                                            swal.fire(
-                                                'Deleted!',
-                                                'Item has been deleted.',
-                                                'success'
-                                            ).then(response => {
-                                                if (response.value) {
-                                                    window.location.reload();
-                                                }
-                                            });
-                                        }, error => {
-                                            this.errors = error.response.data;
-                                            console.log('this.errors', this.errors);
-                                        })
-                                        .catch(err => {
-                                            console.log('err', err.response);
-                                        });
-                                } else {
-                                    window.location.reload();
-                                }
-                            });
-                        } else {
-                            self.image = "";
-                        }
-                    });
+                    this.logoFileClear()
                 }, 500);
             },
             async clearFields(param) {
@@ -208,13 +193,74 @@
                 this.bigImage = files[0].size > 5242880;
                 this.createImage(files[0]);
             },
+            onFaviconImageChange(e) {
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.bigFaviconImage = files[0].size > 2097152;
+                this.createFaviconImage(files[0]);
+            },
             createImage(file) {
                 let reader = new FileReader();
                 let vm = this;
                 reader.onload = e => {
                     vm.image = e.target.result;
+                    console.log('ken vm.image', vm.image);
                 };
                 reader.readAsDataURL(file);
+            },
+            createFaviconImage(file) {
+                let reader = new FileReader();
+                let vm = this;
+                reader.onload = e => {
+                    vm.faviconImage = e.target.result;
+                    console.log('ken vm.faviconImage', vm.faviconImage);
+                };
+                reader.readAsDataURL(file);
+            },
+            logoFileClear() {
+                var self = this;
+
+                $('#logo').on('fileclear', function () {
+                    if (self.item.logo) {
+                        swal.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, remove it!',
+                        }).then(result => {
+                            if (result.value) {
+                                axios.delete(`/api/settings/1`)
+                                    .then(response => {
+                                        console.log('response.data', response.data);
+
+                                        swal.fire(
+                                            'Deleted!',
+                                            'Item has been deleted.',
+                                            'success'
+                                        ).then(response => {
+                                            if (response.value) {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    }, error => {
+                                        this.errors = error.response.data;
+                                        console.log('this.errors', this.errors);
+                                    })
+                                    .catch(err => {
+                                        console.log('err', err.response);
+                                    });
+                            } else {
+                                window.location.reload();
+                            }
+                        });
+                    } else {
+                        self.image = "";
+                    }
+                });
             },
         }
     }
