@@ -147,6 +147,7 @@
 
                 setTimeout(() => {
                     let logoImage = this.item.logo ? '../storage/' + this.item.logo : null;
+                    let faviconImage = this.item.favicon ? '../storage/' + this.item.favicon : null;
 
                     $("#logo").fileinput({
                         theme: "fa",
@@ -157,13 +158,29 @@
                         showRemove: true,
                         showUpload: false,
                         maxFileSize: 5120,
-                        allowedFileExtensions: ["jpeg", "jpg", "png", "gif"],
+                        allowedFileExtensions: ["jpeg", "jpg", "png", "gif",],
                         initialPreviewShowDelete: false,
                         showClose: false,
                         removeClass: 'btn btn-danger',
                     });
 
-                    this.logoFileClear()
+                    $("#favicon").fileinput({
+                        theme: "fa",
+                        browseClass: "btn btn-info",
+                        initialPreview: [faviconImage],
+                        initialPreviewAsData: true,
+                        showCaption: false,
+                        showRemove: true,
+                        showUpload: false,
+                        maxFileSize: 5120,
+                        allowedFileExtensions: ["ico",],
+                        initialPreviewShowDelete: false,
+                        showClose: false,
+                        removeClass: 'btn btn-danger',
+                    });
+
+                    this.logoFileClear();
+                    this.faviconFileClear();
                 }, 500);
             },
             async clearFields(param) {
@@ -259,6 +276,50 @@
                         });
                     } else {
                         self.image = "";
+                    }
+                });
+            },
+            faviconFileClear() {
+                var self = this;
+
+                $('#favicon').on('fileclear', function () {
+                    if (self.item.favicon) {
+                        swal.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, remove it!',
+                        }).then(result => {
+                            if (result.value) {
+                                axios.delete(`/api/settings/1`)
+                                    .then(response => {
+                                        console.log('response.data', response.data);
+
+                                        swal.fire(
+                                            'Deleted!',
+                                            'Item has been deleted.',
+                                            'success'
+                                        ).then(response => {
+                                            if (response.value) {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    }, error => {
+                                        this.errors = error.response.data;
+                                        console.log('this.errors', this.errors);
+                                    })
+                                    .catch(err => {
+                                        console.log('err', err.response);
+                                    });
+                            } else {
+                                window.location.reload();
+                            }
+                        });
+                    } else {
+                        self.faviconImage = "";
                     }
                 });
             },
