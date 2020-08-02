@@ -3,7 +3,7 @@
 <head>
     <title>{{ \App\Models\Setting::query()->first()->site_name ?? config('app.name', '::Admin Login::') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ \App\Models\Setting::query()->first()->favicon ? '../storage/' . \App\Models\Setting::query()->first()->favicon : asset('img/favicon.ico') }}"/>
+    <link rel="shortcut icon" href="{{ \App\Models\Setting::query()->first()->favicon ? asset('../storage/' . \App\Models\Setting::query()->first()->favicon): asset('img/favicon.ico') }}"/>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

@@ -9,7 +9,7 @@
 
     <title>{{ \App\Models\Setting::query()->first()->site_name ?? config('app.name', 'MyApp') }}</title>
 
-    <link rel="shortcut icon" href="{{ \App\Models\Setting::query()->first()->favicon ? '../storage/' . \App\Models\Setting::query()->first()->favicon : asset('img/favicon.ico') }}"/>
+    <link rel="shortcut icon" href="{{ \App\Models\Setting::query()->first()->favicon ? asset('../storage/' . \App\Models\Setting::query()->first()->favicon) : asset('img/favicon.ico') }}"/>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
