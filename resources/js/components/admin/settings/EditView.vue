@@ -179,8 +179,13 @@
                         removeClass: 'btn btn-danger',
                     });
 
-                    this.logoFileClear();
-                    this.faviconFileClear();
+                    if (logoImage) {
+                        this.logoFileClear();
+                    }
+
+                    if (faviconImage) {
+                        this.faviconFileClear();
+                    }
                 }, 500);
             },
             async clearFields(param) {
@@ -220,13 +225,17 @@
             createImage(file) {
                 let reader = new FileReader();
                 let vm = this;
-                reader.onload = e => vm.image = e.target.result;
+                reader.onload = e => {
+                    vm.image = e.target.result;
+                };
                 reader.readAsDataURL(file);
             },
             createFaviconImage(file) {
                 let reader = new FileReader();
                 let vm = this;
-                reader.onload = e => vm.faviconImage = e.target.result;
+                reader.onload = e => {
+                    vm.faviconImage = e.target.result;
+                };
                 reader.readAsDataURL(file);
             },
             logoFileClear() {

@@ -44,7 +44,10 @@ class OptionSettingController extends ApiController
      */
     public function update(Request $request, Setting $setting)
     {
-        if (Str::contains($request->logo, 'data:') && Str::contains($request->logo, ';base64,')) {
+        $logo = Str::contains($request->logo, 'data:') && Str::contains($request->logo, ';base64,');
+        $favicon = Str::contains($request->favicon, 'data:') && Str::contains($request->favicon, ';base64,');
+
+        if ($logo || $favicon) {
             $this->validate($request, $this->validationRules());
         }
 
@@ -54,10 +57,18 @@ class OptionSettingController extends ApiController
             Storage::delete('public/' . $setting->logo);
         }
 
+        if ($setting->favicon &&
+            Str::contains($request->favicon, 'data:') &&
+            Str::contains($request->favicon, ';base64,')) {
+            Storage::delete('public/' . $setting->favicon);
+        }
+
         $setting->site_name = $request->site_name;
         $setting->logo = $request->logo;
+        $setting->favicon = $request->favicon;
 
         $fileName = null;
+        $fileNameFavicon = null;
 
         if ($request->logo &&
             Str::contains($request->logo, 'data:') &&
@@ -81,6 +92,23 @@ class OptionSettingController extends ApiController
             Storage::put($path, $decoded);
 
             $setting->logo = $fileName;
+        }
+
+        if ($request->favicon &&
+            Str::contains($request->favicon, 'data:') &&
+            Str::contains($request->favicon, ';base64,')) {
+
+            $explodedFavicon = explode(',', $request->favicon);
+            $decodedFavicon = base64_decode($explodedFavicon[1]);
+            if (Str::contains($explodedFavicon[0], '.icon')) {
+                $extensionFavicon = "ico";
+            }
+
+            $fileNameFavicon = date('Y-m-d-His') . '.' . $extensionFavicon;
+            $pathFavicon = 'public/' . $fileNameFavicon;
+            Storage::put($pathFavicon, $decodedFavicon);
+
+            $setting->favicon = $fileNameFavicon;
         }
 
         if (!$setting->isDirty()) {
@@ -116,7 +144,8 @@ class OptionSettingController extends ApiController
     private function validationRules()
     {
         return [
-            'logo' => 'image64:jpeg,jpg,png,gif',
+            'logo' => 'image64:jpeg,jpg,png,gif|nullable',
+            'favicon' => 'image64:vnd.microsoft.icon,x-icon,jpeg,jpg,png|nullable',
         ];
     }
 }
