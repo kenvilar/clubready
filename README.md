@@ -25,7 +25,7 @@ This project is a web app for creating clubs and organizing its members
 - [x] Redirect to dashboard page after login for super-admin users
 - [x] Add settings for site name and logo
 - [x] Can remove the logo image
-- [ ] Can upload and remove the favicon
+- [x] Can upload and remove the favicon
 
 ## PRODUCTION DEPLOYMENT
 1. Deploying Passport.   
