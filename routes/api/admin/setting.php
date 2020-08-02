@@ -8,3 +8,4 @@
  */
 
 Route::resource('settings', 'OptionSettingController', ['except' => ['index', 'store', 'create', 'edit',]]);
+Route::delete('settings/{setting}/removeFavicon', 'OptionSettingController@removeFavicon')->name('settings.removeFavicon');

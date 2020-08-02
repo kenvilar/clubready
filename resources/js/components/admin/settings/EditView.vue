@@ -92,10 +92,31 @@
             async update() {
                 if (this.image) {
                     this.item.logo = this.image;
+
+                    let comma = this.image.split(',');
+                    let slash = comma[0].split(';');
+                    let mime_type = slash[0].split('/');
+                    let logoInvalidCompare = mime_type[1].includes('jpeg') ||
+                        mime_type[1].includes('jpg') ||
+                        mime_type[1].includes('png') ||
+                        mime_type[1].includes('gif');
+                    if (!(logoInvalidCompare)) {
+                        return false;
+                    }
                 }
 
                 if (this.faviconImage) {
                     this.item.favicon = this.faviconImage;
+
+                    let commaFavicon = this.faviconImage.split(',');
+                    let slashFavicon = commaFavicon[0].split(';');
+                    let mime_typeFavicon = slashFavicon[0].split('/');
+                    let faviconInvalidCompare = mime_typeFavicon[1].includes('vnd.microsoft.icon') ||
+                        mime_typeFavicon[1].includes('x-icon') ||
+                        mime_typeFavicon[1].includes('ico');
+                    if (!(faviconInvalidCompare)) {
+                        return false;
+                    }
                 }
 
                 if (this.bigImage) {
@@ -297,7 +318,7 @@
                             confirmButtonText: 'Yes, remove it!',
                         }).then(result => {
                             if (result.value) {
-                                axios.delete(`/api/settings/1`)
+                                axios.delete(`/api/settings/1/removeFavicon`)
                                     .then(response => {
                                         console.log('response.data', response.data);
 

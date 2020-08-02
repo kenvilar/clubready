@@ -44,12 +44,16 @@ class OptionSettingController extends ApiController
      */
     public function update(Request $request, Setting $setting)
     {
-        $logo = Str::contains($request->logo, 'data:') && Str::contains($request->logo, ';base64,');
-        $favicon = Str::contains($request->favicon, 'data:') && Str::contains($request->favicon, ';base64,');
-
-        if ($logo || $favicon) {
-            $this->validate($request, $this->validationRules());
-        }
+//        $logo = Str::contains($request->logo, 'data:') && Str::contains($request->logo, ';base64,');
+//        $favicon = Str::contains($request->favicon, 'data:') && Str::contains($request->favicon, ';base64,');
+//
+//        if ($logo) {
+//            $this->validate($request, $this->validationRules());
+//        }
+//
+//        if ($favicon) {
+//            $this->validate($request, $this->validationRules());
+//        }
 
         if ($setting->logo &&
             Str::contains($request->logo, 'data:') &&
@@ -121,7 +125,7 @@ class OptionSettingController extends ApiController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the logo image from storage.
      *
      * @param Setting $setting
      * @return JsonResponse
@@ -139,13 +143,32 @@ class OptionSettingController extends ApiController
     }
 
     /**
+     * Remove the favicon from storage.
+     *
+     * @param Setting $setting
+     * @return JsonResponse
+     */
+    public function removeFavicon(Setting $setting)
+    {
+        if ($setting->favicon) {
+            Storage::delete('public/' . $setting->favicon);
+            $setting->favicon = null;
+        }
+
+        $setting->save();
+
+        return $this->showOne($setting);
+    }
+
+    /**
      * @return array
      */
     private function validationRules()
     {
         return [
+            'site_name' => 'nullable',
             'logo' => 'image64:jpeg,jpg,png,gif|nullable',
-            'favicon' => 'image64:vnd.microsoft.icon,x-icon,jpeg,jpg,png|nullable',
+            'favicon' => 'image64:vnd.microsoft.icon,ico,x-icon|nullable',
         ];
     }
 }
