@@ -8,6 +8,11 @@
             </div>
             <div class="card-body">
                 <div class="col-md-12">
+                    <p>
+                        <a class="btn btn-success" @click="clickEdit(item.member_number)">Edit</a>
+                    </p>
+                </div>
+                <div class="col-md-12">
                     <div class="table-responsive">
                         <table class="table table-striped table-condensed" id="customtable">
                             <tbody>
@@ -67,6 +72,11 @@
                         </table>
                     </div>
                 </div>
+                <div class="col-md-12">
+                    <p>
+                        <a class="btn btn-success" @click="clickEdit(item.member_number)">Edit</a>
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -100,6 +110,9 @@
             },
             formatDate(date) {
                 return date ? moment(date).format('MMMM D, YYYY') : '';
+            },
+            async clickEdit(id) {
+                window.location.href = `/admin/${this.database_model}/${id}/edit`;
             },
         }
     }
