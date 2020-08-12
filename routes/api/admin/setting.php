@@ -9,3 +9,4 @@
 
 Route::resource('settings', 'OptionSettingController', ['except' => ['index', 'store', 'create', 'edit',]]);
 Route::delete('settings/{setting}/removeFavicon', 'OptionSettingController@removeFavicon')->name('settings.removeFavicon');
+Route::put('settings/{user}/changePassword', 'ChangePasswordController@update')->name('settings.changePassword');

@@ -12,3 +12,4 @@ Route::resource('settings', 'OptionSettingController',
     ->names([
         'index' => 'index',
     ]);
+Route::get('settings/change-password', 'ChangePasswordController@edit')->name('changePassword');
