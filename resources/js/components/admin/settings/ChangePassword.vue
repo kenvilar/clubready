@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <button class="col-12 btn btn-primary btn-load btn-md" type="submit"
-                                        data-loading-text="Changing Password...">Change Password
+                                        data-loading-text="Changing Password..." disabled>Change Password
                                 </button>
                             </div>
                         </form>
@@ -170,6 +170,24 @@
                 let password2Val = $("#password2").val();
 
                 return !(password1Val.length < 5 || password1Val != password2Val);
+            },
+            removeDisabled() {
+                if (this.item.current_password && this.item.password1 && this.item.password2) {
+                    $("button[type='submit']").removeAttr('disabled');
+                } else {
+                    $("button[type='submit']").attr('disabled', 'disabled');
+                }
+            },
+        },
+        watch: {
+            'item.current_password': function (val) {
+                this.removeDisabled();
+            },
+            'item.password1': function (val) {
+                this.removeDisabled();
+            },
+            'item.password2': function (val) {
+                this.removeDisabled();
             },
         }
     }
