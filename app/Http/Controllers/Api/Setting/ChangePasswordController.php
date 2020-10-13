@@ -55,7 +55,7 @@ class ChangePasswordController extends ApiController
 
             return $this->showOne($user);
         } else {
-            return 'Password does not match';
+            return $this->errorResponse('Passwords do not match', 409);
         }
     }
 }
