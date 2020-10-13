@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class ChangePasswordController extends ApiController
@@ -39,18 +40,22 @@ class ChangePasswordController extends ApiController
      *
      * @param \Illuminate\Http\Request $request
      * @param User $user
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, User $user)
     {
-        $this->setUserPassword($user, $request->password1);
+        if (Hash::check($request->current_password, $user->password)) {
+            $this->setUserPassword($user, $request->password1);
 
-        $user->setRememberToken(Str::random(60));
+            $user->setRememberToken(Str::random(60));
 
-        $user->save();
+            $user->save();
 
-        event(new PasswordReset($user));
+            event(new PasswordReset($user));
 
-        return $this->showOne($user);
+            return $this->showOne($user);
+        } else {
+            return 'Password does not match';
+        }
     }
 }
