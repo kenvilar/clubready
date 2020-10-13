@@ -12,10 +12,12 @@
                         <form @submit.prevent="storeOrUpdate" id="passwordForm" novalidate>
                             <div class="form-group">
                                 <input type="password" class="input-md form-control" name="password1" id="password1"
+                                       v-model="item.password1"
                                        placeholder="New Password" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <input type="password" class="input-md form-control" name="password2" id="password2"
+                                       v-model="item.password2"
                                        placeholder="Repeat Password" autocomplete="off">
                             </div>
                             <div class="form-group">
@@ -23,8 +25,9 @@
                                 Passwords Match
                             </div>
                             <div class="form-group">
-                                <a href="#" class="col-12 btn btn-primary btn-load btn-md"
-                                   data-loading-text="Changing Password...">Change Password</a>
+                                <button class="col-12 btn btn-primary btn-load btn-md" type="submit"
+                                        data-loading-text="Changing Password...">Change Password
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -46,6 +49,7 @@
         },
         mounted() {
             this.edit();
+            this.getCurrentUserInfo();
         },
         created() {
             //
@@ -55,49 +59,28 @@
         },
         data() {
             return {
-                database_model: 'membership-type-names',
+                database_model: 'settings',
                 item: {},
                 errors: {},
+                current_user_info: {},
             }
         },
         methods: {
             async storeOrUpdate() {
-                if (this.model_id) {
-                    let update = axios.put(`/api/${this.database_model}/${this.model_id}`, this.item)
-                        .then(response => {
-                            this.item = response.data;
-
-                            swal.fire({
-                                icon: 'success',
-                                title: "Success",
-                                text: "Membership type name has been updated successfully.",
-                                type: "success",
-                            }).then(result => {
-                                if (result.value) {
-                                    this.automaticFocusTheFirstInput();
-                                    this.errors = {};
-                                }
-                            });
-                        }, error => {
-                            this.errors = error.response.data.error;
-                            console.log('this.errors', this.errors);
-                        }).catch(err => {
-                            //
-                        });
-
+                if (!this.validatePasswords()) {
                     return;
                 }
+                axios.put(`/api/${this.database_model}/${this.current_user_info.member_number}/changePassword`, this.item)
+                    .then(response => {
+                        this.item = response.data;
 
-                let store = axios.post(`/api/${this.database_model}`, this.item)
-                    .then(() => {
                         swal.fire({
                             icon: 'success',
                             title: "Success",
-                            text: "New membership type name has been created successfully.",
+                            text: "Your password has been updated successfully.",
                             type: "success",
                         }).then(result => {
                             if (result.value) {
-                                this.clearFields(this.item);
                                 this.automaticFocusTheFirstInput();
                                 this.errors = {};
                             }
@@ -105,9 +88,12 @@
                     }, error => {
                         this.errors = error.response.data.error;
                         console.log('this.errors', this.errors);
-                    }).catch(err => {
+                    })
+                    .catch(err => {
                         //
                     });
+
+                return;
             },
             async edit() {
                 if (this.model_id) {
@@ -143,6 +129,20 @@
                     $('input:visible:enabled').toggleClass('focus-visible');
                     $('form:first *:input[type!=hidden]:first').focus();
                 }, 300);
+            },
+            async getCurrentUserInfo() {
+                axios.get(`/api/user`)
+                    .then(response => {
+                        this.current_user_info = response.data;
+                    });
+            },
+            validatePasswords() {
+                let password1Val = $("#password1").val();
+                let password2Val = $("#password2").val();
+
+                return !(password1Val.length < 5 || password1Val != password2Val);
+
+
             },
         }
     }

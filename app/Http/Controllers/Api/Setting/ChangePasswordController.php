@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Api\Setting;
 
 use App\Http\Controllers\ApiController;
-use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ChangePasswordController extends ApiController
 {
+    use ResetsPasswords;
+
     /**
      * Create a new controller instance.
      *
@@ -17,7 +21,6 @@ class ChangePasswordController extends ApiController
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('strict-user');
     }
 
     /**
@@ -40,6 +43,14 @@ class ChangePasswordController extends ApiController
      */
     public function update(Request $request, User $user)
     {
-        //
+        $this->setUserPassword($user, $request->password1);
+
+        $user->setRememberToken(Str::random(60));
+
+        $user->save();
+
+        event(new PasswordReset($user));
+
+        return $this->showOne($user);
     }
 }
