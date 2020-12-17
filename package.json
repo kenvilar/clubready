@@ -26,7 +26,7 @@
     "dependencies": {
         "bootstrap-fileinput": "^5.1.2",
         "bootstrapvalidator": "^0.5.4",
-        "datatables.net": "^1.10.20",
+        "datatables.net": "^1.10.22",
         "datatables.net-bs4": "^1.10.20",
         "datedropper": "^2.0.0",
         "font-awesome": "^4.7.0",
